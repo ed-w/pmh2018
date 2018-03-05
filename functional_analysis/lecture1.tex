@@ -1,0 +1,69 @@
+\section{Lecture 2018-03-05}
+
+What is functional analysis? Infinite dimensional linear algebra (but a lot of analysis as well).
+Book for motivation: Einsiedler/Ward Spectral Theory
+Basic material: Lecture Notes by Daniel Daners
+
+One of the motivations for functional analysis: section 2.2 of EW.
+The heat equation (partial differential equations)
+
+\begin{defn}
+	Let $U$ be open in $\RR^d$.
+	Let $u: U \times \RR \to \RR$ be the 'heat' function (the first $\RR$ represents the time axis).
+	The heat equation is
+	\begin{equation}\label{eq:heat}
+		\frac{\p u}{\p t} = c\Delta_x u
+	\end{equation}
+	where
+	\[\Delta_x = \frac{\p^2 u}{\p x_1^2} + \cdots + \frac{\p^2 u}{\p x_d^2}\]
+	is the Laplace operator.
+\end{defn}
+
+Why is it the heat equation?
+
+\begin{prop}
+	Let $U \subseteq \RR^2$ be open and suppose $f: U \to \RR$ is a $C^2$-function.
+	Then
+	\[\lim_{r \to 0} \frac{1}{r^2 \vol(B_r(x))} \int_{B_r(x)} (f(y)-f(x)) \, dy = c \Delta f(x)\]
+	where $B_r(x)$ is the ball of radius $r$ around $x$ and where $c$ can depend on ???.
+\end{prop}
+
+How do we solve \cref{eq:heat}?
+
+From physical intuition, if $u|_{\p V}=b$ is time independent, then by \cref{eq:heat} the equilibrium solution satisfies
+branching equation $\Delta u=0$ (harmonic) and $u|_{\p V}=b$ (Dirichlet boundary conditions).
+This is the Dirichlet problem.
+
+A function $u$ is called harmonic if $\Delta u=0$.
+Let's try to separate variables.
+\begin{align*}
+	u(x,t) &= F(x)G(t) \\
+	F(x)G'(t) &= x(\Delta F(x))G(t) \\
+	\frac{G'(t)}{G(t)} &= c \frac{\Delta F(x)}{F(x)}
+\end{align*}
+By scaling the time we can assume $c=1$.
+Then
+
+\[\frac{G'(t)}{G(t)} = \frac{\Delta F(x)}{F(x)}\]
+
+Note that if $G(t) = e^{\lambda t}$ and $\Delta F = \lambda F$ then $F(x)G(t)$ solves the above equation.
+
+To solve this we need the spectral theory of the Laplace operator.
+
+\begin{prop}
+	Every sufficiently nice function $f: U \to \RR$ can be decomposed in to a sum $f=\sum_n F_n$ of functions $F_n: \ol U \to \RR$ such that
+	\begin{itemize}
+		\item $\Delta F_n = \lambda_n F_n$ for some $\lambda_n ???< 0$
+		\item $F_n|_{\p U} = 0$
+	\end{itemize}
+	The $F_n$ are eigenfunctions of $\Delta$ and $\lambda_n$ their corresponding eigenvalues.
+\end{prop}
+
+Then
+\[u(x,t) = \sum_n F_n(x) e^{\lambda_n t}\]
+will be well defined and will satisfy
+branching equation $u|_{\p U \times \{t\}}=0$ for all $t$, and $u|_{\p U \times \{0\}}=f$.
+
+A theme of this subject is to find which operators have eigenfunction decompositions.
+
+We will only talk about continuous linear transformations.

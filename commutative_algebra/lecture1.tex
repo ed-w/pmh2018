@@ -1,0 +1,105 @@
+\section{Lecture 2018-03-05}
+
+0 Basic notions for rings
+
+\begin{defn}
+	A ring $R$ is a set with two binary operations: addition $+: R \times R \to R, (x,y) \mapsto x+y$ and multiplication: $\cdot: R \times R \to R, (x,y) \mapsto xy$, such that:
+	\begin{enumerate}
+		\item $(R,+)$ is an abelian group with unit $0$ or $0_R$
+		\item Multiplication is (left and right) distributive over addition
+	\end{enumerate}
+\end{defn}
+
+\begin{exer}
+	Show that $x \cdot 0 = 0$ for all $x$ in $R$.
+\end{exer}
+
+\begin{rmk}
+	We will make further assumptions in this course:
+	\begin{enumerate}
+		\item Multiplication is associative
+		\item A multiplicative identity ($1$ or $1_R$) exists
+		\item Multiplication is commutative
+	\end{enumerate}
+	so $(R,\cdot)$ is a commutative monoid and thus $R$ is a commutative ring.
+\end{rmk}
+
+\begin{rmk}
+	We do not require $0_R \neq 1_R$.
+	(The zero ring is a ring.)
+\end{rmk}
+
+\begin{exam}
+	Examples of rings: $\ZZ$, $\QQ$, $\RR$, $\CC$, $\ZZ[i]$, $C^\infty(\mathcal{M})$ for an $\RR$-manifold $\mathcal{M}$, $k[x]$ for a field $k$ and an indeterminate $x$
+\end{exam}
+
+\begin{defn}
+	A ring homomorphism (morphism) is a map of sets $f: R \to R'$ where $R$ and $R'$ are rings such that
+	\begin{itemize}
+		\item $f: (R,+) \to (R',+')$ is a homomorphism of abelian groups i.e.\@ $f(x+y)=f(x)+f(y)$
+		\item $f: (R,\cdot) \to (R',\cdot')$ is a homomorphism of (commutative) monoids i.e.\@ $f(xy)=f(x)f(y)$ (and $f(1_R)=1_{R'}$)
+	\end{itemize}
+\end{defn}
+
+\begin{exam}
+	Examples of ring homomorphisms: $\ZZ \injto \QQ$, $\ZZ \surjto \ZZ/n\ZZ for n \in \ZZ$
+\end{exam}
+
+\begin{defn}
+	A subset $S \subset R$ is a subring if
+	\begin{enumerate}
+		\item $(S,+_R,\cdot_R)$ is a ring
+		\item $1_R \in S$ (therefore $1_S=1_R$)
+	\end{enumerate}
+\end{defn}
+
+\begin{exam}
+	Examples of subrings: $\ZZ \injto \QQ$, $k[x] \subset k[x,y]$
+\end{exam}
+
+\begin{rmk}	
+	The composition of two ring homomorphisms is also a ring homomorphism.
+\end{rmk}
+
+\begin{prop}
+	Commutative rings form a category CRing.
+	Some properties of rings:
+	\begin{enumerate}
+		\item The isomorphisms are the bijective ring homomorphisms (an isomorphism is a two-side-invertible morphism).
+		\item The monomorphisms are the injective ring homomorphisms (a monomorphism is a left-cancellative morphism).
+		\item The epimorphisms include (strictly) the surjective ring homomorphisms (an epimorphism is a right-cancellative morphism).
+		\item $\ZZ$ is an initial object in CRing (i.e. there is a unique morphism from $\ZZ$ to $R$ for any $R$ in CRing).
+		\item The zero ring is a terminal object in CRing (i.e. there is a unique morphism from $R$ to $0$ for any $R$ in CRing).
+		\item For any morphism $f: R \to R'$, $\im f$ is a subring of $R$.
+		\item $\ker f = f\inv[0_{R'}]$ is a subring if and only if $R'$ is the zero ring.
+	\end{enumerate}
+\end{prop}
+
+Not all epimorphisms are surjective.
+\begin{exer}
+	Show that $\ZZ \injto \QQ$ is epic.
+\end{exer}
+
+\begin{defn}
+	A subset $I \subset R$ is a (two-sided) ideal if
+	\begin{enumerate}
+		\item $(I,+)$ is a subgroup of $(R,+)$
+		\item $RI = IR \subseteq I$ (i.e. $xa \in I$ for all $x \in R$ and $a \in I$)
+	\end{enumerate}
+	We write $I<R$.
+\end{defn}
+
+\begin{exam}
+	Examples of ideals: $\ker f$ for a morphism of rings $f: R \to R'$
+\end{exam}
+
+\begin{exer}
+	\begin{itemize}
+		\item If $I<R$, the quotient group $R/I$ forms a ring with multiplication given by
+		\[(a+I)(b+I)=(ab+I)\]
+		and hence the natural map $\pi: R \to R/I$ is a morphism.
+		\item If $f: R \to R'$ is a morphism of rings, then
+		\[R/\ker f \cong \im f\]
+	\end{itemize}
+\end{exer}
+
