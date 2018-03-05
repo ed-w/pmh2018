@@ -1,87 +1,76 @@
 \section{2018-03-05 Lecture}
 
-intro
-
-textbook allen hatcher
-
-email lecturer to tell him you are in the class
-
-assignment is already up
-
-exercises in lecture notes on website for checking understanding
-
-exercises in book are harder
-
-final exam problems similar to book
-
-topology
-
-take a topological space and assign to it some topological structure (like a group) which is invariant according to some allowed manipulations
-it also gave rise to homological algebra which is used in representation theory, category theory and so on
-
 chapter 0: introduction
 1. basic notions of topology
 1.1 topological spaces
 
 \begin{defn}
-	A topological space is a pair $(X,\tau)$, where $X$ is a set and $\tau$ is a topology for the set:
-	\begin{itemize}
+	A \textbf{topological space} is a pair $(X,\tau)$, where $X$ is a set and $\tau$ is a \textbf{topology} for the set:
+	\begin{itm}
 		\item $\emptyset, X \in \tau$
 		\item $\{V_\alpha \in \tau\} \implies \bigcup_\alpha V_\alpha \in \tau$
 		\item $\{V_\alpha \in \tau\} \implies \bigcap_\alpha V_\alpha \in \tau$ for finite sets
-	\end{itemize}
+	\end{itm}
 \end{defn}
 
 \begin{exam}
-	Euclidean space $\RR^n$ with distance function $d: \RR^n \times \RR^n \to \RR$ with
+	An example of a topological space is Euclidean space $\RR^n$ with distance function $d: \RR^n \times \RR^n \to \RR$ with
 	\[d(x,y) = \sqrt{\sum_{i=1}^n(x_i-y_i)^2}\]
 	\[\]
-	Whenever we use Euclidean space we assume this topology. fill in
-	
-	open ball
-	open set condition
+	Whenever we use Euclidean space we assume this topology.
+	Define
+	\[\mathring{D}(x,r) = \{y \in \RR^m \mid d(x,y)<r\}\]
+	for $x \in \RR^n$ and $r \in \RR$ positive.
+	Then a set $U \subset \RR^n$ is defined to be open if for all $x \in U$ there exists an $\epsilon>0$ such that $\mathring{D}(x,\epsilon) \subset U$.
 \end{exam}
 
 \begin{defn}
-	Given a topological space $(X,\tau)$, any subset $S \subset X$ is a topological space for $\tau_S = \{S \cap U \mid U \in \tau\}$ (the subspace topology).
+	Given a topological space $(X,\tau)$, any subset $S \subset X$ is a topological space for $\tau_S = \{S \cap U \mid U \in \tau\}$ (the \textbf{subspace topology}).
 \end{defn}
 
-We will sometimes omit the $\tau$ when talking about maps.
+We will sometimes omit the $\tau$ when talking about spaces.
 
 \begin{exam}
-	\begin{itemize}
-		\item $I = [0,1] \subset \RR$ fill in
-	\end{itemize}
-	Closed Ball (n)
-	Sphere (n-1)	
+	The following are some topological spaces.
+	\begin{itm}
+		\item $D^n = \{x \in \RR^n \mid d(x,0) \leq r\}$
+		\item $S^{n-1} = \{x \in \RR^n \mid d(x,0) = r\}$
+		\item $I = [0,1] \subset \RR$\
+	\end{itm}
 \end{exam}
 
 1.2 continuous maps and homeomorphisms
 
 \begin{defn}
-	A map $f: X \to Y$ of sets is continuous if $f\inv = \{x \in X | f(x) \in V\}$ is open for all $V \subset Y$ open.
+	A map $f: X \to Y$ of sets is \textbf{continuous} if $f\inv = \{x \in X | f(x) \in V\}$ is open for all $V \subset Y$ open.
 \end{defn}
 
 Continuous maps are the natural maps between topological spaces.
 If we talk about a map between topological spaces it is assumed to be continuous.
 
 \begin{exam}
-	$S \subset X$ fill in
+	Let $S \subset X$ and let $\iota: S \injto X$ be the inclusion.
+	Let $V \subset X$ be open.
+	Then $\iota\inv[V] = S \cap V$ which is open, hence $\iota$ is continuous.
 \end{exam}
 
-composition of maps is continuous
+\begin{rmk}
+	The composition of continuous maps is continuous.
+\end{rmk}
 
-category top of topological spaces
-
-when are two spaces the same topologically
+\begin{rmk}
+	Topological spaces form a category $\Top$.
+	What are the morphisms in this category?
+	When are two spaces the same topologically?
+\end{rmk}
 
 \begin{defn}
-	A map $f: X \to Y$ is a homeomorphism if
-	\begin{itemize}
+	A map $f: X \to Y$ is a \textbf{homeomorphism} if
+	\begin{itm}
 		\item $f$ is continuous
 		\item $f$ is bijective
 		\item $f\inv$ is continuous
-	\end{itemize}
+	\end{itm}
 	Alternatively, a homeomorphism is a bijection of sets where $f[U]$ is open in $Y$ if and only if $U$ is open in $X$.
 	If a homeomorphism exists then we write $X \cong Y$.
 \end{defn}
@@ -99,18 +88,19 @@ In topology we consider to be the same some spaces which would not be considered
 Let $X$ and $Y$ be topological spaces.
 
 \begin{defn}
-	The product space $X \times Y$ is:
-	\begin{itemize}
+	The \textbf{product space} $X \times Y$ is:
+	\begin{itm}
 		\item the set $X \times Y = \{(x,y) \mid x \in X, y \in Y\}$, and where
 		\item open sets in $X \times Y$ are the unions of $U \times V$ where $U$ is open in $X$ and $V$ is open in $Y$
-	\end{itemize}
+	\end{itm}
+	(This is the product in the category $\Top$).
 \end{defn}
 
 We have (continuous) maps
-\begin{itemize}
+\begin{itm}
 	\item $P_X: X \times Y \to X, (x,y) \mapsto x$
 	\item $P_X: X \times Y \to Y, (x,y) \mapsto y$
-\end{itemize}
+\end{itm}
 
 \begin{exer}
 	Let $f: Z \to X \times Y$.
@@ -118,24 +108,34 @@ We have (continuous) maps
 \end{exer}
 
 \begin{exam}
-	\item $\RR \times \RR \cong \RR^2$
-	\item $S^1 \times S^1 \cong T^2$. (sphere times sphere is torus)
+	Here are some examples of product spaces.
+	\begin{itm}
+		\item $\RR \times \RR \cong \RR^2$
+		\item $S^1 \times S^1 \cong T^2$ (the torus)
+	\end{itm}
 \end{exam}
 
 \begin{defn}
-	Take an equivalence relation (reflexive, symmetric and transitive) $~$ on $X$.
-	Define $Z \defeq X/~$ be the set of equivalence classes with quotient map. fill in fix tilde
+	Take an equivalence relation $\sim$ on $X$.
+	Define $Z \defeq X/\sim$ be the set of equivalence classes with quotient map $q: X \to Y$.
+	The \textbf{quotient topology} on $Y$ is the topology where the open sets are the sets of the form
+	\[\{U \subset Y \mid q\inv[U] \in \tau\}\]
 \end{defn}
 
 \begin{exam}
-	quotient by a subspace
+	(Quotient by a subspace)
 	Let $S \subset X$.
-	Then for $x \neq y \in X$, let $x~y$ if and only if $x,y \in S$.
-	Then $X/S \defeq X/~$.
+	Then for $x \neq y \in X$, let $x\sim y$ if and only if $x,y \in S$.
+	Then $X/S \defeq X/\sim$.
 \end{exam}
 
 \begin{defn}
-	Consider the disjoint union of sets $X \sqcup Y$.
-	The open subsets are $U \sqcup V$ for $U$ open in $X$ and $V$ open in $Y$.
-	We have inclusion maps fill in
+	Consider the (disjoint) \textbf{union} of sets $X \amalg Y$. (This is the coproduct in $\Top$.)
+	The open subsets are $U \amalg V$ for $U$ open in $X$ and $V$ open in $Y$.
+	We have inclusion maps $\iota_X: X \to X \amalg Y, x \mapsto x$ and $\iota_Y: Y \to X \amalg Y, y \mapsto y$.
 \end{defn}
+
+\begin{exer}
+	Let $f: X \amalg Y \to Z$ be a map of sets.
+	Then $f$ is continuous if and only if $f\iota_X$ and $f\iota_Y$ are continuous.
+\end{exer}
