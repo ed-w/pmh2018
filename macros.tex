@@ -19,13 +19,6 @@
 \newtheorem{rmk}{Remark}
 \newtheorem{note}{Note}
 
-\newcommand{\NN}{\mathbb{N}}
-\newcommand{\PP}{\mathbb{P}}
-\newcommand{\ZZ}{\mathbb{Z}}
-\newcommand{\QQ}{\mathbb{Q}}
-\newcommand{\RR}{\mathbb{R}}
-\newcommand{\CC}{\mathbb{C}}
-
 \newcommand{\defeq}{\overset{\mathrm{def}}{=}}
 \newcommand{\inv}{^{-1}}
 
@@ -38,6 +31,24 @@
 \newcommand{\wt}{\widetilde}
 \newcommand{\wh}{\widehat}
 \newcommand{\p}{\partial}
+
+\DeclareMathOperator{\area}{\area}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\lcm}{lcm}
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+
+\newenvironment{soln}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{enum}{\begin{enumerate}}{\end{enumerate}}
+\newenvironment{itm}{\begin{itemize}}{\end{itemize}}
+\newenvironment{eqn}{\begin{equation}}{\end{equation}}
+
+\newcommand{\io}{\item}
 
 \newcommand{\taking}[1]{\xrightarrow{#1}}
 \newcommand{\surjto}{\twoheadrightarrow}
@@ -53,14 +64,8 @@
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Aut}{Aut}
 
-\DeclareMathOperator{\vol}{vol}
-
-\newenvironment{soln}{\begin{proof}[Solution]}{\end{proof}}
-\newenvironment{enum}{\begin{enumerate}}{\end{enumerate}}
-\newenvironment{itm}{\begin{itemize}}{\end{itemize}}
-\newenvironment{eqn}{\begin{equation}}{\end{equation}}
-
-\newcommand{\io}{\item}
+\newcommand{\km}{\mathfrak m}
+\newcommand{\kp}{\mathfrak p}
 
 \usepackage{hyperref}
 \usepackage{cleveref}

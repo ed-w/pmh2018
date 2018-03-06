@@ -1,0 +1,168 @@
+\section{Lecture 2018-03-06}
+
+Normed spaces and Banach spaces
+
+\begin{defn}
+	Let $E$ be a vector space over a $K$, where $K$ denotes either $\RR$ or $\CC$.
+	A map $E \to \RR_+$ is a \textbf{norm} (denoted by $x \mapsto \norm{x}$) if:
+	\begin{enum}
+		\io $\norm{x} \geq 0$ for all $x \in E$, and $\norm{x}=0 \iff x=0$
+		\io $\norm{\alpha x} = \abs{\alpha} \norm{x}$ for all $\alpha \in K$ and $x \in E$
+		\io $\norm{x+y} \leq \norm{x} + \norm{y}$ for all $x,y \in E$
+	\end{enum}
+	Then $(E,\norm{\cdot})$ is a \textbf{normed space}.
+\end{defn}
+
+\begin{prop}
+	Let $(E,\norm{\cdot})$ be a normed space.
+	Then $d(x,y) \defeq \norm{x-y}$ is a \textbf{metric} on $E$ if:
+	\begin{enum}
+		\io $d(x,y) \geq 0$ and $d(x,y)=0 \iff x=y$
+		\io $d(x,y)=d(y,x)$
+		\io $d(x,z) \leq d(x,y) + d(y,z)$
+	\end{enum}
+\end{prop}
+
+\begin{prop}
+	Recall that if $f:X \to Y$ where $X$ and $Y$ are metric spaces, then the following are equivalent:
+	\begin{enum}
+		\io $f$ is continuous at $x$
+		\io $\forall \epsilon>0 \: \exists \delta>0$ such that $d_y(f(x),f(x'))<\epsilon$ whenever $d_X(x,x')<\delta$
+		\io $\forall (x_n) \subset X$ such that $x_n \to x$ (i.e.\@ $d(x_n,x) \to 0$) we have $f(x_n) \to f(x)$
+	\end{enum}
+\end{prop}
+
+\begin{thm}
+	Let $(E,\norm{\cdot})$ be a normed space.
+	Then the maps
+	\begin{enum}
+		\io $x \mapsto \norm{x}, E \to \RR_+$
+		\io $(x,y) \mapsto x+y, E \times E \to E$
+		\io $(\alpha,x) \mapsto \alpha x, K \times E \to E$
+	\end{enum}
+	are continuous everywhere.
+\end{thm}
+
+\begin{exer}
+	Prove the above theorem.
+\end{exer}
+
+\begin{rmk}
+	If $X$ and $Y$ are metric spaces, then $Z = X \times Y$ is also a metric space with metric $d_Z((x,y),(x',y'))=d_X(x,x')+d_Y(y,y')$.
+\end{rmk}
+
+\begin{defn}
+	A normed space is a \textbf{Banach space} if it is complete, i.e\@ every Cauchy sequence is convergent.
+\end{defn}
+
+\begin{exam}
+	The following are examples of normed spaces: $\RR$, $\CC$, $\RR^2$, $\CC^3$, $L^2(X,\mu)$.
+	Note that $\QQ$ is not a Banach space.
+\end{exam}
+
+\begin{exer}
+	Show that there is no norm on $\RR^\infty$.
+\end{exer}
+
+\begin{thm}
+	A normed space $(E,\norm{\cdot})$ is complete if and only if any absolutely converging series converges, i.e.\@
+	\[\sum_{n=1}^\infty \norm{x_n}\]
+	is finite if and only if
+	\[\sum_{n=1}^\infty x_n\]
+	exists.
+\end{thm}
+
+\begin{proof}
+	$\implies$:
+	Since $x_n \subset E$ with $\sum\norm{x_n}<\infty$, then let $a \defeq \sum_{n=1}^N x_n$.
+	Then $(a_n)$ is Cauchy and it converges.
+	
+	$\impliedby$:
+	Let $(x_n) \subset E$ be a Cauchy sequence.
+	We claim that there exists a subsequence $(x_{n_k}) \subset (x_n)$ such that $\norm{x_{n_{k+1}}-x_{n_k}}\leq \frac{1}{2^k}$.
+	To see this, let $n_1=N(\tfrac 12), n_2=N\tfrac 14, \ldots n_k=N(\tfrac1{2^k})$ and so on.
+	Then
+	\[\sum_{k=1}^\infty \norm{x_{n+{k+1}}-x_{n_k}} <\infty\]
+	and so
+	\[\sum_{k=1}^\infty x_{n+{k+1}}-x_{n_k}\]
+	converges.
+	Therefore for all $K \geq 1$,
+	\[\sum_{k=1}^K (x_{n_{k+1}}-x_{n_k})=x_{n_K+1}-x_{n_1}\]
+	Then the below exercise completes the proof.
+\end{proof}
+
+\begin{exer}
+	Every Cauchy sequence in a metric space with a convergent subsequence converges.
+\end{exer}
+
+Main examples of Banach spaces
+
+\begin{defn}
+	For any $1 \leq p \leq \infty$ we will introduce $l_p$ and $c_0$.
+	Consider
+	\begin{eqn}
+		K^\infty = \{ (x_1,x_2,\ldots) \mid x_1,x_2,\ldots \in K\}
+	\end{eqn}
+	Define the $p$\textbf{-norm} on $K^\infty$:
+	\begin{eqn}
+		\norm{x}_p=
+		\begin{cases}
+			\left( \sum \abs{x_n}^p \right)^\frac 1p & 1 \leq p \leq \infty \\
+			\sup_n \abs{x_n} & p=\infty
+		\end{cases}
+	\end{eqn}
+	Then
+	\begin{align}
+		l_p &= \{x \in K^\infty \mid \norm{x}_p<\infty\} \\
+		c_0 &= \{x \in K^\infty \mid x_n \to 0\}
+	\end{align}
+\end{defn}
+
+\begin{exer}
+	Why cannot $p$ be less than 1?
+\end{exer}
+
+\begin{thm}
+	$(l_p,\norm{\cdot}_p)$ and $(c_0,\norm{\cdot}_\infty)$ are Banach spaces.
+\end{thm}
+
+\begin{lem}[Young's inequality]
+	Let $1 \leq p,q \leq \infty$ be \textbf{conjugate}, i.e.\@
+	\begin{eqn}
+		\frac 1p + \frac 1q = 1
+	\end{eqn}
+	Then for all $a,b>0$:
+	\begin{eqn}
+		ab \leq \frac 1p a^p + \frac 1q b^q
+	\end{eqn}
+\end{lem}
+
+\begin{proof}[Hint for proof.]
+	The function $f(x)=e^x$ is \textbf{convex} i.e.\@
+	\begin{eqn}
+		f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1-\lambda) f(y)
+	\end{eqn}
+	for $0 \leq \lambda \leq 1$ and for all $x,y\in\RR$.
+\end{proof}
+
+\begin{exer}
+	Complete the above proof.
+\end{exer}
+
+\begin{lem}[H\"older's inequality]
+	Let $x,y \in K^\infty$.
+	Then
+	\begin{eqn}
+		\norm{xy}_1 \leq \norm{x}_p \norm{y}_q
+	\end{eqn}
+	where $xy \defeq (x_1y_1,x_2y_2,\ldots)$, and where $p$ and $q$ are conjugate.
+\end{lem}
+
+\begin{proof}
+	Consider the case where $\norm{x}_p \neq \infty$, $\norm{y}_q \neq \infty$, $x \neq 0$, $y \neq 0$, $p\neq\infty$ or $q\neq\infty$.
+	\begin{multline}
+		\frac{\norm{xy}_1}{\norm{x}_p\norm{y}_p} = \sum_n \frac{\abs{x_n}}{\norm{x}_p} \sum_n \frac{\abs{y_n}}{\norm{y}_q} \overset{\text{Young}}{\leq} \sum_n \left( \frac 1p \frac{\abs{x_n}^p}{\norm{x}_p^p} + \frac 1q \frac{\abs{y_n}^q}{\norm{y}_q^q} \right) \\
+		= \frac 1p \frac{1}{\norm{x}_p^p}  \sum_n \abs{x_n}^p + \frac 1q \frac{1}{\norm{y}_q^q} \sum_n \abs{y_n}^q = \frac 1p + \frac 1q = 1 \qedhere
+	\end{multline}
+\end{proof}
+
