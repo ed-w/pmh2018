@@ -1,0 +1,62 @@
+\section{Lecture 2018-03-07}
+
+Historically representations of groups was the first part of representation theory to be studied.
+Group representations can be thought of concrete realisations of abstract groups as linear transformations (matrices).
+
+\begin{defn}
+	Let $G$ be a group and let $k$ be a field.
+	A \textbf{representation} of $G$ over $k$ is a pair $(V,\rho)$ where $V$ is a vector space over $k$ and $\rho: G \to \GL(V)$ is a group homomorphism.
+	$GL(V)$ is the group of invertible linear transformations of $V$ under composition.
+\end{defn}
+
+\begin{rmk}
+	For every $g \in G$, $\rho(g):V \to V$ is linear and invertible.
+	The hom property says that $\rho(gh)=\rho(g)\circ\rho(h)$, i.e.\@ $\rho(gh)(v) = \rho(g)\left(\rho(h)(v)\right)$ for all $g,h \in G$ and $v \in V$.
+	This implies that $\rho(1_G)=\id_V$ and $\rho(g\inv)=\rho(g)\inv$.	
+\end{rmk}
+
+\begin{exam}
+	How can we define a group?
+	Consider $G \cong D_3 \cong S_3$.
+	We can:
+	\begin{itm}
+		\io Let it be the symmetry group $D_3$ of an equilateral triangle
+		\io Let it be the group $S_3$ of permutations of $[3]$
+		\io Define it as the set $\{g_1,\ldots,g_6\}$ with a group multiplication table
+		\io By a presentation and relations:
+		\[G=\ang{x,y \mid x^3=1, y^2=1, yx=x^2y}\]
+	\end{itm}
+	
+	Consider the following ``geometric'' representation of $G$ (as $D_3$):
+	Let $V=\RR^2$ and $k=\RR$.
+	Define $\rho:G \to \GL(\RR^2)$ by
+	\begin{itm}
+		\io $\rho(1)$ is the identity operator on $\RR^2$
+		\io $\rho(x)$ is rotation (counter-clockwise) by $2\pi/3$
+		\io $\rho(x^2)$ is rotation by $4\pi/3$
+		\io $\rho(y)$ is reflection in the $x$-axis
+		\io $\rho(xy)$ is reflection in the $x$-axis followed by rotation y $2\pi/3$
+		\io $\rho(x^2y)$ is reflection in the $x$-axis followed by rotation y $4\pi/3$
+	\end{itm}
+	[insert sketch of D3 operations here]
+	To confirm that this is a representation, we need to check that the group homomorphism property holds.
+	
+	Another representation is given by the $3 \times 3$ permutation matrices.
+	
+	The point is that there are many representations of the same abstract group $G$ and it is advantageous to study them all together (by classifying them all).
+	
+	For example, there are vector spaces of solutions to a linear partial differential operator (such as the Schr\"odinger operator) such that if the operator has a symmetry group, then the space of solutions is a representation of that group.
+	In this way we can think of group representation theory as linear algebra in the presence of symmetry.
+\end{exam}
+
+More generally, we can look at representations of associative algebras over a field $k$.
+
+\begin{defn}
+	Let $A$ be an (associative) $k$-algebra.
+	Then a representation of $A$ is a pair $(V,\rho)$ where $V$ is a $k$-vector space and $\rho:A \to \End V$ is a homomorphism of $k$-algebras.
+\end{defn}
+
+\begin{rmk}
+	The above definition is a generalisation of a group representations: a representation of $(V,\rho)$ of $kG$ restricts to a representation $(V,\rho|_G)$ of $G$ where $G$ is considered as a subset of $kG$.
+	Converseley, a representation of $G$ extends linearly to a representation of $kG$.
+\end{rmk}

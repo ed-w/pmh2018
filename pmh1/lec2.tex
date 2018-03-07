@@ -1,0 +1,161 @@
+\section{Lecture 2018-03-07}
+
+1.4 Composed operations of topological spaces
+
+Let $X$ and $Y$ be topological spaces.
+
+\begin{defn}
+	The \textbf{join} of $X$ and $Y$ is defined to be
+	\[X \star Y \defeq (X \times Y \times I)/\sim\]
+	where
+	\[(x,y,0) \sim (x,y',0)\]
+	for all $x,y,y'$, and
+	\[(x,y,1) \sim (x',y,1)\]
+	for all $x,x',y$.
+	[insert sketch of join here, see Hatcher]
+\end{defn}
+
+\begin{defn}
+	Assume $A \subset Y$ with a (continuous) map $f:A \to X$.
+	Then the space \textbf{$X$ with $Y$ attached along $A$ via $f$} is defined to be
+	\[X \sqcup_f Y \defeq (X \amalg Y)/\sim\]
+	where $a \sim f(a)$ for all $a \in A$.
+	
+	As sets, $X \sqcup_f Y$ = $X \amalg (Y \setminus A)$.
+	Then we have the following diagram
+	\[
+	\begin{tikzcd}
+		& X \arrow[rd, hook'] \arrow[ld, hook'] &  \\
+		X \amalg Y \arrow[rr] &  & X \sqcup_f Y \\
+		& Y \arrow[ru, "\phi"] \arrow[lu, hook'] & 
+	\end{tikzcd}
+	\]
+	where $\phi$ is injective $\iff$ $f$ is injective.
+\end{defn}
+
+\begin{defn}
+	A \textbf{pointed space} is $(X,x_0)$ where $X$ is a topological space and $x_0 \in X$.
+	A map $f:(X,x_0) \to (Y,y_0)$ of pointed spaces is a map $f:X \to Y$ of spaces with $f(x_0)=y_0$.
+	
+	Pointed spaces form a category $\Top_*$.
+\end{defn}
+
+\begin{defn}
+	The \textbf{wedge sum} of two pointed spaces is defined by
+	\[X \vee Y = (X,x_0) \vee (Y,y_0) \defeq (X \amalg Y)/\sim\]
+	where $x_0 \sim y_0$.
+\end{defn}
+
+\begin{exam}
+	$S^1 \vee S^1$ is a figure-8.
+\end{exam}
+
+\begin{defn}
+	The \textbf{smash product} of two pointed spaces is defined by
+	\[X \wedge Y \defeq X \times Y / X \vee Y\]
+	where
+	\begin{align*}
+		X \vee Y &\injto X \times Y \\
+		x &\mapsto (x,y_0) \\
+		y &\mapsto (x_0,y)
+	\end{align*}
+\end{defn}
+
+\begin{rmk}
+	The smash product will not be important in our course but the wedge sum will be.
+\end{rmk}
+
+Homeomorphisms:
+$\square^2 \ncong I \ncong \pt$ in $\RR^2$.
+(Remove a point.)
+We want a coarser notion of equivalence than homeomorphism that gives us bigger equivalence classes.
+
+2 Homotopies
+2.1 Homotopy type
+
+\begin{defn}
+	Let $X$ and $Y$ be topological spaces.
+	\begin{enum}
+		\io A \textbf{homotopy} is a family of maps
+		\[\{g_z: X \to Y \mid t \in I\}\]
+		such that
+		\begin{align*}
+			G: X \times I &\to Y \\
+			(x,t) &\mapsto g_t(x)
+		\end{align*}
+		is continuous.
+		\io Two maps $f_0,f_1: X \to Y$ are \textbf{homotopic} if there exists a homotopy $\{g_t\}$ with $g_0=f_0$ and $g_1=f_1$.
+		We denote this by $f_0 \simeq f_1$ or $G: f_0 \Rightarrow f_1$.
+		\io A map $f:X \to Y$ is a \textbf{homotopy equivalence} if there exists a map $g:Y \to X$ such that $f \circ G \simeq 1_X$ and $f \circ g \simeq 1_Y$.
+		\io $X$ and $Y$ are \textbf{homotopy equivalent} or of the same \textbf{homotopy type} if there exists a homotopy equivalence $f: X \to Y$.
+	\end{enum}
+\end{defn}
+
+\begin{rmk}
+	The notion of homotopy equivalence is a relaxation of the condition for homeomorphism (equalities replaced by homotopy equivalences), i.e.\@ $X \cong Y \implies X \simeq Y$.
+\end{rmk}
+
+\begin{defn}
+	$X$ is \textbf{contractible} if $X \simeq \pt$, i.e.\@ we have maps $f: X \to \pt$ and $g: \pt \to X$ such that $fg \sim 1_{\pt}$ and $gf \sim 1_X$.
+	Now $fg \sim 1_{\pt}$ is automatic.
+	Also note that the image of $gf$ is a single point (it is a constant map).
+\end{defn}
+
+\begin{exer}
+	Show that:
+	\begin{itm}
+		\io $D^m$ is contractible
+		\io $S^1 \simeq D^2 \setminus \{0\}$
+		\io $\square^2 \simeq I \simeq \pt$
+	\end{itm}
+\end{exer}
+
+Is there a homotopy from $S^1$ to $\pt$?
+No.
+We cannot continuously deform the circle in to a point.
+We will give a rigorous proof later with the fundamental group.
+
+We saw that the notion of homotopy is related to the notion of continuous deformations.
+We can make this more explicit.
+
+2.2 Retracts and deformation retracts
+
+Let $A \subset X$ with inclusion map $\iota: A \to X$.
+
+\begin{defn}
+	A \textbf{rectraction of $X$ on to $A$} is a map $r:X \to X$ with $r[X]=A$ and $r|_A=\iota$.
+	Equivalently, it is a map $r:X \to A$ with $r\iota=1_A$.
+	If such a retraction exists, then $A$ is a \textbf{retract} of $X$.
+\end{defn}
+
+\begin{rmk}
+	Hatcher uses a different approach to introduce these notions.
+	It might be helpful to read it to get a different point of view.
+\end{rmk}
+
+\begin{defn}
+	Let $\{f_t:X \to X \mid t \in I\}$ be a homotopy such that
+	\begin{itm}
+		\io $f_0=1_X$
+		\io $f_1:X \to X$ a retraction on to $A$
+		\io $f_t|_A=\iota$ for all $t \in I$
+	\end{itm}
+	Then $\{f_t\}$ is a \textbf{deformation retraction of $X$ on to $A$}, and $A$ is a \textbf{deformation retract} of $X$.
+\end{defn}
+
+\begin{rmk}
+	Deformation retract is a stronger notion than homotopy equivalence sihce we have a condition on $f_t|_A$.
+\end{rmk}
+
+\begin{exer}
+	If $A$ is a deformation retract of $X$ then $\iota:A \injto X$ is a homotopy equivalence, so $X \simeq A$.
+\end{exer}
+
+\begin{rmk}
+	We can use the above exercise to show that $\square^2 \simeq I \simeq \pt$.
+\end{rmk}
+
+\begin{rmk}
+	$X$ and $Y$ are homotopy equivalent $\iff$ there exists a $Z$ such that $X$ and $Y$ are deformation retracts of $Z$.
+	Even though deformation retractions are a special case of homotopy equivalence, we can formulate homotopy equivalences in terms of deformation retractions.
+\end{rmk}
