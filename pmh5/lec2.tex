@@ -1,0 +1,94 @@
+\section{Lecture 2018-03-08}
+
+\begin{defn}
+	Let $k$ be a field.
+	A $k$-algebra (an associative unital algebra over $k$) is:
+	\begin{itm}
+		\io A $k$-vector space $A$
+		\io A $k$-bilinear associative multiplication map
+			\begin{align*}
+				A \times A &\to A \\
+				(a,b) &\mapsto ab
+			\end{align*}
+		\io A multiplicative unit element $1$ (or $1_A$).
+	\end{itm}
+\end{defn}
+
+\begin{rmk}
+	We can also define a $k$-algebra as a unital ring $A$ with a unital ring homomorphism $\phi: k \to A$ such that $\phi[k] \subset Z(A)$ (the centre of $A$).
+\end{rmk}
+
+\begin{rmk}
+	Etingof claims to not allow $1=0$ but actually does later on.
+	We will allow $1=0$.
+\end{rmk}
+
+\begin{exam}
+	Some examples of $k$-algebras:
+	\begin{enum}
+		\io $A=k$
+		\io $A=k[x],k[x,y],k[x_1,x_2,\ldots],\ldots$
+		\io $A=k\ang{x,y}$ (the free algebra in $x$ and $y$)
+		\io $A=A'/I$ where $I$ is a two-sided ideal in $A'$
+		\io $A=k\ang{x,y}/\ang{yx-xy-1}$ (the Weyl algebra)
+		\io $A=\{0\}$
+		\io $A=\CC$ and $k=\RR$
+		\io $A=\HH$ (the Hamiltonian quaternions) and $k=\RR$ (note that $\HH$ is not a $\CC$-algebra since the multiplication on $\HH$ is not $\CC$-bilinear: $-1=i(jk)\neq j(ik)=1$))
+		\io For any group (or monoid) $G$ there is a \textbf{group algebra} $k[G]$ consisting of formal (finite) linear combinations of the elements of $G$ and multiplication given by the group multiplication rule:
+		\[\left(\sum_{g\in G}\alpha_gg\right)\left(\sum_{h\in H}\beta_hh\right)=\sum_{g,h\in G}(\alpha_g\beta_h)gh\]
+		For example, $k[D_3]\cong k\ang{x,y}/\ang{x^3-1,y^2-1,yx-x^2y}$ and $k[C_n]\cong k[x]/\ang{x^n-1}$.
+		\io If $V$ is a $k$-vector space, then $\End V$ is a $k$-algebra with multiplication as composition and $1_{\End V}=\id_V$.
+		\io $\Mat_n(k)$ is a $k$-algebra under matrix multiplication with $1_{\Mat_n(k)}=I_n$.
+		If $V$ is a $k$-vector space with $\dim V=n$, then for any choice of basis $\{v_1,\ldots,v_n\}$ of $V$ there is an isomorphism of $k$-algebras
+		\begin{align*}
+			\End V &\xto{\sim} \Mat_n(k) \\
+			\phi &\mapsto [\phi(v_j)_i]_{ij}
+		\end{align*}
+		where $\phi(v_j)_i$ is the coefficient of $v_i$ in $\phi(v_j)$.
+	\end{enum}
+\end{exam}
+
+\begin{rmk}
+	Note that $1=0 \implies A=\{0\}$.
+	Then for all nonzero algebras, $0 \neq 1$ so we have an injective $k$-algebra homomorphism
+	\begin{align*}
+		\phi:k&\injto A \\
+		\lambda&\mapsto\lambda 1
+	\end{align*}
+	with $\phi[k] \subset Z(A)$.	
+\end{rmk}
+
+\begin{defn}
+	Let $A$ and $A'$ be $k$-algebras.
+	Then a homomorphism of $k$-algebras $f:A \to A'$ is a function that is both $k$-linear and a ring homomorphism, i.e.\@
+	\begin{itm}
+		\io $f(a+b)=f(a)+f(b)$
+		\io $f(ab)=f(a)f(b)$
+		\io $f(\lambda a)=\lambda f(a)$
+		\io $f(1_A)=1_{A'}$
+	\end{itm}
+	where $a,b \in A$ and $\lambda \in k$.
+	Isomorphisms are defined as usual.
+\end{defn}
+
+\begin{defn}
+	Let $A$ be a $k$-algebra.
+	A \textbf{represetation} of $A$ is a pair $(V,\rho)$ where $V$ is a $k$-vector space and $\rho:A \to \End V$ is a $k$-algebra homomorphism.
+\end{defn}
+
+\begin{rmk}
+	We will often omit $\rho$ and refer to $V$ as a representation.
+\end{rmk}
+
+\begin{exam}
+	Some examples of representations:
+	\begin{enum}
+		\io A representation of $k$ is just a $k$-vector space space $V$ because if $\rho:k\to \End V$ is a $k$-algebra homomorphism, we must have $\rho:\lambda\mapsto \lambda\id_V$.
+		\io A representation of $k[x]$ is a $k$-vector space $V$ with a map $X\defeq\rho(x)\in\End V$.
+		\io A representation of $k[x,y]$ is a $k$-vector space $V$ together with two commuting endomorphisms of $V$.
+		\io A representation of $k\ang{x,y}$ is a $k$-vector space with together two endomorphisms of $V$.
+		\io A representation of $k\ang{x,y}/\ang{yx-xy-1}$ is a $k$-vector space $V$ with two linear transformations $X$ and $Y$ satisfying $YX-XY=\id_V$.
+	\end{enum}
+\end{exam}
+
+A broad theme of representation theory is to classify all representations of an algebra $A$.

@@ -25,7 +25,7 @@
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
 \newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil}
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
-\newcommand{\norm}[1]{\left\lvert\left\lvert #1 \right\rvert\right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
 \newcommand{\bra}[1]{\left\langle #1 \right\rvert}
 \newcommand{\ket}[1]{\left\lvert #1 \right\rangle}
 \newcommand{\ang}[1]{\left\langle #1 \right\rangle}
@@ -36,7 +36,7 @@
 \newcommand{\wh}{\widehat}
 \newcommand{\p}{\partial}
 
-\DeclareMathOperator{\area}{\area}
+\DeclareMathOperator{\area}{area}
 \DeclareMathOperator{\vol}{vol}
 \DeclareMathOperator{\lcm}{lcm}
 
@@ -47,6 +47,8 @@
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\CC}{\mathbb{C}}
 
+\newcommand{\EE}{\mathbb{E}}
+
 \newenvironment{soln}{\begin{proof}[Solution]}{\end{proof}}
 \newenvironment{enum}{\begin{enumerate}}{\end{enumerate}}
 \newenvironment{itm}{\begin{itemize}}{\end{itemize}}
@@ -54,7 +56,7 @@
 
 \newcommand{\io}{\item}
 
-\newcommand{\taking}[1]{\xrightarrow{#1}}
+\newcommand{\xto}[1]{\xrightarrow{#1}}
 \newcommand{\surjto}{\twoheadrightarrow}
 \newcommand{\injto}{\hookrightarrow}
 
@@ -69,6 +71,7 @@
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Mat}{Mat}
 
 \newcommand{\km}{\mathfrak m}
 \newcommand{\kp}{\mathfrak p}
