@@ -1,0 +1,95 @@
+\section{2018-03-12 Lecture}
+
+3. Cell Complexes
+
+We will only look at finite cell complexes.
+
+\begin{defn}
+	\begin{enum}
+		We will describe an iterative construction.
+		\io Let $X^0$ be a finite discrete space (the \textbf{$0$-skeleton}).
+		\io Assume we have
+		\begin{itm}
+			\io A \textbf{$(k-1)$-skeleton} $X^{k-1}$
+			\io A finite set $L_k$
+			\io A collection of maps
+			\[\{\phi_\alpha: S^{k-1} \to X^{k-1} \mid \alpha \in L_k\}\]
+			whereupon associating with each $\alpha \in L_k$ a copy $D_\alpha^k$ of $D^k$ gives a map
+			\[\phi = \coprod_\alpha \phi_\alpha: \coprod_\alpha \p D_\alpha^k \to X^{k-1}\]
+		\end{itm}
+		Then the \textbf{$k$-skeleton} is defined to be
+		\[S^k = S^{k-1} \sqcup_\phi \coprod_\alpha D_\alpha^k\]
+	\end{enum}
+	Then we have an equality of sets
+	\[X^k=X^{k-1}\amalg\coprod_{\alpha\in L_k}\Dd_\alpha^k\]
+	where we define $e_\alpha^k \defeq \Dd_\alpha^k \subset X^k$ and call it a \textbf{$k$-cell}.
+	We have another equality of sets
+	\[X^k=\coprod_{l\leq k}\coprod_{\alpha\in L_l}e_\alpha^l\]
+	and we call $X^k$ a \textbf{$k$-dimensional cell complex}.
+\end{defn}
+
+\begin{exam}
+	Let $X^0=\pt\amalg\pt$, $L_i=\emptyset$ for $i>1$, $L_1=\{0\}$, and $\phi:\{-1,1\}=S^0 \xto{\sim}X^0$.
+	Then $X=X^1=X^0\sqcup_{\phi_0}D^1\cong D^1$.
+\end{exam}
+
+\begin{exam}
+	Let $X^0=\pt$, $L_i=\emptyset$ for $i>1$ and $i\neq n$, $L_n=\{0\}$ and $\phi_0:S^{n-1}\to X^{n-1}=X^0=\pt$.
+Then
+	$X=X^n=\pt\sqcup_{\phi_0}D^n\cong D^n/\p D^n \cong S^{n-1}$.
+\end{exam}
+
+\begin{rmk}
+	It is a fact that $D^n/S^n \cong S^{n-1}$.
+\end{rmk}
+
+\begin{defn}
+	For a $k$-cell $e_\alpha^l$ we have a \textbf{characteristic map}
+	\[\Phi_\alpha^k: D_\alpha^k \to X^k \injto X^{k+1} \injto \cdots \injto X^n\]
+\end{defn}
+
+\begin{prop}
+	We have
+	\begin{enum}
+		\io $\Phi_\alpha^k|_{\p D_\alpha^k}: \p D_\alpha^k \xto{\phi_\alpha} X^{k-1} \injto X^k \injto \cdots \injto X^n$
+		\io $\Phi_\alpha^k(\Dd_\alpha^k)=e_\alpha^k$
+	\end{enum}
+\end{prop}
+
+\begin{proof}
+	Let $X$ and $Y$ be spaces and let $A \subset Y$ and $f:A \to X$.
+	Recall that $X \sqcup_f Y = (X \amalg Y)/\sim$ where $a \sim f(a)$.
+	Then we have the following commutative diagram:
+	\begin{eqn}\label{eq:attach}
+		\begin{tikzcd}
+			& X \sqcup_f Y &  \\
+			X \arrow[ru, hook] &  & Y \arrow[lu, "\alpha"] \\
+			& A \arrow[lu, "f"] \arrow[ru, hook] & 
+		\end{tikzcd}
+	\end{eqn}
+	As sets, we have $X \sqcup_f Y = X \amalg (Y \setminus A)$, $\alpha[Y \setminus A] = Y \setminus A$ and $\alpha[A]=f[A]$.
+	
+	Then \cref{eq:attach} gives the following commutative diagram for a cell complex $X=X^m$ and for all $k \leq m$:
+	\begin{eqn}
+		\begin{tikzcd}
+			& X^k &  \\
+			X^{k-1} \arrow[ru, hook] &  & D_\alpha^k \arrow[lu] \\
+			& \partial D_\alpha^k \arrow[lu, "\phi_\alpha"] \arrow[ru, hook] & 
+		\end{tikzcd}\qedhere
+	\end{eqn}
+\end{proof}
+
+\begin{defn}
+	Let $X$ and $Y$ be two cell complexes.
+	\begin{itm}
+		\io The product $X \times Y$ is a cell complex with $k$-cells $e_\alpha^{k-j} \times e_\beta^j$ (note that $\Dd^{k-j} \times \Dd^j \cong \Dd^k$).
+		\io The union $X \amalg Y$ is a cell complex with $(X \amalg Y)^k = X^k \amalg Y^k$.
+	\end{itm}
+\end{defn}
+
+\begin{defn}
+	A closed subspace $A \subset X$ which is a union of cells in $X$ is called a \textbf{subcomplex}.
+	The quotient $X/A$ is a cell complex with $(X/A)^k=X^k/A^k$ with attaching map $\phi:S^{k-1} \to X^{k-1} \to X^{k-1}/A^{k-1}$.
+\end{defn}
+
+Chapter 1: The Fundamental Group

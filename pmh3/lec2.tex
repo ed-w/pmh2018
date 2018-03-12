@@ -82,12 +82,18 @@ Normed spaces and Banach spaces
 	We claim that there exists a subsequence $(x_{n_k}) \subset (x_n)$ such that $\norm{x_{n_{k+1}}-x_{n_k}}\leq \frac{1}{2^k}$.
 	To see this, let $n_1=N(\tfrac 12), n_2=N\tfrac 14, \ldots n_k=N(\tfrac1{2^k})$ and so on.
 	Then
-	\[\sum_{k=1}^\infty \norm{x_{n+{k+1}}-x_{n_k}} <\infty\]
+	\begin{eqn}
+		\sum_{k=1}^\infty \norm{x_{n+{k+1}}-x_{n_k}} <\infty
+	\end{eqn}
 	and so
-	\[\sum_{k=1}^\infty x_{n+{k+1}}-x_{n_k}\]
+	\begin{eqn}
+		\sum_{k=1}^\infty x_{n+{k+1}}-x_{n_k}
+	\end{eqn}
 	converges.
 	Therefore for all $K \geq 1$,
-	\[\sum_{k=1}^K (x_{n_{k+1}}-x_{n_k})=x_{n_K+1}-x_{n_1}\]
+	\begin{eqn}
+		\sum_{k=1}^K (x_{n_{k+1}}-x_{n_k})=x_{n_K+1}-x_{n_1}
+	\end{eqn}
 	Then the below exercise completes the proof.
 \end{proof}
 

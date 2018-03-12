@@ -1,0 +1,105 @@
+\section{Lecture 2018-03-12}
+
+Last time, we
+\begin{itm}
+	\io introduced the spaces $l_p$ and $c_0$ of infinite sequences
+	\io proved H\"older's inequality: if $x,y \in K^\infty$ and $1/p+1/q=1$, then
+	\[\abs{x \cdot y} \leq \norm{x}_p\norm{y}_q\]
+\end{itm}
+Now we will prove the triangle inequality for the $p$-norm.
+
+\begin{prop}
+	$(l_p,\norm{\cdot})$ is a normed space.
+\end{prop}
+
+\begin{proof}
+	Clearly the $p$-norm is homogeneous and positive.
+	The only nontrivial part is the triangle inequality.
+	
+	Assume that $x_n,y_n \in \RR_{\geq 0}$.
+	Also assume $p>1$.
+	Then
+	\begin{eqn}
+		(x_n+y_n)^p = x_n(x_n+y_n)^{p-1}+y_n(x_n+y_n)^{p-1}
+	\end{eqn}
+	By H\"older's inequality,
+	\begin{eqn}
+		\sum_n x_n(x_n+y_n)^{p-1} \geq \left(\sum_n x_n^p \right)^\frac 1p \left(\sum_n (x_n+y_n)^{q(p-1)} \right)^\frac 1q = \norm{x}_p \norm{x+y}_p^{p-1}
+	\end{eqn}
+	where $q=p/(p-1)$.
+	Applying the same inequality to $y$ gives
+	\begin{eqn}
+		\sum_n (x_n+y_n)^n = \norm{x+y}_p^p \leq (\norm{x}_p+\norm{y}_p) \norm{x+y}_p^{p-1}
+	\end{eqn}
+	and dividing through by $\norm{x+y}_p^{n-1}$ gives
+	\begin{eqn}
+		\norm{x+y}_p \leq \norm{x}_p + \norm{y}_p
+	\end{eqn}
+	as required.
+	If $p=1$, then this is trivial.
+	If $p=\infty$, then
+	\begin{eqn}
+		\sup_n (x_n+y_n) \leq \sup_n x_n + \sup_n y_n
+	\end{eqn}
+	
+	If $x_n,y_n \in \CC$, apply the previous result to $x'=(|x_n|)$ and $y'=(|y_n|)$.
+	Then
+	\begin{eqn}
+		\norm{x}_p+\norm{y}_p = \norm{x'}_p+\norm{y'}_p \geq \norm{x'+y'}_p \geq \norm{x+y}_p
+	\end{eqn}
+	because the norm is increasing in the absolute value of each component separately (apply the triangle inequality to each component separately).
+\end{proof}
+
+\begin{thm}
+	$(l_p,\norm{\cdot}_p)$ is complete.
+\end{thm}
+
+\begin{proof}
+	We will assume $p<\infty$.
+	The case $p=\infty$ is left as an exercise.
+	
+	Let $(\mathbf{x}_n)=((x_{n,1},x_{n,2},\ldots,x_{n,k},\ldots))_n$ be a Cauchy sequence in $l_p$.
+	We want to prove that it converges.
+	
+	Since $\norm{\mathbf{x}_n-\mathbf{x}_m}_p^p<\epsilon$ implies that $\abs{x_{n,k}-x_{m,k}}<\epsilon$ for all $k$, we have that $(x_{n,k})_n$ is Cauchy for each $k$.
+	Then since $K$ is complete we get a limit $a_k$ for each $(x_{n,k})_n$.
+	Let $\mathbf{a}=(a_n)$.
+	We will show that $\mathbf{a} \in l_p$.
+	
+	By the Cauchy property of each $(x_{n,k})_n$, we have for all $k \geq 1$ an $n_k$ such that
+	\[\abs{x_{n,1}-a_1}^p,\ldots,\abs{x_{n,k}-a_k}^p \leq 1/2^k \text{ for all } n \geq n_k\]
+	Now since $(\mathbf{x}_n)$ is Cauchy it is bounded, hence there exists an $M$ such that $\norm{\mathbf{x}_n}_p \leq M$ for all $M$.
+	Then for all $N$,
+	\begin{eqn}
+		\left(\sum_{k=1}^N \abs{a_k}^p \right)^\frac 1p \leq \left(\sum_{k=1}^N \abs{a_k-x_{n_N,k}}^p\right)^\frac 1p + \left(\sum_{k=1}^N \abs{x_{n_N,k}}^p \right)^\frac 1p \leq M+1
+	\end{eqn}
+	So $\norm{\mathbf{a}}_p < \infty$ and therefore $\mathbf{a} \in l_p$.
+	
+	Now we will show that $\norm{\mathbf{x}_n-\mathbf{a}}_p \to 0$.
+	Let $\epsilon>0$.
+	Then
+	\begin{align}
+		\norm{\mathbf{x}_n-\mathbf{a}}_p &\leq \left(\sum_{k=1}^N \abs{x_{n,k}-a_k}^p \right)^\frac 1p + \left(\sum_{k=N+1}^\infty \abs{x_{n,k}}^p \right)^\frac 1p + \left(\sum_{k=N+1}^\infty \abs{a_k}^p \right)^\frac 1p \\
+		&\leq \left(\sum_{k=1}^N \abs{x_{n,k}-a_k}^p \right)^\frac 1p + \left(\sum_{k=N+1}^\infty \abs{x_{n,k}-x_{M,k}}^p \right)^\frac 1p \nonumber\\
+		&\qquad + \left(\sum_{k=N+1}^\infty \abs{x_{M,k}}^p \right)^\frac 1p + \left(\sum_{k=N+1}^\infty \abs{a_k}^p \right)^\frac 1p
+	\end{align}
+	Now choose $M$ such that for all $n \geq M$, we have $\norm{\mathbf{x}_n-\mathbf{x}_M}_p<\epsilon$.
+	Then choose $N$ such that
+	\[\left(\sum_{k=N+1}^\infty \abs{x_{M,k}}^p \right)^\frac 1p < \epsilon \text{ and } \left(\sum_{k=N+1}^\infty \abs{a_k}^p \right)^\frac 1p < \epsilon\]
+	Then choose $n$ such that $n \geq M$ and
+	\[\left(\sum_{k=1}^N \abs{x_{n,k}-a_k}^p \right)^\frac 1p < \epsilon\]
+	which we know to be possible because the sequence is finite.
+	Then for large enough $n$, we have $\norm{\mathbf{x}_n-\mathbf{a}}_p<4\epsilon$.
+\end{proof}
+
+\begin{defn}
+	Let $(X,d)$ be a metric space and $(E,\norm{\cdot}_E)$ be a Banach space.
+	Then $BC(X,E)$ is the set of all bounded and continuous functions from $X$ to $E$ under the norm 
+	\[\norm{f} \defeq \sup_{x \in X} \norm{f(x)}_E\]
+	Let $B(X,E)$ be the set of all bounded functions from $X$ to $E$ (here $X$ can be any set).
+	Clearly $BC(X,E) \subset B(X,E)$.
+\end{defn}
+
+\begin{exer}
+	Show that $BC(X,E)$ and $B(X,E)$ are Banach spaces.
+\end{exer}
