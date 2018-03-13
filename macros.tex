@@ -21,6 +21,7 @@
 
 \newcommand{\defeq}{\overset{\mathrm{def}}{=}}
 \newcommand{\inv}{^{-1}}
+\newcommand{\bo}[1]{\mathbf{#1}}
 
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
@@ -54,6 +55,7 @@
 \newenvironment{enum}{\begin{enumerate}}{\end{enumerate}}
 \newenvironment{itm}{\begin{itemize}}{\end{itemize}}
 \newenvironment{eqn}{\begin{equation}}{\end{equation}}
+\newenvironment{eqn*}{\begin{equation*}}{\end{equation*}}
 
 \newcommand{\io}{\item}
 
@@ -82,5 +84,14 @@
 \newcommand{\km}{\mathfrak m}
 \newcommand{\kp}{\mathfrak p}
 
+\newcommand{\cL}{\mathcal{L}}
+
 \usepackage{hyperref}
 \usepackage{cleveref}
+
+\hypersetup{
+	colorlinks,
+	linkcolor=red,
+	citecolor=blue,
+	urlcolor=blue
+}

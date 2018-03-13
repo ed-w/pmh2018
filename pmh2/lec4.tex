@@ -1,0 +1,124 @@
+\section{2018-03-13 Lecture}
+
+\begin{prop}[0.17]
+	The lattice isomorphism theorem restricts to prime ideals:
+	There is an inclusion-preserving bijection for any ideal $I<R$:
+	\begin{align*}
+	\{\text{ideals in } R/I\} &\overset{\sim}{\longleftrightarrow} \{\text{ideals } J \subset R \text{ with } I \subset J\} \\
+	\pi_I(y) &\longleftrightarrow y
+	\end{align*}
+\end{prop}
+
+\begin{proof}
+	Exercise.
+\end{proof}
+
+\begin{rmk}
+	\begin{enum}
+		\io If $f:R \to R'$ and $p<R'$ is prime, then $f\inv[p]$ is prime.
+		(This is not true for maximal ideals e.g.\@ $\ZZ \injto \QQ$.)
+		\io If $f:R \to R'$ is surjective and $p<R$ is prime, then $f[p]$ is prime.
+	\end{enum}
+\end{rmk}
+
+\begin{defn}[0.18]
+	The Jacobson radical of $R$ is
+	\[J(R) = \bigcap_{\km \in \mSpec R} \km\]
+\end{defn}
+
+\begin{note}
+	Note that $\nilrad R \subset J(R)$.
+\end{note}
+
+\begin{prop}[0.19]
+	We have that
+	\[J(R) = \{x \in R \mid 1_R - xy \in R^\times \text{ for all } y \in R\}\]
+\end{prop}
+
+\begin{proof}
+	$\subseteq:$ Assume $x \in J(R)$ and there exists a $y \in R$ such that $1-xy \notin R^\times$.
+	By the existence of maximal ideals, $1-xy \in \km$ for some $\km \in \mSpec R$.
+	Now since $x \in J(R) \in \km$, we have $xy \in \km$.
+	Thus $1 \in \km$, a contradiction.
+	
+	$\supseteq$: Assume $1-xy \in R^\times$ for all $y \in R$ but there exists an $\km \in \mSpec R$ such that $x \notin \km$.
+	Then since $\km$ is maximal, $\km + (x) = R$, so $1=u+ax$ for some $u \in m$ and $a \in R$.
+	Then $1-ax \in \km$.
+	But this means that $1-ax \notin R^\times$, a contradiction.
+	(This is because $(u)=R$ for any $u \in R^\times$.)
+\end{proof}
+
+\begin{defn}[0.20]
+	A \textbf{local ring} is a ring $R$ with exactly one maximal ideal $\km$.
+	The field $R/\km$ is the \textbf{residue field} of $R$ (and $\km$).
+\end{defn}
+
+Outlook: Algebraic Geometry I (not assessable)
+
+Define the \textbf{vanishing set} of an ideal by
+\[\cV(I) = \{\kp \in \Spec R \mid I \subset \kp\}\]
+We have
+\begin{align*}
+	R \text{ a ring} &\longrightarrow \Spec R \\
+	I<R &\longrightarrow \cV(I)
+\end{align*}
+We want to put a topology on $\Spec R$.
+
+\begin{prop}[AG.1]
+	\begin{enum}
+		\io $I \subset I' \implies \cV(I) \supset \cV(I')$
+		\io $\cV(0) = \Spec R$ and $\cV(R) = \emptyset$
+		\io $\cV(I) \cup \cV(J) = \cV(I \cap J) = \cV(IJ)$
+		\io $\bigcap_{i \in I} \cV(I_i) = \cV(\sum_{i \in I} I_i)$
+	\end{enum}
+\end{prop}
+
+\begin{proof}
+	1,2 and 4 are omitted.
+	We prove 3.
+	fill in
+\end{proof}
+
+\begin{thm}[AG.2]
+	$\Spec R$ is a topological space with the closed sets being $\{\cV(I)\}_{I<R}$.
+	This topology is known as the \textbf{Zariski topology}.
+\end{thm}
+
+We can generalise this.
+If $S$ is a subset of $R$, then define $\cV(S) = \{\kp \in \Spec R \mid S \subset \kp\}$.
+If $Y \subset \Spec R$, then define the \textbf{ideal} of $Y$ to be $\cI(Y) = \cap_{\kp \in Y} \kp$.
+
+\begin{rmk}
+	\begin{enum}
+		\io $\cV(S) = \cap_{x \in S} \cV((x))$ is closed.
+		\io $\cI(Y)$ is a radical ideal.
+		\io $\cV(\cI(Y)) = \overline{Y}$
+		\io If $Y$ is closed, then $\cV(\cI(Y))=Y$.
+		\io $\cV(S) = \cV((S))$.
+	\end{enum}
+\end{rmk}
+
+\begin{prop}[AG.3]
+	\begin{enum}
+		\io There is a one-to-one order-reversing correspondence between radical ideals of $R$ subsets of $\Spec R$.
+		\io The closed points of closed subsets $Y$ of $\Spec R$ are the maximal ideals in $Y$.
+	\end{enum}
+\end{prop}
+
+\begin{proof}
+	\begin{enum}
+		\io Note that $\cI(\cV(J)) = \rad J$.
+		\io Trivial. \qedhere
+	\end{enum}
+\end{proof}
+
+\begin{rmk}
+	There are non-closed points in $\Spec R$.
+	It can happen that $x \in \Spec R$ and $\overline{x} = \Spec R$.
+\end{rmk}
+
+One non-rigorous way of thinking about it is that $\Spec R$ is the space and $R$ are the functions on the space.
+
+Let $r \in R$.
+We want to assign to $r$ a function $\phi_r: \mSpec R \to ?$ mapping $\km$ to $\overline{r} \in R/\km$.
+We need to find a codomain $?$ such that we have a well-defined function for each $\km$ (e.g.\@ we want to embed the $R/\km$ in one big field).

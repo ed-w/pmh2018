@@ -1,0 +1,117 @@
+\section{2018-03-13 Lecture}
+
+Bounded Linear Operators
+
+\begin{defn}
+	Let $(E,\norm{\cdot}_E)$ and $(F,\norm{\cdot}_F)$ be normed spaces.
+	Then define
+	\begin{align*}
+		\Hom(E,F) &= \{T:E \to F \mid T \text{ linear}\} \\
+		\cL(E,F) &= \{T \in \Hom(E,F) \mid T \text{ continuous}\}
+	\end{align*}
+\end{defn}
+
+\begin{lem}
+	$T \in \Hom(E,F)$ is continuous $\iff$ $T$ is \textbf{bounded}, that is there exists a $C<\infty$ such that for all $x \in E$ we have $\norm{T(x)}_F \leq C\norm{x}_E$.
+\end{lem}
+
+\begin{proof}
+	$\impliedby$: If $\norm{T(x-y)}_F \leq C \norm{x-y}_E$ then $T$ is Lipschitz and hence continuous.
+	
+	$\implies$: Let 
+	\[C = \sup_{\norm{x}_E=1} \norm{T(x)}_F\]
+	If $C<\infty$ then by linearity $T$ is bounded.
+	Now assume $C=\infty$.
+	We will show that $T$ is discontinuous at $0$.
+	
+	There exists a sequence $(x_n)$ in $SE \defeq \{x \in E \mid \norm{x}_E = 1\}$ with $\norm{T(x_n)}_F \geq n$.
+	Take $z_n=x_n/n \to 0$.
+	Then $T(z_n) \geq 1$, hence $T(x_n) \not\to 0$.
+\end{proof}
+
+\begin{defn}
+	On the space $\cL(E,F)$, define the \textbf{operator norm}
+	\[\norm{T} = \sup_{\norm{x}_E=1} \norm{T(x)}_F\]
+\end{defn}
+
+\begin{lem}
+	If $F$ is a Banach space then $(\cL(E,F),\norm{\cdot})$ is also a Banach space.
+	Moreover,
+	\[\norm{T} = \inf\{C>0 \mid \norm{T(x)}_F \leq C\norm{x}_E \text{ for all } x \in E\}\]
+\end{lem}
+
+\begin{proof}
+	The second part is clear.
+	\textbf{fill in proof}
+	
+	The triangle inequality follows form the fact that $\sup_A(x+y) \leq \sup_A x + \sup_A y$.
+	
+	To prove completeness, let $(T_n)$ be a Cauchy sequence in $\cL(E,F)$.
+	So for all $\epsilon>0$ there exists an $N_\epsilon$ such that for all $n,m \leq N_\epsilon$ we have $\norm{T_n-T_m}<\epsilon$.
+	Then by the second part of the lemma, $\norm{(T_n-T_m)(x)}_F \leq \epsilon\norm{x}_E$.
+	Thus for all $x \in E$, $(T_n(x))$ is a Cauchy sequence in $F$.
+	Since $F$ is Banach, there exists for each $x$ a limit to the sequence so we can define
+	\[T(x) \defeq \lim_{n \to \infty} T_n(x)\]
+	
+	To see that $T$ is linear, note that $T(\alpha x+ \beta y) = \lim_{n \to \infty} T_n(\alpha x + \beta y)$ and apply the linearity of $T_n$.
+	
+	To prove boundedness, note that for all $\epsilon>0$ and for large enough $m$ and $n$, we have $\norm{T_n(x)-T_m(x)} \leq \epsilon \norm{x}$, hence
+	\[\norm{T_n(x)-T(x)} = \lim_{n\to\infty} \norm{T_n(x)-T_m(x)} \leq 2 \epsilon \norm{x}\]
+	So for large enough $n$ we have $\norm{T_n-T} \leq 2\epsilon$ which shows that $\norm{T_n-T} \to 0$ so the sequence $(T_n-T)_n$ is bounded.
+	Then
+	\[\norm{T} \leq \norm{T-T_n} + \norm{T_n} < \infty \qedhere\]
+\end{proof}
+
+A natural question: if $\dim E < \infty$, is any $T \in \Hom(E,F)$ continuous?
+Yes.
+
+\begin{prop}\label{prop:equiv-norms}
+	Let $E$ be a finite dimensional normed space over $K$ and let $\norm{\cdot}_A$ and $\norm{\cdot}_B$ be two norms in $E$.
+	Then there exist $c_1,c_2>0$ such that for all $x \in E$,
+	\[c_1 \norm{x}_B \leq \norm{x}_A \leq c_2 \norm{x}_B\]
+\end{prop}
+
+\begin{exer}
+	Show that it is not true for $\dim E = \infty$, (even if $E$ is complete).
+\end{exer}
+
+\begin{cor}
+	All norms on $K^n$ define the same topology.
+\end{cor}
+
+\begin{thm}
+	If $E$ is finite dimensional then any $T \in \Hom(E,F)$ is continuous.
+\end{thm}
+
+\begin{proof}
+	Let $E=K^n$ with standard basis vectors $\{\bo{e}_i\}$.
+	Let $\bo{x} = x_1 \bo{e_1} + \cdots + x_n \bo{e_n}$.
+	Let $F' = \im T$ and WLOG assume $\{T(\bo{e}_1),\ldots,T(\bo{e}_k)\}$ is a basis for $F'$ (and $T(\bo{e}_{k+1})=\cdots=T(\bo{e}_n)=0$).
+	Then
+	\begin{align*}
+		\norm{T(x)}_F &= \norm{x_1T(\bo{e}_1)+\cdots+x_nT(\bo{e}_n)} \\
+		&\leq x_1 \norm{x_1T(\bo{e}_1)+\cdots+x_nT(\bo{e}_n)}_1 \\
+		&= c_1 \sum_{j=1}^k \abs{x_j} = c_1 \norm{x}_1 \leq c_1c_2 \norm{x}_E
+	\end{align*}
+	where we have used proposition \ref{prop:equiv-norms} twice.
+	Here $\norm{\cdot}_1$ denotes the $1$-norm:
+	\[\norm{x_1\bo{e}_1+\cdots+x_n\bo{e}_n}_1 = \sum_{i=1}^n \abs{x_n} \qedhere\]
+\end{proof}
+
+\begin{proof}[Proof of proposition \ref{prop:equiv-norms}]
+	Take $E=K^n$ with basis $\{\bo{e}_1,\ldots,\bo{e}_n\}$.
+	It is enough to show that $\norm{\cdot}_A$ and $\norm{\cdot}_1$ are equivalent.
+	Now
+	\begin{eqn*}
+		\norm{v}_A = \norm{c_1\bo{e}_1+\cdots+c_n\bo{e}_n}_A \leq \sum_{k=1}^n \abs{c_k} \norm{\bo{e}_k}_A \leq \left(\max_{k \in [n]} \norm{\bo{e}_n}\right) \left(\sum_{k=1}^n \abs{c_k}\right) = C\norm{v}_1
+	\end{eqn*}
+	for some constant $C$.
+	On the other hand, let $SE$ be the unit sphere with respect to the norm $A$.
+	Then $SE$ is closed and bounded in $E$.
+	We claim that
+	\[\sup_{x \in SE} \norm{v}_1 = M < \infty\]
+	(we leave this proof as an \textbf{exercise}).
+	Then $\norm{v}_1<M\norm{v}_A$ for all $v \in SE$.
+	Then by scaling it is true for all $v \in E$ since
+	\[\norm{v}_1 = \norm{v}_A \norm{\frac{v}{\norm{v}_A}}_1 \leq M\norm{v}_A \qedhere\]
+\end{proof}
