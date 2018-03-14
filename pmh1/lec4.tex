@@ -1,0 +1,131 @@
+\section{Lecture 2018-03-14}
+
+Ch I. The fundamental group
+1 Definition and fundamental properties
+1 1 Path and loops
+
+\begin{defn}
+	Let $X$ be a space.
+	A \textbf{path} is a map $f:I \to X$.
+	A homotopy of paths is a homotopy $\{f_t: I \to X \mid t \in I\}$ with $f_0(0)=f_t(0)=f_1(0)$ and $f_0(1)=f_t(1)=f_1(1)$ for all $t \in I$.
+	We write $f_0 \simeq f_1$ to indicate a homotopy of paths.
+	Note that homotopy of paths is a stronger condition than homotopy of maps.
+	Homotopy defines an equivalence relation on the set of paths.
+	The equivalence class $[f]$ of a path $f$ is called the \textbf{homotopy class} of $f$.
+
+	insert sketch of path in plane with endpoints marked here.
+	insert sketch of homotopy of paths here
+\end{defn}
+
+\begin{exam}
+	Take a map $\phi: I \to I$ and a path $f: I \to X$ with $\phi(0)=0$ and $\phi(1)=1$.
+	Then $f\phi: I \to X$ is a path, known as the reparametrisation of $f$.
+	Visually this corresponds to moving along the same 'path' (really trace) at a different 'speed'.
+	We have $f\phi \sim f$ via the homotopy $f_t(s) = f(s(1-t)+\phi(s)t)$.
+\end{exam}
+
+\begin{defn}
+	For paths $f,g: I \to X$ with $f(1)=g(0)$, then
+	\[
+	f \cdot g (s) =
+	\begin{cases}
+		f(2s) & 0 \leq s \leq \frac 12 \\
+		g(2s-1) & \frac 12 \leq s \leq 1
+	\end{cases}
+	\]
+	is a path.
+\end{defn}
+
+\begin{exer}
+	Show that if $f' \simeq f$ and $g' \simeq g$ we have $f' \cdot g' \simeq f \cdot g$.
+\end{exer}
+
+\begin{defn}
+	\begin{enum}
+		\io $X$ is \textbf{path connected} if for all $x,y \in X$ there exists a path $f: I \to X$ with $f(0)=x$ and $f(1)=y$.
+		\io $X$ is \textbf{locally path connected} if for all $x \in X$ and for all neighbourhoods $V$ of $X$, there exists an open neighbourhood $U$ of $x$ with $U \subset V$ that is path connected.
+	\end{enum}
+\end{defn}
+
+\begin{exam}
+	\begin{enum}
+		\io If $X = Y \amalg X$ then $X$ is not path connected.
+		fill in diagrams
+	\end{enum}
+\end{exam}
+
+\begin{rmk}
+	Note that spaces can be path connected but not locally path connected and vice versa.
+	If a space is both path connected (\textbf{PC}) and locally path connected (\textbf{LPC}) we will say that it is \textbf{PLPC}.
+\end{rmk}
+
+\begin{rmk}
+	We know that path connected implies connected, but connected does not imply path-connected.
+	See the exercises for a connected space which is not path-connected.
+\end{rmk}
+
+\begin{defn}
+	Define an equivalence relation $\sim$ on $X$ by setting $x \sim y$ for $x,y \in X$ if there exists a path from $x$ to $y$.
+	Define $\pi_0(X) = X/\sim$.
+	As sets, we have $X = \coprod_{\alpha \in \pi_0(X)} X_\alpha$ where the $X_\alpha$ are the \textbf{path components} of $X$.
+	As topological spaces, we only have $X = \bigcup_{\alpha \in \pi_0(X)} X_\alpha$ (see the exercises).
+\end{defn}
+
+\begin{defn}
+	A \textbf{loop} is a path $f:I \to X$ with $f(0)=f(1)$.
+	The point $x_0=f(0)=f(1)$ is called the \textbf{basepoint} of $f$.
+	A homotopy of loops is just a homotopy of paths.
+	A loop that is homotopic to the constant path is called \textbf{nullhomotopic}.
+\end{defn}
+
+1.2 The fundamental group of a pointed space
+
+\begin{defn}
+	Define the \textbf{fundamental group} of a pointed space
+	\[\pi_1(X,x_0) = \{[f] \mid f \text{ a loop in } X \text{ at } x_0\}\]
+	Define a binary operation $[f][g] \defeq [f \cdot g]$.
+\end{defn}
+
+\begin{exer}
+	Show that the multiplication $[f][g] = [f \cdot g]$ is well defined.
+\end{exer}
+
+\begin{proof}[Proof that $\pi_1(X,x_0)$ is a group]
+	We need to show:
+	\begin{enum}
+		\io Associativity: $(f \cdot g) \cdot h \simeq f \cdot (g \cdot h)$.
+		This follows from reparametrisation.
+		\io Identity: take the constant map $[c]$.
+		Then apply a reparametrisation.
+		\io Inverses: define the \textbf{inverse path} $\bar{f}(s) = f(1-s)$.
+		Then $f \cdot \bar{f}$ and $\bar{f} \cdot f$ are nullhomotopic.
+	\end{enum}
+	For more details, see the lecture notes (exercises).
+\end{proof}
+
+\begin{exam}
+	$\pi_1(\pt,x_0)=0$ and $\pi_1(\RR^n,x_0)=0$.
+\end{exam}
+
+\begin{defn}
+	Let $h:I \to X$ be a path from $x_0$ to $x_1$.
+	Then there is a \textbf{change of basepoint map}
+	\begin{align*}
+		\beta_h: \pi_1(X,x_1) &\to \pi_1(X,x_0) \\
+		[f] &\mapsto [h \cdot f \cdot \bar{h}]
+	\end{align*}
+\end{defn}
+
+\begin{prop}
+	$\beta_h$ is well-defined and is a group isomorphism with inverse $\beta_{\bar{h}}$.
+\end{prop}
+
+\begin{proof}
+	Exercise.
+\end{proof}
+
+\begin{rmk}
+	If $\abs{\pi_0(X)}=1$ then $X$ is \textbf{path connected} or \textbf{$0$-connected}.
+	If $\abs{\pi_1(X)}=1$ then $X$ is \textbf{$1$-connected} or \textbf{simply connected}.
+	We will write $\pi_1(X)$ for $\pi_1(X,x_0)$.
+\end{rmk}

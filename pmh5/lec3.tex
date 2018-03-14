@@ -1,0 +1,159 @@
+\section{Lecture 2018-03-14}
+
+\begin{note}
+	If $A$ has generators $x,y,\ldots$, we will often write $\rho(x),\rho(y),\ldots$ as $X,Y,\ldots$.
+	Then for $v \in V$, we can write $\rho(x)(v)$ as $X(v)$, $Xv$ or $xv$ if we are not considering more than one representation of $A$ on $V$.
+\end{note}
+
+In our simplified notation, we have:
+
+\begin{defn}
+	An \textbf{$A$-module} is a $k$-vector space $V$ together with a map
+	\begin{align*}
+		A \times V &\to V \\
+		(a,v) &\mapsto av
+	\end{align*}
+	such that
+	\begin{itm}
+		\io $av$ is linear in $v$ (i.e.\@ $v \mapsto av \in \End V$)
+		\io $av$ is linear in $a$ (i.e.\@ $\rho:A \to \End V$ is linear)
+		\io $a(bv)=(ab)v$, and
+		\io $1_Av=v$ (i.e. $\rho$ is a $k$-algebra homomorphism)
+	\end{itm}
+	for all $a,b \in A$ and $v \in V$.
+\end{defn}
+
+\begin{rmk}
+	While this looks more complicated than the usual definition of a module over a ring, it is exactly the same. (For example that $V$ is a $k$-vector space is automatic from the module axioms.)
+\end{rmk}
+
+\begin{defn}
+	A \textbf{submodule} of and $A$-module $V$ is a vector subspace $W$ of $V$ such that $aw \in W$ for all $a \in A$ and all $w \in W$.
+	Then $W$ is an $A$-module under the same action (restriction in representation notation) and so is $V/W$ with the action $a(v+W)=av+W$.
+	The \textbf{trivial submodules} of $V$ are $0$ and $V$.
+\end{defn}
+
+\begin{exam}
+	For any algebra $A$:
+	\begin{itm}
+		\io $0$ is an $A$-module.
+		\io $A$ is an $A$-module where the action is just multiplication.
+		In representation notation, the homomorphism $\rho: A \to \End V$ is defined by setting $\rho(a)$ to be left multiplication by $a$.
+		This is known as the \textbf{left regular representation}.
+		\io For any left ideal $J \subseteq A$, both $J$ and $A/J$ are $A$-modules.
+		For example, for any $a \in A$ we can take $J=Ja=(a)$.
+	\end{itm}
+\end{exam}
+
+\begin{rmk}
+	This is precisely a submodule in the more general sense.
+\end{rmk}
+
+\begin{rmk}
+	Defining $\sigma:A \to \End V$ to be right multiplication gives an anti-homomorphism.
+	So there is no `right-regular representation' in general.
+	(If $A \cong A\op$ then there is though.)
+\end{rmk}
+
+\begin{defn}
+	For any $A$-module $V$ and for any $v \in V$, $Av = \{av \mid a \in A\}$ is a submodule of $A$.
+	We say that $V$ is \textbf{cyclic} if there exists a $v \in V$ such that $Av=V$.
+\end{defn}
+
+\begin{defn}
+	An $A$-module (representation of $A$) is simple (irreducible) if $V \neq 0$ and $V$ has no non-trivial submodules.
+	An $A$-module $V$ is \textbf{indecomposable} if $V \neq 0$ and there do not two non-trivial submodules $W_1$ and $W_2$ with $V = W_1 \oplus W_2$.
+\end{defn}
+
+\begin{rmk}
+	Simple $\implies$ indecomposable but indecomposable $\not\implies$ simple (in general)!
+	(For $A=k[G]$ where $G$ is a group and $k$ has characteristic $0$, the converse is implication true.)
+	Even if there is a submodule there may not exist a direct sum complement which is also a submodule.
+	A typical problem in representation theory is given an algebra $A$, classify all simple and indecomposable $A$-modules up to isomorphism.
+\end{rmk}
+
+\begin{defn}
+	Let $V$ and $W$ be two $A$-modules.
+	An \textbf{$A$-module homomorphism} (or an \textbf{$A$-linear map}) $\theta:V \to W$, is a map with \@ $\theta(av)=a\theta(v)$ and $\theta(v+w)=\theta(v)+\theta(w)$ for all $a \in A$ and $v,w \in V$.
+	An $A$-module \textbf{isomorphism} is an invertible homomorphism.
+	We write $V \cong W$ for isomorphic modules as usual.
+	
+	In the language of representations, if $(V,\rho)$ and $(W,\sigma)$ are representations of $A$, then a \textbf{representation homomorphism} (or an \textbf{intertwining operator} or \textbf{intertwiner}) is a $k$-linear map $\theta: V \to W$ such that $\theta \circ \rho(a) = \rho(a) \circ \theta$ for all $a \in A$.
+	An isomorphism
+\end{defn}
+
+\begin{exam}
+	Let $A=k[x]$.
+	An $A$-module is a vector space $V$ with a chosen $X \in \End V$.
+	When are two $A$-modules $(V,X)$ and $(V',X')$ isomorphic?
+	They are isomorphic when there is an invertible intertwiner $\theta:V \xto{\sim} V'$.
+	Note that we only have to check $\theta X = X'\theta$ (it is equivalent to checking for all $p(x) \in A$.
+	
+	Let $\dim V = \dim V' = n$.
+	Clearly they have to be equal if an intertwiner exists.
+	Then $X$ and $X'$ have matrices (or vector space isomorphisms $V \xto{\sim} k^n$) $M = [X]$, $M'=[X'] \in \Mat_n(k)$.
+	Now $\theta$ is an isomorphism if and only iff there exists an invertible $\Phi \in \Mat_n(k)$ such that $\Phi M = M'\Phi$, i.e.\@ $M' = \Phi M \Phi\inv$ ($M$ and $M'$ are similar matrices).
+	
+	So the classification of $n$-dimensional $k[x]$-modules up to isomorphism is equivalent to the classification of $n \times n$ matrices over $k$ up to similarity.
+	If $k$ is algebraically closed, this is solved by the Jordan normal form theorem.
+	
+	For example, any 2-dimensional $\CC[x]$-modules is isomorphic to one of:
+	\begin{enum}
+		\io $\CC^2$ with $x$ acting by $
+		\left(
+		\begin{smallmatrix}
+			\lambda & 0 \\
+			0 & \lambda
+		\end{smallmatrix}
+		\right)
+		$, $\lambda \in \CC$
+		\io $\CC^2$ with $x$ acting by $
+		\left(
+		\begin{smallmatrix}
+		\lambda_1 & 0 \\
+		0 & \lambda_2
+		\end{smallmatrix}
+		\right)
+		$, $\lambda_1,\lambda_2 \in \CC$
+		\io $\CC^2$ with $x$ acting by $
+		\left(
+		\begin{smallmatrix}
+		\lambda & 1 \\
+		0 & \lambda
+		\end{smallmatrix}
+		\right)
+		$, $\lambda \in \CC$
+	\end{enum}
+	In type 1, any one-dimensional subspace is a submodule.
+	So type 1 modules are neither simple nor indecomposable.
+	In type 2, the non-trivial submodules are $k
+	\left(
+	\begin{smallmatrix}
+	1 \\
+	0
+	\end{smallmatrix}
+	\right)
+	$
+	and
+	$k
+	\left(
+	\begin{smallmatrix}
+	0 \\
+	1
+	\end{smallmatrix}
+	\right)
+	$ (the $\lambda_1$- and $\lambda_2$-eigenspaces which are linearly independent).
+	So type 2 modules are neither simple nor indecomposable.
+	In type 3, the only nontrivial submodule is
+	$k
+	\left(
+	\begin{smallmatrix}
+	1 \\
+	0
+	\end{smallmatrix}
+	\right)
+	$
+	(the $\lambda$-eigenspace).
+	There are no other invariant subspaces.
+	So type 3 modules are not simple, but not indecomposable.
+\end{exam}
