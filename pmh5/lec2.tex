@@ -37,11 +37,11 @@
 		\io For any group (or monoid) $G$ there is a \textbf{group algebra} $k[G]$ consisting of formal (finite) linear combinations of the elements of $G$ and multiplication given by the group multiplication rule:
 		\[\left(\sum_{g\in G}\alpha_gg\right)\left(\sum_{h\in H}\beta_hh\right)=\sum_{g,h\in G}(\alpha_g\beta_h)gh\]
 		For example, $k[D_3]\cong k\ang{x,y}/\ang{x^3-1,y^2-1,yx-x^2y}$ and $k[C_n]\cong k[x]/\ang{x^n-1}$.
-		\io If $V$ is a $k$-vector space, then $\End V$ is a $k$-algebra with multiplication as composition and $1_{\End V}=\id_V$.
+		\io If $V$ is a $k$-vector space, then $\End(V)$ is a $k$-algebra with multiplication as composition and $1_{\End(V)}=\id_V$.
 		\io $\Mat_n(k)$ is a $k$-algebra under matrix multiplication with $1_{\Mat_n(k)}=I_n$.
 		If $V$ is a $k$-vector space with $\dim V=n$, then for any choice of basis $\{v_1,\ldots,v_n\}$ of $V$ there is an isomorphism of $k$-algebras
 		\begin{align*}
-			\End V &\xto{\sim} \Mat_n(k) \\
+			\End(V) &\xto{\sim} \Mat_n(k) \\
 			\phi &\mapsto [\phi(v_j)_i]_{ij}
 		\end{align*}
 		where $\phi(v_j)_i$ is the coefficient of $v_i$ in $\phi(v_j)$.
@@ -73,7 +73,7 @@
 
 \begin{defn}
 	Let $A$ be a $k$-algebra.
-	A \textbf{represetation} of $A$ is a pair $(V,\rho)$ where $V$ is a $k$-vector space and $\rho:A \to \End V$ is a $k$-algebra homomorphism.
+	A \textbf{represetation} of $A$ is a pair $(V,\rho)$ where $V$ is a $k$-vector space and $\rho:A \to \End(V)$ is a $k$-algebra homomorphism.
 \end{defn}
 
 \begin{rmk}
@@ -83,8 +83,8 @@
 \begin{exam}
 	Some examples of representations:
 	\begin{enum}
-		\io A representation of $k$ is just a $k$-vector space space $V$ because if $\rho:k\to \End V$ is a $k$-algebra homomorphism, we must have $\rho:\lambda\mapsto \lambda\id_V$.
-		\io A representation of $k[x]$ is a $k$-vector space $V$ with a map $X\defeq\rho(x)\in\End V$.
+		\io A representation of $k$ is just a $k$-vector space space $V$ because if $\rho:k\to \End(V)$ is a $k$-algebra homomorphism, we must have $\rho:\lambda\mapsto \lambda\id_V$.
+		\io A representation of $k[x]$ is a $k$-vector space $V$ with a map $X\defeq\rho(x)\in\End(V)$.
 		\io A representation of $k[x,y]$ is a $k$-vector space $V$ together with two commuting endomorphisms of $V$.
 		\io A representation of $k\ang{x,y}$ is a $k$-vector space with together two endomorphisms of $V$.
 		\io A representation of $k\ang{x,y}/\ang{yx-xy-1}$ is a $k$-vector space $V$ with two linear transformations $X$ and $Y$ satisfying $YX-XY=\id_V$.

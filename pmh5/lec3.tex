@@ -15,8 +15,8 @@ In our simplified notation, we have:
 	\end{align*}
 	such that
 	\begin{itm}
-		\io $av$ is linear in $v$ (i.e.\@ $v \mapsto av \in \End V$)
-		\io $av$ is linear in $a$ (i.e.\@ $\rho:A \to \End V$ is linear)
+		\io $av$ is linear in $v$ (i.e.\@ $v \mapsto av \in \End(V)$)
+		\io $av$ is linear in $a$ (i.e.\@ $\rho:A \to \End(V)$ is linear)
 		\io $a(bv)=(ab)v$, and
 		\io $1_Av=v$ (i.e. $\rho$ is a $k$-algebra homomorphism)
 	\end{itm}
@@ -38,7 +38,7 @@ In our simplified notation, we have:
 	\begin{itm}
 		\io $0$ is an $A$-module.
 		\io $A$ is an $A$-module where the action is just multiplication.
-		In representation notation, the homomorphism $\rho: A \to \End V$ is defined by setting $\rho(a)$ to be left multiplication by $a$.
+		In representation notation, the homomorphism $\rho: A \to \End(V)$ is defined by setting $\rho(a)$ to be left multiplication by $a$.
 		This is known as the \textbf{left regular representation}.
 		\io For any left ideal $J \subseteq A$, both $J$ and $A/J$ are $A$-modules.
 		For example, for any $a \in A$ we can take $J=Ja=(a)$.
@@ -50,7 +50,7 @@ In our simplified notation, we have:
 \end{rmk}
 
 \begin{rmk}
-	Defining $\sigma:A \to \End V$ to be right multiplication gives an anti-homomorphism.
+	Defining $\sigma:A \to \End(V)$ to be right multiplication gives an anti-homomorphism.
 	So there is no `right-regular representation' in general.
 	(If $A \cong A\op$ then there is though.)
 \end{rmk}
@@ -84,7 +84,7 @@ In our simplified notation, we have:
 
 \begin{exam}
 	Let $A=k[x]$.
-	An $A$-module is a vector space $V$ with a chosen $X \in \End V$.
+	An $A$-module is a vector space $V$ with a chosen $X \in \End(V)$.
 	When are two $A$-modules $(V,X)$ and $(V',X')$ isomorphic?
 	They are isomorphic when there is an invertible intertwiner $\theta:V \xto{\sim} V'$.
 	Note that we only have to check $\theta X = X'\theta$ (it is equivalent to checking for all $p(x) \in A$.
