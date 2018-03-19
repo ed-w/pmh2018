@@ -100,9 +100,9 @@ begin assessable stuff
 	\]
 	\[
 		\begin{tikzcd}
-			M \arrow[rr, "f"] & & N \\
-			& \ker f \arrow[ul, hook, "\iota"] \arrow[ur, "0"] & \\
-			& L \arrow[uul, bend left, "g"] \arrow[uur, bend right, "0"] \arrow[u, dashed, "\exists !"] &
+			M \arrow[rr, "f"] \arrow[dr, "0"] \arrow[ddr, bend right, "0"] & & N \arrow[dl, twoheadrightarrow, "\pi"] \arrow[ddl, bend left, "g"] \\
+			& \coker f \arrow[d, dashed, "\exists !"] & \\
+			& L &
 		\end{tikzcd}
 	\]
 \end{rmk}

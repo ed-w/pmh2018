@@ -28,7 +28,12 @@ The intuitive interpretation of this is that any loop in the circle can wind aro
 
 \begin{defn}
 	A \textbf{lift through $p: \wt X \to X$} of $f: Y \to X$ is a map $\wt f: Y \to \wt X$ with $p \wt f = f$, i.e.\@ the following diagram commutes:
-	insert diagram here
+	\[
+		\begin{tikzcd}
+			Y \ar[rr, "f"] \ar[rd, dashed, "\exists \wt f"] & & X \\
+			& \wt X \ar[ur, "p"] &
+		\end{tikzcd}
+	\]
 \end{defn}
 
 \begin{exam}
