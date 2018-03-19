@@ -1,0 +1,108 @@
+\section{2018-03-19 Lecture}
+
+\begin{exam}
+	Let $R=\CC[x]$.
+	Then $\mSpec R = \{(x-c) \mid c \in \CC\ \leftrightarrow \CC$ and $\Spec R = \CC \sqcup \{0\}$.
+	The closure $\ol{(0)}=\Spec R$.
+	For an $f \in \CC[x]$, associate a function $\phi_f: \mSpec R \to \CC$ by $(x-c) \mapsto f(c)$ (the evaluation).
+	
+	The Zariski topology: $I<\CC[x] \implies I = (f)$ for some $f \neq 0$.
+	Then $\cV{f}$ is the set of linear factors dividing $f$, or equivalently the set of zeros of $f$.
+	Note that $\abs{\cV(f)}<\infty$, so the closed subsets of $\Spec R$ are $\Spec R$ and finite subsets in $\mSpec R$.
+	Thus the Zariski topology is not Hausdorff (two distinct points may not have two disjoint open neighbourhoods).
+\end{exam}
+
+begin assessable stuff
+
+\S 1: Modules
+
+\begin{defn}[1.1]
+	A \textbf{(left) $R$-module} $M$ is an abelian group $(M,+)$ with a binary operation:
+	\begin{align*}
+		\mu_M = M: R \times M &\to M \\
+		(x,m) \mapsto xm
+	\end{align*}
+	such that
+	\begin{enum}
+		\io $x(m+n)=xm+xn$
+		\io $(x+y)m=xm+ym$
+		\io $(xy)m=x(ym)$
+		\io $1_Rm=m$
+		for all $m,n \in M$ and $x,y \in R$.
+	\end{enum}
+\end{defn}
+
+\begin{exam}
+	\begin{enum}
+		\io If $R=k$ is a vector space, then $R$-modules are $k$-vector spaces.
+		\io If $R=k[X]$ then an $R$-module $M$ is a $k$-vector space with a linear map $\wt{X} \in \End M$.
+		\io If $R=k[X,Y]/(f(X,Y))$, then an $R$-module $M$ is a $k$-vector space and a pair of commuting $k$-linear maps $\wt{X},\wt{Y} \in \End M$ such that $f(\wt{X},\wt{Y})=0$.
+		\io Any ideal $I$ of $R$ is an $R$-module.
+	\end{enum}
+\end{exam}
+
+\begin{defn}[1.2]
+	Let $M$ and $N$ be two $R$-modules.
+	An \textbf{$R$-module homomorphism} is a map $f:M \to N$ such that
+	\begin{enum}
+		\io $f$ is a morphism of abelian groups, and
+		\io $xf(m)=f(xm)$ for all $x \in R$ and $m \in M$.
+	\end{enum}
+\end{defn}
+
+\begin{rmk}
+	The $R$-modules and their homomorphisms form a category $\RMod$.
+	Injections and surjections are the monomorphisms and epimorphisms respectively (unlike with rings where nor all epimorphisms are surjective).
+\end{rmk}
+
+\begin{prop}[1.3]
+	\begin{enum}
+		\io The set $\Hom_R(M,N)$ is an abelian group with addition.
+		\io The set $\Hom_R(M,N)$ is an $R$-module with pointwise scalar multiplication.
+		\io There is a natural isomorphism $\Hom_R(R,M) \xto{\sim} M$ by $f \mapsto f(1)$.
+	\end{enum}
+\end{prop}
+
+\begin{defn}[1.4]
+	\begin{enum}
+		\io A submodule $M'$ of $M$ is a subgroup $M'<M$ such that $\mu_M$ restricts to $\mu: R \times M' \to M'$.
+		\io The quotient of $M$ by $M'$ by a submodule $M$ is the quotient group $M/M'$ with $\mu_{M/M'}$ the push down of $\mu_M$:
+		\[
+			\begin{tikzcd}
+				R \times M \arrow[r, "\mu_M"] \arrow[d] & M \arrow[d] \\
+				R \times M/M' \arrow[r, "\mu_{M/M'}"'] & M/M'
+			\end{tikzcd}
+		\]
+	\end{enum}
+\end{defn}
+
+\begin{exam}
+	\begin{enum}
+		\io If $I<R$ is a submodule, then $R/I$ is an $R$-module.
+		\io If $f \in \Hom_R(M,N)$, then $ker f$ is a submodule of $M$ and $\im f$ is a submodule of $N$.
+		\io The first isomorphism theorem for groups implies the first isomorphism theorem for modules:
+		\[\ol{f}: M/\ker f \xto{\sim} \im f\]
+		is an $R$-module map for any $f \in \Hom_R(M,N)$.
+		We just need to check that the inverse of an $R$-module map is also an $R$-module map.
+		\io The cokernel of $f \in \Hom_R(M,N)$ is defined as:
+		\[\coker f = N/\im f\]
+	\end{enum}
+\end{exam}
+
+\begin{rmk}
+	$\ker f$ and $\coker f$ are universal objects:
+	\[
+		\begin{tikzcd}
+			M \arrow[rr, "f"] & & N \\
+			& \ker f \arrow[ul, hook, "\iota"] \arrow[ur, "0"] & \\
+			& L \arrow[uul, bend left, "g"] \arrow[uur, bend right, "0"] \arrow[u, dashed, "\exists !"] &
+		\end{tikzcd}
+	\]
+	\[
+		\begin{tikzcd}
+			M \arrow[rr, "f"] & & N \\
+			& \ker f \arrow[ul, hook, "\iota"] \arrow[ur, "0"] & \\
+			& L \arrow[uul, bend left, "g"] \arrow[uur, bend right, "0"] \arrow[u, dashed, "\exists !"] &
+		\end{tikzcd}
+	\]
+\end{rmk}

@@ -1,0 +1,111 @@
+\section{2018-03-19 Lecture}
+
+1.3 $\pi_1(S^1)=(\ZZ,+)$
+We wil prove the above statement in this lecture.
+Since $S^1$ is path-connected, $\pi_1(S^1)$ does not depend on the basepoint.
+The intuitive interpretation of this is that any loop in the circle can wind around it any whole number of times in either direction.
+
+\begin{defn}
+	A \textbf{covering space} of $X$ is a space $\wt{X}$ and a map $p: \wt X \to X$ such that each $x \in X$ has an open neighbourhood $U$ with $p\inv[U] = \coprod_\alpha V_\alpha$ with each $V_\alpha \subset X$ open and $p: V_\alpha \to U$ is a homeomorphism.
+\end{defn}
+
+\begin{exam}
+	\begin{itm}
+		\io $1_X: X \to X$
+		\io Any homeomorphism with codomain $X$
+		\io $X \amalg X \to X$ with the inclusion in both components
+		\io $X=S^1$, $\wt X = \RR$, $p: \RR \to S^1$, $s \mapsto (\cos 2\pi s, \sin 2\pi s)$
+		In a small enough open neighbourhood of any point, we can use the invertibility of sine and cosine to show that the preimage in the real line is a disjoint union of open sets.
+		
+		Here is a graphical interpretation.
+		Define the helix
+		\[H = \{(\cos 2\pi s, \sin 2\pi s, s) \mid s \in \RR\} \subset \RR^3\]
+		Clearly the definition above specifies a homeomorphism $\RR \cong H$.
+		Then let $p$ be the projection on to the plane $z=0$:
+		\[p: (\cos 2\pi s, \sin 2\pi s, s) \mapsto (\cos 2\pi s, \sin 2\pi s)\]
+	\end{itm}
+\end{exam}
+
+\begin{defn}
+	A \textbf{lift through $p: \wt X \to X$} of $f: Y \to X$ is a map $\wt f: Y \to \wt X$ with $p \wt f = f$, i.e.\@ the following diagram commutes:
+	insert diagram here
+\end{defn}
+
+\begin{exam}
+	Consider the path $\omega_n: I \to S^1$ for $m \in \ZZ$, where
+	\[\omega_n(t) = (\cos 2\pi nt, \sin 2\pi nt)\]
+	for $t \in I$.
+	This corresponds to going around the circle $\abs{n}$ times in the $\sgn{n}$ direction.
+	Then a family of lifts through $p: H \to X$ is given by
+	\[\wt\omega_n^k(t) = (\cos 2\pi nt, \sin 2\pi nt, nt+k)\]
+	where the $k$ 'shifts' the trace of $\wt\omega_n^0$ up or down the helix by $k$ loops.
+\end{exam}
+
+\begin{exer}
+	Consider a path $f: I \to H$ with $f(0)=(1,0,0)$ and $f(1)=(1,0,n)$ for $n \in \ZZ$.
+	Show that $f \simeq \wt\omega_n^0$.
+\end{exer}
+
+\begin{prop}{\label{prop:homotopy-lift}}
+	Fix a covering space $p: \wt X \to X$.
+	Consider a homotopy $g_t: Y \to X$ and a lift $\wt g_0: Y \to \wt X$ of $g_0$.
+	Then there exists a unique homotopy $\{\wt g_t: Y \to \wt X\}$ with $p\wt g_t=g_t$ for all $t \in I$.
+\end{prop}
+
+\begin{proof}
+	See Hatcher for details.
+	Let $g_0: Y \to X$ and let $N = g\inv[U]$ where $U \subset X$.
+	Now consider
+	\[N \xto{g_0|_N} U \xto{\sim} \coprod_\alpha V_\alpha \qedhere\]
+\end{proof}
+
+\begin{cor}
+	For each path $f: I \to X$ with $f(0)=x_0$ and $\wt x_0 \in p\inv[x_0]$, there exists a unique lift $\wt f: I \to \wt X$ of $f$ with $\wt f(0) = \wt x_0$.
+\end{cor}
+
+\begin{proof}
+	Take $Y = \pt$ in proposition \ref{prop:homotopy-lift}.
+	Then $f: I \to X$ is a homotopy $g_t: Y = \pt \to X$.
+	Now apply proposition \ref{prop:homotopy-lift}.
+\end{proof}
+
+\begin{cor}
+	For each homotopy $\{f_t: I \to X\}$ of paths starting at $x_0$ and $\wt x_0 \in p\inv[x_0]$ there exists a unique homotopy $\{\wt f_t: I \to \wt X\}$ of paths starting at $\wt x_0$ with $f_t = p\wt f_t$.
+\end{cor}
+
+\begin{proof}
+	Apply proposition \ref{prop:homotopy-lift}.
+	Now we just need to check that $\{\wt f_t\}$ is a homotopy of paths.
+\end{proof}
+
+\begin{cor}
+	For two loops $f$ and $g$ in $X$ at $x_0$ and their unique lifts starting at $\wt x_0$, we have $f \simeq g \iff \wt f \simeq \wt g$.
+\end{cor}
+
+\begin{proof}
+	The $\implies$ direction follows from the last corollary.
+	For the $\impliedby$ direction see the notes.
+\end{proof}
+
+\begin{thm}
+	Let $x_0 = (1,0) \in S^1$.
+	Then there is a group isomorphism
+	\begin{align*}
+		\Phi: \ZZ &\to \pi_1(S^1,x_0) \\
+		n &\mapsto [\omega_n]
+	\end{align*}
+\end{thm}
+
+\begin{proof}
+	Let $\wt x_0 = (1,0,0)$.
+	\begin{itm}
+		\io $\Phi$ is a group homomorphism, i.e.\@ $[\omega_n][\omega_l]=[\omega_{n+l}]$.
+		This is obvious (reparametrisation).
+		\io $\Phi$ is surjective.
+		Let $f: I \to S^1$ be a loop and $\wt f$ its unique lift starting at $\wt x_0$.
+		Then it must end at a point $(0,0,n) \in p\inv[0]$ for some $n \in \ZZ$.
+		It can be shown that this forces $\wt f \simeq \wt \omega_n^0$, so $f \simeq \omega_n$, or $\Phi(n)=[f]$.
+		\io $\Phi$ is injective.
+		Now $\omega_n \sim \omega_l \implies \wt\omega_n^0 \sim \wt\omega_l^0$, but $\wt\omega_n^0 \sim \wt\omega_l^0 \implies m=n$ since they must have the same endpoint. \qedhere
+	\end{itm}
+\end{proof}

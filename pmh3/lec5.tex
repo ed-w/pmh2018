@@ -1,0 +1,118 @@
+\section{2018-03-19 Lecture}
+
+\begin{rmk}
+	Equivalent norms define the same topology.
+\end{rmk}
+
+\begin{prop}
+	Let $E$ be a finite dimensional normed space over $K$.
+	Then any norm $\norm{\cdot}_A$ is equivalent to $\norm{\cdot}_1$,
+	where if $\{e_1,\ldots,e_n\}$ is a basis of $E$, then $\norm{c_1e_1+\cdots+c_ne_n}_1 = \sum_{k=1}^n \abs{c_k}$.
+\end{prop}
+
+\begin{proof}
+	We have
+	\[\norm{v_A} = \norm{c_1e_1+\cdots+c_ne_n}_A \leq \sum_{k=1}^n \abs{c_k}\norm{e_k}_A \leq C\norm{v}_1\]
+	where
+	\[C = \max_{k \in [n]} \norm{e_k}_A\]
+	
+	Now take $S = \{v \in E \mid \norm{v}_1=1\}$.
+	Since the norm is continuous, $S$ is closed and also $S$ is clearly bounded.
+	Now $\norm{\cdot}_1$ and $\norm{\cdot}_2$ (Euclidean norm) are equivalent in finite dimensional spaces because convergence is component-wise.
+	Thus $S$ is compact, so every continuous function out of $S$ attains its minimum.
+	Hence
+	\[\min_{v \in S} \norm{v}_A = \norm{v_0}_A = \alpha>0\]
+	for some $v_0 \in S$.
+	
+	Now let $v \in E \setminus \{0\}$.
+	Let $\norm{v}_1=\lambda>0$.
+	Then
+	\[\norm{v}_A = \lambda \norm{\frac v\lambda}_A \geq \lambda\alpha\]
+	since $v/\lambda \in S$.
+	Thus $\alpha\norm{v}_1\leq\norm{v}_A$.
+	Clearly it holds when $v=0$ as well.
+\end{proof}
+
+\begin{cor}
+	Let $E$ be a finite dimensional normed space.
+	Then $B \subset E$ is compact $\iff$ $B$ is bounded and closed.
+\end{cor}
+
+\begin{proof}
+	Let $n = \dim E$.
+	Take $(K^n,\norm{\cdot}_2)$ and let $\{v_1,\ldots,v_n\}$ be a basis of $E$.
+	Let $T:E \to K^n$ be the co-ordinate map.
+	Then $T$ is linear, continuous and bijective, hence $T\inv$ is linear, hence also continuous.
+	Thus $T$ is a homeomorphism.
+	
+	Now if $B \subset E$ is compact, then $T[B]$ is compact in $(K^n,\norm{\cdot}_2)$ (we only need continuity of $T$ here).
+	Then $B = T\inv\circ T[B]$ is closed.
+	If $x \in B$, then $\norm{Tx}_2 \leq C_1\norm{x}_A$.
+	Then
+	\[\norm{x}=\norm{T\inv Tx} \leq C_2 \norm{Tx}_2 \leq C_2 R\]
+	since a set in $(K^n,\norm{\cdot}_2)$ is compact if and only if it is closed and bounded.
+\end{proof}
+
+\begin{thm}
+	Let $(E,\norm{\cdot})$ be a normed space.
+	Then the unit sphere $S$ is compact $\iff \dim E < \infty$.
+\end{thm}
+
+\begin{proof}
+	$\impliedby$: This follows immediately from the previous theorem.
+	
+	$\implies$: Let $\dim E = \infty$.
+	We want to show that there exists a sequence $(x_n)$ in $S$ without a convergent subsequence.
+	We will show that for every closed $M \subsetneq E$, there exists an $x \in E$ such that $\norm{x}=1$ and $\dist(x,M) \geq 1/2$.
+	
+	Let $n>0$.
+	Take $M_n = \spn(x_1,\ldots,x_{n-1})$.
+	Then since $E$ is infinite dimensional there exists an $x_n \in E$ with $\norm{x_n}=1$ and for all $m \leq n$, $\norm{x_m-x_n} \leq 1/2$.
+	We prove this claim now:
+	
+	Let $x \notin M$.
+	Now for all $\epsilon>0$, there exists an $m_\epsilon \in M$ such that $\norm{x-m_\epsilon} \leq \alpha(1+\epsilon)$ where $\alpha = \dist(x,M)$.
+	Now $\alpha>0$ since $M$ is closed.
+	Take
+	\[z = \frac{x-m_\epsilon}{\norm{x-m_\epsilon}}\]
+	so $\norm{z}=1$ and $z \notin M$.
+	
+	Then
+	\begin{multline*}
+		\norm{z-m} = \norm{\frac{x-m_\epsilon}{\norm{x-m_\epsilon}}-m} = \frac{1}{\norm{x-m_\epsilon}}\norm{x-m_\epsilon - \norm{x-m_\epsilon}m} \\
+		\geq \frac{\alpha}{\norm{x-m_\epsilon}} \geq \frac{1}{1+\epsilon}
+	\end{multline*}
+	so it suffices to take $\epsilon=1$.
+	
+	Hence we have a sequence which does not converge and is not Cauchy.
+	
+\end{proof}
+
+Hilbert spaces (complete inner product spaces)
+
+Main examples: $l_2$, $L^2(X,\mu)$
+
+Plan: to introduce the notion of a Hilbertian basis.
+
+\begin{defn}
+	Let $E$ be a vector space over $K$.
+	A map $\ang{\cdot,\cdot}: E \times E \to E$ is an \textbf{inner product} if:
+	\begin{enum}
+		\io $\ang{u,u} \geq 0$ for all $u \in E$ and $\ang{u,u}=0 \iff u=0$
+		\io $\ol{\ang{v,u}} = \ang{u,v}$
+		\io $\ang{\alpha u_1 + \beta u_2, v} = \alpha\ang{u_1,v} + \beta\ang{u_2,v}$ for all $u_1,u_2,v \in E$ and $\alpha,\beta \in k$.
+	\end{enum}
+	Properties 2 and 3 define a \textbf{sesquilinear form} if $K=\CC$ and a \textbf{bilinear form} if $K=\RR$.
+\end{defn}
+
+\begin{exam}
+	\begin{enum}
+		\io Let $E=K^N$ and let $A: K^n \to K^N$ be linear, Hermitian and non-negative.
+		Then $\ang{x,y}_A = x^*Ay$ is an inner product.
+		If $A=\id$ this is the usual inner product on $K^n$.
+		\io Let $E=l_2$ and $\ang{u,v} = \sum_{n=1}^\infty u_n \ol{v}_n$.
+		(H\"older's inequality shows that it is finite.)
+		\io Let $(X,\mu)$ be a measure space and let $E=L^2(X,\mu)$.
+		Then $\ang{f,g} = \int_X f\ol{g} \, d\mu$ is an inner product.
+	\end{enum}	
+\end{exam}
