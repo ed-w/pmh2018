@@ -1,0 +1,127 @@
+\section{2018-03-20 Lecture}
+
+Hilbert Spaces
+
+\begin{prop}
+	If $E$ has inner product $\ang{\cdot,\cdot}$, then define a norm by
+	\[\norm{u} \defeq \sqrt{\ang{u,u}} \text{ for all } u \in E\]
+	Then $\norm{\cdot}$ makes $E$ in to a normed space.
+	The triangle ineqaulity follows from the following:
+\end{prop}
+
+\begin{prop}[Cauchy-Schwarz inequality]
+	For all $u,v \in E$ we have
+	\[\abs{\ang{u,v}} \leq \norm{u}\norm{v}\]
+	with equality $\iff u \parallel v$.
+\end{prop}
+
+\begin{proof}
+	Consider the quadratic form
+	\[\ang{u+tv,u+tv} \geq 0 \qedhere\]
+\end{proof}
+
+\begin{proof}[Proof of triangle inequality]
+	\begin{multline*}
+		\norm{u+v}^2 = \ang{u+v,u+v} = \norm{u}^2+\norm{v}^2+\ang{u,v}+\ang{v,u} = \norm{u}^2+\norm{v}^2+2\Re\ang{u,v} \\
+		\leq \norm{u}^2+\norm{v}^2 + 2\abs{\ang{u,v}} \leq \norm{u}^2+\norm{v}^2+2\norm{u}\norm{v} = \left(\norm{u}+\norm{v}\right)^2 \qedhere
+	\end{multline*}
+\end{proof}
+
+\begin{defn}
+	A space $E$ equipped with an inner product is called a Hilbert space if $(E,\norm{\cdot})$ is a Banach space.
+\end{defn}
+
+\begin{rmk}[Invariant subspace problem]
+	The following is an open problem:
+	
+	Let $T: \cH \to \cH$ be a bounded operator.
+	Then does there exist a closed subspace $M \subsetneq \cH$ with $T[M] \subset M$?
+\end{rmk}
+
+\begin{prop}
+	If the parallelogram law
+	\[2\norm{a}^2 + 2\norm{b}^2 = \norm{a+b}^2 + \norm{a-b}^2\]
+	holds in a normed space $(E,\norm{\cdot})$, then there is an inner product on $E$ such that $\norm{a}^2=\ang{a,a}$.
+\end{prop}
+
+\begin{rmk}
+	Clearly the converse to the above statement is true (i.e.\@ if the norm in a normed space comes from an inner product then it must satisfy the parallelogram law).
+\end{rmk}
+
+\begin{proof}
+	Note that
+	\[\ang{a+b,a+b}-\ang{a-b,a-b} = 2\ang{a,b}-2\ang{b,a} = 4\Re\ang{a,b}\]
+	in any inner product space, so if $K=\RR$, we can define an inner product by
+	\[\ang{a,b} = \frac 14 \left(\norm{a+b}^2 - \norm{a-b}^2\right)\]
+	for all $a,b \in E$.
+	Similarly, if $K=\CC$, we can define
+	\[\ang{a,b} = \frac 14 \left(\norm{a+b}^2 - \norm{a-b}^2 - i\norm{x-iy}^2 + i\norm{x+iy}^2\right)\]
+	for all $a,b \in E$.
+\end{proof}
+
+Orthogonal projection
+
+\begin{thm}
+	Let $\cH$ be a Hilbert space and let $M$ be a non-empty subset of $\cH$ containing $x$.
+	Define the set
+	\[P_M(x) = \left\{ z \in M \mid \norm{z-x} = \dist(x,M) \right\}\]
+	If $M \subset \cH$ is closed and convex, then $\abs{P_M(x)}=1$.
+\end{thm}
+
+\begin{proof}
+	If $x \in M$ then $P_M(x) = \{x\} \implies \abs{P_M(x)=1}$.
+	Assume $x \notin M$.
+	If $(m_n)$ is a sequence in $M$ such that
+	\[\norm{x-m_n} = \dist(x,m_n) \to \dist(x,M) \defeq d\]
+	then we will show that $(m_n)$ is Cauchy.
+	Clearly $(m_n)$ is bounded, so it converges in $M$ (Bolzano-Weierstrass).
+	Hence $P_M(x) \neq \emptyset$.
+	
+	If $\epsilon>0$, then there exists an $N_\epsilon$ such that for all $f \leq N_\epsilon$, we have $\norm{m_n-x}^2 \leq d^2+\epsilon$.
+	We will show that for all $n_1,n_2 \leq N_\epsilon$, we have $\norm{m_{n_1}-m_{n_2}} \leq \epsilon$.
+	
+	By the parallelogram law,
+	\[2\norm{m_{n_2}-x}^2 + 2\norm{m_{n_1}-x}^2 = \norm{m_{n_2}-m_{n_1}}^2 + 4\norm{\frac{m_{n_1}+m_{n_2}}{2}-x}^2\]
+	Now
+	\[\norm{\frac{m_{n_1}+m_{n_2}}{2}-x} \geq d\]
+	since $(m_{n_1}+m_{n_2})/2 \in M$ by convexity.
+	Hence
+	\begin{eqn}\label{eq:proj-par-ineq}
+		\norm{m_{n_2}-m_{n_1}}^2 \leq 2\norm{m_{n_2}-x}^2 + 2\norm{m_{n_1}-x}^2 - 4d^2 \leq 4(d^2+\epsilon)-4d^2 = 4\epsilon
+	\end{eqn}
+	This completes the proof of existence.
+	
+	To prove uniqueness, note that if $m_1$ and $m_2$ are both in $P_M(x)$ (i.e.\@ $\norm{m_1-x}^2=\norm{m_2-x}^2=d^2$), then by equation \ref{eq:proj-par-ineq} we have $\norm{m_2-m_1}^2 \leq 4d^2-4d^2=0$, hence $m_1=m_2$.
+\end{proof}
+
+\begin{defn}
+	Let $M \subset \cH$ be a closed subspace.
+	Then $P_M: \cH \to M$ is the \textbf{orthogonal projection map} from $\cH$ on to $M$.
+\end{defn}
+
+\begin{thm}\label{thm:prof}
+	$P_M$ is linear and bounded with $\norm{P_M}=1$.
+\end{thm}
+
+\begin{lem}\label{lem:proj}
+	$P_M(x)=m \iff m-x \perp M$ (i.e.\@ $\ang{m-x,m'}=0$ for all $m' \in M$).
+\end{lem}
+
+\begin{proof}
+	Omitted.
+	See the next lecture.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:prof}]
+	We first prove linearity.
+	If $P_M(x_1)=m$ and $P_M(x_2)=m_2$, then by lemma \ref{lem:proj}, $\ang{x_1+x_2-(m_1+m_2),x} \perp M$, hence $P_M(x_1+x_2)=m_1+m_2$.
+	
+	Now we prove that $\norm{P_M}=1$.
+	First note that for all $m \in M$, we have $P_M(m)=m$.
+	Hence $\norm{P_M} \leq 1$.
+	
+	Now let $P_M(x)=m$.
+	Then by lemma \ref{lem:proj}, $\ang{m-x,m}=0$.
+	Then Pythagoras' theorem (for inner product spaces) gives $\norm{m}^2 + \norm{x-m}^2 = \norm{x}^2$, hence $\norm{m} \leq \norm{x}$.
+	Thus $\norm{P_M(x)} \leq \norm{x}$, or $\norm{P_M} \leq 1$.
+\end{proof}
