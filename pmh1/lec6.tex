@@ -1,0 +1,108 @@
+\section{2018-03-21 Lecture}
+
+1.4 Induced homomorphisms
+
+\begin{rmk}
+	$\pi_1: \Topp \to \Groups$ is a functor.
+\end{rmk}
+
+\begin{defn}
+	For $\phi: (X,x_0) \to (Y,y_0)$, we have the induced group homomorphism
+	\begin{align*}
+		\phi_*: (X,x_0) &\to \pi_1(Y,y_0) \\
+		[f] &\mapsto [\phi f]
+	\end{align*}
+\end{defn}
+
+\begin{exer}
+	Show that $\pi_1$ is a functor, that is:
+	\begin{enum}
+		\io $\phi_*$ is well defined and is a group homomorphism.
+		\io $(1_X)_*$ is the identity morphism in $\pi_1(X,x_0)$.
+		\io $(\psi\phi)_*=\psi_*\phi_*$ for $\psi: (Y,y_0) \to (Z,z_0)$.
+	\end{enum}
+\end{exer}
+
+\begin{thm}\label{thm:iso}
+	If $\phi: X \to Y$ is a homotopy equivalence, then $\phi_*: \pi_1(X,x_0) \to \pi_1(Y,y_0)$ is a group isomorphism.
+\end{thm}
+
+\begin{cor}
+	Applications:
+	\begin{itm}
+		\io $S^1$ is not contractible (since $\pi_1(S^1) = \ZZ$ and $\pi_1(\pt)=0$)
+		\io The torus: $\pi_1(T^2) = \pi_1(S^1 \times S^1) = \pi_1(S^1) \times \pi_1(S^1) = \ZZ \times \ZZ$
+	\end{itm}
+\end{cor}
+
+\begin{rmk}
+	In category theory we also write $\pi_1(\phi)$ for $\phi_*$ to state the functor more explicitly.
+\end{rmk}
+
+\begin{prop}
+	Let $(X,x_0)$ be a pointed space and $\{f_t:X \to Y\}$ be a homotopy between maps $f_0$ and $f_1$.
+	Let $h: I \to X$ be a path with $h(t)=f_t(x_0)$ for all $t \in I$.
+	Then the following diagram commutes:
+	\[
+		\begin{tikzcd}
+			& \pi_1(Y,f_1(x_0)) \ar[dd, "\beta_h"] \\
+			\pi_1(X,x_0) \ar[ur, "{f_1}_*"] \ar[dr, "{f_0}_*"] & \\
+			& \pi_1(Y,f_0(x_0))
+		\end{tikzcd}
+	\]
+	where $\beta_h$ is the change of basepoint map (recall that it is an isomorphism).
+\end{prop}
+
+\begin{proof}
+	Let $g: I \to X$ be a loop at $x_0$.
+	We have
+	\[
+	\begin{tikzcd}
+		 \left[g\right] \ar[r, mapsto, "{f_1}_*"] & \left[f_1g\right] \ar[r, mapsto, "\beta_h"] & \left[h \cdot f_1g \cdot \ol{h}\right]
+		\end{tikzcd}
+	\]
+	and
+	\[
+		\begin{tikzcd}
+			\left[g\right] \ar[r, mapsto, "{f_0}_*"] & \left[f_0g\right]
+		\end{tikzcd}
+	\]
+	diagram here
+	
+	Now for all $x \in I$, define $h_s: I \to Y$ by
+	\[h_s(t)=h(st)=f_{st}(x_0)\]
+	Then
+	\[\{h_s \cdot (f_1g) \cdot \ol{h_s}: I \to Y\}\]
+	is a homotopy.
+\end{proof}
+
+\begin{proof}[Proof of theorem \ref{thm:iso}]
+	Take $\psi: Y \to X$ with $\psi\phi \simeq 1_X$ and $\phi\psi \simeq 1_Y$.
+	Then $\psi_*\phi_* = (\psi\phi)_* = \beta_h$ and $\phi_*\psi_* = \beta_{h'}$ for some paths $h$ and $h'$.
+	Now $\beta_h$ and $\beta_{h'}$ are isomorphisms, hence $\psi_*$ and $\phi_*$ are also isomorphisms.
+\end{proof}
+
+\begin{prop}
+	Let $A$ be a retract of $X$.
+	Then the inclusion $\iota: A \injto X$ induces a monomorphism for $\iota_*: \pi_1(A,x_0) \injto \pi_1(X,x_0)$ for all $x_0 \in A$.
+\end{prop}
+
+\begin{proof}
+	Let $r: X \to A$ be a retract (with $r|_A = 1_A$).
+	Then $r\iota = 1_A$, hence $r_*\iota_*=(r\iota)_*=(1_A)_*$.
+\end{proof}
+
+\begin{rmk}
+	If $A$ is a deformation retract, then $\iota_*$ is a isomorphism.
+	This follows from theorem \ref{thm:iso}.
+\end{rmk}
+
+\begin{lem}
+	Let $(X,x_0)$ be a pointed space and let $\{A_\alpha\}$ be a collection of open subsets.
+	If $x_0 \in A_\alpha$ and $A_\alpha \cap A_\beta$ is path connected for all $\alpha$ and $\beta$, then each loop in $X$ at $x_0$ is homotopic to a finite product (composition) of loops with each one contained in some $A_\alpha$.
+\end{lem}
+
+\begin{proof}
+	See Hatcher.
+	The technical details are not very important but the lemma is intuitively obvious.
+\end{proof}
