@@ -6,7 +6,7 @@
 
 \begin{cor}
 	Let $A = \CC[x]$.
-	Then every simple $A$-module is one-dimensional, so proposition \ref{prop:dsum} applies to modules $(V,X \in \End V)$ where $X$ is diagonalisable with \emph{distinct} eigenvalues $\lambda_1,\ldots,\lambda_m$.
+	Then every simple $A$-module is one-dimensional, so proposition \ref{prop:dsum} applies to modules $(V,X \in \End V)$ where $X$ is diagonalisable with \underline{distinct} eigenvalues $\lambda_1,\ldots,\lambda_m$.
 	If $v_1,\ldots,v_m$ are corresponding eigenvectors, then $V = \CC v_1 \oplus \cdots \oplus \CC v_m$.
 	Proposition \ref{prop:dsum} tells us that every $X$-invariant subspace $U \subseteq V$ is spanned by a subset of the eigenvectors.
 \end{cor}
@@ -55,9 +55,9 @@
 %	\[V = V_1^{\oplus n_1} \oplus V_2^{\oplus n_2} \oplus \cdots \oplus V_m^{\oplus n_m}\]
 %	where the $V_i$ are pairwise non-isomorphic simple submodules.
 	Any simple $A$-submodule $U$ of $V$ is contained in its isotypic component $V_{[U]}$.
-	Then $V[S] = \sum_U U$, where the sum is over all simple submodules $U$ of $V$ with $U \cong S$.
-	In particular, $V_[S]$ is independent of the chosen decomposition $\bigoplus_{i=1}^n V_i$ of $V$.
-	The decomposition $V = \bigoplus_S V_{[S]}$, where the sum is over all isoclasses of simple $A$-modules $S$, is \emph{canonical}, but decomposition of each isotypic component is not.
+	Then $V_{[S]} = \sum_U U$, where the sum is over all simple submodules $U$ of $V$ with $U \cong S$.
+	In particular, $V_{[S]}$ is independent of the chosen decomposition $\bigoplus_{i=1}^n V_i$ of $V$.
+	The decomposition $V = \bigoplus_S V_{[S]}$, where the sum is over all isoclasses of simple $A$-modules $S$, is \underline{canonical}, but the decomposition of each isotypic component is not canonical.
 \end{thm}
 
 \begin{proof}
@@ -72,7 +72,7 @@
 \end{proof}
 
 \begin{cor}
-	Any submodule $U$ of $V$ is of the form $U_1 \oplus \cdots \oplus U_m$ where $U_i$ is an $A$-submodule of $V_{[S_i]}$.
+	Any submodule $U$ of $V$ is of the form $U_1 \oplus \cdots \oplus U_m$ where each $U_i$ is an $A$-submodule of $V_{[S_i]}$.
 \end{cor}
 
 \begin{proof}

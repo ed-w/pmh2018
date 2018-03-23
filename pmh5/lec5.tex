@@ -40,7 +40,7 @@
 	\[\rho[A] \subseteq Z_{\End(V)}\left(Z_{\End(V)}(\rho[A])\right) = Z_{\End(V)}(k) = \End(V)\]
 	Later we wil see the density theorem which implies in this case that $\rho[A]=\End(V)$.
 	
-	The contrapositive states that if $k$ is algebraically closed and $V$ is a finite-dimensional $A$-module, then if $\rho[A] \subsetneq \End(V)$, then $V$ has a non-trivial $A$-module.
+	The contrapositive states that (if $k$ is algebraically closed and $V$ is a finite-dimensional $A$-module) if $\rho[A] \subsetneq \End(V)$, then $V$ has a non-trivial $A$-module.
 	So for the given preconditions, finding whether a module is simple is the same as seeing if all linear transformations arise out of the action of $A$ on the module.
 \end{note}
 
@@ -74,6 +74,7 @@
 	Assume $V = V_1 \oplus \cdots \oplus V_n$, where each $V_i$ is a simple submodule of $V$.
 	Let $J \subseteq [n]$ be a maximal set (w.r.t\@ inclusion) such that
 	\[W \cap \bigoplus_{j \in J} V_j = \{0\}\]
+	Clearly a maximal set exists since $J = \emptyset$ satisfies the above equation of sets.
 	We claim that 
 	\[W + \bigoplus_{j \in J} V_j = V\]
 	Then the above sum is a direct sum and so we have found a direct sum complement.
@@ -83,12 +84,13 @@
 	Consider
 	\[X_i = V_i \cap \left( W + \bigoplus_{j \in J} V_j \right)\]
 	Since $V_i$ is simple, either $X_i = \{0\}$ or $X_i = V_i$.
-	Then the sum
+	In the second case we have the desired inclusion of sets.
+	In the first case the sum
 	\[V_i + \left( \bigoplus_{j \in J} V_j + W \right)\]
 	is direct, contradicting the maximality of $J$.
 \end{proof}
 
-\begin{cor}[presented in the 2018-03-21 lecture]\label{cor:schur}
+\begin{cor}[Corollary to Schur's lemma part II]\label{cor:schur}
 	If $k$ is algebraically closed and $(V,\rho)$ is a finite-dimensional irreducible representation of $A$, then for every $z \in Z(A)$, $\rho(z)$ is a scalar multiplication.
 \end{cor}
 
