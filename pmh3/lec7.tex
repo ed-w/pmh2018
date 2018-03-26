@@ -1,0 +1,140 @@
+\section{2018-03-26 Lecture}
+
+We will now prove lemma \ref{lem:proj}.
+
+\begin{proof}
+	$\implies$: If $m-x \not\perp M$, then there exists an $m' \in M$ such that $\ang{m',m-x}<0$.
+	For any $t \in \RR$, set $m_t = m+tm'$.
+	Then
+	\[\norm{m_t-x}^2 = \ang{m+tm'-x,m+tm'-x} = t^2\norm{m'}^2 + 2t\ang{m',m-x}+\norm{m-x}^2\]
+	Now we can choose $t$ small enough such that $\norm{m_t-x}^2 < \norm{m-x}^2$, a contradiction.
+	
+	$\impliedby$: If $x-m \perp M$, then for all $m' \in M$, we have $\norm{x-m}^2 + \norm{m'}^2 = \norm{x-m'}^2$ since $m'-m \perp x-m$.
+	Then $\norm{x-m'}>\norm{x-m}$ for any $m' \neq m$, hence $m = P_M(x)$.
+\end{proof}
+
+\begin{defn}
+	Let $M \subset \cH$ be non-empty.
+	Then define the \textbf{orthogonal complement} of $M$:
+	\[M^\perp = \{x \in \cH \mid \ang{x,m}=0 \text{ for all } m \in M\}\]
+\end{defn}
+
+\begin{lem}
+	$M^\perp \subset \cH$ is a closed subspace.
+	Moreover, $(M^\perp)^\perp = \ol{\spn{M}}$
+\end{lem}
+
+\begin{cor}
+	If $M \subset \cH$ is a closed subspace, then $(M^\perp)^\perp=M$.
+\end{cor}
+
+\begin{proof}[Proof of the lemma]
+	That $M^\perp \subset \cH$ is closed follows from the continuity of the inner product.
+	We will prove the second claim in two parts:
+	\begin{enum}
+		\io $M \subset (M^\perp)^\perp$ $(\implies \ol{\spn(M)} \subset (M^\perp)^\perp)$
+		\par If $m \in M$ then for all $x \in M^\perp$ we have $\ang{x,m}=0 \implies m \in (M^\perp)^\perp$.
+		
+		\io $(M^\perp)^\perp \subset \ol{\spn(M)} \defeq V$
+		\par Now let $x \in (M^\perp)^\perp$.
+		Let $v = P_V(x)$.
+		If $v = x$ for all $x \in (M^\perp)^\perp$ then we are done.
+		Now assume $v \neq x$.
+		Since $x-v \perp V$, we have $x-v \in V^\perp$.
+		Set $w=x-v$.
+		Then
+		\[\ang{w,w}= \langle \overbrace{x}^{\in (M^\perp)^\perp},\overbrace{w}^{\in M^\perp} \rangle - \langle \overbrace{v}^{\in \ol{\spn(M)}},\overbrace{w}^{\in V^\perp} \rangle = 0\]
+		Hence $w=0$ and so $x=v$.
+	\end{enum}
+\end{proof}
+
+\begin{cor}
+	If $M \subset \cH$ is a closed subspace then $\cH = M \oplus M^\perp$.
+\end{cor}
+
+\begin{proof}
+	For all $x \in \cH$, $m = P_M(x)$ implies that $x-m \perp M$, that is $x-m=m'$ for some $m' \in M^\perp$.
+	Therefore $x = m+m'$.
+	To show uniqueness, note that if $x \in M \cap M'$, then $x \perp x$, so $x=0$.
+\end{proof}
+
+\begin{defn}
+	A set $\{x_i\}_{i \in I}$ is an \textbf{orthogonal system} if for all $x_i,x_j$ for $i,j \in I$ and $i \neq j$ we have $\ang{x_i,x_j}=0$.
+\end{defn}
+
+\begin{lem}
+	If $\{x_i\}_{i \in I}$ is an orthogonal system, then
+	\begin{enum}
+		\io Any finite number of non-zero $x_i$s are linearly independent.
+		\io If $(x_n)_{n \geq 1}$ is a sequence in $\{x_i\}_{i \in I}$, then
+		\[\sum_{n=1}^\infty x_n \text{ converges} \iff \sum_{n=1}^\infty \norm{x_n}^2 \text{ converges}\]
+	\end{enum}
+\end{lem}
+
+\begin{proof}
+	\begin{enum}
+		\io If $\ds \sum_{k=1}^N \alpha_k x_k = 0$ then $\ds 0 = \ang{\sum_{k=1}^N \alpha_k x_k, x_{k_0}} = \alpha_{k_0} \norm{x_{k_0}}^2$ for $1 \leq k_0 \leq N$.
+		
+		\io Let $z_N = \sum_{n=1}^N x_n$.
+		Then $\sum_{n=1}^\infty x_n$ converges $\iff$ $(z_N)_{N \geq 1}$ is Cauchy.
+		Now for a given $\epsilon$ we have that for large enough $N$,
+		\[\norm{z_{N+m}-z_N}^2 = \sum_{n=N+1}^{N+m-1} \norm{x_n}^2 < \epsilon\]
+		for all $m$.
+		Therefore $(z_N)_{N \geq 1}$ is Cauchy $\iff $ $\sum_{n=1}^N \norm{x_n}^2$ is Cauchy, that is, the sum converges.
+		
+	\end{enum}
+\end{proof}
+
+\begin{defn}
+	An \textbf{orthonormal system} is an orthogonal system consisting of unit length vectors.
+\end{defn}
+
+\begin{thm}[Bessel inequality]
+	Let $M \subset \cH$ be an orthonormal system.
+	Then for all $x \in \cH$:
+	\[\sum_{m \in M} \abs{\ang{x,m}}^2 \defeq \sum_{\substack{m \in M' \\ M' \subset M \text{ finite}}} \abs{\ang{x,m}}^2 \leq \norm{x}^2\]
+	Moreover, the set
+	\[\{m \in M \mid \ang{x,m} \neq 0\}\]
+	is countable.
+\end{thm}
+
+\begin{lem}
+	If $M'$ is a finite orthonormal system, then
+	\[P_{M'}(x) \defeq P_{\spn(M')}(x) = \sum_{m \in M'} \ang{x,m}m\]
+\end{lem}
+
+\begin{proof}
+	Clearly $\sum_{m \in M'} \ang{x,m}m \in \spn(M')$.
+	It is enough to prove that for all $m' \in M' \subset \spn(M')$ we have $x - \sum_{m \in M'} \ang{x,m}m \perp m'$.
+	Then
+	\[\ang{x - \sum_{m \in M'} \ang{x,m}m, m'} = \ang{x,m'} - \ang{x,m'}\ang{m',m'} = 0 \qedhere\]
+\end{proof}
+
+\begin{proof}[Proof of the Bessel inequality]
+	We already know that if $M' \subset M$ is finite, then $\norm{P_{M'}}=1$.
+	Therefore
+	\[\norm{P_M(x)}^2 = \norm{\sum_{m \in M'} \ang{x,m}m}^2 = \sum_{m \in M'} \abs{\ang{x,m}}^2 \leq \norm{x}^2\]
+	This proves the inequality for finite sets.
+	Next we will show that
+	\[\{m \in M \mid \ang{x,m} \neq 0\}\]
+	is countable.
+	For all $n \geq 1$, let
+	\[M_n \defeq \left\{m \in M \mid \abs{\ang{x,m}} \geq \frac 1n\right\}\]
+	Then $M_1 \subseteq M_2 \subseteq \cdots \subseteq M_n \subseteq \cdots$ and $M = \bigcup_{n \geq 1} M_n$.
+	Now by the finite Bessel inequality, $\abs{M_n} \leq n^2 \norm{x}^2$ and so $M_n$ is finite, hence the set is countable as required.
+	Then taking the supremum over all finite sets gives the infinite case.
+\end{proof}
+
+\begin{defn}
+	A subset $M \subset \cH$ is called an \textbf{orthonormal basis} if it is a orthonormal system which is \textbf{complete}, that is, $\ol{\spn(M)}=\cH$.
+\end{defn}
+
+\begin{exam}
+	Let $\cH = \ell^2$.
+	Let
+	\[e_n = (0,\ldots,0,\overbrace{1}^{n\text{th position}},0,\ldots)\]
+	and set $M = \{e_n\}_{n \geq 1}$.
+	Clearly $M$ is an orthonormal system.
+	To see that $M$ is complete, note that for any $x = (\alpha_i)_{i \geq 1} \in \ell^2$, we have $x = \sum_{n \geq 1} \alpha_n e_n$.
+	Therefore $\ol{\spn(M)} = \ell^2$.
+\end{exam}

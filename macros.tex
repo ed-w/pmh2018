@@ -24,6 +24,7 @@
 \newcommand{\defeq}{\overset{\mathrm{def}}{=}}
 \newcommand{\inv}{^{-1}}
 \newcommand{\bo}[1]{\mathbf{#1}}
+\newcommand{\ca}[1]{\mathca{#1}}
 
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
@@ -43,7 +44,12 @@
 \DeclareMathOperator{\dist}{dist}
 \DeclareMathOperator{\area}{area}
 \DeclareMathOperator{\vol}{vol}
-\DeclareMathOperator{\lcm}{lcm}
+
+\DeclareMathOperator*{\lcm}{lcm}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\DeclareMathOperator{\inte}{int}
 
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\PP}{\mathbb{P}}
@@ -51,7 +57,6 @@
 \newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\CC}{\mathbb{C}}
-
 \newcommand{\EE}{\mathbb{E}}
 
 \newenvironment{soln}{\begin{proof}[Solution]}{\end{proof}}
@@ -65,6 +70,7 @@
 \newcommand{\xto}[1]{\xrightarrow{#1}}
 \newcommand{\surjto}{\twoheadrightarrow}
 \newcommand{\injto}{\hookrightarrow}
+\newcommand{\isoto}{\xrightarrow{\sim}}
 
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\im}{im}

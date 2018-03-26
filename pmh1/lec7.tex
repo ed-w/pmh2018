@@ -1,0 +1,75 @@
+\section{2018-03-26 Lecture}
+
+\begin{cor}
+	Let $n \geq 2$, $\phi:S^{n-1} \to X$ and $Y = X \sqcup_\phi D^n$ where $X$ is path connected.
+	Then the inclusion $i:X \injto Y$ induces an epimorphism $\iota_*: \pi_1(X,x_0) \surjto \pi_1(Y,x_0)$ for all $x_0 \in X$.
+\end{cor}
+
+\begin{proof}
+	Let $y$ be a point in $Y \setminus X$.
+	Set $A = Y \setminus \{y\}$ and $B = Y \setminus X \cong \Dd^n$.
+	Then $Y = A \cap B$.
+	Also $A \cap B \cong \Dd^n \setminus \pt$ and so it is path connected (since $n \geq 2$.
+	This is the only place where this condition is used).
+	
+	Now let $y_0 \in A \cap B$.
+	Since $B$ is simply connected, applying lemma \ref{lem:loop-prod} shows that any loop in $(Y,y_0)$ is homotopic to a loop in $(A,y_0)$.
+	Thus the inclusion $A \injto Y$ induces an epimorphism $\pi_1(A,y_0) \surjto \pi_1(Y,y_0)$.
+	Let $h$ be a path in $A$ from $x_0$ to $y_0$.
+	Then since the change of basepoint map is an isomorphism, the diagram commutes
+	\[
+	\begin{tikzcd}
+		\pi_1(A,y_0) \ar[r, twoheadrightarrow] \ar[d, "\beta_h"] & \pi_1(Y,y_0) \ar[d, "\beta_h"] \\
+		\pi_1(A,x_0) \ar[r, twoheadrightarrow] & \pi_1(Y,x_0)
+	\end{tikzcd}
+	\]
+	Now $Z \defeq D^n \setminus \{y\}$ has deformation retract $\p D^n$.
+	Then since deformation retracts are homotopy equivalences, we have that the composition
+	\[\pi_1(X,x_0) \isoto \pi_1(A,x_0) \surjto \pi_1(Y,x_0)\]
+	is epic.
+\end{proof}
+
+\begin{prop}
+	$\pi_1(S^n)=0$ for $n>1$.
+\end{prop}
+
+\begin{proof}
+	Recall that $S^n \cong D^n/\p D^n \cong \pt \sqcup_\phi D^n$ where $\pt$ `contains' the points of $\p D^n$.
+	Then the inclusion $\pt \injto S^n$ induces an epimorphism $0=\pi_1(\pt) \surjto \pi_1(S^n)$.
+\end{proof}
+
+2 Van Kampen's Theorem
+
+\begin{defn}
+	Let $\{G_\alpha\}_{\alpha}$ be a set of groups.
+	\begin{itm}
+		\io A \textbf{word} is a finite (and possibly empty) product $g_1g_2\cdots g_k$ with $\gamma_i \in G_{\alpha_i}$.
+		\io A word is \textbf{reduced} if $g_i \neq 1_{G_{\alpha_i}}$ and $\alpha_i \neq \alpha_{i+1}$.
+		\io The \textbf{reduction} of a word is obtained by removing the identity elements and replacing $g_ig_{i+1}$ by its product whenever they are in the same group.
+	\end{itm}
+	The \textbf{free product} $*_\alpha G_\alpha$ is the set of reduced words.
+	The product of $g_1\cdots g_k$ and $h_1 \cdots h_l$ is the reduction of $g_1\cdots g_kh_1 \cdots h_l$.
+	The identity element is the \textbf{empty word}.
+\end{defn}
+
+\begin{prop}
+	The free product is the coproduct in the category $\Groups$.
+	Observe that $G_\beta$ is a subgroup of $*_\alpha G_\alpha$ with $\phi_\beta: G_\beta \injto *_\alpha G_\alpha$.
+	Then for any group $H$ with morphisms $\psi_\beta: G_\beta \to H$ there exists a unique morphism $\psi$ such that the following diagram commutes:
+	\[
+	\begin{tikzcd}
+		& G_\beta \ar[ld, swap, "\phi_\beta"] \ar[rd, "\psi_\beta"] & \\
+		*_\alpha G_\alpha \ar[rr, dashed, "\exists ! \psi"] & & H
+	\end{tikzcd}
+	\]
+\end{prop}
+
+\begin{lem}
+	Let $(X,x_0)$ be a pointed space and let $\{A_\alpha\}$ be a collection of open subsets whose union is $X$.
+	Let $x_0 \in A_\alpha$ and let $A_\alpha \cap A_\beta$ is path connected for all $\alpha$ and $\beta$.
+	Then there is a group epimorphism
+	\[*_\alpha \pi_1(A_\alpha,x_0) \surjto \pi_1(X,x_0)\]
+	which restricts to
+	\[\iota_*: \pi_1(A_\beta,x_0) \to \pi_1(X,x_0)\]
+	for each subgroup $\pi_1(A_\beta, x_0)$ with $\iota:A_\alpha \injto X$.
+\end{lem}
