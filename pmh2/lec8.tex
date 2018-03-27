@@ -1,0 +1,125 @@
+\section{2018-03-27 Lecture}
+
+\begin{prop}[1.10 continued]
+	A sequence of $R$-modules
+	\[
+	\begin{tikzcd}
+	0 \ar[r] & M' \ar[r, "f"] & M \ar[r, "g"] & M''
+	\end{tikzcd}
+	\]
+	is exact $\iff$ for every $R$-module $N$, the sequence
+	\[
+	\begin{tikzcd}
+	0 \ar[r] & \Hom_R(N,M') \ar[r, "f_*"] & \Hom(N,M) \ar[r, "g_*"] & \Hom(N,M'')
+	\end{tikzcd}
+	\]
+	is exact (the covariant $\Hom$ functor $\Hom(N,-)$ is left exact).
+	The functor acts on morphisms by
+	\begin{align*}
+	f_*: \Hom(N,M') &\to \Hom(N,M) \\
+	\phi &\mapsto f\circ\phi
+	\end{align*}
+\end{prop}
+
+\begin{proof}
+	We will only provide a proof for the contravariant functor. \par
+	$\implies$:
+	\begin{enum}
+		\io
+		$g^*$ is surjective.\par
+		Let $\phi \in \Hom_R(M'',N)$ be such that $g^*(\phi) = \phi g = 0$.
+		Since $g$ is surjective it is left-invertible, hence $\phi=0$.
+		
+		\io
+		$\im g^* = \ker f^*$ \par
+		The inclusion $\subseteq$ is obvious since $\phi^*(gf) = \phi gf = 0$ since $gf=0$.
+		Now we prove the opposite inclusion $\supseteq$.
+		
+		Let $\psi \in \ker f^*$.
+		Then $f^*(\psi) = \psi f = 0$, hence $\ker \psi \supseteq \im f = \ker g$.
+		Now define
+		\begin{align*}
+			\phi: M'' &\to N \\
+			x &\mapsto \psi \circ g\inv(x)
+		\end{align*}
+		This is well-defined because if $y_1,y_2 \in g\inv[x]$, then $y_2-y_1 \in \ker g = \im f$, so there exists a $z \in M'$ such that $f(z) = y_2-y_1$.
+		Then since $\psi \in \ker f^*$, we have $\psi f(z) = 0$, that is $\psi(y_2-y_1) = 0$ and so $\psi(y_1)=\psi(y_2)$.
+		
+		Therefore $\psi = \phi g$ and hence $\psi \in \im g^*$.
+	\end{enum}
+	
+	$\impliedby$:
+	\begin{enum}
+		\io $g$ is surjective \par
+		Set $N = M''/\im g$ and let $\pi$ be the natural projection.
+		Since $g^*$ is injective for all $N$, we have that $\pi g = 0$ which implies that $\pi=0$, hence $\im g = M$ and so $g$ is surjective.
+		\io $\im f \subseteq \ker g$ \par
+		For all $\phi \in \Hom_R(M'',N)$ we have $\phi gf=0$ since $\im g^* \subseteq \ker f^*$.
+		Then set $N = M''$ and $\phi = \id_{M''}$.
+		Then $gf=0$.
+		
+		\io
+		$\ker g \subseteq \im f$ \par
+		Let $N = M/\im f$ and let $\pi$ be the natural projection.
+		Then $\pi \in \ker f^* = \im g^*$.
+		Hence there exists a $\psi \in \Hom_R(M'',N)$ such that $\psi g = \pi$.
+		Therefore $\ker g \subseteq \ker \pi = \im f$. \qedhere
+	\end{enum}
+\end{proof}
+
+\begin{prop}[1.11, the snake lemma]
+	In $\RMod$, suppose that we have the following commutative diagram of solid arrows:
+	\[
+	\begin{tikzcd}[column sep=large, row sep=large]
+		0 \arrow[r, "\exists", dotted] & \ker\phi \arrow[d, hook] \arrow[r, "\exists", dashed] & \ker\phi' \arrow[d, hook] \arrow[r, "\exists", dashed] & \ker\phi'' \arrow[d, hook] \arrow[llddd, "\exists d"', dashed, bend right] &  \\
+		0 \arrow[r, dotted] & M \arrow[r, "f"] \arrow[d, "\phi"] & M' \arrow[r, "g"] \arrow[d, "\phi'"] & M'' \arrow[r] \arrow[d, "\phi''"] & 0 \\
+		0 \arrow[r] & N \arrow[r, "f'"] \arrow[d, two heads] & N' \arrow[r, "g'"] \arrow[d, two heads] & N'' \arrow[d, two heads, dashed] \arrow[r, dotted] & 0 \\
+		& \coker\phi \arrow[r, "\exists", dashed] & \coker\phi' \arrow[r, "\exists", dotted] & \coker\phi'' \arrow[r, "\exists", dotted] & 0
+	\end{tikzcd}
+	\]
+	Then the dashed arrows exist and form a long exact sequence.
+	If the two rows are short exact (that is, the dotted arrows exist), then the dotted arrows attached to the long exact sequence exist and extend the long exact sequence.
+\end{prop}
+
+Direct and inverse limits (colimits and limits).
+
+\begin{defn}[1.12]
+	A poset $(I,\preceq)$ is called \textbf{directed} if for all $i,j \in I$ there exists a $k \in I$ such that $i \preceq k$ and $j \preceq k$.
+\end{defn}
+
+\begin{defn}[1.13]
+	\begin{enum}
+		\io Let $(I,\preceq)$ be a directed set.
+		A \textbf{directed system} of $R$-modules indexed by $(I,\preceq)$ is a family of $R$-modules $\{M_i\}_{i \in I}$ and maps
+		\[\alpha_j^i: M_i \to M_j \quad \text{for all} \quad i \preceq j\]
+		such that the following equations hold:
+		\begin{enum}
+			\io $\alpha_i^ji= \id_{M_i}$
+			\io $\alpha_k^j \circ \alpha_j^k = \alpha_k^i$ for all $i \preceq j \preceq k$, that is, the following diagram commutes:
+			\[
+			\begin{tikzcd}
+				M_i \arrow[rd, "\alpha_j^i"'] \arrow[rr, "\alpha_k^i"] &  & M_k \\
+				& M_j \arrow[ru, "\alpha_k^j"'] & 
+			\end{tikzcd}
+			\]
+		\end{enum}
+		\io The \textbf{colimit} (also known as the \textbf{direct} or \textbf{injective} limit)
+		of the directed system of $R$-modules
+		\[\left(\{M_i\}_{i \in I}, \{\alpha_j^i\}_{i \preceq j}\right)\]
+		is an $R$-module
+		\[\varinjlim_{i \in I} M_i = \varinjlim M_i\]
+		with maps
+		\[i_l: M_l \to \varinjlim M_l\]
+		such that
+		\[i_l \circ \alpha_l^k = i_k \quad \text{for all} \quad k \preceq l\]
+		and is universal with respect to the above property.
+		That is, for any $R$-module $N$ with maps $\beta_l: M_l \to N$ such that $\beta_l\alpha_l^k=\beta_k$ for all $k \preceq l$, there exists a unique map $\theta$ making the following diagram commute:
+		\[
+		\begin{tikzcd}
+			\varinjlim M_i \arrow[rr, "\exists \theta", dashed] &  & N \\
+			& M_l \arrow[lu, "i_l"'] \arrow[ru, "\beta_l"] &  \\
+			& M_k \arrow[luu, "i_k", bend left] \arrow[ruu, "\beta_k"', bend right] \arrow[u, "\alpha_l^k"] & 
+		\end{tikzcd}
+		\]
+	\end{enum}
+\end{defn}

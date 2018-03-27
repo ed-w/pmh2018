@@ -1,0 +1,93 @@
+\section{2018-03-27 Lecture}
+
+\begin{thm}
+	Let $M \subset \cH$ be an orthonormal system.
+	Then the following statements are equivalent:
+	\begin{enum}
+		\io $M$ is an orthonormal basis:
+		\io Parseval's identity holds: for all $x \in \cH$, we have
+		\[\sum_{m \in M} \abs{\ang{x,m}}^2 = \norm{x}^2\]
+		(Note that this is just the Bessel inequality with equality.)
+		\io Fourier series expansions exist: for all $x \in \cH$, we have
+		\[x = \sum_{m \in M} \ang{x,m} m\]
+	\end{enum}
+\end{thm}
+
+\begin{proof}
+	We begin by proving that
+	\[P_{\ol{\spn(M)}}(x) \defeq P_M(x) = \sum_{m \in M} \ang{x,m}m\]
+	To prove this, note that we need only prove that $x-\sum_{m \in M} \ang{x,m}m \perp M$.
+	Then for all $m' \in M$,
+	\[\ang{x-\sum_{m \in M} \ang{x,m}m,m'} = \ang{x,m'}-\ang{x,m'}\ang{m',m'}=0\]
+	as required.
+	
+	(1)$\iff$(3): By definition, $M$ is an orthonormal basis $\iff$ $\ol{\spn(M)}=\cH \iff P_M(x)=x$ for all $x \in \cH$.
+	
+	(3)$\implies$(2):
+	\[\norm{x}^2 = \ang{\sum_{m \in M} \ang{x,m}m,\sum_{m' \in M} \ang{x,m'}m'} = \sum_{m \in M} \ang{x,m} \ol{\ang{x,m}} \ang{m,m} = \sum_{m \in M} \abs{\ang{x,m}}^2\]
+	
+	(2)$\implies$(1):
+	We will show that that $(\ol{\spn(M)})^\perp=0$.
+	If $x \in (\ol{\spn(M)})^\perp$, then
+	\[0 = \ang{x,\sum_{m \in M} \ang{x,m}m} = \sum_{m \in M} \ang{x,m} \ol{\ang{x,m}} = \norm{x}^2\]
+	Then since $\cH = V \oplus V^\perp$ for all $V$ closed in $\cH$, it follows that $\ol{\spn(M)} = \cH$.
+\end{proof}
+
+\begin{exam}
+	Examples of orthonormal bases in Hilbert spaces.
+	\begin{enum}
+		\io
+		Consider the space $\ell^2$.
+		Set $M = \{e_n \mid n \geq 1\}$ where
+		\[e_n = (0,\ldots,0,\overbrace{1}^{n\text{th position}},0,\ldots)\]
+		Clearly $M$ is an orthonormal system.
+		Then $\ol{\spn(M)} = \ell^2$, so it is an orthonormal basis.
+		
+		\io
+		Consider the space $L^2_\CC(\RR/2\pi\ZZ, \mu)$ where $\mu$ is the Lebesgue measure and $T = \RR/2\pi\ZZ$ is the circle.
+		Define an inner product
+		\[\ang{f,g} = \int_T f \bar g \, d\mu\]
+		and let
+		\[M = \left\{\frac 1{\sqrt{2\pi}} \exp inx \mid n \in \ZZ \right\}\]
+		Then since
+		\[\int_0^{2\pi} \exp inx \, dx = \delta_{0n}2\pi\]
+		$M$ is an orthonormal system.
+		Now we prove that $M$ is an orthonormal basis, that is,
+		\[\ol{\spn(M)}^{L^2} = L^2(T)\]
+		
+		By the Stone-Weierstrass theorem, we have that the closure of $\spn(M)$ in $\norm{\cdot}_\infty$ is $\cC(T,\CC)$.
+		Now if $(f_n)$ is a sequence in $\cC(T,\CC)$ such that $\norm{f_n-f}_\infty \to 0$, then $\norm{f_n-f}_2 \to 0$ as well.
+		Since $\cC(T,\CC)$ is a Banach space, $f \in \cC(T,\CC)$ as well.
+		Since $T$ is compact, $\cC(T,\CC) \subset L^2(T,\CC)$, so $f \in L^2(T,\CC)$.
+		Then we have
+		\[\ol{\spn(M)}^{L^2} \supseteq \cC(T,\CC)\]
+		Finally, for any compact space $X$ we have that $\cC(X,\CC)$ is dense in $L^2(X,\mu)$.
+		This shows that $\ol{\spn(M)} = L^2(T)$ in $L^2$.
+	\end{enum}
+\end{exam}
+
+\begin{thm}[Stone-Weierstrass]
+	Let $(X,d)$ be a compact metric space and let $\cA \subset \cC(X,K)$ be an algebra satisfying the following properties:
+	\begin{enum}
+		\io It separates points of $X$: for all $x \neq y \in X$ there exists an $f \in \cA$ with $f(x) \neq f(y)$.
+		\io It is non-vanishing: for all $x \in X$ there exists an $f \in \cA$ with $f(x) \neq 0$.
+		\io It is invariant under complex conjugation: if $f \in \cA$ then $\bar f \in \cA$.
+	\end{enum}
+	Then the closure of $\cA$ in the $\infty$-norm is $\cC(X,K)$.
+\end{thm}
+
+\begin{exer}
+	Prove that the Stone-Weierstrass theorem for $k=\RR$ implies the theorem for $k=\CC$.
+\end{exer}
+
+\begin{rmk}
+	For all $f \in L^2(T)$, we have
+	\[f(x) = \sum_{n=-\infty}^\infty \frac 1{2\pi} a_n\exp inx\]
+	where $a_n=\ang{f,\exp inx}$ are the \textbf{Fourier coefficients}.
+	We have established a map (the \textbf{Fourier transform}):
+	\begin{align*}
+		L^2(T) &\longleftrightarrow l_\ZZ^2 \\
+		f(x) &\longmapsto (a_n)_{n \in \ZZ}
+	\end{align*}
+	This is an example of a \textbf{local-global principle}.
+\end{rmk}

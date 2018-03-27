@@ -98,7 +98,7 @@ Some homological algebra
 	\end{enum}
 \end{exam}
 
-\begin{prop}
+\begin{prop}[1.10]
 	A sequence of $R$-modules
 	\[
 	\begin{tikzcd}
@@ -112,4 +112,9 @@ Some homological algebra
 	\end{tikzcd}
 	\]
 	is exact (the contravariant $\Hom$ functor $\Hom(-,N)$ is left exact).
+	The functor acts on morphisms by
+	\begin{align*}
+		f^*: \Hom(M,N) &\to \Hom(M',N) \\
+		\phi &\mapsto \phi \circ f
+	\end{align*}
 \end{prop}
