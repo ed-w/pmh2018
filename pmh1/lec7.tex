@@ -1,6 +1,6 @@
 \section{2018-03-26 Lecture}
 
-\begin{cor}
+\begin{cor}\label{7:cell}
 	Let $n \geq 2$, $\phi:S^{n-1} \to X$ and $Y = X \sqcup_\phi D^n$ where $X$ is path connected.
 	Then the inclusion $i:X \injto Y$ induces an epimorphism $\iota_*: \pi_1(X,x_0) \surjto \pi_1(Y,x_0)$ for all $x_0 \in X$.
 \end{cor}
@@ -16,13 +16,14 @@
 	Since $B$ is simply connected, applying lemma \ref{lem:loop-prod} shows that any loop in $(Y,y_0)$ is homotopic to a loop in $(A,y_0)$.
 	Thus the inclusion $A \injto Y$ induces an epimorphism $\pi_1(A,y_0) \surjto \pi_1(Y,y_0)$.
 	Let $h$ be a path in $A$ from $x_0$ to $y_0$.
-	Then since the change of basepoint map is an isomorphism, the diagram commutes
+	Then the following diagram commutes:
 	\[
 	\begin{tikzcd}
 		\pi_1(A,y_0) \ar[r, twoheadrightarrow] \ar[d, "\beta_h"] & \pi_1(Y,y_0) \ar[d, "\beta_h"] \\
 		\pi_1(A,x_0) \ar[r, twoheadrightarrow] & \pi_1(Y,x_0)
 	\end{tikzcd}
 	\]
+	and the change of basepoint map is an isomorphism.
 	Now $Z \defeq D^n \setminus \{y\}$ has deformation retract $\p D^n$.
 	Then since deformation retracts are homotopy equivalences, we have that the composition
 	\[\pi_1(X,x_0) \isoto \pi_1(A,x_0) \surjto \pi_1(Y,x_0)\]
@@ -64,7 +65,9 @@
 	\]
 \end{prop}
 
-\begin{lem}
+We can use this to reformulate
+
+\begin{lem}\label{7:vk-lem}
 	Let $(X,x_0)$ be a pointed space and let $\{A_\alpha\}$ be a collection of open subsets whose union is $X$.
 	Let $x_0 \in A_\alpha$ and let $A_\alpha \cap A_\beta$ is path connected for all $\alpha$ and $\beta$.
 	Then there is a group epimorphism

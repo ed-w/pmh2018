@@ -1,0 +1,129 @@
+\section{2018-03-29 Lecture}
+
+\begin{exam}
+	Examples of finite dimensional algebras
+    \begin{enum}
+    	\io $k[G]$ where $G$ is a finite group (dimension $\abs{G}$)
+        \io $\Mat_n(k)$ (dimension $n^2$)
+        \io $k[x]/(x^n)$ (dimension $n$)
+        \io $B_n$ (the subalgebra of $\Mat_n(k)$ consisting of upper triangular matrices, dimension $n(n+1)/2$)
+    \end{enum}
+\end{exam}
+
+\begin{cor}[Corollary of the density theorem]\label{cor:density}
+	If $A$ has pairwise non-isomorphic simple modules $S_1,\ldots,S_r$, then the algebra homomorphism
+    \[\rho:A \to \End(S_1 \oplus \cdots \oplus S_r)\]
+    has image
+    \[\End_{D_1}(S_1) \times \cdots \times \End_{D_r}(S_r)\]
+    where $D_i = \End_A(S_i)$ is a division algebra.
+    (If $k$ is algebraically closed then these all equal $k$.)
+    Since each $D_i$ contains $k$, they each have dimension at least one.
+    Therefore $\dim A \geq \dim \rho[A] \geq r$.
+    So a finite dimensional algebra can only have finitely many simple modules up to isomorphism.
+\end{cor}
+
+\begin{defn}
+	The \textbf{radical} $\rad(A)$ of a finite-dimensional algebra $A$ is the set of all elements of $a$ that act as zero on any simple $A$-module.
+    That is, if $S_1,\ldots,S_r$ is a complete list of simple $A$-modules, then $\rad(A) = \ker \rho: A \to \End(S_1 \oplus \cdots \oplus S_r)$.
+    So the radical is a two-sided ideal.
+\end{defn}
+
+\begin{defn}
+	A two-sided ideal $I$ of $A$ is \textbf{nilpotent} if $I^n=0$ for some $n \in \PP$, that is $i_1i_2\cdots i_n=0$ for all $i_1,i_2,\ldots,i_n \in I$.
+\end{defn}
+
+\begin{prop}
+	$\rad A$ is the maximal nilpotent ideal.
+    That is,
+    \begin{enum}
+    	\io $\rad A$ is a nilpotent ideal, and
+        \io any nilpotent ideal $I$ is contained in $\rad A$.
+    \end{enum}
+\end{prop}
+
+\begin{proof}
+	\begin{enum}
+		\io
+        Consider $A$ as an $A$-module.
+        Since $\dim A < \infty$, there is a sequence of submodules
+        \[0 = A_0 \subset A_1 \subset \cdots \subset A_m = A\]
+        where there are no submodules strictly between $A_{i-1}$ and $A_i$ for any $i \in [m]$.
+        Then each $A_i/A_{i-1}$ is a simple module (by the fourth isomorphism theorem).
+        If $r \in \rad A$, then $r$ acts as zero on all of the quotients, hence $rA_i \subset A_{i-1}$ for all $i$.
+        Now if $r_1,\ldots,r_m$ are in $\rad A$, then $r_1 \cdots r_m A = r_1 \cdots r_m A_m = A_0 = 0$, so $\rad A$ is nilpotent.
+        \io
+        If $I$ is a nilpotent ideal and $S$ is a simple $A$-module, then $IS = \ang{av \mid a \in I, v \in S}$ is a submodule of $S$ so it is either $0$ or $S$.
+        If $IS=S$, then $I^nS=S$ for all $n \in \PP$ so $I$ cannot be nilpotent.
+        Therefore $I$ acts as 0 on $S$ and so it is contained in the radical.
+        \qedhere
+	\end{enum}
+\end{proof}
+
+\begin{exam}
+	\begin{enum}
+    	\io
+		Consider $A = k[x]/(x^n)$.
+    	Then $Ax$ is a nilpotent ideal.
+    	Since any ideal which contains constant terms cannot be nilpotent, we have that $\rad A = Ax$.
+        Hence $A/\rad A \cong k$.
+        
+        \io
+        $\rad A$ is the ideal of strictly upper triangular matrices.
+        Hence $B_n/\rad B_n \cong k^n$.
+        
+        \io
+        Consider
+        \[\Mat_n(k) \cong \underbrace{k^n \oplus \cdots \oplus k^n}_{n\text{ copies}}\]
+        where $k^n$ is the obvious $\Mat_n(k)$-module which is simple.
+        So $\Mat_n(k)$ is a semisimple module over itself.
+        Then the radical must be 0, because if $r \in \rad(\Mat_n(k))$, then $r$ acts as zero on any semisimple module, so $r1=0$.
+	\end{enum}
+\end{exam}
+
+\begin{defn}
+	We say that $A$ is \textbf{semisimple} if it is a semisimple $A$-module.
+\end{defn}
+
+\begin{prop}
+	This is equivalent to saying that \textbf{every} $A$-module is semisimple.
+\end{prop}
+
+\begin{proof}
+	If $V$ is any $A$-module with generating set $\{v_i \mid i \in I\}$, then we have a surjective $A$-module homomorphism
+    \begin{align*}
+   		\phi: \bigoplus_{i \in I} A &\surjto V \\
+        (a_i)_{i \in I} &\mapsto \sum_{i \in I} a_iv_i
+    \end{align*}
+    so
+    \[V \cong \bigoplus_{i \in I} A/\ker\phi \cong W'\]
+    where
+    \[\bigoplus_{i \in I} A = \ker\phi \oplus W'\]
+    Now $W'$ is a submodule of a semisimple module and so itself is semisimple.
+\end{proof}
+
+\begin{thm}
+	If $A$ is a finite dimensional algebra then $A/\rad A$ is semisimple.
+    Moreover, $A$ is semisimple $\iff$ $\rad A = 0$ $\iff$
+    \[\iff A \cong \Mat_{n_1}(D_1) \times \cdots \times \Mat_{n_r}(D_r)\]
+    where the $D_i$ are finite-dimensional division algebras over $k$ and the $n_i$ are in $\PP$.
+    (If $k$ is algebraically closed, then each of the $D_i$ are $k$ itself.)
+\end{thm}
+
+\begin{proof}
+	Let $S_1,\ldots,S_r$ be a complete list of non-isomorphic simple modules.
+    Then by corollary \ref{cor:density} and that $\ker\rho = \rad A$, the first isomorphism theorem gives
+    \begin{align*}
+    	A/\rad A &\cong \End_{D_1}(S_1) \times \cdots \times \End_{D_r}(S_r) \\
+        &\cong \Mat_{n_1}(D_1\op) \times \cdots \times \Mat_{n_r}(D_r\op)
+    \end{align*}
+    where $n_i = \dim_{D_i} S_i$ for all $i$.
+\end{proof}
+
+\begin{rmk}
+	We can prove that $\Mat_{n_1}(D_1\op) \times \Mat_{n_r}(D_r\op)$ is semisimple (in the same way that you prove that $\Mat_n(k)$ is semisimple).
+\end{rmk}
+
+\begin{rmk}
+	For a finite group, $k[G]$ is semisimple if the characteristic of $k$ does not divide the order of $G$.
+    (This is \textbf{Maschke's Theorem}.)
+\end{rmk}

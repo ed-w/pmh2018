@@ -1,0 +1,78 @@
+\section{2018-03-29 Tutorial}
+
+\subsection*{Question 1 (JM)}
+
+\subsubsection*{Part a}
+Let $\rho(x)=X$ and $\rho'(x)=X'$ and similarly for $y$.
+We need yo look at maps $\Phi \in \Aut_{\CC^2}$ where $\Phi X = X'\Phi$ and $\Phi Y = Y'\Phi$.
+Then we need the vector $(\alpha',\beta')$ to be a scalar multiple of $(\alpha,\beta)$.
+
+\subsubsection*{Part b}
+Suppose $X$ is nilpotent.
+Every $2 \times 2$ nilpotent matrix is conjugate to
+\[
+	\begin{pmatrix}
+    	0 & 1 \\
+        0 & 0
+    \end{pmatrix}
+\]
+We want a change of basis matrix $\Phi$ which conjugates both $X$ and $Y$ to the above matrix simultaneously.
+(This is the $\{v,Xv\}$ matrix for some $v$ with $Xv \neq 0$.
+Assume $X \neq 0$.
+Since $X$ and $Y$ commute, they preserve each other's eigenspaces.
+The only eigenspace of $X$ is the span of the vector
+\(
+	\left(
+	\begin{smallmatrix}
+		1 \\ 0
+	\end{smallmatrix}
+    \right)
+\)
+hence $Y$ is upper triangular.
+Then since $Y$ is nilpotent, its diagonal entries are zero.
+
+\subsection*{Question 2 (EH)}
+
+\subsubsection*{Part a}
+
+We know that if $v \in V_0^{\phi,\text{gen}}$, there exists an $M \geq 0$ such that $\phi^m(v)=0$ for all $m \geq M$.
+
+We know that we have a sequence of inclusions
+\[0 \subseteq \ker\phi \subseteq \ker\phi^2 \subseteq \ker\phi^3 \subseteq \cdots \subseteq \ker\phi^{m_1} = \ker\phi^{m_1+1} = \cdots\]
+where $m_1$ is a number such that the sequence stabilises (this exists by finite dimensionality).
+Moreover, the generalised eigenspace equals $\ker\phi^{m_1}$.
+
+Now suppose that there exists a $u \in V$ such that $\phi^{m_1}(u)=v$.
+Then $\phi^M \circ \phi^{m_1}(u) = 0$, hence $v = \phi^{m_1}(u) = 0$ and $u \in \ker \phi^{m+m_1} = \ker \phi^{m_1}$ \textbf{??? what is going on here?} 
+
+So the intersection is zero.
+The by dimensions (rank-nullity theorem) they sum to the whole space.
+
+\subsubsection*{Part b}
+
+If it is indecomposable then one of the direct summands is zero.
+
+\subsection*{Question 3 (TS)}
+
+\subsubsection*{Part a}
+
+An $A_q$-module is a vector space over $\CC$ with linear transformations $X$ and $Y$ such that $YX=qXY$.
+Then taking determinants, we have $q^n=1$ where $n = \dim V$.
+So if $V$ is non-zero then $q$ must be an $n$th root of unity.
+
+\subsubsection*{Part b}
+
+Assume that $q$ is a primitive $m$th root of unity.
+Consider a basis element $x^iy^j$.
+We have $x^iy^jx^m = q^{mj}x^mx^iy^j = x^mx^iy^j$ and similarly for $y^m$, hence they are in the centre.
+
+\subsubsection*{Part c}
+
+If $q$ is a primitive $m$th root of unity, then by part a there are no finite-dimensional modules of dimension less than $m$.
+
+Assume $m \neq 1$.
+An eigenvector $v$ of $y$ always exists.
+Now $xv \notin \spn v$, else we have a non-trivial submodule.
+Now $\{v,xv,x^2v,\ldots,x^{m-1}v\}$ is clearly span a submodule (since $x^m=1$) and they are linearly independent since if they aren't then they span a submodule of dimension less than $m$.
+
+\textbf{unfinished}

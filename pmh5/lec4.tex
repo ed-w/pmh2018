@@ -40,8 +40,8 @@
 		
 		We can think of the associative law $q_1(q_2q_3)=(q_1q_2)q_3$ as a composition of multiplications: $L(q_1)R(q_3)q_2=R(q_3)L(q_1)q_2$.
 		This suggests we need to look at right multiplications.
-		Indeed, $End_\HH(\HH) = \{R(q) \mid q \in \HH\}$ where $R(q)q' = q'q$.
-		Note that $q \mapsto R(q)$ is not an $\HH$-module homomorphism from $\HH$ to $\End \HH(\HH)$ since $R(q_1q_2)=R(q_2)R(q_1)$, but $q \mapsto R(\bar{q})$ is, since $\bar{\cdot}$ is an anti-involution on $\HH$ (i.e.\@ $\overline{q_1q_2}=\bar{q_2}\bar{q_1}$).
+		Indeed, $\End_\HH(\HH) = \{R(q) \mid q \in \HH\}$ where $R(q)q' = q'q$.
+		Note that $q \mapsto R(q)$ is not an $\HH$-module homomorphism from $\HH$ to $\End_\HH(\HH)$ since $R(q_1q_2)=R(q_2)R(q_1)$, but $q \mapsto R(\bar{q})$ is, since $q \mapsto \bar q$ is an anti-involution on $\HH$ (i.e.\@ $\overline{q_1q_2}=\bar{q_2}\bar{q_1}$).
 	\end{enum}
 \end{exam}
 
@@ -78,6 +78,6 @@
 \begin{proof}
 	We have already shown the first case (part I).
 	If $V \cong W$, then let $\phi: V \xto{\sim} W$ be an isomorphism.
-	For any $\theta \in \Hom_A(V,W)$, we have $\phi\inv(\theta) \in \End_A(V) = k$ by part II, so $\phi\inv\theta$ is scalar multiplication by some $\lambda \in k$.
+	For any $\theta \in \Hom_A(V,W)$, we have $\phi\inv\theta \in \End_A(V) = k$ by part II, so $\phi\inv\theta$ is scalar multiplication by some $\lambda \in k$.
 	Hence $\theta=\lambda\phi$ and so $\Hom_A(V,W)$ is one dimensional.
 \end{proof}

@@ -1,0 +1,156 @@
+\section{2018-03-28 Lecture}
+
+\begin{prop}
+	If $V = V_1 \oplus \cdots \oplus V_n$ and $W = W_1 \oplus \cdots \oplus W_m$, then any linear map $\phi \in \Hom(V,W)$ has components
+    \[\phi_{ij} = p_i \phi a_j \in \Hom(V_j,W_i)\]
+    for $j=1,\ldots,m$ and $i=1,\ldots,n$, where $a_j: V_j \injto V$ is the inclusion and $p_i: W \surjto W_i$ is the projection.
+    We can write it as a matrix
+    \[
+    \begin{pmatrix}
+    	\phi_{11} & \phi_{12} & \cdots & \phi_{1n} \\
+        \phi_{21} & \phi_{22} & \cdots & \phi_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \phi_{m1} & \phi_{m2} & \cdots & \phi_{mn}
+    \end{pmatrix}
+    \]
+    where the entries of the matrix are linear operators.
+    Composition of linear maps corresponds to matrix multiplication: let $\psi: W \to X = X_1 \oplus \cdots \oplus X_p$.
+    Then
+    \[(\psi\circ\phi)_{ik} = \sum_j \psi_{ij} \circ \phi_{jk}\]
+    In particular, we can depict elements in $\End(V)$ as $n \times n$ matrices where the $ij$ entry belongs to $\Hom(V_j,V_i)$.
+    
+	Now suppose $A$ is an algebra, $V$ and $W$ are $A$-modules and each $V_i$ and each $W_j$ is an $A$-submodule.
+    Then $a_j$ and $p_i$ are $A$-module homomorphisms.
+\end{prop}
+
+\begin{prop}
+	$\phi \in \Hom(V,W)$ is an $A$-module homomorphism $\iff$ $\phi_{ij} \in \Hom(V_j,W_i)$ is an $A$-module homomorphism for all $i$ and $j$.
+\end{prop}
+
+\begin{proof}
+	$\implies$: $\phi_{ij} = p_i \phi a_j$ is the composition of $A$-module homomorphisms.
+    
+    $\impliedby$: Define $\phi(v_1+\cdots+v_n) = \sum_i \phi_{ij}(v_j)$ where $v_i \in V$.
+    It is clear that $\phi \in \Hom(V,W)$.
+    Now for $a \in A$,
+    \begin{multline*}
+    	\phi(a(v_1+\cdots+v_n)) = \phi(av_1+\cdots+av_n) = \sum_{i=1}^n \phi_{ij}(av_j) \\
+    	= \sum_{i=1}^n a \phi_{ij}(v_j) = a \sum_{i=1}^n \phi_{ij}(v_j) = a\phi(v_1+\cdots+v_n) \qedhere
+    \end{multline*}
+\end{proof}
+
+\begin{cor}
+	We can depict elements in $\End_A(V)$ as $n \times n$ matrices where the $ij$ entry belongs to $\Hom_A(V_j,V_i)$ where composition of maps corresponds to matrix multiplication.
+\end{cor}
+
+\begin{thm}[Finite-dimensional density theorem]
+	If $V$ is a finite-dimensional semisimple $A$-module with $\rho:A \to \End(V)$ the action algebra homomorphism, then $\rho[A] = Z_{\End(V)}(\End_A(V))$.
+\end{thm}
+
+\begin{proof}
+  "$\subseteq$":
+  Since $\End_A(V) = Z_{\End(V)}(\rho[A])$, by the double centraliser theorem this inclusion is obvious.
+
+  "$\supseteq$":
+  We want to show that if $\psi \in \End(V)$ is such that $\psi\phi = \phi\psi$ for all $\phi\in\End_A(V)$, then there exists an $a \in A$ such that $av = \psi(v)$ for all $v \in V$.
+  First we need the following lemma.
+    
+\begin{lem}
+	Let $A$, $V$ and $\psi$ be as above.
+    Then for all $v \in V$, there exists an $a \in A$ such that $av = \psi(v)$.
+\end{lem}
+
+Note that this is not what we want because in this case $a$ can depend on $v$.
+
+\begin{proof}
+	Since $V$ is semisimple, $V = Av \oplus V'$ for some $A$-submodule $V'$.
+    Then define $\phi\in\End_A(V)$ by
+    \[
+    	\phi =
+        \begin{pmatrix}
+        	0 & 0 \\
+            0 & \id_{V'}
+        \end{pmatrix}
+    \]
+    Since $\psi\phi = \phi\psi$, $\phi$ must preserve every eigenspace of $\phi$ and in particular preserves $\ker\phi = Av$.
+\end{proof}
+
+    We continue with the proof of the density theorem.
+    Let $v_1,\ldots,v_d$ be a basis of $V$.
+    By linearity, it is enough to show that there exists an $a \in A$ such that $av_i = \psi(v_i)$ for all $i$.
+    Consider $V^{\oplus d} = V^d$ which is a finite-dimensional semisimple $A$-module under the action $a(w_1,\ldots,w_d) = (aw_1,\ldots,aw_d)$.
+    Now apply the lemma to $V^d$ where we take $\psi$ to be
+    \[
+    	\Psi=
+    	\begin{pmatrix}
+        	\psi & 0 & \cdots & 0 \\
+            0 & \psi & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & \psi
+        \end{pmatrix}
+    \]
+    and $v = (v_1,\ldots,v_d)$.
+    We need to check that $\Psi$ commutes with all elements of $\End_A(V^d)$, that is
+    \[
+    	\begin{pmatrix}
+        	\psi & 0 & \cdots & 0 \\
+            0 & \psi & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & \psi
+        \end{pmatrix}
+        \begin{pmatrix}
+            \phi_{11} & \phi_{12} & \cdots & \phi_{1n} \\
+            \phi_{21} & \phi_{22} & \cdots & \phi_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \phi_{m1} & \phi_{m2} & \cdots & \phi_{mn}
+    	\end{pmatrix}
+    	\overset{?}{=}
+        \begin{pmatrix}
+            \phi_{11} & \phi_{12} & \cdots & \phi_{1n} \\
+            \phi_{21} & \phi_{22} & \cdots & \phi_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \phi_{m1} & \phi_{m2} & \cdots & \phi_{mn}
+    	\end{pmatrix}
+        \begin{pmatrix}
+        	\psi & 0 & \cdots & 0 \\
+            0 & \psi & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & \psi
+        \end{pmatrix}
+    \]
+    But this is easily verified as $\psi$ commutes with each of the $\phi_{ij}$ individually.
+    
+    So the lemma implies that for all such $\psi \in Z_{\End(V)}(\End_A(V))$ there exists an $a \in A$ such that 
+    \[(av_1,\ldots,av_d) = a(v_1,\ldots,v_d) = \Psi (v_1,\ldots,v_d) = (\psi(v_1),\ldots,\psi(v_d))\]
+    that is, $av = \psi(v)$ for all $v \in V$.
+\end{proof}
+
+\begin{exam}
+	\begin{enum}
+		\io
+        Suppose $V=S$ is a finite dimensional simple $A$-module.
+        Then $\End_A(S)$ is a division algebra $D$ (by Schur's lemma part I), so you can think of $S$ as a $D$-module.
+        The density theorem implies that $\rho[A] = Z_{\End(S)}(D) = \End_D(S)$.        
+        If $k$ is algebraically closed then $D=k$, hence $\rho[A] = \End(S)$, that is, the module action homomorphism $\rho:A \to \End(V)$ is surjective.
+        
+        In general, modules over division algebras are a lot like vector spaces---they have bases and dimensions.
+        We can write $d = \dim_D(S)$ and then $S = D^{\oplus d}$.
+		Then $\End_D(S)$ consists of $d \times d$ matrices with entries in $\End_D(D) \cong D\op$.
+        Then the density theorem implies that $\rho[A] = \End_D(S) \cong \Mat_d(D\op)$.
+        
+        \io
+        Let $V = S_1 \oplus \cdots \oplus S_r$ where $S_1,\ldots,S_r$ are pairwise non-isomorphic simple modules.
+        Then by Schur's lemma,
+        \[\End_A(S_1 \oplus \cdots \oplus S_r) = \diag(D_1,\ldots,D_r)\]
+        where $D_i = \End_A(S_i)$.
+        
+        Assume $k$ is algebraically closed.
+        Then $D_i = k$ for all $i$.
+        So
+        \[Z_{\End(S_1 \oplus \cdots \oplus S_r)}(\diag(k)) = \diag(\End(S_1),\ldots,\End(S_r))\]
+        This is the set of all maps in $\End(V)$ which preserve the subspaces $S_i$ for all $i$.
+        Then by the density theorem,
+        \[\rho[A] \cong \End(S_1) \times \cdots \times \End(S_r) \cong \Mat_{d_1}(k) \times \cdots \times \Mat_{d_r}(k)\]
+        where $d_i = \dim(S_i)$ for all $i$.
+	\end{enum}
+\end{exam}
