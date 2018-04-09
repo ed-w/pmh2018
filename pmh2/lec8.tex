@@ -94,8 +94,8 @@ Direct and inverse limits (colimits and limits).
 		\[\alpha_j^i: M_i \to M_j \quad \text{for all} \quad i \preceq j\]
 		such that the following equations hold:
 		\begin{enum}
-			\io $\alpha_i^ji= \id_{M_i}$
-			\io $\alpha_k^j \circ \alpha_j^k = \alpha_k^i$ for all $i \preceq j \preceq k$, that is, the following diagram commutes:
+			\io $\alpha_i^i= \id_{M_i}$
+			\io $\alpha_k^j \circ \alpha_j^i = \alpha_k^i$ for all $i \preceq j \preceq k$, that is, the following diagram commutes:
 			\[
 			\begin{tikzcd}
 				M_i \arrow[rd, "\alpha_j^i"'] \arrow[rr, "\alpha_k^i"] &  & M_k \\
@@ -103,22 +103,22 @@ Direct and inverse limits (colimits and limits).
 			\end{tikzcd}
 			\]
 		\end{enum}
-		\io The \textbf{colimit} (also known as the \textbf{direct} or \textbf{injective} limit)
+		\io The \textbf{direct limit} (also known as the \textbf{inductive} or \textbf{injective} limit)
 		of the directed system of $R$-modules
 		\[\left(\{M_i\}_{i \in I}, \{\alpha_j^i\}_{i \preceq j}\right)\]
 		is an $R$-module
-		\[\varinjlim_{i \in I} M_i = \varinjlim M_i\]
+		\[\varinjlim_{i \in I} M_i = \varinjlim M_i = \colim M_i\]
 		with maps
-		\[i_l: M_l \to \varinjlim M_l\]
+		\[\iota_l: M_l \to \varinjlim M_i\]
 		such that
-		\[i_l \circ \alpha_l^k = i_k \quad \text{for all} \quad k \preceq l\]
+		\[\iota_j \circ \alpha_j^i = \iota_i \quad \text{for all} \quad i \preceq j\]
 		and is universal with respect to the above property.
-		That is, for any $R$-module $N$ with maps $\beta_l: M_l \to N$ such that $\beta_l\alpha_l^k=\beta_k$ for all $k \preceq l$, there exists a unique map $\theta$ making the following diagram commute:
+		That is, for any $R$-module $N$ with maps $\beta_l: M_l \to N$ such that $\beta_l \circ \alpha_l^k=\beta_k$ for all $k \preceq l$, there exists a unique map $\theta$ making the following diagram commute:
 		\[
-		\begin{tikzcd}
-			\varinjlim M_i \arrow[rr, "\exists \theta", dashed] &  & N \\
-			& M_l \arrow[lu, "i_l"'] \arrow[ru, "\beta_l"] &  \\
-			& M_k \arrow[luu, "i_k", bend left] \arrow[ruu, "\beta_k"', bend right] \arrow[u, "\alpha_l^k"] & 
+		\begin{tikzcd}[row sep=large, column sep=large]
+			\varinjlim M_i \arrow[rr, "\exists !\theta", dashed] & & N \\
+			& M_l \arrow[lu, "\iota_l"'] \arrow[ru, "\beta_l"] &  \\
+			& M_k \arrow[luu, "\iota_k", bend left] \arrow[ruu, swap, "\beta_k", bend right] \arrow[u, "\alpha_l^k"] & 
 		\end{tikzcd}
 		\]
 	\end{enum}
@@ -126,5 +126,5 @@ Direct and inverse limits (colimits and limits).
 
 \begin{exam}
 	Let $(I,\preceq)$ be a direct system with the discrete partial order and let $\{M_i\}_{i \in I}$ be a family of $R$-modules.
-	Then the colimit of $M_i$ is just their coproduct.
+	Then the direct limit of $M_i$ is just their coproduct.
 \end{exam}

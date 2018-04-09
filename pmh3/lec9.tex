@@ -1,0 +1,70 @@
+\section{2018-04-09 lecture}
+
+\begin{prop}\label{9:prop}
+	Take $[-a,a] \subset \RR$ where $a>0$.
+	Then there exists a sequence $(P_n \in \RR[x])$ where $\deg P_n=n$ with $P_n(0)=0$ for all $n$ such that
+	\[\max_{x \in [-a,a]} \abs{P_n(x)-\abs{x}} \to 0\]
+\end{prop}
+
+\begin{prop}
+	Let $\ca B$ be the closure of $\cA$ in $\norm{\cdot}_\infty$.
+	\begin{enum}
+		\io $f \in \ca B \implies \abs{f} \in \ca B$
+		\io $f,g \in \ca B \implies \max(f,g), \min(f,g) \in \ca B$
+		\io If $f \in \cC(X,\RR)$ then for all $\eps>0$ and for all $x \in X$ there exists a $g_x(t) \in \ca B$ with $g_x(x)=f(x)$ and $g_x(t)>f(t)-\eps$ for all $t \in X$.
+		\io For all $f \in \cC(X,\RR)$ and for all $\eps>0$ there exists an $h \in \ca B$ such that $\norm{f-h}_\infty<\eps$.
+	\end{enum}
+\end{prop}
+
+\begin{proof}
+	We will only prove item 1.
+	If $(f_n) \subset \cA$ and $f_n \to f$ uniformly on $X$, then$f \in \cC(X,\RR)$ implies that there exists an $a>0$ such that $f[X] \subset [-a,a]$.
+	Assume WLOG that $f_n[X] \subset [-a,a]$ for all $n$.
+	Now by proposition \ref{9:prop} there exists a $P_m(x) \in \RR[x]$ with $\deg P_m=m$ and $P_m(0)=0$ such that $\abs{P_m(x)-\abs{x}} \to 0$ uniformly on $[-a,a]$.
+	Then $P_m(f_n) \in \cA$ for all $m$ and $n$.
+	Now
+	\[\abs{P_m(f_n(t))-\abs{f(t)}} \leq \abs{P_m(f_n(t))-\abs{f_n(t)}} + \abs{\abs{f_n(t)}-\abs{f(t)}}\]
+	Now the second term on the right goes to $0$ as $n$ goes to infinity in the infinity-norm and for all $n$, the first term on the right goes to $0$ as $m$ goes to infinity in the infinity-norm.
+	We leave the remainder of the proof as an exercise.
+\end{proof}
+
+\begin{lem}
+	For all $ \in \cC([0,1],\RR)$ with $f(0)=f(1)=0$, there exists a sequence $(P_n)$ in $\RR[x]$ where $\deg P_n=n$ such that $P_n \to f$ uniformly.
+\end{lem}
+
+\begin{proof}
+	If $f \in \cC([0,1],\RR)$, then define
+	\[g(x) = f(x)-f(0)-x(f(1)-f(0)).\]
+	Now $g$ is continuous with $g(0)=g(1)=0$ and there exists a sequence $(P_n)$ such that $P_n \to g$ uniformly.
+	Now define
+	\[Q_n = P_n+f(0)+x(f(1)-f(0)).\]
+	Then $Q_n-f=P_n-g$ which implies that for all $f \in \cC([0,1],\RR)$ there exists a sequence $(Q_n)$ in $\RR[x]$ with $Q_n \to f$ uniformly.
+	If $f \in \cC([a,b],\RR)$, let $x = a(1-t)+bt$ for $f \in [0,1]$ and define
+	\[g(t) = f(a(1-t)+bt) N_\eps P_n(t)\]
+	with $\abs{g(t)-P_n(t)}<\eps$ for all $t$.
+	Then $t=(x-a)/(b-a)$, so we can define a polynomial $Q_n$ of degree $n$ by
+	\[Q(n) = P_n\left(\frac{x-a}{b-a}\right)\]
+	and $\abs{Q_n(x) - f(x)}<\eps$ for all $x \in [a,b]$.
+\end{proof}
+
+\begin{proof}[Proof of proposition \ref{9:prop}]
+	Define the Bernstein polynomial of degree $n$ by
+	\[B_n(f)(x) = \sum_{k=0}^n f\left(\frac kn\right) \binom{n}{k} x^k (1-x)^{n-k}.\]
+	Note that $B_n(1)(x) = 1$ by the binomial theorem.
+	
+	Recall that $X$ is a \textbf{Bernoulli random variable} and write $X \sim \Ber(x)$ if it takes the value $1$ with probability $x$ and the value $1-x$ with probability $1-x$.
+	Moreover, note that $\EE(X)=x$ and $\Var(X)=\EE(X^2)-\EE(X)^2=x(1-x)$.
+	Define
+	\[Z_X = \frac{X_1+\cdots+X_n}n\]
+	where the $X_j$ are i.i.d\@ Bernoulli r.v.s.
+	Then
+	\[\PP\left(Z_x = \frac kn\right) = \binom{n}{k} x^k(1-x)^{n-k}\]
+	which implies that
+	\[\EE(f(Z_X)) = B_n(f)(x).\]
+	We want to show that
+	\[\EE(f(Z_x)-f(x)) \to 0\]
+	uniformly on $x \in [0,1]$ as $n \to \infty$.
+	It is enough to show that
+	
+	\[\EE\left(\abs{f(Z_x)-f(x)}\right) \to 0\]
+\end{proof}

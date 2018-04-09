@@ -40,11 +40,11 @@
 \end{proof}
 
 \begin{cor}
-	We can depict elements in $\End_A(V)$ as $n \times n$ matrices where the $ij$ entry belongs to $\Hom_A(V_j,V_i)$ where composition of maps corresponds to matrix multiplication.
+	We can depict elements in $\End_A(V)$ as $n \times n$ matrices where the $ij$-th entry belongs to $\Hom_A(V_j,V_i)$ and where composition of maps corresponds to matrix multiplication.
 \end{cor}
 
 \begin{thm}[Finite-dimensional density theorem]
-	If $V$ is a finite-dimensional semisimple $A$-module with $\rho:A \to \End(V)$ the action algebra homomorphism, then $\rho[A] = Z_{\End(V)}(\End_A(V))$.
+	If $V$ is a finite-dimensional semisimple $A$-module with $\rho:A \to \End(V)$ the algebra homomorphism of the action, then $\rho[A] = Z_{\End(V)}\left(\End_A(V)\right)$.
 \end{thm}
 
 \begin{proof}
@@ -68,11 +68,12 @@ Note that this is not what we want because in this case $a$ can depend on $v$.
     \[
     	\phi =
         \begin{pmatrix}
-        	0 & 0 \\
+        	0_{Av} & 0 \\
             0 & \id_{V'}
         \end{pmatrix}
     \]
-    Since $\psi\phi = \phi\psi$, $\phi$ must preserve every eigenspace of $\phi$ and in particular preserves $\ker\phi = Av$.
+    Since $\psi\phi = \phi\psi$, $\psi$ must preserve every eigenspace of $\phi$. 
+    In particlar, we have $\psi(v) \in \psi[Av] \subseteq Av$.
 \end{proof}
 
     We continue with the proof of the density theorem.
@@ -141,16 +142,37 @@ Note that this is not what we want because in this case $a$ can depend on $v$.
         \io
         Let $V = S_1 \oplus \cdots \oplus S_r$ where $S_1,\ldots,S_r$ are pairwise non-isomorphic simple modules.
         Then by Schur's lemma,
-        \[\End_A(S_1 \oplus \cdots \oplus S_r) = \diag(D_1,\ldots,D_r)\]
+        \[\End_A(V)=\End_A(S_1 \oplus \cdots \oplus S_r)=
+	        \begin{pmatrix}
+		        D_1 & 0 & \cdots & 0 \\
+		        0 & D_2 & \cdots & 0 \\
+		        \vdots & \vdots & \ddots & \vdots \\
+		        0 & 0 & \cdots & D_r
+	        \end{pmatrix}
+        \]
         where $D_i = \End_A(S_i)$.
         
         Assume $k$ is algebraically closed.
         Then $D_i = k$ for all $i$.
         So
-        \[Z_{\End(S_1 \oplus \cdots \oplus S_r)}(\diag(k)) = \diag(\End(S_1),\ldots,\End(S_r))\]
+        \[Z_{\End(V)}
+	        (\begin{pmatrix}
+		        k & 0 & \cdots & 0 \\
+		        0 & k & \cdots & 0 \\
+		        \vdots & \vdots & \ddots & \vdots \\
+		        0 & 0 & \cdots & k
+	        \end{pmatrix})
+	        =
+	        \begin{pmatrix}
+		        \End_k(S_1) & 0 & \cdots & 0 \\
+		        0 & \End_k(S_2) & \cdots & 0 \\
+		        \vdots & \vdots & \ddots & \vdots \\
+		        0 & 0 & \cdots & \End_k(S_r)
+	        \end{pmatrix}
+        \]
         This is the set of all maps in $\End(V)$ which preserve the subspaces $S_i$ for all $i$.
         Then by the density theorem,
-        \[\rho[A] \cong \End(S_1) \times \cdots \times \End(S_r) \cong \Mat_{d_1}(k) \times \cdots \times \Mat_{d_r}(k)\]
+        \[\rho[A] \cong \End_k(S_1) \times \cdots \times \End_k(S_r) \cong \Mat_{d_1}(k) \times \cdots \times \Mat_{d_r}(k)\]
         where $d_i = \dim(S_i)$ for all $i$.
 	\end{enum}
 \end{exam}

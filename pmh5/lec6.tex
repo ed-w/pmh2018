@@ -57,13 +57,13 @@
 	Any simple $A$-submodule $U$ of $V$ is contained in its isotypic component $V_{[U]}$.
 	Then $V_{[S]} = \sum_U U$, where the sum is over all simple submodules $U$ of $V$ with $U \cong S$.
 	In particular, $V_{[S]}$ is independent of the chosen decomposition $\bigoplus_{i=1}^n V_i$ of $V$.
-	The decomposition $V = \bigoplus_S V_{[S]}$, where the sum is over all isoclasses of simple $A$-modules $S$, is \underline{canonical}, but the decomposition of each isotypic component is not canonical.
+	The decomposition $V = \bigoplus_S V_{[S]}$, where the sum is over all isoclasses of simple $A$-modules $S$, is \underline{canonical}, but the decomposition of each isotypic component is \underline{not canonical}.
 \end{thm}
 
 \begin{proof}
 	Let $\{p_i: V \to V_i\}$ be the projection maps arising from the direct sum decomposition.
 	Let $\phi: U \injto V$ be the inclusion of a simple submodule $U$.
-	Then $\phi = p_1\phi + \cdots + \p_m\phi$ with each $p_i\phi \in \Hom_A(U,V_i)$.
+	Then $\phi = p_1\phi + \cdots + p_m\phi$ with each $p_i\phi \in \Hom_A(U,V_i)$.
 	Then by Schur's lemma part I, we have that $p_i\phi=0$ unless $U \cong V_i$.
 	So
 	\[\phi = \sum_{i: V_i \cong U} p_i\phi\]

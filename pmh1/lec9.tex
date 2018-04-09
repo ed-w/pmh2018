@@ -1,0 +1,84 @@
+\section*{2018-04-09 Lecture}
+
+Covering spaces
+
+Consider the covering space $p_n: S^1 \to S^1$ defined by $z \mapsto z^n$.
+This is corresponds to winding the circle over itself $n$ times.
+Think of it as a helix with $n$ turns and the two free ends joined (but there are no self-intersections).
+
+We know that a continuous map between spaces induces a group homomorphism on the fundamental groups.
+Consider the covering space $p_n: S^1 \to S^1$.
+The generator ($1$) of the covering space is just the loop which goes around the covering circle once, that is, it goes around the helix $n$ times.
+Then the map $p_n$ projecting it down ot the circle makes it in to a $n$-fold loop in $\pi_1(S^1)$.
+Therefore $p_n$ induces the group homomorphism $\ZZ \to n\ZZ$ for $n \neq 1$.
+
+Now consider the infinite helix (the covering space we have already looked at).
+It is homeomorphis to $\RR$ and so has trivial fundamental group.
+Therefore the covering space map induces the zero homomorphism.
+
+Note that any space is a covering space of itself with the trivial map.
+In this case this is just $p_1$.
+Then the induced homomorphism is the identity, so its image subgroup is the whole group $\pi_1(S^1)$.
+
+On the other extreme, the infinite helix is simply connected and so is known as a \textbf{universal covering space}.
+It contains any connected covering space, and its induced homomorphism is zero, so its image subgroup is the trivial subgroup.
+
+We will also see that the more sheets a covering space has, the smaller its associated subgroup is.
+
+\begin{thm}[Classification of covering spaces/Galois correspondence]
+	If $X$ is a `nice enough' space, then there is a bijection between connected coverings of $(X,x_0)$ and subgroups of $\pi_1(X,x_0)$ given by
+	\[\begin{tikzcd}[row sep=tiny]
+		(\wt{x},\wt{x}_0) \ar[dd, swap, "p"] & \\
+		\ar[r, mapsto] & p_*\left(\pi_1(\wt X,\wt x_0)\right) \leq \pi_1(X,x_0) \\
+		(X,x_0) &
+	\end{tikzcd}\]
+\end{thm}
+
+\begin{rmk}
+	This is similar to the fundamental theorem of Galois theory.
+\end{rmk}
+
+Review of the basic definitions and facts
+
+\begin{defn}
+	A \textbf{covering space} of $X$ is a space $\wt X$ and a map $p: \wt X \to X$ such that every $x \in X$ contains an open neighbourhood $U$ such that
+	\[p\inv[U] = \biguplus_\alpha V_\alpha\]
+	where each $V_\alpha$ is open in $\wt X$ and $p|_{V_\alpha}: V_\alpha \to U$ is a homeomorphism for each $\alpha$.
+\end{defn}
+
+\begin{exer}
+	Show that:
+	\begin{itm}
+		\io $p\inv[x]$ is a discrete set in $\wt X$.
+		\io For each $x$ and $U$, the number of sheets is the same as $\#p\inv[x]$ (or there is a bijection in the infinite case).
+		\io If $X$ is connected then this cardinality is the same for all $x$ in $X$.
+	\end{itm}
+\end{exer}
+
+\begin{prop}
+	For all paths $f \in X$ starting at $x_0$ and for all $\wt x_0 \in p\inv[x_0]$, there exists a unique lift $\wt f$ in $\wt X$ (that is $p\wt f=f$).
+	Moreover, $f \simeq g$ as paths in $X \iff \wt f \simeq \wt g$ as paths in $\wt X$.
+\end{prop}
+
+\begin{prop}
+	$p_*$ is always injective when $p$ is a covering map.
+\end{prop}
+
+\begin{proof}
+	If $\wt f \not\simeq \wt g$ then $p\wt f \not\simeq p\wt g$.
+\end{proof}
+
+\begin{exer}
+	Let $f$ be a loop at $x_0$ in $X$.
+	$f \in \im p_* \iff$ the unique lift $\wt f$ is a loop.
+\end{exer}
+
+\begin{prop}
+	Let $p:(\wt X,\wt x_0) \to (X,x_0)$ be a covering space.
+	If $\wt X$ and $X$ are path connected, then there is a bijection between the elements of $p\inv(x_0)$ and the right cosets of $p_*(\pi_1(\wt X, \wt x_0))$ given by
+	\begin{align*}
+		\pi: H\backslash G &\to p\inv[x_0] \\
+		H[g] &\mapsto \wt g(1)
+	\end{align*}
+	where $\wt g(1)$ is the end point of the (unique) lift of $g$ with start point $\wt x_0$.
+\end{prop}
