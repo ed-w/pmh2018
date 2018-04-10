@@ -1,0 +1,127 @@
+\section{2018-04-10 Lecture}
+
+\begin{rmk}
+	There are two ways to define direct and inverse limits:
+	\begin{enum}
+		\io $(I,\preceq)$ is a directed set.
+		\io $(I,\preceq)$ is a poset.
+	\end{enum}
+	The first case is a special case of the second.
+	If we use the second definition, then the direct sum is a special case of the direct limit.
+	Proposition 1.14 works for the second definition but the proof of Proposition 1.15 does not (but it is still true).
+	It is easy to check that the direct sum preserves exact sequences though.
+\end{rmk}
+
+Begin non-assessable content
+\begin{defn}[$p$-adic numbers]
+	Let $p$ be a prime number.
+	Define $R_n = \ZZ/p^n\ZZ$ for $n \in (\PP,\geq)$.
+	If $m \leq n$ then $(p^m) \supseteq (p^n)$, so we have the following commutative diagram:
+	\[\begin{tikzcd}[row sep=large]
+		& \ZZ \ar[rd, twoheadrightarrow] \ar[ld, twoheadrightarrow] & \\
+		R_n \ar[rr, "\exists", dashed] & & R_m
+	\end{tikzcd}\]
+	where the downward arrows are projection maps.
+	
+	Then
+	\[\ZZ_p \defeq \varprojlim R_n\]
+	is calles the ring of \textbf{$p$-adic integers}.
+	The localisation of this ring is $\QQ_p$ which is the field of \textbf{$p$-adic numbers}.
+	
+	Let
+	\[x = (x_1,x_2,\ldots) \in \ZZ_p \subset \prod_{r=1}^\infty \ZZ/p^r\ZZ.\]
+	Then by definition of the inverse limit, we have $x_i \equiv x_j \bmod p$ for $i \geq j$.
+\end{defn}
+
+\begin{defn}[A more general direct limit or colimit]
+	We can consider a poset $(I,\preceq)$ as a simple graph with vertex set $I$ and arrows $i \to j$ for all $i \preceq j$.
+	Transitivity defines an equivalence relation on the set of paths in the graph:
+	\[i \to j \to k \sim i \to k.\]
+	Now let $\ca G = (\ca V,\ca E,\sim)$ be an arbitrary graph with the transitivity relation $\sim$ as described above.
+	We also allow arrows
+	\[i \xto{\id} i \quad \text{and} \quad i \xto{0} j.\]
+	Now let $\{M_i\}_{i \in \ca V}$ and $\{f_\alpha\}_{\alpha \in \ca E}$
+	with $f_\alpha: M_i \to M_j$ where $\alpha = i \to j$.
+	Moreover, if $\alpha$ has label $\id$ or $0$ then $f_\alpha = \id$ or $0$ respectively.
+	We also have the following identity for the equivalence relation:
+	\[\alpha_1 \cdots \alpha_r \sim \beta_1 \cdots \beta_s \implies f_{\alpha_1} \cdots f_{\alpha_r} = f_{\beta_1} \cdots f_{\beta_s}.\]
+	Then the \textbf{colimit} $\colim_{\ca G}\{M_i\}$ is the universal $R$-module with maps $\iota_l: M_l \to \colim_{\ca G}\{M_i\}$ for all $l \in \ca V$ such that the following diagram commutes for all edges $\alpha = (i \to j) \in \ca E$:
+	\[\begin{tikzcd}[row sep=large,column sep=small]
+		& \colim_{\ca G}\{M_i\} & \\
+		M_i \ar[ru, "\iota_i"] \ar[rr, "f_\alpha"] & & M_j \ar[lu, "\iota_j"]
+	\end{tikzcd}\]
+\end{defn}
+
+\begin{exam}
+	\leavevmode
+	\begin{enum}
+		\io
+		If $(I,\preceq)$ is a directed set and $\ca G$ the corresponding graph with relations, then $\colim_{\ca G}=\varinjlim$.
+		
+		\io
+		If $\ca E$ is empty then $\colim_{\ca G} = \bigoplus_{\ca V}$.
+		
+		\io
+		If we take
+		\[\left( \ca G = \underset{1}{\circ} \underset{0}{\overset{\alpha}{\rightrightarrows}} \underset{2}{\circ} \right) \longmapsto \left( M_1 \xto{f} M_2 \right)\]
+		then $\colim_{\ca G}\{M_i\} = \coker f$.
+		If we instead take
+		\[\ca G = \underset{1}{\circ} \underset{\beta}{\overset{\alpha}{\rightrightarrows}} \underset{2}{\circ}\]
+		then $\colim_{\ca G}$ is the coequaliser of $\alpha$ and $\beta$.
+		
+		\io
+		If we take
+		\[\ca G=
+		\begin{tikzcd}
+			1 \ar[r, "\alpha"] \ar[d, "\beta"] & 2 \\
+			3 &
+		\end{tikzcd}\]
+		Then $\colim_{\ca G}$ is the pushout of fibred coproduct.
+	\end{enum}
+\end{exam}
+
+End non assessable content
+
+Finitely generated modules
+
+\begin{defn}[1.17]
+	An $R$-module $M$ is called \textbf{free} if $M \cong \bigoplus_{i \in I} M_i$ such that $M_i \cong R$ in $\RMod$.
+\end{defn}
+
+\begin{rmk}
+	\leavevmode
+	\begin{enum}
+		\io We write $\ds R^n = \bigoplus_{i=1}^n R$.
+		\io It is important that $M_i \cong R$ as an $R$-module.
+	\end{enum}
+\end{rmk}
+
+\begin{prop}[1.18]
+	$M$ is finitely generated as an $R$-module $\iff$ $M$ is isomorphic to a quotient of $R^n$ for some $n$.
+\end{prop}
+
+\begin{proof}
+	$\implies$: Let $x_1,\ldots,x_n$ be a set of generators of $M$.
+	Then define a surjective map by
+	\begin{align*}
+		\phi: R^n &\to M \\
+		(a_i)_{i=1}^n &\mapsto \sum_{i=1}^n a_ix_i.
+	\end{align*}
+	Then $M \cong R^n/\ker\phi$.
+	
+	$\impliedby$: Let $\phi: R^n \to R^n/U \isoto M$.
+	Let $\{e_i\}_{i=1}^n$ be the standard generators of $R^n$.
+	Then $\{\phi(e_i)\}_{i=1}^n$ generates $M$.
+\end{proof}
+
+\begin{rmk}
+	Submodules of finitely generated modules need not be finitely generated.
+	Take $R=k[x_1,c-2,\ldots]$.
+	Clearly $R$ is finitely generated as an $R$-module.
+	Then consider $I = (x_1,x_2,\ldots)$.
+	Then $I$ is not finitely generated as an $R$-module.
+	
+	Submodules of free modules need not be free.
+	Take $R = k[x]/(x^n)$ and $I=(x)$.
+	Then $R$ is clearly free as an $R$-module but $(x)$ is not free as an $R$-module.
+\end{rmk}

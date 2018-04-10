@@ -1,0 +1,88 @@
+\section{2018-04-10 Lecture}
+
+\begin{proof}[Continuation from the last lecture]
+	Now
+	\[\Var(Z_X) = \frac 1n \Var(X_1) = \frac{x(1-x)}n\]
+	so by the Chebyshev inequality we have
+	\[\PP(\abs{Z_X-x}>\delta) \leq \frac{\Var(Z_X)}{\delta^2} = \frac{x(1-x)}{n\delta^2}\]
+	which goes to $0$ uniformly in $x$.
+	
+	Now $f$ is continuous on $[0,1]$ which says that for all $\eps>0$ there exists a $\delta>0$ such that $\abs{x-y}<\delta$ implies that $\abs{f(x)-f(y)}<\eps$.
+	Let
+	\[A_\eps = \left\{\omega \in \Omega \, \Big| \abs{f(Z_X(\omega))-f(x)}\leq\eps\right\}\]
+	and
+	\[C-\delta = \left\{\omega \in \Omega \, \Big| \abs{Z_X(\omega)-x}\leq\delta\right\}.\]
+	Then
+	\begin{align*}
+		\EE(\abs{f(Z_X(\omega))-f(x)}) &= \int_{A_\eps} \abs{f(Z_X(\omega))-f(x)} \, dP(\omega) + \int_{A_\eps^c} \abs{f(Z_X(\omega))-f(x)} \, dP(\omega) \\
+		&\leq \int_{A_\eps} \abs{f(Z_X(\omega))-f(x)} \, dP(\omega) + \int_{C_\eps^c} \abs{f(Z_X(\omega))-f(x)} \, dP \\
+		&\leq \eps + 2 \max(f)\frac{x(1-x)}{n\delta^2} \leq 2\eps \to 0
+	\end{align*}
+	where we choose a suitably large $n$ (independent of $x$).
+\end{proof}
+
+Here is an outline of another more `natural' proof of the claim:
+
+\begin{thm}[Fej\'er's theorem.]
+	If $f \in \cC(\TT)$ then there exists a
+	\[P_n(t)=\sum_{k=-n}^n a_k \exp(2\pi int)\]
+	such that $\norm{P_n-f}_\infty \to 0$.
+\end{thm}
+
+\begin{proof}[Proof outline.]
+	Use the following steps:
+	\begin{enum}
+		\io Set $b_n \defeq \ang{f,\exp(2\pi int)}$ for $n \in \ZZ$.
+		\io Set $\ds S_N(t) \defeq \sum_{n=-N}^N b_n \exp(2\pi int)$.
+		\io Set $\ds P_N(t) \defeq \frac 1N \sum_{n=1}^N S_n(t)$. (This is a Ces\`aro average of Fourier bounded sums.)
+	\end{enum}
+\end{proof}
+
+\begin{exer}
+	Fej\'er's theorem implies Bernstein's theorem (Proposition \ref{9:prop}).
+\end{exer}
+
+\begin{thm}[Baire category theorem]
+	Let $X$ be a complete metric space.
+	Let $U_n \subseteq X$ be open and dense in $X$ for all $n \geq 1$ (a countable index set).
+	Then $\bigcap_n U_n$ is dense in $X$.
+	
+	An equivalent statement is the following:
+	Let $C_n$ be closed in $X$ with $X=\bigcup_n C_n$.
+	Then there exists an $n$ such that $C_n$ has non-empty interior.
+\end{thm}
+
+\begin{proof}
+	We want to show that for every $x \in X$ and ever $r>0$ we have $B_0 = B(x,r) \cap \bigcap_n U_n \neq \emptyset$.
+	
+	Since $U_1$ is dense in $X$, the intersection $B_0 \cap U_1$ is non-empty (and open).
+	Thus there exists a point $x_1$ and an $r_1 \in (0,1/2)$ such that $\overline{B}_1 = \overline{B(x_1,r_1)} \subseteq U_1 \cap B_0$.
+	Likewise, there exists a point $x_2$ and an $r_2 \in (0,1/4)$ such that $\overline{B}_2 = \overline{B(x_2,r_2)} \subseteq U_2 \cap B_1$.
+	Now continue iteratively to create a sequence of balls $B_0 \supseteq B_1 \supseteq B_2 \supseteq \cdots$ with $\diam B_n < 1/2^n$ for all $n$.
+	
+	Since $\overline{B}_{n+1} \subseteq B_n \subseteq U_n$ for all $n$, we have $B_n \subseteq \bigcup_{k=1}^n U_k$.
+	Moreover, $n>m$ implies that $B_n \subseteq B_m$.
+	Then if we take for all $n$ any $x_n$ in $B_n$, we get a Cauchy sequence $(x_n)$.
+	Let $z  = \lim_{n \to \infty} x_n$.
+	Then $z \in B_n \subseteq U_n$ for all $n$, hence $z \in B_0 \cap \bigcap_{n \geq 1} U_n$.
+\end{proof}
+
+\begin{exer}
+	Use the Baire category theorem to prove:
+	\begin{enum}
+		\io
+		If $f \in \cC^\infty([0,1],\RR)$ is such that for all $x \in [0,1]$ there exists an $n \geq 1$ such that $f^{(n)}(x)=0$, then $f$ is a polynomial.
+		\io
+		If $f \in \cC(\RR_+,\RR_+)$ is such that $\lim_{n \to \infty} f(nx)=0$, then \textbf{mysterious symbol goes here} $\lim_{x \to \infty} f(x) = 0$.
+	\end{enum}
+\end{exer}
+
+\begin{defn}
+	A mapping $f: X \to Y$ of topological spaces is open if $U \subseteq X$ is open implies $f[U] \subseteq Y$ is open.
+	It is clear that any open bijective map has continuous inverse.
+\end{defn}
+
+\begin{thm}[Open mapping theorem]
+	Let $E$ and $F$ be Banach spaces and let $T \in \cL(E,F)$ be bijective.
+	Then $T\inv \in \cL(F,E)$.
+\end{thm}
