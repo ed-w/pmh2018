@@ -1,0 +1,111 @@
+\section{2018-04-11 Lecture}
+
+Representations of finite groups
+
+\begin{defn}
+	Let $G$ be a finite group and $k$ be a(n algebraically closed) field.
+	A \textbf{representation} of $G$ over $k$ is a $k$-vector space $V$ and a group homomorphism $\rho: G \to \GL(V)$.
+	
+	Equivalently, it is a $k$-vector space $V$ and a $k$-algebra homomorphism $\sigma: k[G] \to \End(V)$ (a $k[G]$-module).
+\end{defn}
+
+\begin{rmk}
+	To see that the two definitions are equivalent, note that $\rho$ determines $\sigma$ since by extending from the vector space basis $G$ in $k[G]$.
+	It is clear that $\sigma$ determines $\rho$ by restriction, and since $\rho(g)\rho(g\inv)=\id_V$, we have that the image of $\rho$ is in $\GL(V)$.
+\end{rmk}
+
+\begin{rmk}
+	If you have a presentation for $G$ with generators $g_1,\ldots,g_n$ and some relations, then specifying $\rho$ amounts to specifying elements $\rho(g_1),\ldots,\rho(g_n) \in \GL(V)$ such that the defining relations are satisfied.
+\end{rmk}
+
+\begin{exam}
+	\leavevmode
+	\begin{enum}
+		\io
+		Consider $C_n = \ang{x \mid x^n=1}$ for $n \geq 1$.
+		A representation of $C_n$ is a $k$-module $V$ and an invertible map $X$ with $X^n=\id_V$.
+		
+		Let $n=2$, $k=\RR$ and $V=\RR^2$.
+		Then we could take $X=\id_V$, $X=-\id_V$ or $X$ to be a reflecion or any other linear transformation with eigenvalues $1$ and $-1$ (glide reflections, (where the eigenspaces not perpendicular)).
+		The Jordan normal form theorem tells us that this is a complete list of $\RR[C_2]$-module structures on $\RR^2$.
+		
+		Note that if $k$ has characteristic two, then the matrix
+		$\left(\begin{smallmatrix}
+		1 & 1 \\ 0 & 1
+		\end{smallmatrix}\right)$
+		squares to the identity, so there are more $\RR[C_2]$-module structures on $\RR^2$.
+		
+		\io
+		Consider $D_n = \ang{x,y \mid x^n=1,y^2=1,yx=x\inv y}$.
+		A representation of $D_n$ is a $k$-module $V$ together with invertible maps $X$ and $Y$ such that $X^n=Y^2=\id_V$ and $YX=X\inv Y$.
+		
+		Let $n=2$, $k=\RR$ and $V=\RR^2$.
+		(Then $D_2 \cong V_4$, the Klein four-group.)
+		Then the defining relations are $X^2=Y^2=1$ and $XY=YX$.
+		So we the following list of $\RR[D_2]$-module structures on $\RR^2$:
+		\begin{enum}
+			\io $X=\id$, $Y=\id$
+			\io $X=\id$, $Y=-\id$
+			\io $X=\id$, $Y$ a glide reflection
+			\io $X=-\id$, $Y=\id$
+			\io $X=-\id$, $Y=-\id$
+			\io\label{item:casef} $X=-\id$, $Y$ a glide reflection
+			\io $X$ a glide reflection, $Y=\id$
+			\io $X$ a glide reflection, $Y=-\id$
+			\io $X$ and $Y$ commuting glide reflections
+			\par
+			In this case, $X$ and $Y$ preserve each others' eigenspaces, hence they have the same eigenspaces.
+			So there are two sub-cases:
+			\begin{enum}
+				\io\label{item:case2i'}
+				The $\pm1$-eigenspace of $X$ is the $\pm1$-eigenspace of $Y$ $\iff X=Y$.
+				\par
+				A representation of this type is not faithful (injective).
+				
+				\io\label{item:case2i''}
+				The $\pm1$-eigenspace of $X$ is the $\mp1$-eigenspace of $Y$ $\iff X=-Y$.
+				\par
+				A representation of this type is faithful.
+				In this case, we have
+				\begin{align*}
+					1 &\mapsto \id \\
+					x &\mapsto X \\
+					y &\mapsto -X \\
+					xy &\mapsto -\id
+				\end{align*}
+				A standard way of thinking about $V_4$ is to let $X$ be reflection about the $x$-axis and $Y$ reflection about the $y$-axis.
+				
+				Note that the representation in case \ref{item:casef} is given by
+				\begin{align*}
+					1 &\mapsto \id \\
+					x &\mapsto -\id \\
+					y &\mapsto Y \\
+					xy &\mapsto -Y
+				\end{align*}
+				since $XY=-Y$ in this case.
+				So the two representations are not the same.
+			\end{enum}
+		\end{enum}
+	\end{enum}
+\end{exam}
+
+\begin{rmk}
+	Translating the definition of module homomorphism to representations, we see that two representations $(V,\rho)$ and $W<\sigma)$ of $G$ over $k$ are isomorphic $\iff$ there exists an invertible linear map $\Theta:V \isoto W$ such that $\theta\rho(g)=\sigma(g)\theta$ for all $g \in G$, or equivalently, $\theta\rho(g)\theta\inv=\sigma(g)$ for all $g \in G$.
+\end{rmk}
+
+\begin{rmk}
+	The classifications in examples 1 and 2 were up to the equivalence relation induced by isomorphisms.
+	
+	If the representations in case \ref{item:case2i'} and \ref{item:case2i''} are isomorphic, then there exists a $\theta \in \GL_2(\RR)$ such that $\theta\rho(x)\theta\inv = \sigma(x)$ and some $\phi \in \GL_2(\RR)$ such that $\phi\rho(y)\phi\inv=\sigma(y)$ but no \underline{single} $\theta \in \GL_2(\RR)$ which does both simultaneously.	
+\end{rmk}
+
+\begin{rmk}
+	We want to classify finite-dimensional representations of $G$ over $k$.
+	Choosing bases, this amounts to a question about matrices: we specify a matrix $\rho(g) \in \GL_n(k)$ for each $g \in G$ satisfying the relations of $G$.
+	Then an isomorphism of representations is a single matrix $M \in \GL_n(k)$ which satisfies $M\rho(g)M\inv=\sigma(g)$ for all $g \in G$.
+	That is, $M$ simultaneously conjugates elements of one representation to the other.
+	(This is known as simultaneous conjugacy or similarity.)
+	
+	These matrix equations work fine for small groups, but for large groups it becomes difficult.
+	We will study group representations using the group algebra instead.
+\end{rmk}

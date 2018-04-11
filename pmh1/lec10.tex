@@ -1,0 +1,56 @@
+\section{2018-04-11 Lecture}
+
+\begin{proof}
+	Set $G=\pi_1(\wt X,\wt x_0)$ and $H=p_*(\pi_1(\wt X,\wt x_0))$.
+	We first show that $\Phi$ is well-defined.
+	If $g \simeq g' \in [g]$, then $\wt g \simeq \wt g'$ where $\wt g$ and $\wt g'$ are the unique lifts of $g$ and $g'$ respectively starting at $\wt x_0$.
+	Now let $[h] \in H$, so $\wt h$ is a loop at $x_0$.
+	Then $\wt h \cdot \wt g$ is a (unique) lift of $h \cdot g$ from $\wt h(0)=\wt x_0$ to $\wt g(1)$.
+	Then $\Phi([h][g])=\wt g(1) = \Phi([g])$, so $\Phi$ is well-defined.
+	
+	We now show that $\Phi$ is injective.
+	Let $g_1$ and $g_2$ be two loops in $X$ at $x_0$ with $\wt g_1(1) = \wt g_2(1)$ where $\wt g_1$ and $\wt g_2$ are the unique lifts of $g_1$ and $g_2$ respectively at $\wt x_0$.
+	Then $\wt g_1 \cdot \bar{\wt g}_2$ is a loop in $\wt X$ at $\wt x_0$ and hence is in $G$.
+	Then applying $p$ gives that $g_1 \cdot \bar g_2$ is a loop in $X$ at $x_0$ and hence is in $H$.
+	Therefore $H[g_1]=H[g_2]$.
+	
+	We now show that $\Phi$ is surjective.
+	For any $\wt y_0 \in p\inv[x_0]$, let $\wt f$ be a path in $\wt X$ from $\wt x_0$ to $\wt y_0$.
+	Then $p\wt g$ is a loop in $X$ at $x_0$.
+	So $\Phi(H[p\wt g]) = \wt y_0$ by definition.
+\end{proof}
+
+\begin{exer}
+	If $\wt X$ is simply connected, show that there is a bijection of sets
+	\begin{align*}
+		\Theta: \left\{[\gamma] \mid \gamma:I \to X \text{ with } \gamma(0)=x_0\right\} &\to \wt X \\
+		[\gamma] &\mapsto \wt \gamma(1)
+	\end{align*}
+	where $\wt\gamma$ is the unique lift of $\gamma$ with $\wt\gamma(0)=\wt x_0$.
+\end{exer}
+
+\begin{proof}
+	Since $\gamma \simeq \gamma' \iff \wt \gamma \simeq \wt \gamma' \implies \wt\gamma(1) = \wt\gamma'(1)$, $\Theta$ is well-defined.
+	Now $\wt\gamma(1)=\wt\gamma'(1)$, so since there is a unique homotopy class of paths between any two endpoints in $\wt X$, we have $\wt\gamma \simeq \wt\gamma' \iff \gamma \simeq \gamma'$, so $\Theta$ is injective.
+	If $\wt y_0 \in \wt X$, then there exists a path $\wt\gamma: I \to \wt X$ from $\wt x_0$ to $\wt y_0$ with $p\wt\gamma: I \to C$ lifting uniquely to $\wt\gamma$.
+	Then $\Theta$ is surjective.
+\end{proof}
+
+\begin{prop}[Lifting criterion]
+	There exists a lift $\wt f: (Y,y_0) \to (\wt X,\wt x_0)$ of $f: (Y,y_0) \to (X,x_0)$ if and only if
+	\[f_*(\pi_1(Y,y_0)) \subseteq p_*(\pi_1(\wt X,\wt x_0))\]
+\end{prop}
+
+\begin{prop}
+	See Hatcher page 62.
+\end{prop}
+
+\begin{exam}
+	\leavevmode
+	\begin{enum}
+		\io If $X=S^1$, $f: Y \to X$ is the two-loop helix covering space of $X$ and $\wt X$ is the infinite helix, then $f$ does not lift to $\wt X$.
+		\io If $X=S^1$, $f: Y \to X$ is the four-loop helix covering space of $X$ and $\wt X$ is the two-loop helix, then $f$ does lift to $\wt X$.
+		\io If $Y=I$ then any map $I \to (X,x_0)$ lifts to $(\wt X,\wt x_0)$ since $I$ is simply connected.
+		This is just a restatement of the fact that paths have lifts.
+	\end{enum}
+\end{exam}
