@@ -1,0 +1,159 @@
+\section{2018-04-12 Lecture}
+
+\begin{thm}[Maschke's Theorem]
+	If $G$ is a finite group and $k$ is a field such that the $\cha k$ does not divide $G$, then $k[G]$ is semisimple, that is, every representation of $G$ over $k$ is semisimple.
+\end{thm}
+
+\begin{rmk}
+	The converse to Maschke's theorem is also true.
+\end{rmk}
+
+\begin{proof}
+	Let $V$ be a representation of $G$ over $k$ (a $k[G]$-module).
+	Let $W$ be a $k[G]$-submodule of $V$.
+	We want to show that there is a $k[G]$-submodule $W'$ of $V$ such that $V=W\oplus W'$.
+	Equivalently, we want to show that there is a $k[G]$-module homomorphism $\pi: V \to W$ such that $\pi$ is the identity on $W$.
+	Then defining $W'=\ker\pi$ gives the desired direct sum decomposition (it is easy to check $V=W\oplus\ker\pi$ with $v=\pi(v)+(v-\pi(v))$.
+	
+	Certainly there is some complementary \underline{subspace} $X$ of $V$ such that $V=W\oplus X$.
+	So there is certainly a linear map $\tau:V \to W$ such that $\tau$ is the identity of $W$.
+	We make $\tau$ in to a $k[G]$-module homomorphism by `averaging over the group':
+	Define
+	\begin{align*}
+		\pi: V &\to W \\
+		v &\mapsto \frac 1{\abs{G}} \sum_{g \in G} g \tau(g\inv v)
+	\end{align*}
+	where we have used that $\abs{G}$ is invertible in $k$.	
+	Now if $w \in W$, then
+	\[\pi(w) = \frac 1{\abs{G}} \sum_{g \in G} g\tau(g\inv w) = \frac 1{\abs{G}} \sum_{g \in G} gg\inv w = w \]
+	so $\pi$ is the identity on $W$.
+	We now check that $\pi(hv)=h\pi(v)$ for all $h \in G$ and $v \in V$.
+	We have
+	\[\pi(hv) = \frac 1{\abs{G}} \sum_{g \in G} g\tau(g\inv hv) = \frac 1{\abs{G}} \sum_{g' \in G} hg\tau\left((g')\inv v\right) = h\pi(v)\]
+	where we have used the change of variables $g=hg'$.
+\end{proof}
+
+\begin{rmk}
+	If $\cha k \nmid p$, then for any element $x$ in any $k[G]$-module $X$, then
+	\[x' = \frac 1{\abs{G}} \sum_{g \in F} gx\]
+	is always a $G$-invariant element of $X$.
+	
+	The above proof used this principle in the case where $X=\Hom_k(V,W)$ with the action of $G$ defined by $g \cdot\tau = g\tau g\inv$.
+\end{rmk}
+
+\begin{proof}
+	For all $h \in G$, we have
+	\[hx' = \frac 1{\abs{G}} \sum_{g \in G} hgx = \frac 1{\abs{G}} \sum_{g' \in G} g'x = x'\]
+	where we have used the substitution $g'=hg$.
+\end{proof}
+
+\begin{cor}[Consequences of Maschke's theorem]
+	\leavevmode
+	\begin{enum}
+		\io
+		Any square matrix $A$ of finite order $n$ over $\CC$ is diagonalisable.
+		Such a matrix defines a representation of $Z_n$ over $\CC$.
+		Then Maschke's theorem implies that this representation is a direct sum of simple $\CC[Z_n]$-modules, each of which is one-dimensional.
+		So the vector space has a basis of eigenvectors for $A$.
+		
+		Another way to see this is to check that no Jordan block of size larger than $1$ has finite order over $\CC$.
+		
+		\io
+		Applying Wedderburn's theorem to $k[G]$ (under the assumptions of Maschke's theorem) we have
+		\[k[G] \cong \Mat_{n_1}(D_1) \times \cdots \times \Mat_{n_r}(D_r)\]
+		where $D_1,\ldots,D_r$ are division algebras over $k$ with dimensions $n_1,\ldots,n_r$ respectively.
+		
+		More specifically, there are (up to isomorphism) finitely many simple $k[G]$-modules $S_1,\ldots,S_r$ with corresponding division algebras $D_i=\End_{k[G]}(S_i)$ (which are all $k$ if $k$ is algebraically closed).
+		Moreover, the algebra homomorphism $\rho: k[G] \to \End(S_1\oplus\cdots\oplus S_r)$ is injective with image $\End_{D_1}(S_1)\times\cdots\times\End_{D_r}(S_r)$.
+		If $k$ is algebraically closed then this implies that
+		\[\abs{G} = \dim k[G] = \dim\left(\End(S_1)\times\cdots\times\End(S_r)\right) = \sum_{i=1}^r (\dim S_i)^2\]
+		the \textbf{sum of squares formula}.
+	\end{enum}
+\end{cor}
+
+\begin{exam}
+	\leavevmode
+	\begin{enum}
+		\io
+		Let $G=Z_3$ and $k=\CC$.
+		Since $Z_3$ is abelian we know that the simple $\CC[Z_3]$-modules are one-dimensional.
+		A one-dimensional $\CC[Z_3]$-module is $\CC$ with a chosen third root of unit (to represent $x$).
+		So there are three simple modules $\CC_1$, $\CC_\omega$ and $\CC_{\omega^2}$ where $\omega=\exp(2\pi/3)$.
+		Then the sum of squares formula tels us that $3=1^2+1^2+1^2$.
+		
+		More generally, if $G$ is abelian then the number of simple (that is, one-dimensional) $\CC[G]$-modules (up to isomorphism) equals $\abs{G}$.
+		We will see later that if $G$ is not abelian then there exists a simple $\CC[G]$-module of dimension greater than $1$.
+		
+		\io
+		Let $k=\CC$ and $G=\CC[S_3]$, so $\abs{G}=6$.
+		The one-dimensional representations of $\CC[S_3]$ are just the group homomorphisms $\chi: S_3 \to \CC^\times$.
+		There are two:
+		\begin{enum}
+			\io
+			The trivial representation: $\psi(\sigma)=1$ for all $\sigma\in S_n$
+			
+			\io
+			The sign representation: $\eps(\sigma)=\sgn(\sigma)$
+		\end{enum}
+		Note that the above two homomorphisms are both constant on conjugacy classes of $S_3$ (\textbf{class functions}).
+		(In fact more is true: they are \textbf{characters}.)
+		
+		There is also a two-dimensional $\CC[S_3]$-module.
+		Let us first consider the \textbf{standard representation} $\CC^3$ of $S_3$ where $S_3$ acts by permuting co-ordinates:
+		\[\sigma
+		\begin{bmatrix}
+			a_1 \\ a_2 \\ a_3
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			a_{\sigma\inv(1)} \\ a_{\sigma\inv(2)} \\ a_{\sigma\inv(3)}
+		\end{bmatrix}\]
+		Then there is a direct sum decomposition of $\CC[S_3]$-submodules $\CC^3=H\oplus L$:
+		\[L=\CC
+		\begin{bmatrix}
+			a_1 \\ a_2 \\ a_3
+		\end{bmatrix}
+		\quad\text{and}\quad
+		H=\left\{
+		\begin{bmatrix}
+			a_1 \\ a_2 \\ a_3
+		\end{bmatrix}
+		\Bigg \vert \
+		a_1+a_2+a_3=0
+		\right\}\]
+		Note that $L$ is isomorphic to the trivial representation.
+		We can define a basis of $H$ as
+		\[H=\left\{
+		\begin{bmatrix}
+			1 \\ -1 \\ 0
+		\end{bmatrix},
+		\begin{bmatrix}
+			1 \\ 0 \\ -1
+		\end{bmatrix}
+		\right\}\]
+		With respect to that basis, the representing matrices are:
+		\[(1\ 2)=
+		\begin{bmatrix}
+			-1 & -1 \\
+			0 & 1
+		\end{bmatrix}
+		\quad\text{and}\quad
+		(1\ 3)=
+		\begin{bmatrix}
+			1 & 0 \\
+			-1 & -1
+		\end{bmatrix}
+		\]
+		These matrices have no eigenvector in common so there is no one-dimensional subspace of $H$ in which $\CC[S_3]$-submodule.
+		So $H$ is a simple $\CC[S_3]$-module.
+		We will see later that this generalises to $S_n$.
+		The sum of squares formula ($1^2+1^2=2^2=6$) tells us that these are all the simple $\CC[S_3]$-modules.
+		Simple $\CC[S_n]$-modules are parametrised by partitions of $n$ (Young diagrams).
+		For $S_3$, we have
+		\begin{align*}
+			(3) &\longleftrightarrow \text{the trivial representation} \\
+			(2,1) &\longleftrightarrow \text{the two-dimensional simple representation} \\
+			(1,1,1) &\longleftrightarrow \text{the sign representation}
+		\end{align*}
+	\end{enum}
+\end{exam}
