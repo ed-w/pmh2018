@@ -1,0 +1,91 @@
+\section{2018-04-16 Lecture}
+
+Two important applications of Baire's theorem to functional analysis:
+\begin{enum}
+	\io the open mapping theorem
+	\io the principle of uniform boundedness
+\end{enum}
+
+\begin{thm}[Open mapping theorem]
+	If $E$ and $F$ are Banach spaces and if $T \in \cL(E,F)$ is a bijection, then $T\inv \in \cL(F,E)$ ($\iff T$ is open).
+\end{thm}
+
+\begin{prop}
+	Let $E$ be a Banach space, $F$ a normed space and $T \in \cL(E,F)$.
+	Then the following are equivalent:
+	\begin{enum}
+		\io $T$ is open.
+		\io There exists an $r>0$ such that $B_F(0;r) \subseteq T(\overline{B_E(0;1)})$.
+		\io There exists an $r>0$ such that $B_F(0;r) \subseteq \overline{T(\overline{B_E(0;1)})}$.
+	\end{enum}
+\end{prop}
+
+\begin{proof}
+	(3)$\implies$(2):
+	We will show that if $B_F(0;r) \subseteq \overline{T(\overline{B_E(0;1)})}$, then $B_F(0;r/2) \subseteq T(\overline{B_E(0;1)})$.
+	Take $y \in B_F(0;r/2)$ which implies that $2y \in B_F(0;r) \subseteq \overline{T(\overline{B_E(0;1)})}$.
+	Then there exists an $x_1 \in B_E(0;1)$ such that $\norm{2y-Tx_1}_F=\norm{Tx_1-2y}_F<r/2$.
+	Now take $y_2 = 2y-Tx_1 \in B_F(0,r/2)$.
+	Then there exists an $x_2 \in B_E(0;1)$ such that $\norm{2y-Tx_2}_F=\norm{4y-2Tx_1-Tx_2}_F<r/2$.
+	Continue inductively to get a sequence of points $x_1,x_2,\ldots \in \overline{B_E(0;1)}$ such that
+	\begin{equation}\label{11:star}
+		\norm{2^ny-2^{n-1}Tx_1-\cdots-2Tx_{n=1}-Tx_n}_F = \norm{y-T\left(\sum_{k=1}^n \frac{x_k}{2^k}\right)}_F < \frac r{2^{n+1}}
+	\end{equation}
+	Since $E$ is a Banach space, we have that
+	\[\sum_{n=1}^\infty z_n \text{ exists} \quad \iff \quad \sum_{n=1}^\infty \norm{z_n} < \infty\]
+	Now define $x = \sum_{k=1}^\infty \frac{x_k}{2^k} \in E$.
+	Then
+	\[\norm{\sum_{k=1}^N \frac{x_k}{2^k}} \leq \sum_{k=1}^N \frac 1{2^k} <1\]
+	so $\norm{x}_E \leq 1$.
+	Now by continuity of $T$, we have
+	\[Tx = \sum_{k=1}^\infty \frac 1{2^k} Tx_k = y\]
+	where we have used equation \ref{11:star}.
+	Hence
+	\[z_n \defeq \sum_{k=1}^n \frac{Tx_k}{2^k} \to y\]
+	in $F$.
+	
+	(2)$\implies$(1):
+	Since $B_F(0;r) \subseteq T(\overline{B_E(0:1)})$, for all $\eps>0$ we have $B_F(0;r\eps) \subseteq T(\overline{B_E(0;\eps)})$.
+	We want to show that for all $x \in E$, for all $\eps>0$ and for all $x' \in B_E(x;\eps)$, there exists an $\eps''>0$ such that $B_F(Tx',\eps'') \subseteq T(B(x,\eps))$.
+
+
+	Now there exists an $\eps'>0$ such that $\overline{B_E(x',\eps')} \subseteq B_E(x,\eps)$.
+	Then by (2), there exists an $\eps''>0$ such that $B_F(0;\eps'') \subseteq T(\overline{B_E(0;\eps')})$.
+	Then
+	\[B_F(Tx',\eps'') = Tx'+B_F(0;\eps'') \subseteq Tx' + T(\overline{B_E(0;\eps')}) = T(x'+\overline{B(0;\eps')}) = T(\overline{B_E(x',\eps')}) \subseteq T(B_E(x,\eps))\]
+	
+	(1)$\implies$(3):
+	Since $T$ is open, $T(B_E(0;1))$ is open in $F$.
+	Therefore there exists an $r>0$ such that $B(0;r) \subseteq T(B_E(0;1)) \subseteq T(\overline{B_E(0;1)}) \subseteq \overline{T(\overline{B_E(0;1)})}$.
+\end{proof}
+
+\begin{proof}[Proof of open mapping theorem]
+	We will show that $T\inv$ is bounded.
+	We will show that there exists an $r>0$ such that
+	\[B_F(0;r) \subseteq S \defeq \overline{T(\overline{B_E(0;1)})}\]
+	Then $W$ is origin symmetric and convex.
+	We will use the following lemma.
+	
+\begin{lem}\label{11:lem}
+	If $S \subset F$ where $F$ is a normed space and $S$ is origin symmetric and convex with $\inte S \neq \emptyset$, then there exists an $\eps>0$ such that $B_F(\eps,0) \subseteq S$.
+\end{lem}
+	
+	Let
+	\[C_n = \overline{T(\overline{B_E(0;n)})} \quad \text{and} \quad F = \bigcup_{n \geq 1} C_n\]
+	Then the $C_n$ are closed and $F$ is a complete metric space.
+	The by Baire's theorem there exists an $n_0 \geq 1$ such that $\inte C_{n_0} \neq \emptyset$.
+	Then
+	\[C_{n_0} = \overline{T(\overline{B_E(0;n_0)})} = \overline{T(\overline{n_0B_E(0;1)})} = \overline{n_0T(\overline{B_E(0;1)})} = n_0\overline{T(\overline{B_E(0;1)})}\]
+	Then the map $f: F \to F$ defined by $y \mapsto n_0y$ satisfies $f[S]=C_{n_0}$ and is a homeomorphism (by definition).
+	Hence $\int S \neq \emptyset$ and by the lemma there exists an $r>0$ such that $B_F(0;r) \subseteq S$.	
+\end{proof}
+
+\begin{proof}[Proof of Lemma \ref{11:lem}]
+	Since $\inte S \neq \emptyset$ there exists an $x \in F$ and an $\eps>0$ such that $B_F(x;\eps) \subseteq S$.
+	Then $-B_F(x;\eps)=B_F(-x;\eps) \subseteq S$.
+	We will show that $B_F(0;\eps) \subseteq S$.
+	
+	Let $y \in B_F(0;\eps)$ and write $y= (y+x)/2+(y-x)/2$.
+	Now $x+y \in B_F(x;\eps)$ and $y-x \in B_F(-x;\eps)$.
+	Therefore $y \in S$.
+\end{proof}
