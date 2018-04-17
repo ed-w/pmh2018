@@ -1,0 +1,94 @@
+\section{2018-04-17 Lecture}
+
+\begin{cor}
+	If $E$ is a vector space and $\norm{\cdot}_A$ and $\norm{\cdot}_B$ are two norms on $E$ which make $E$ a Banach space such that there exists a $C>0$ such that $\norm{x}_A\leq C\norm{x}_B$ for all $x \in E$, then $\norm{\cdot}_A$ and $\norm{\cdot}_B$ are equivalent.
+\end{cor}
+
+\begin{proof}
+	Since $\id: (E,\norm{\cdot}_B) \to (E,\norm{\cdot}_A)$ is bounded, its inverse is also bounded.
+	Hence there exists a $c>0$ such that $\norm{x}_B<c\norm{x}_A$.
+\end{proof}
+
+\begin{defn}
+	If $E$ and $F$ are normed spaces and $T \in \Hom(E,F)$, then the \textbf{graph} of $T$ is defined as
+	\[\Gamma(T) = \{(x,Tx) \mid x \in E\} \subseteq E \times F.\]
+	Now $E \times F$ has norm $\norm{(x,y)}=\norm{x}_E+\norm{y}_F$.
+	We have the following properties:
+	\begin{enum}
+		\io If $\Gamma(T)$ is closed, then if there are sequences $x_n \to x$ and $Tx_n \to y$, then $Tx=y$.
+		\io If $\Gamma(T)$ is continuous, then if there is a sequence $x_n \to x$ we have $Tx_n \to Tx$.
+	\end{enum}
+	It is clear that if $T$ is continuous then it is closed.
+	In general the converse is not true.
+\end{defn}
+
+\begin{thm}[Closed graph theorem]
+	If $E$ and $F$ are Banach spaces with $T \in \Hom(E,F)$ such that $\Gamma(T)$ is closed, then $T$ is continuous.
+\end{thm}
+
+\begin{proof}
+	The graph $\Gamma(T)$ enables us to define another norm $\norm{\cdot}_\Gamma$ on $E$:
+	\[\norm{x}_\Gamma = \norm{x}_E + \norm{Tx}_F\]
+	We now show that $(E,\norm{\cdot}_\Gamma)$ is a Banach space.
+	We have that
+	\[\norm{x_n-x_m}_\Gamma = \norm{x_n-x_m}_E + \norm{Tx_n-Tx_m}_F.\]
+	Let $(x_n)$ be a Cauchy sequence in $E$ with respect to in $\norm{\cdot}_\Gamma$.
+	Then since $\norm{\cdot}_E \leq \norm{\cdot}_\Gamma$ there exists an $x \in E$ such that $x_n \to x$ in $\norm{\cdot}_E$.
+	Since $\norm{\cdot}_F \leq \norm{\cdot}_\Gamma$, we have that $(Tx_n)$ is a Cauchy sequence in $F$ and so converges to a limit.
+	Since $T$ is closed, this limit must be $Tx$.
+	Hence
+	\[\norm{x_n-x}_\Gamma = \norm{x_n-x}_E + \norm{Tx_n-Tx}_F \to 0\]
+	so $(x_n)$ converges in $\norm{\cdot}_\Gamma$.
+		
+	Now $\norm{x}_E \leq \norm{x}_\Gamma$ for all $x \in E$.
+	Then by the open mapping theorem there exists a $c>0$ such that $\norm{x}_\gamma \leq c\norm{x}_E$.
+	Hence $\norm{Tx}_F \leq \left(\frac 1c-1\right)\norm{x}_E$.
+\end{proof}
+
+\begin{thm}[Principle of uniform boundedness/Banach-Steinhaus theorem]
+	Let $E$ and $F$ be Banach spaces.
+	Let $(T_\alpha)_{\alpha \in A}$ be a family of operators in $\cL(E,F)$ such that $\sup_\alpha \norm{T_\alpha x}_F<\infty$ for all $x \in E$.
+	Then $\sup_\alpha \norm{T_\alpha}<\infty$.
+\end{thm}
+
+\begin{cor}
+	Let $E$ and $F$ be Banach spaces and $(T_n)$ a sequence in $\cL(E,F)$ such that $\lim_n T_nx$ exists.
+	Then $T=\lim_n T_n \in \cL(E,F)$.
+\end{cor}
+
+\begin{proof}
+	For all $x \in E$ we have $\sup_n \norm{T_nx}<\infty$, so $\sup_n\norm{T_n}<\infty$.
+	Then
+	\[\norm{T} = \sup_{\norm{x}\leq 1} \norm{Tx} \leq \sup_{\norm{x}\leq 1} \norm{\lim_{n \to \infty} T_nx} = \sup_{\norm{x}\leq 1}\lim_{n \to \infty} \norm{T_nx} \leq \sup_{n \geq 1} \norm{T_n} \qedhere\]
+\end{proof}
+
+\begin{exer}
+	Give a counterexample in the case where $E$ or $F$ are not complete.
+	(Hint: Let $E$ and $F$ be the set of sequences in $K$ with finite support with the $1$-norm.)
+\end{exer}
+
+\begin{proof}[Proof of the PUB]
+	For all $n \geq 1$, define
+	\[E_n=\{x \in E \mid \norm{T_\alpha x} \leq n \text{ for all } \alpha \in A\}.\]
+	Now $E_n$ is the intersection of $\abs{A}$ closed sets and $E = \bigcup_{n \geq 1} E_n$.
+	So by the Baire category theorem there exists an $n_0 \geq 1$ such that $\inte E_{n_0} \neq \emptyset$.
+	Then there exists an $x_0 \in E$ and an $r>0$ such that $B(x_0;r) \subseteq E_n$.
+	
+	Now let $z \in E$ such that $\norm{z} \leq 1$.
+	Then
+	\[\norm{T_\alpha(rz)} = \norm{T_\alpha(x_0+rz)-T_\alpha(x_0)} \leq \norm{T_\alpha(x_0+rz)} + \norm{T_\alpha(x_0)} \leq 2n_0\]
+	so $\norm{T_\alpha(z)} \leq 2n_0/r$.
+	Then taking supremums over $\norm{z}=1$ and over $\alpha \in A$ we get $\sup_\alpha\norm{T_\alpha}<\infty$.
+\end{proof}
+
+\begin{rmk}
+	It was falsely conjectured by Dirichlet, Weierstrass and Riemann that if $f \in \cC_{2\pi}([0,2\pi])$ then
+	\[f(t) = \sum_{n \in \ZZ} \ang{f,e_n}e_n(t)\]
+	for all $t \in [0,2\pi]$, where $C_{2\pi}$ denotes those continuous functions with period $2\pi$.
+\end{rmk}
+
+\begin{thm}
+	For all $f \in \cC_{2\pi}([0,2\pi])$ define
+	\[f_n(t) = \sum_{\abs{k} \leq n}\ang{f,e_k}e_k(t).\]
+	Then for all $a \in [0,2\pi]$, there exists an $f \in C_{2\pi}([0,2\pi])$ such that $f_n(a) \not\to f(a)$.
+\end{thm}
