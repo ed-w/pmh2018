@@ -1,0 +1,69 @@
+\section{2018-04-18 Lecture}
+
+\begin{defn}
+	For a space $X$ define a set
+	\[\wt X^0 = \{[\gamma] \mid \gamma \text{ a path in } X \text{ starting at } x_0\}.\]
+	Then there is a map of sets
+	\begin{align*}
+		p: \wt X^0 &\to X \\
+		[\gamma] &\mapsto \gamma(1)
+	\end{align*}
+\end{defn}
+
+\begin{prop}
+	If $X$ is PLPC and semilocally simply connected, then for $H \leq \pi_1(X,x_0)$ there exists a connected covering space $p:(X_H,\wt x_0) \to (X,x_0)$ with $p_*(\pi_1(X,x_0))=H$.
+\end{prop}
+
+\begin{proof}
+	We first consider the case $H=1$.
+	Then we need $\wt X$ to be simply connected.
+	Define a basis for the topology on $X$ by
+	\[\ca U = \{U \subseteq X \mid U \text{ is path connected and } \iota_*: \pi_1(U) \to \pi_1(X) \text{ is trivial}\}\]
+	We now check that this is a basis for the topology.
+	
+	We need to show that every open set in $X$ is a union of the basis elements.
+	Let $x \in W \subseteq X$ where $W$ is any open subset of $X$.
+	Then since $X$ is semilocally simply connected, there exists a neighbourhood $V$ of $x$ with the homomorphism induced by the inclusion being trivial.
+	Then since $X$ is locally path connected there exists an open set $U^x$ with $x \in U^x \subseteq V \cap W$ with $U^x$ path connected.
+	Then the homomorphism induced by the inclusion $U^x \injto X$ is trivial, so $U^x \in \ca U$.
+	Then by construction, $W = \bigcup_{x \in W} U^x$.
+	
+	Now let $U \in \ca U$ and let $\gamma$ be a path in $X$ from $x_0$ to a point in $U$.
+	Then define
+	\[U_{[\gamma]} = \{[\gamma\cdot\eta] \mid \eta \text{ is a path in } U \text{ starting at } \gamma(1)\} \subseteq \wt X^0\]
+	Now we have the following properties:
+	\begin{itm}
+		\io $U_{[\gamma]}$ depends only on $[\gamma]$.
+		\io $p: Y_{[\gamma]} \to U$ is a bijection.
+		\io If $[\gamma'] \in U_{[\gamma]}$, then $U_{[\gamma]} = U_{[\gamma']}$.
+	\end{itm}
+	Then $\{U_{[\gamma]}\}_\gamma$ forms a basis for a topology on $\wt X^0$.
+	Clearly the basis elements cover $\wt X^0$.
+	We will omit the proof of the intersection property.
+	We will now write $\wt X$ for $\wt X^0$ to indicate that it is a topological space.
+	
+	Note that $p: U_{[\gamma]} \to U$ is a homeomorphism.
+	Then $p: \wt X \to X$ is continuous and is a covering space.
+	
+	We now show that $\wt X$ is path connected.
+	Take $[\gamma] \in \wt X$.
+	Then for $y \in I$, define $\gamma_t: I \to X$ by
+	\begin{align*}
+		\gamma_t(s) =
+		\begin{cases}
+			\gamma(s) & s \leq t \\
+			\gamma(t) & s>t
+		\end{cases}
+	\end{align*}
+	Then $t \mapsto [\gamma_t]$ is a path from $[c]$ to $[\gamma]$ in $\wt X$.
+	
+	We now show that $\wt X$ is simply connected.
+	Take a loop $\gamma in X$ at $x_0$.
+	Then $\wt \gamma: t \mapsto [\gamma_t]$ is also a loop with $[\gamma]=[c]$.
+	Thus $\gamma$ is null-homotopic.
+	
+	We now consider the general case.
+	Define
+	\[X_H = \wt X/\sim \quad \text{where} \quad [\gamma_1]\sim[\gamma_2] \iff [\gamma_1\cdot\ol\gamma_2] \in H\]
+	Then $p$ factors through $H$ to give $p_H: X_H \to X$ which is a covering space.
+\end{proof}
