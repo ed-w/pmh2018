@@ -20,7 +20,7 @@
 	So $\chi_V(ghg\inv) = \tr(\rho(g)\rho(h)\rho(g)\inv) = \chi_V(h)$, so $\chi_V$ is constant on each conjugacy class of $G$.
 	
 	Note that if $V \cong W$, then $\chi_V=\chi_W$.
-	To see this, note that if $\theta: V \isoto W$ is a $\CC[G]$-isomorphism, then $\rho_W(g)=\theta\rho_V(g)\theta\inv$, so their traces are the same.
+	To see this, note that if $\theta: V \isoto W$ is a $\CC G$-isomorphism, then $\rho_W(g)=\theta\rho_V(g)\theta\inv$, so their traces are the same.
 \end{rmk}
 
 \begin{defn}
@@ -40,7 +40,7 @@
 		In fact, $\chi_V \in G^\vee$, the vector space of one-dimensional characters.
 		
 		\io\label{12:s3}
-		Recall the simple two-dimensional simple $\CC[S_3]$-module $P$.
+		Recall the simple two-dimensional simple $\CC S_3$-module $P$.
 		The character $\chi_P$ takes the value $2$ on the identity, $0$ on the transpositions and $-1$ on the $3$-cycles.
 		We can see from this that there is no basis of $P$ which is preserved (as a set) under the action of $S_3$ since the $3$-cycles have negative trace.
 	\end{enum}
@@ -52,14 +52,14 @@
 \end{rmk}
 
 \begin{rmk}
-	If $V$ has a $\CC[G]$-module direct sum decomposition $V_1 \oplus \cdot \oplus V_m$, then we have
+	If $V$ has a $\CC G$-module direct sum decomposition $V_1 \oplus \cdot \oplus V_m$, then we have
 	\[\chi_V = \chi_{V_1}+\cdots+\chi_{V_m}.\]
 	This is because you can use a basis of $V$ which consists of the disjoint union of a basis of each of the $V_i$s.
 	Then the representing matrices are all block-diagonal with non-zero diagonal blocks the representing matrices for the $V_i$s.
 \end{rmk}
 
 \begin{exam}[Example \ref{12:ex}.\ref{12:s3} continued]
-	We have $\CC^3 = L \oplus P$ where $L$ is the trivial representation and $\CC^3$ is the standard representation of $\CC[S_3]$.
+	We have $\CC^3 = L \oplus P$ where $L$ is the trivial representation and $\CC^3$ is the standard representation of $\CC S_3$.
 	Then $\chi_{\CC^3} = \chi_L+\chi_P$.
 	This gives us an easier way to compute $\chi_P$.
 	It is clear that $\chi_{\CC^3}(g)$ is just the number of fixed points of $g \in S_3$.
@@ -67,7 +67,7 @@
 \end{exam}
 
 \begin{rmk}
-	By Maschke's theorem, any $\CC[G]$-module $V$ has a direct sum decompoisiton
+	By Maschke's theorem, any $\CC G$-module $V$ has a direct sum decompoisiton
 	\[V \cong S_1^{\oplus m_1} \oplus \cdots \oplus S_r^{\oplus m_r}\]
 	where $S_1,\ldots,S_r$ is a complete list of simple modules.
 	Then
@@ -75,7 +75,7 @@
 \end{rmk}
 
 \begin{defn}
-	The \textbf{irreducible characters} of $G$ are the characters of the simple $\CC[G]$-modules $\chi_1 = \chi_{S_1}, \ldots, \chi_r = \chi_{S_r}$.
+	The \textbf{irreducible characters} of $G$ are the characters of the simple $\CC G$-modules $\chi_1 = \chi_{S_1}, \ldots, \chi_r = \chi_{S_r}$.
 \end{defn}
 
 \begin{thm}
@@ -88,13 +88,13 @@
 	is one-dimensional and spanned by the trace.
 	The proof is left as an exercise (compute sufficiently many $AB-BA$).
 	Now $F_c(G,\CC)$ can be identified with
-	\[\{f \in \Hom_k(\CC[G],\CC) \mid f(ab)=f(ba) \text{ for all } a,b \in G\}.\]
+	\[\{f \in \Hom_k(\CC G,\CC) \mid f(ab)=f(ba) \text{ for all } a,b \in G\}.\]
 	Then using Wedderburn's theorem, such functions are just linear combinations of functions of the form
-	\[\CC[G] \isoto \prod_{i=1}^r \Mat_{n_i}(\CC) \xto{p_i} \Mat_{n_i}(\CC) \xto{\tr} \CC. \qedhere\]
+	\[\CC G \isoto \prod_{i=1}^r \Mat_{n_i}(\CC) \xto{p_i} \Mat_{n_i}(\CC) \xto{\tr} \CC. \qedhere\]
 \end{proof}
 
 \begin{cor}
-	The number of simple $\CC[G]$-modules is equal to the number of conjugacy classes of $G$ (which is equal to the dimension of $F_c(G,\CC)$).
+	The number of simple $\CC G$-modules is equal to the number of conjugacy classes of $G$ (which is equal to the dimension of $F_c(G,\CC)$).
 \end{cor}
 
 \begin{cor}\label{12:char}

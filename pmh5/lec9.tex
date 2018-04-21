@@ -6,11 +6,11 @@ Representations of finite groups
 	Let $G$ be a finite group and $k$ be a(n algebraically closed) field.
 	A \textbf{representation} of $G$ over $k$ is a $k$-vector space $V$ and a group homomorphism $\rho: G \to \GL(V)$.
 	
-	Equivalently, it is a $k$-vector space $V$ and a $k$-algebra homomorphism $\sigma: k[G] \to \End(V)$ (a $k[G]$-module).
+	Equivalently, it is a $k$-vector space $V$ and a $k$-algebra homomorphism $\sigma: kG \to \End(V)$ (a $kG$-module).
 \end{defn}
 
 \begin{rmk}
-	To see that the two definitions are equivalent, note that $\rho$ determines $\sigma$ since by extending from the vector space basis $G$ in $k[G]$.
+	To see that the two definitions are equivalent, note that $\rho$ determines $\sigma$ since by extending from the vector space basis $G$ in $kG$.
 	It is clear that $\sigma$ determines $\rho$ by restriction, and since $\rho(g)\rho(g\inv)=\id_V$, we have that the image of $\rho$ is in $\GL(V)$.
 \end{rmk}
 
@@ -27,13 +27,13 @@ Representations of finite groups
 		
 		Let $n=2$, $k=\RR$ and $V=\RR^2$.
 		Then we could take $X=\id_V$, $X=-\id_V$ or $X$ to be a reflecion or any other linear transformation with eigenvalues $1$ and $-1$ (glide reflections, (where the eigenspaces not perpendicular)).
-		The Jordan normal form theorem tells us that this is a complete list of $\RR[Z_2]$-module structures on $\RR^2$.
+		The Jordan normal form theorem tells us that this is a complete list of $\RR Z_2$-module structures on $\RR^2$.
 		
 		Note that if $k$ has characteristic two, then the matrix
 		$\left(\begin{smallmatrix}
 		1 & 1 \\ 0 & 1
 		\end{smallmatrix}\right)$
-		squares to the identity, so there are more $\RR[Z_2]$-module structures on $\RR^2$.
+		squares to the identity, so there are more $\RR Z_2$-module structures on $\RR^2$.
 		
 		\io
 		Consider $D_n = \ang{x,y \mid x^n=1,y^2=1,yx=x\inv y}$.
@@ -42,7 +42,7 @@ Representations of finite groups
 		Let $n=2$, $k=\RR$ and $V=\RR^2$.
 		(Then $D_2 \cong V_4$, the Klein four-group.)
 		Then the defining relations are $X^2=Y^2=1$ and $XY=YX$.
-		So we the following list of $\RR[D_2]$-module structures on $\RR^2$:
+		So we the following list of $\RR D_2$-module structures on $\RR^2$:
 		\begin{enum}
 			\io $X=\id$, $Y=\id$
 			\io $X=\id$, $Y=-\id$
