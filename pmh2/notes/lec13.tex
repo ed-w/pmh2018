@@ -1,0 +1,117 @@
+\section{2018-04-23 Lecture}
+
+\begin{prop}[2.2]
+	$S\inv R$ exists and is unique.
+\end{prop}
+
+\begin{proof}
+	We have that $S\inv R$ is a ring and the map
+	\begin{align*}
+	  \iota_S: R &\to S\inv R \\
+	  s &\mapsto \frac{s}{1}
+	\end{align*}
+	Let $f: R \to R'$ be such that $f[S] \subseteq (R')^\times$.
+	Now define the canonical map
+	\begin{align*}
+	  \phi: S\inv R &\to R' \\
+	  \frac{f}{s} &\mapsto f(x)f(s)\inv
+	\end{align*}
+
+	We check that $\phi$ is well-defined.
+	Suppose $x/s = x'/s'$.
+	Then $f(x)f(s)\inv-f(x')f(s')\inv=0 \iff f(s'x-sx')=0$.
+	Now there exists a $u \in S$ such that $u(s'x-sx')=0$.
+	Then $f(u)$ is a unit, so applying $f$ gives the desired result.
+
+	We now show that $\phi$ is unique.
+	We have that $\phi(x/s)\phi(s/1) = \phi(x/1)=f(x)$, so $\phi(x/s)=f(x)f(s)\inv$.
+\end{proof}
+
+\begin{exam}
+  \leavevmode
+  \begin{enum}
+    \io
+    If $R$ is an integral domain, then $S = R \setminus \{0\}$ is a multiplicative set.
+    Then $S\inv R$ is the field of fractions of $R$.
+    Some examples are $\Frac\ZZ=\QQ$ and $\Frac k[x]=k(x)$.
+
+    \io
+    Let $S=\ZZ\setminus(p)$ where $p$ is prime.
+    Then define
+    \[\ZZ_{(p)}=S\inv\ZZ = \left\{ \frac{a}{b} \mid p \nmid b \right\}.\]
+    More generally, if $\kp$ is a prime ideal in $R$, define $S = R \setminus \kp$.
+    Then set $R_\kp = S\inv R$.
+    Now
+    \[\km_\kp = \left\{ \frac{x}{s} \mid x \in \kp, s \in S \right\} \subset R_\kp\]
+    is an ideal in $R_\kp$.
+    This is in fact the unique maximal ideal in $R_\kp$.
+    To see this, note that for $y/t \notin \km_\kp$, we must have $y \notin \kp$, so $t/y \in R_\kp$.
+    This shows that $R_\kp \setminus \km_\kp \subset R_\kp^\times$.
+    Note that $1 \notin \km_\kp$ since if it were, then there would exist a $u \in S$ and an $x/s \in \km_\kp$ such that $u(s-x)=0$.
+    This would imply that $ux=us$, but $ux \in \kp$ and $us \in S$, a contradiction.
+    Note that this also shows that $R_\kp$ is a local ring.
+  \end{enum}
+\end{exam}
+
+\begin{prop}
+  If $\kp$ is a prime ideal of $R$, then $R_\kp$ is a local ring with maximal ideal $\km_\kp$ as defined above.
+\end{prop}
+
+\begin{exam}
+  \leavevmode
+  \begin{enum}
+    \io
+    Let $f \in R$ and $S = \{1,f,f^2,\ldots\}$.
+    Then define $R_f = S\inv R$.
+
+    \io
+    Let $R = \CC[x_1,\ldots,x_n]$ and $\kp$ a prime ideal in $R$.
+    Define the vanishing set
+    \[\cV(\kp) = \{(a_1,\ldots,a_n) \mid f(a_1,\ldots,a_n)=0 \text{ for all } f \in \kp\}.\]
+    Then $R_\kp$ is the ring of rational functions of the form $f/g$ such that the set of non-zeros of $g$ in $\cV(\kp)$ is dense in $\cV(\kp)$.
+
+    \io
+    If $0 \in S$, then all elements of $S\inv R$ are equivalent, hence $S\inv R = 0$.
+    Conversely, if $S\inv R=0$, then $0/1=1/1$ which implies that $0 \in S$.
+
+    \io
+    When is $\iota_S: R \to S\inv R$ injective?
+    If $r/1=0/1$, then there exists a $u \in S$ such that $ur=0$.
+    So $\iota_S$ is not injective $\iff$ $S$ contains $0$ or a zero divisor.
+  \end{enum}
+\end{exam}
+
+\begin{defn}[2.4]
+  Let $S \subset R$ be a multiplicative set and $M$ and $R$-module.
+  Then $S\inv M$ is an $R$-module together with a map $\iota_S: M \to S\inv M$ such that multiplication by $s \in S$ is an isomorphism of $S\inv M$ (i.e.\@ invertible).
+  $S\inv M$ is the \textbf{localisation} of $M$ at $S$.
+\end{defn}
+
+\begin{prop}[2.5]
+  $S\inv M$ exists and is unique.
+\end{prop}
+
+\begin{proof}
+  Existence:
+  Define
+  \[S\inv M = \left\{ \frac{m}{s} \mid m \in M, s \in S \right\}\]
+  where we define $m/s=m'/s' \iff$ there exists a $u \in S$ such that $u(s'm-sm')=0$.
+  This is analogous to the construction of $S\inv R$.
+\end{proof}
+
+\begin{rmk}
+  Note that $S\inv M$ is an $S\inv R$-module via the action
+  \[\frac{x}{s} \cdot \frac{m}{t} = \frac{x \cdot m}{st}.\]
+  This action is well-defined because the following diagram commutes:
+  \begin{equation*}
+    \begin{tikzcd}
+      R \times M \ar[r, "\mu_M"] \ar[d, "\id \times \iota_S"] & M \ar[d, "\iota_S"] \\
+      R \times S\inv M \ar[r, "\mu_{S\inv M}"] \ar[d, "\iota_S \times \id"] & S\inv M \ar[d, "\id"] \\
+      S\inv R \times S\inv M \ar[r, "\mu_{S\inv M}'"] & S\inv M
+    \end{tikzcd}
+  \end{equation*}
+\end{rmk}
+
+\begin{rmk}
+  We will use the notations $M_\kp$ for $\kp$ a prime ideal in $R$ and $M_f$ for $f \in R$.
+\end{rmk}

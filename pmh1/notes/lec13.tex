@@ -1,0 +1,89 @@
+\section{2018-04-23 Lecture}
+
+We know about the correspondence between connected covering spaces with a basepoint and subgroups of the fundamental group.
+What if we ignore basepoints?
+
+\begin{rmk}
+  Consider the covering spaces
+  \begin{align*}
+    p: (\wt X,\wt x_0) &\to (X,x_0) \\
+    p: (\wt X,\wt y_0) &\to (X,x_0) 
+  \end{align*}
+  and take a path $\wt \gamma$ in $\wt X$ from $\wt x_0$ to $\wt y_0$.
+  Now $\gamma = p\wt\gamma$ is a loop in $X$ at $x_0$.
+  Then the following diagram commutes:
+  \begin{equation*}
+    \begin{tikzcd}
+      \pi_1(\wt X,\wt x_0) \ar[r, "p_*"] & \pi_1(X,x_0) \\
+      \pi_1(\wt X,\wt y_0) \ar[u, "\beta_{\wt\gamma}"] \ar[r, "p_*"] & \pi_1(X,x_0) \ar[u, "\beta_\gamma"]
+    \end{tikzcd}
+  \end{equation*}
+  where the vertical arrows are isomorphisms.
+  Then $\beta_\gamma(g) = hgh\inv$ for any $g \in \pi_1(X,x_0)$.
+\end{rmk}
+
+\begin{thm}
+  Let $X$ be PLPC and semi-locally simply connected.
+  Then there is a one-to-one correspondence between isoclasses of connected $p: \wt X \to X$ and conjugacy classes of subgroups of $\pi_1(X,x_0)$.
+\end{thm}
+
+3.4 Deck transformations of $p: \wt X \to X$
+
+\begin{defn}
+  Let $G(\wt X)$ be the group of automorphisms of the covering space $p:\wt X \to X$.
+  These are the homeomorphisms which are isomorphisms from $p: \wt X \to X$ to itself, that is, the homeomorphisms $\phi: \wt X \to \wt X$ satisfiying $p=p\phi$.
+  These are the \textbf{deck transformations} of the covering space $p: \wt X \to X$.
+\end{defn}
+
+\begin{defn}
+  A covering space $p: \wt X \to X$ is called \textbf{normal} if for each $x \in X$ and $\wt x_1, \wt x_2 \in p\inv[x]$ there is a $\phi \in G(\wt X)$ with $\phi(\wt x_1)=\wt x_2$.
+\end{defn}
+
+\begin{exer}
+  Show that we can equivalently replace ``for each $x \in X$'' with ``for one $x_0 \in X$'' in the above definition.
+\end{exer}
+
+\begin{prop}
+  Let $p:(\wt X,\wt x_0) \to (X,x_0)$ be a covering space with $\wt X$ connected.
+  Define $H = p_*(\pi_1(\wt X,\wt x_0))$ and $G = \pi_1(X,x_0)$.
+  Then
+  \begin{enum}
+    \io $p$ is normal $\iff H \trianglelefteq G$.
+    \io $G(\wt X) = N_G(H)/H$ where $N_G(H)$ is the normaliser of $G$ in $H$.
+    \io $p$ is normal $\iff G(\wt X) = G/H$.
+    \io $\wt X$ is simply connected $ \iff G(\wt X)=G$.
+  \end{enum}
+\end{prop}
+
+\begin{proof}
+  See lecture notes.
+\end{proof}
+
+\begin{exam}
+  Consider the covering space of $S^1 \vee S^1$ given by the infinite unit grid in $\RR^2$.
+\end{exam}
+
+3.5 Group actions
+
+\begin{defn}
+  An action of a group $G$ on a topological space $Y$ is a group homomorphism $\rho: G \to \Homeo(Y)$.
+  We omit the $\rho$ in notation.
+  
+  Define $Y/G = Y/\sim$ where we define $y_1 \sim y_2$ if $gy_1=y_2$ for some $g \in G$.
+\end{defn}
+
+\begin{defn}
+  $\rho: G \to \Homeo(Y)$ is a \textbf{covering space action} if each $y \in Y$ has an open neighbourhood $V$ such that $g_1[V] \cap g_2[V] \neq \emptyset$ implies that $g_1=g_2$.
+\end{defn}
+
+\begin{prop}
+  \leavevmode
+  \begin{enum}
+    \io For a covering space $p: \wt X \to X$ with $\wt X$ connected, the inclusion $G(\wt X) \injto \Homeo(\wt X)$ is a covering space action.
+    \io For a covering space action $G \to \Homeo(Y)$:
+      \begin{enum}
+	\io $q: Y \to Y/G$ is a normal covering space.
+	\io $G(Y) \cong G$ is $Y$ is connected.
+      \end{enum}
+  \end{enum}
+\end{prop}

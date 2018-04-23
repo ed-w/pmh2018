@@ -1,0 +1,55 @@
+\section{2018-04-23 Lecture}
+
+Application of PUB to the divergence of Fourier series
+
+If $f \in L^2([0,2\pi])$ then $f = \sum_{n \in \ZZ} \ang{f,e_n} e_n$ (in the $L^2$ sense) where $e_n(t) = \frac 1{\sqrt{2\pi}} \exp(int)$.
+
+\begin{prop}
+	Let $a \in [0,2\pi]$.
+	There exists a function in $\cC_{2\pi}([0,2\pi])$ whose Fourier series at $t=a$ does not converge.
+\end{prop}
+
+\begin{proof}
+	The space $\cC_{2\pi}([0,2\pi])$ is Banach with respect to $\norm{\cdot}_\infty$.
+	If $f \in \cC_{2\pi}([0,2\pi])$ let $f_n = \sum_{\abs{k}\leq n} \ang{f,e_k}e_k$ for $n \geq 1$.
+	For all $n \geq 1$, define an operator $T_n: \cC_{2\pi}([0,2\pi]) \to K$ by $T_n(f)= f_n(a)$.
+	We will show that each $T_n$ is continuous.
+
+	Now assume that for all $f \in \cC_{2\pi}([0,2\pi])$ we have that $(f_n(a))_n$ converges.
+	Then
+	\[\sup_n \abs{T_nf} = \sup_n\abs{f_n(a)} < \infty.\]
+	Applying the PUB shows that $\sup_n \norm{T_n}<\infty$.
+	We will show that $\norm{T_n} \to \infty$, hence a divergent sequence exists.
+
+	Observe that
+	\begin{align*}
+		f_n(a) &= \sum_{\abs{k}\leq n} \ang{f,e_k}e_k(a) = \sum_{\abs{k}\leq n} \frac{1}{2\pi} \left(\int_{0}^{2\pi}f(t)\exp(-ixt)\,dt\right)\exp(ika) \\
+		&= \frac{1}{2\pi} \int_{0}^{2\pi} D_n(a-t) f(t) \, dt = (f*D_n)(a)
+	\end{align*}
+	where $D_n$ is the \textbf{Dirichlet kernel}:
+	\[D_n(t) = \sum_{\abs{k}\leq n} \exp(int) = \frac{\sin((n+1/2)t)}{\sin t/2}\]
+
+	We now show that each $T_n$ is continuous and we have $\norm{T_n} = \frac{1}{2\pi} \int_{0}^{2\pi} \abs{D_n(t)} \, dt$.
+	Now
+	\[\abs{T_nf} = \frac{1}{2\pi}\abs{\int_{0}^{2\pi}f(a-t)D_n(t)\,dt} \leq \norm{f}_\infty \frac{1}{2\pi} \int_0^{2\pi} \abs{D_n(t)} \, dt\]
+	which proves $\leq$.
+	Now define
+	\[s(t)=
+	\begin{cases}
+	    1 & D_n(t)>0 \\
+	    -1 & D_n(t)\leq 0
+	\end{cases}\]
+	Note that $s \in L^2([0,2\pi])$.
+	Now for all $\eps>0$ there exists a $g \in \cC_{2\pi}([0,2\pi])$ with $\norm{g}_\infty=1$, and
+	\[\abs{\frac{1}{2\pi}\int_{0}^{2\pi}(g(a-t)-s(t))D_n(t)\, dt}<\eps\]
+	which implies that
+	\[\abs{T_n(g)-\frac{1}{2\pi}\abs{D_n(t)}\, dt}<\eps\]
+	so $\norm{T_n} \leq \norm{T_n(g)}$, which proves $\geq$.
+	Then since each $T_n$ is bounded, they are continuous also.
+
+	We now show that $\norm{T_n} \to \infty$.
+	We have
+      \[\frac{1}{2\pi}\int_{0}^{2\pi}\abs{\frac{\sin( (n+1/2)t)}{\sin(t/2)}}\, dt \geq \frac{2}{\pi}\int_{0}^{\pi}\frac{\abs{\sin( (n+1/2)t)}}{t}\, dt \sim H_n\]
+      where $H_n$ is the $n$-th harmonic number.
+      (I've omitted some steps here.)
+\end{proof}
