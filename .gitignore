@@ -1,5 +1,8 @@
-## Extra entries added by me:
+## Assignments
 ass*
+
+## Vim master files
+*.latexmain
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
