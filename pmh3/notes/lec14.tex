@@ -1,0 +1,139 @@
+\section{2018-04-24 Lecture}
+
+Hahn-Banach Theorem and Dual Spaces
+
+\begin{defn}
+  Let $(X,\norm{\cdot})$ be a normed space.
+  The \textbf{algebraic dual} of $X$ is
+  \[X^* \defeq \Hom(X,K) = \{\phi:X \to K \text{ linear}\}.\]
+  The \textbf{continuous dual} of $X$ is
+  \[X' \defeq \cL(X,K) = \{\phi \in X^* \mid \phi \text{ is continuous}\}.\]
+  $\phi \in X'$ is called a \textbf{continuous} (or \textbf{bounded}) \textbf{linear functional}.
+\end{defn}
+
+Describing $X'$ is one of the first steps to understanding $X'$.
+
+\begin{rmk}
+  \lv
+  \begin{itm}
+    \io If $\dim X<\infty$ then $X'=X^*$.
+    \io If $\dim X=\infty$ then $X' \subsetneq X^*$.
+  \end{itm}
+\end{rmk}
+
+\begin{exam}
+  Let $X=\cC([0,1])$ with $\norm{\cdot}_1$.
+  This is not a Banach space.
+  Let $\phi \in X^*$ be defined by $\phi(f)=f(1)$.
+  Then $\phi$ is unbounded.
+  To see this, let $f_n(x) = nx^{n-1}$.
+  It is clear that $\norm{f_n}_1=1$ for all $n$.
+  But $\phi(f_n)=n$.
+  This is true for all $n$, so $\phi$ is unbounded.
+\end{exam}
+
+\begin{rmk}
+  Proving the existence of a $\phi \in X^* \setminus X'$ when $X$ is Banach requires the axiom of choice.
+  In fact, to show that $X' \neq \{0\}$ in a Banach space requires the axiom of choice as well.
+\end{rmk}
+
+Our main tool will be the Hahn-Banach theorem.
+This is a theorem extending a bounded linear functional from a subspace to the whole space preserving desirable properties of the original functional.
+
+\begin{defn}
+  Let $X$ be a $K$-vector space.
+  Then a \textbf{seminorm} $p: X \to \RR$ on $X$ is a function which satisfies
+  \begin{enum}
+    \io $p(x+y) \leq p(x)+p(y)$ for all $x,y \in X$, and
+    \io $p(\lambda x) = \abs{\lambda}p(x)$ for all $\lambda \in K$ and $x \in X$.
+  \end{enum}
+\end{defn}
+
+\begin{exer}
+  Show that any seminorm satisfies $p(x) \geq 0$ for all $x \in X$.
+\end{exer}
+
+\begin{rmk}
+  Note that a norm is a seminorm with the additional requirement that $p(x)=0 \iff x=0$.
+\end{rmk}
+
+\begin{thm}[General Hahn-Banach theorem]
+  Let $X$ be a $K$-vector space and $p: X \to \RR$ a seminorm on $X$.
+  Let $Y \subset X$ be a subspace of $X$.
+  If $\phi:Y \to K$ is linear with $\abs{\phi(y)}\leq p(y)$ for all $y \in Y$, then there exists a linear map $\wt \phi:X \to K$ such that $\wt\phi|_Y=\phi$ and $|\wt\phi(x)|\leq p(x)$ for all $x \in X$.
+\end{thm}
+
+\begin{cor}
+  Let $(X,\norm{\cdot})$ be a normed space.
+  Then for each $a \in X$ with $a \neq 0$ there exists a $\phi \in X'$ with $\phi(a)=\norm{a}$ and $|norm{\phi}=1$.
+\end{cor}
+
+\begin{proof}
+  Let $Y = Ka \subset X$.
+  Define on $Y$ a linear functional $\phi$ by $\phi(ca) = c\norm{a}$ for all $c \in K$.
+  Clearly $\abs{\phi(y)} \leq \norm{y}$ for all $y \in Y$ (in fact we have equality).
+  Then by the Hahn-Banach theorem there exists a linear functional $\wt\phi$ on the whole space such that
+  \begin{enum}
+    \io $\wt\phi$ is linear,
+    \io $\wt\phi|_Y=\phi$, and
+    \io $|\wt\phi| \leq \norm{x}$.
+  \end{enum}
+  Then $||\wt\phi|| \leq 1$ and so $\wt\phi \in X'$.
+  But $|\wt\phi(a)| = |\phi(a)| = \norm{a}$, so $||\wt\phi||\geq 1$, hence $||\wt\phi||=1$.
+\end{proof}
+
+\begin{cor}
+  If $(X,\norm{\cdot})$ is a non-zero normed space, then $X' \neq \{0\}$.
+\end{cor}
+
+To prove the Hahn-Banach theorem we need Zorn's lemma and Hamel bases.
+
+\begin{defn}
+  A \textbf{partially ordered set} is a set $A$ with a relation $\preceq$ that is reflexive, anti-symmetric and transitive.
+\end{defn}
+
+\begin{defn}
+  A \textbf{totally ordered set} is a partially ordered set $(a,\preceq)$ such that $\preceq$ is total.
+  A totally ordered subset of a poset is called a \textbf{chain}.
+\end{defn}
+
+\begin{defn}
+  Let $(A,\preceq)$ be a poset.
+  An \textbf{upper bound} for a subset $B \subseteq A$ is an element $u \in A$ such that $b \preceq u$ for all $b \in B$.
+  A \textbf{maximal element} of a poset is an element $m \in A$ such that if $m \leq a$ for some $a \in A$, then $m=a$.
+\end{defn}
+
+\begin{exam}
+  Take $S$ to be any set. Then $(\cP(S),\subseteq)$ is a subset.
+  The element $S \in \cP(S)$ is maximal.
+  If $S=\ZZ$, then $C=\{\{1\},\{1,2\},\{1,2,3\},\ldots\}$ is a chain.
+  Then $\PP$ is an upper bound for $C$.
+  But $\PP \notin C$ since $C$ contains only finite sets.
+\end{exam}
+
+When does a chain have a maximal element?
+This is answered by Zorn's Lemma which is equivalent to the axiom of choice.
+
+\begin{thm}[Zorn's Lemma]
+  Let $A \neq \emptyset$ be a poset.
+  Suppose that every chain in $A$ has an upper bound in $A$.
+  Then $A$ has at least one maximal element.
+\end{thm}
+
+Applications of Zorn's Lemma
+
+Vector spaces have bases.
+
+\begin{defn}
+  Let $X$ be a $K$-vector space.
+  \begin{enum}
+    \io A subset $B \subset X$ is called \textbf{linearly independent} if any finite subset $S \subseteq B$ is linearly independent.
+    \io A subset $B \subset X$ is said to \textbf{span} $X$ if for every $x \in X$ there exists $b_1,\ldots,b_n \in B$ such that $x \in \spn\{b_1,\ldots,b_n\}$.
+  \end{enum}
+  A subset $B \subseteq X$ is a \textbf{Hamel basis} for $X$ if $B$ is linearly independednt and spans $X$.
+  Equivalently, each $x \in X$ has a unique representation as a finite linear combination of elements of $B$.
+\end{defn}
+
+\begin{thm}
+  Every non-zero vector space has a Hamel basis.
+\end{thm}
