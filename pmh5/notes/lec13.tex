@@ -1,0 +1,117 @@
+\section{2018-04-26 Lecture}
+
+\begin{thm}[Schur's orthogonality relations]
+  Let $G$ be a finite group with and let $k=\CC$.
+  Define the following inner product on $F_c(G,\CC)$:
+  \[\ang{f_1,f_2} = \frac{1}{\abs{G}}f_1(g) \ol{f_2(g)}\]
+  Then the irreducible characters $\chi_1,\ldots,\chi_r$ of $G$ are an orthonormal basis of $F_c(G,\CC)$ with respect to this inner product, that is,
+  \begin{equation*}
+    \ang{\chi_i,\chi_j}=
+    \begin{cases}
+      1 & \text{ if } i=j \\
+      0 & \text{ if } i \neq j
+    \end{cases}
+  \end{equation*}
+\end{thm}
+
+\begin{cor}
+  If $V$ is any $\CC G$-module, the multiplicity of $S_i$ in $V$ is $\ang{\chi_V,\chi_i}$ where $\chi_i$ is the character of $S_i$.
+\end{cor}
+
+\begin{proof}
+  This comes from the formula
+  \[V \cong S_1^{\oplus m_1} \oplus \cdots \oplus S_r^{\oplus m_r} \iff \chi_V = m_1\chi_1 + \cdots + m_r\chi_r \qedhere\]
+\end{proof}
+
+\begin{exam}
+  We often write characters and their values in a table.
+  Here is the character table for $S_3$:
+  \begin{center}
+    \begin{tabular}[]{c | c c c}
+      & $1$ & $(x\ y)$ & $(x\ y\ z)$ \\ \hline
+      $\chi_1$ & 1 & 1 & 1 \\
+      $\chi_\eps$ & 1 & $-1$ & 1 \\
+      $\chi_P$ & 2 & 0 & $-1$
+    \end{tabular}
+  \end{center}
+  We compute some inner products as examples:
+  \begin{align*}
+    \ang{\chi_2,\chi_3} &= \frac{1}{6}(1 \times 1 \times 2 + 3 \times (-1) \times 0 + 2 \times 1 \times (-1)) = 0 \\
+    \ang{\chi_3,\chi_3} &= \frac{1}{6}(1 \times 2^2 + 3 \times 0^2 + 2 \times(-1)^2) = 1 \\
+  \end{align*}
+  If $V$ is a $\CC S_3$-module with character
+  \begin{center}
+    \begin{tabular}[]{c | c c c}\hline
+      $\chi_V$ & 17 & 3 & 5
+    \end{tabular}
+  \end{center}
+  then computing inner products gives $\ang{\chi_V,\chi_1}=6$, $\ang{\chi_V,\chi_\eps}=3$ and $\ang{\chi_V,\chi_P}=4$.
+  So $V = \CC^{\oplus 6} \oplus \CC_\eps^{\oplus 3} \oplus P^{\oplus 4}$.
+
+  As a further example, the character table of $C_3$ is
+  \begin{center}
+    \begin{tabular}[]{c | c c c}
+      & 1 & $x$ & $x^2$ \\ \hline
+      1 & 1 & 1 & 1 \\
+      $\psi$ & 1 & $\omega$ & $\omega^2$ \\
+      $\psi^2$ & 1 & $\omega^2$ & $\omega$
+    \end{tabular}
+  \end{center}
+  where $\omega = \exp(e\pi i/3)$.
+\end{exam}
+
+Dual spaces
+
+\begin{defn}
+  Let $V$ be a vector space.
+  Then
+  \[V^* = \Hom(V,\CC)\]
+  is the \textbf{dual space} of $V$.
+  If $\dim V <\infty$, then $\dim V \cong \dim V^*$.
+  If $V$ has basis $v_1,\ldots,v_n$, then $V^*$ has basis $v_1^*,\ldots,v_n^*$ where $v_i^*(v_j) = \delta_{ij}$.
+\end{defn}
+
+\begin{rmk}
+  If $V$ is a $\CC G$-module, then $V^*$ is a $\CC G$-module with the action
+  \[(g \cdot f)(v) = f(g\inv \cdot v)\]
+  for $g \in G$, $f \in V^*$ and $V \in V$.o
+  
+  Take bases $v_1,\ldots,v_n$ and $v_1^*,\ldots,v_n^*$ of $V$ and $V^*$ respectively.
+  Suppose $g \in G$ has representing matrices $M(g)=(a_{ij}(g))_{ij}$ and $M^*(g)=(a^*_{kl}(g))_{kl}$ relative to the aforementioned bases of $V$ and $V^*$.
+  Then we have
+  \[g \cdot v_j = \sum_i a_{ij}(g) v_i \quad\text{and}\quad g \cdot v_l^* = \sum_k a_{kl}^*(g) v_k^*.\]
+  Then
+  \[a_{kl}^*(g) = (gv_l^*)(v_k) = v_l^*(g\inv v_k) = a_{lk}(g\inv).\]
+  This shows that
+  \[M^*(g) = M(g\inv)^\intercal = ((M(g))\inv)^\intercal.\]
+  In particular, we have
+  \[\chi_{V^*}(g) = \tr M^*(g) = \tr M(g\inv) = \chi_V(g\inv).\]
+  We are now ready to give a characterisation of the complex conjugate of a character.
+\end{rmk}
+
+\begin{prop}
+  We have
+  \[\chi_V(g\inv) = \ol{\chi_V(g)}.\]
+\end{prop}
+
+\begin{proof}
+  Let $M(g)$ be the representing matrix of $g$ and let $\lambda_1,\ldots,\lambda_n$ be the eigenvalues of $M(g)$.
+  Then since $G$ is finite, the eigenvalues must be roots of unity.
+  Hence the eigenvalues of $g\inv$ are $\ol\lambda_1,\ldots,\ol\lambda_n$.
+  This completes the proof.
+\end{proof}
+
+\begin{rmk}
+  If $\phi: V \to W$ is a map of vector spaces, then the adjoint map $\phi^*$ is a map from $W^*$ to $V^*$ defined by
+  \begin{align*}
+    \phi^*: W^* &\to V^* \\
+    (\phi^*(f))(v) &= f(\phi(v))
+  \end{align*}
+  Then in this notation, the dual representation $(V^*,\rho^*)$ of $(V,\rho)$ is the representation with action given by
+  \[(\rho^*(g))(f) = (g\inv)^*(f).\]
+\end{rmk}
+
+Tensor products
+
+Omitted.
+See commutative algebra notes.
