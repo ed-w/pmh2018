@@ -1,0 +1,88 @@
+\section{2018-04-30 Lecture}
+
+\begin{proof}
+  Let $A$ be the set of all non-zero linearly independent subsets of $V$ ordered by inclusion.
+  For every chain $C$ inside $A$, $u = \bigcup_{c \in C} c$ is an upper bound for $C$.
+  Then $u \in A$ since every finite subset of $u$ is contained in $c$ for some $c \in C$.
+  So we may apply Zorn's lemma to give the existence of a maximal element $m \in A$.
+  Then $\spn m = V$, since if there exists a $w \in V \setminus \spn m$, then $m \prec \{w\} \cup m \in A$, contradicting the maximality of $m$.
+\end{proof}
+
+\begin{prop}
+  There exists a discontinuous linear functional in any infinite dimensional normed vector space $X$, that is, $X' \subsetneq X^*$.
+\end{prop}
+
+\begin{proof}
+  Let $X$ be an infinite dimensional normed space.
+  Let $B \subseteq X$ be a Hamel basis for $X$.
+  Since $B$ is infinite, there exists a sequence $b_1,b_2,\ldots$ in $B$.
+  Now define $\phi \in X^*$ on $B$ by
+  \begin{equation*}
+    \phi(b)=
+    \begin{cases}
+      n\norm{b_n} & \text{ if } b=b_n \\
+      0 & \text{ if } b \in B \setminus\{b_1,b_2,\ldots\}
+    \end{cases}
+  \end{equation*}
+  extending by linearity to all of $X$ (using finite sums of basis vectors).
+  Then $\abs{\phi(b_n)} = n\norm{b_n}$ for all $b$, hence $\phi$ is unbounded.
+\end{proof}
+
+\begin{rmk}
+  Let $e_i$ be the sequence with a $1$ in the $i$th component and zeros in all other components.
+  Is $\{e_1,e_2,\ldots\}$ a Hamel basis for $\ell^1$?
+  No.
+  But it is a Hamel basis for $c_{00}$, the space of finitely supported sequences.
+\end{rmk}
+
+\begin{exer}
+  Let $X$ be an infinite dimensional Banach space.
+  Use Baire's theorem to show that every Hamel basis is uncountable.
+\end{exer}
+
+\begin{rmk}
+  If $X$ is an infinite dimensional Banach space then no explicit Hamel basis or discontinuous linear functional is known.
+\end{rmk}
+
+\begin{defn}
+  Let $X$ be a normed space.
+  A finite or countably infinite subset $\{x_1,x_2,\ldots\}$ of $X$ is called a \textbf{Schauder basis} if each $x \in X$ can be writte uniquely as
+  \[x = \sum_{k=1}^\infty a_kx_k\]
+  that is, the partial sums converge to $x$.
+\end{defn}
+
+\begin{rmk}
+  A Schauder basis is like a Hamel basis but where we allow the sums to be infinite.
+\end{rmk}
+
+\begin{exam}
+  The set $\{e_1,e_2,\ldots\}$ is a Schauder basis for $\ell^p$ (for $p<\infty$), but not for $\ell^\infty$ since $X$ is not separable.
+  If a Banach space $X$ has a Schauder basis then it is separable (consider $\QQ$-linear cominations of the basis vectors).
+  The converse is not true (Per Enflo).
+\end{exam}
+
+Hahn-Banach Theorem
+
+\begin{thm}[Hahn-Banach theorem]
+  Let $X$ be a vector space over $K$ and let $p: X \to \RR$ be a seminorm.
+  Let $Y$ be a subspace of $X$.
+  If $\ph:Y\to K$ is linear with $\abs{\ph(y)}\leq p(y)$ for all $y \in Y$, then there exists an extension $\wt\ph:X\to K$ of $\ph$ such that:
+  \begin{enum}
+    \io $\wt\ph$ is linear,
+    \io $\wt\ph|_Y=\ph$ and
+    \io $|\wt\phi(x)|\leq p(x)$ for all $x \in X$.
+  \end{enum}
+  We will only do the case $K=\RR$.
+  The $\RR$ version looks stronger since the seminorm condition over $\CC$ ($p(\lambda x)=\abs{\lambda}p(x)$ is `quite strong'.
+\end{thm}
+
+\begin{proof}
+  We first consider the case where $Y$ has codimension $1$, that is, $X = Y \oplus \RR z$ for some $z \in X$.
+  Now define
+  \[\wt \ph(y+\alpha z) = \ph(y)+\alpha c\]
+  where $c = \wt\ph(z)$ must be chosen such that
+  \[\ph(y)+\alpha c \leq p(y+\alpha z)\]
+  for all $y \in Y$ and $\alpha \in \RR$.
+  See Daners' notes for the rest of the proof.
+  (I can't be bothered typing it up.)
+\end{proof}

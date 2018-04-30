@@ -1,0 +1,127 @@
+\section{2018-04-30 Lecture}
+
+\begin{defn}
+  A \textbf{flat} $R$-module is a module $N$ such that the functor $-\otimes_R N$ is exact.
+\end{defn}
+
+\begin{cor}[2.10]
+  $S\inv R$ is a flat $R$-module for any multiplicative set $S \subset R$.
+\end{cor}
+
+\begin{proof}
+  Take an exact sequence
+  \begin{equation*}
+    \begin{tikzcd}
+      M \ar[r, "f"] & M' \ar[r, "g"] & M''
+    \end{tikzcd}
+  \end{equation*}
+  By the exactness of the localisation $M \mapsto S\inv M$ we have the following commutative diagram:
+  \begin{equation*}
+    \begin{tikzcd}
+      S\inv R \otimes M \ar[r, "\id \otimes f"] \ar[d, "\cong"] & S\inv R \otimes M' \ar[r, "\id \otimes g"] \ar[d, "\cong"] & S\inv R \otimes M'' \ar[d, "\cong"] \\
+      S\inv M \ar[r, "S\inv f"] & S\inv M' \ar[r, "S\inv g"] & S\inv M''
+    \end{tikzcd}
+    \qedhere
+  \end{equation*}
+\end{proof}
+
+\begin{prop}[2.11]
+  Let $M$ and $N$ be $R$-modules.
+  Then there is an isomorphism of $S\inv R$-modules:
+  \begin{align*}
+    S\inv M \otimes_{S\inv R} S\inv N &\longrightarrow S\inv(M \otimes_R N) \\
+    \frac ms \otimes \frac nt &\longmapsto \frac{m \otimes n}{st}
+  \end{align*}
+\end{prop}
+
+\begin{proof}
+  We have
+  \begin{multline*}
+    S\inv (M \otimes_R N) \cong S\inv R \otimes_R (M \otimes_R N) \cong (S\inv R \otimes_R M) \otimes_R N \otimes S\inv M \otimes_R N \\
+    \cong (S\inv M \otimes_{S\inv R} S\inv R) \otimes_R N \cong S\inv M \otimes_{S\inv R} (S\inv R \otimes_R N) \cong S\inv M \otimes_{S\inv R} S\inv N
+  \end{multline*}
+  where we have used the associativity of the tensor product.
+  The definition of the map on elements follows from the definition of the associativity and localisation-tensor product isomorphisms.
+\end{proof}
+
+\begin{prop}[2.12]
+  Let $S \subset R$ be a multiplicative set.
+  Then $S$ can be given the structure of a directed set such that
+  \[\varinjlim_{f \in S} M_f \cong S\inv M\]
+\end{prop}
+
+\begin{proof}
+  On assignment 2.
+\end{proof}
+
+Localisation of ideals
+
+\begin{defn}
+  Consider the \textbf{extension and contraction of ideals} along the structure map
+  \[\iota_S: R \to S\inv R.\]
+  Define the following sets:
+  \begin{align*}
+    \cC &= \left\{ I<R \mid I = J^c \text{ for some } J<S\inv R \right\} \\
+    \cE &= \left\{ J<S\inv R \mid J = I^e \text{ for some } I<R \right\}
+  \end{align*}
+  where $I^e = (\iota[I]) < S\inv R$ and $J^c = \iota\inv[J]<R$, the extension and contraction maps respectively.
+  Note that
+  \[I^e = \left( \left\{ \frac{x}{1} \mid x \in I \right\} \right) = S\inv I.\]
+  We will recall some of the results from the first assignment here.
+\end{defn}
+
+\begin{prop}[2.13]
+  \leavevmode
+  \begin{enum}
+    \io $\cE$ is the set of all ideals in $S\inv R$.
+    \io If $I<R$ then
+    \[I^{ec} = \bigcup_{s \in S} (I:s) \quad\text{where}\quad (I:s) = \{ x \in R \mid xs \in I \}.\]
+    Hence $I^e=(1) \iff I \cap S \neq \emptyset$.
+    \io $I \in \cC \iff \pi_I[S] \subset R/I$ contains no zero divisors.
+    \io There is a bijection of sets:
+    \begin{align*}
+      \Spec S\inv R &\overset{1:1}{\longleftrightarrow} \left\{ \kp \in \Spec R \mid \kp \cap S = \emptyset \right\} \\
+      S\inv \kp &\longleftrightarrow \kp
+    \end{align*}
+  \end{enum}
+\end{prop}
+
+\begin{proof}
+  \leavevmode
+  \begin{enum}
+    \io
+    Let $J<S\inv R$.
+    Then $J^{ce} \subseteq J$.
+    We will show the reverse inclusion.
+    If $x/s \in J$, then $x/1 \in J$, so $x \in J^c$.
+    Then $x/s \in J^{ce}$, so $J \subseteq J^{ce}$.
+    Therefore $J \in \cE$.
+
+    \io
+    Let $x \in I^{ec} = (S\inv I)^c$.
+    This is true if and only if $x/1=r/s$ for some $r \in I$ and $s \in S$, or equivalently if $u(xs-r)=0$ for some $r \in I$ and $u,s \in S$.
+    This is true if and only if $xus \in I$ for some $u,s \in S$ which is true if and only if $x \in \bigcup_{t \in S} (I:t)$.
+    (Note that $1 \in S$.)
+
+    To prove the second part, note that
+    \[I^e = (1) \iff I^{ec} = (1) \iff \exists s \in S \text{ such that } 1 \in (I:s) \iff S \cap I \neq \emptyset.\]
+
+    \io
+    We have
+    \[I \in \cC \iff I = I^{ec} \iff I^{ec} \subseteq I.\]
+    Then by part 2 this is true if and only if $x \in \bigcap_{s \in S} (I:s) \implies x \in I$.
+    Equivalently, $xs \in I$ for some $s \in S$ implies that $x \in I$, or $\pi_I[S]$ contains no zero divisors.
+
+    \io
+    We have a bijection of sets $\cE \longleftrightarrow \cC$, so we have a bijection
+    \[\Spec S\inv R \overset{1:1}{\longleftrightarrow} \cC'\]
+    for some subset $\cC'$ of $\cC$.
+    The inclusion $\cC' \subset \Spec R$ is automatic since $q^c = \iota_s\inv[\ul q]$ is always prime for $\ul q \in \Spec S\inv R$.
+    Now $\kp \in \Spec R \cap \cC$ if and only if $\kp$ is prime and $\pi_\kp[S]$ contains no zero divisors, or equivalently, $\kp$ is prime and $\kp \cap S = \emptyset$.
+    Now for $\kp \in \Spec R \cap \cC$, we have that
+    \[S\inv R / S\inv \kp = \pi_\kp[S]\inv (R/\kp)\]
+    is an integral domain, since $\kp \cap S = \emptyset$.
+    This implies that $S\inv \kp$ is prime, hence $\kp = (S\inv \kp)^c \in \cC'$.
+    \qedhere
+  \end{enum}
+\end{proof}
