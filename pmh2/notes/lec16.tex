@@ -1,0 +1,193 @@
+\section{2018-05-01 Lecture}
+
+\begin{lem}[2.14]
+  \leavevmode
+  \begin{enum}
+    \io The map $S\inv(\square) = (\square)^e$ commutes with finite sums, products and intersections of ideals.
+    \io $\rad S\inv I = S\inv(\rad I)$.\\
+    (Note that $\supseteq$ is already true for any extension of an ideal.)
+  \end{enum}
+\end{lem}
+
+\begin{rmk}
+  In general, $S\inv(I:J) \neq (S\inv I: S\inv J)$.
+\end{rmk}
+
+\begin{cor}[2.15]
+  $\nilrad S\inv R = S\inv (\nilrad R)$.
+\end{cor}
+
+\begin{cor}[2.16]
+  Let $\kp$ be prime in $R$.
+  Then there is a bijection of sets
+  \[\Spec R_\kp \longleftrightarrow \left\{ \fr q \in \Spec R \mid \fr q \subseteq \kp \right\}\]
+\end{cor}
+
+\begin{proof}
+  By Proposition 2.13 we have a bijection
+  \[\Spec R_\kp \longleftrightarrow \left\{ \fr q \in \Spec R \mid \fr q \cap (R \setminus \kp) = \emptyset \right\}\]
+  and $\fr q \cap (R \setminus \kp) = \emptyset \iff \fr q \subseteq \kp$.
+\end{proof}
+
+\begin{rmk}
+  Let $\fr q \subseteq \kp$ be prime ideals.
+  Then there is a ring isomorphism
+  \[R_\kp/\fr q^e \cong (R/\fr q)_{\kp^e}\]
+  where on the left hand side the extension is with respect to the localisation and on the right hand side the extension is with respect to the quotient.
+  The spectrum of both of these rings is in bijection with the set
+  \[ \left\{ \fr r \in \Spec R \mid \fr q \subseteq \fr r \subseteq \kp \right\}.\]
+\end{rmk}
+
+Local properties
+
+\begin{defn}
+  A property $P$ of a ring (or an $R$-module) $A$ is called \textbf{local} if $A$ has property $P$ if and only if $A_\kp$ has property $P$ for all $\kp \in \Spec R$.
+  A property is sometimes called \textbf{very local} if the above holds with $\Spec$ replaced by $\mSpec$.
+\end{defn}
+
+\begin{prop}
+  $M=0$ is a local property.
+\end{prop}
+
+\begin{proof}
+  It is clear that if $M=0$ then all localisations of $M$ are zero.
+  Now assume $M_\kp=0$ for all $\kp \in \Spec R$.
+  In particular, $M_\km=0$ for all $\km \in \mSpec R$.
+  Now let $x \in M \setminus \{0\}$ and $I = \ann_R(x)$.
+  Since $I \subsetneq R$ we must have $I \subseteq \km_x$ for some $\km_x \in \mSpec R$.
+  Then $x/1=0$ in $M_{\km_x}$, so there exists a $u \in R \setminus \km_x$ such that $ux=0$.
+  Then $u \in \ann_R(x)$, a contradiction.
+\end{proof}
+
+\begin{cor}[2.18]
+  The map
+  \begin{align*}
+    M &\to \prod_{\km \in \mSpec R} M_\km \\
+    m &\mapsto \left( \frac{m}{1} \in M_\km \right)_{\km \in \mSpec R}
+  \end{align*}
+  is injective.
+\end{cor}
+
+\begin{proof}
+  This is proved analogously to Proposition 2.17.
+\end{proof}
+
+\begin{prop}[2.19]
+  Let $\ph: M \to N$ be an $R$-module map.
+  Then $\ph$ being (in/sur/bi)-jective is a local property.
+  (This is defined in terms of kernels and cokernels.)
+\end{prop}
+
+\begin{proof}
+  We have an exact sequence
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \ar[r] & \ker\ph \ar[r] & M \ar[r, "\ph"] & N \ar[r] & \coker\ph \ar[r] & 0
+    \end{tikzcd}
+  \end{equation*}
+  from which applying the localisation map gives an exact sequence
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \ar[r] & (\ker\ph)_\kp \ar[r] & M_\kp \ar[r, "\ph_\kp"] & N_\kp \ar[r] & (\coker\ph)_\kp \ar[r] & 0
+    \end{tikzcd}
+  \end{equation*}
+  This gives the following isomorphisms:
+  \[(\ker\ph)_\kp \cong \ker(\ph_\kp) \quad\text{and}\quad (\coker\ph)_\kp \cong \coker(\ph_\kp)\]
+  Then since $M=0$ is a local property, applying this to the modules $\ker\ph$ and $\coker\ph$ gives that $\ph$ is injective if and only if $\ph_\kp$ is injective for all $\kp \in \Spec R$, and similarly for surjectivity.
+\end{proof}
+
+\begin{cor}
+  $R$ being reduced (containing no nilpotent elements) is a local property.
+\end{cor}
+
+\begin{proof}
+  By considering $\nilrad R$ as an $R$-module, we have that $\nilrad R =0$ if and only if $(\nilrad R)_\kp=0$ for all $\kp \in \Spec R$.
+  Then since $(\nilrad R)_\kp = \nilrad(R_\kp)$ this completes the proof.
+\end{proof}
+
+\begin{prop}[2.21]
+  Flatness of a module is a local property.
+\end{prop}
+
+\begin{proof}
+  Suppose that $M$ is flat.
+  Then $M_\kp = R_\kp \otimes_R M$ is flat as an $R_\kp$-module (since localisation is exact).
+
+  Now assume that $M_\kp$ is flat for all $\kp \in \Spec R$.
+  Then if
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \ar[r] & N \ar[r] & N'
+    \end{tikzcd}
+  \end{equation*}
+  is exact, then
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \ar[r] & N_\kp \ar[r] & N_\kp'
+    \end{tikzcd}
+  \end{equation*}
+  is exact for all $\kp \in \Spec R$.
+  By assumption, for each $\kp \in \Spec R$ we get an exact sequence
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \ar[r] & N_\kp \otimes_{R_\kp} M_\kp \ar[r] & N_\kp' \otimes_{R_\kp} M_\kp
+    \end{tikzcd}
+  \end{equation*}
+  Then we have the following commutative diagram with top row exact
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \ar[r] & N_\kp \otimes_{R_\kp} M_\kp \ar[r] \ar[d, "\cong"] & N_\kp' \otimes_{R_\kp} M_\kp \ar[d, "\cong"] \\
+      0 \ar[r] & (N \otimes_R M)_\kp \ar[r] & (N' \otimes_R M)_\kp
+    \end{tikzcd}
+  \end{equation*}
+  since localisation commutes with tensor products.
+  Then the bottom row is exact, so since injectivity is a local property, the sequence
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \ar[r] & N \otimes_{R} M \ar[r] & N' \otimes_{R} M
+    \end{tikzcd}
+  \end{equation*}
+  is exact.
+\end{proof}
+
+Begin non-assessable content
+
+Outlook: Algebraic Geometry II
+
+We have seen that for a ring $R$ we get a topological space $\Spec R$ where the closed sets in $\Spec R$ correspond to the radical ideals in $R$.
+
+\begin{defn}[AG.4]
+  A topological space homeomorphic to $\Spec R$ for some $R$ is called an \textbf{affine algebraic variety}.
+\end{defn}
+
+Let $I<R$.
+Then
+\[\cV(I) = \{ \kp \in \Spec R \mid I \subseteq \kp \} \overset{1:1}{\longleftrightarrow} \Spec R/I\]
+is an affine algebraic variety.
+
+Here is a special case of the above definition.
+Let $I = (f)$.
+Then $\Spec R = \cV(I) \amalg D_f$ for some open set $D_f$.
+Now
+\[D_f = \{\kp \in \Spec R \mid f \notin \kp \} = \{ \kp \mid f^n \notin \kp \text{ for all } n \geq 0\} \leftrightarrow \Spec R_f.\]
+This proves the following corollary.
+
+\begin{cor}
+  $D_f$ is an affine algebraic variety.
+\end{cor}
+
+Now we look at the general case where $I$ is any ideal of $R$.
+We have
+\[ \Spec R = \cV(I) \amalg \bigcup_{f \in I} D_f.\]
+\begin{enum}
+  \io
+  Why is there no intersection?
+  If $|fr q \in D_f$ then $f \notin \fr q$ so $I \subsetneq \fr q$ and therefore $q \notin \cV(I)$.
+
+  \io
+  Why are they complements?
+  If $\fr q \supsetneq I$ then there exists an $f \in I$ such that $f \notin \fr q$, that is, $\fr q \in D_f$.
+\end{enum}
+
+This shows that any open set is the union of some $D_f$s.
+Then the set $\{D_f\}_{f\in R}$ is a basis of the open topology.

@@ -15,14 +15,15 @@
       M \ar[r, "f"] & M' \ar[r, "g"] & M''
     \end{tikzcd}
   \end{equation*}
-  By the exactness of the localisation $M \mapsto S\inv M$ we have the following commutative diagram:
+  By the exactness of the localisation $M \mapsto S\inv M$ we have the following commutative diagram with bottom row exact:
   \begin{equation*}
     \begin{tikzcd}
       S\inv R \otimes M \ar[r, "\id \otimes f"] \ar[d, "\cong"] & S\inv R \otimes M' \ar[r, "\id \otimes g"] \ar[d, "\cong"] & S\inv R \otimes M'' \ar[d, "\cong"] \\
       S\inv M \ar[r, "S\inv f"] & S\inv M' \ar[r, "S\inv g"] & S\inv M''
     \end{tikzcd}
-    \qedhere
   \end{equation*}
+  where commutativity follows from the definition of the isomorphisms on elements.
+  It is a theorem in homological algebra that exactness of the bottom row implies exactness of the top row.
 \end{proof}
 
 \begin{prop}[2.11]
@@ -59,15 +60,15 @@ Localisation of ideals
 \begin{defn}
   Consider the \textbf{extension and contraction of ideals} along the structure map
   \[\iota_S: R \to S\inv R.\]
+  We will recall some of the results and definitions from the first assignment here.
   Define the following sets:
   \begin{align*}
-    \cC &= \left\{ I<R \mid I = J^c \text{ for some } J<S\inv R \right\} \\
-    \cE &= \left\{ J<S\inv R \mid J = I^e \text{ for some } I<R \right\}
+    \cC &= \left\{ I<R \mid I = J^c \text{ for some } J<S\inv R \right\} = \left\{ I<R \mid I^{ec}=I \right\} \\
+    \cE &= \left\{ J<S\inv R \mid J = I^e \text{ for some } I<R \right\} = \left\{ J<S \mid J^{ce}=J \right\}
   \end{align*}
   where $I^e = (\iota[I]) < S\inv R$ and $J^c = \iota\inv[J]<R$, the extension and contraction maps respectively.
   Note that
   \[I^e = \left( \left\{ \frac{x}{1} \mid x \in I \right\} \right) = S\inv I.\]
-  We will recall some of the results from the first assignment here.
 \end{defn}
 
 \begin{prop}[2.13]
@@ -109,19 +110,22 @@ Localisation of ideals
     \io
     We have
     \[I \in \cC \iff I = I^{ec} \iff I^{ec} \subseteq I.\]
-    Then by part 2 this is true if and only if $x \in \bigcap_{s \in S} (I:s) \implies x \in I$.
+    Then by part 2 this is true if and only if $x \in \bigcup_{s \in S} (I:s) \implies x \in I$.
     Equivalently, $xs \in I$ for some $s \in S$ implies that $x \in I$, or $\pi_I[S]$ contains no zero divisors.
 
     \io
-    We have a bijection of sets $\cE \longleftrightarrow \cC$, so we have a bijection
+    We have a bijection of sets $\cE \longleftrightarrow \cC$, so since $\Spec S\inv R \subset \cE$ we have a bijection
     \[\Spec S\inv R \overset{1:1}{\longleftrightarrow} \cC'\]
-    for some subset $\cC'$ of $\cC$.
-    The inclusion $\cC' \subset \Spec R$ is automatic since $q^c = \iota_s\inv[\ul q]$ is always prime for $\ul q \in \Spec S\inv R$.
+    for some subset $\cC'$ of $\cC$ given by the extension and contraction maps.
+    The inclusion $\cC' \subseteq \Spec R$ is automatic since $\fr q^c = \iota_s\inv[\fr q]$ is always prime for $\fr q \in \Spec S\inv R$.
     Now $\kp \in \Spec R \cap \cC$ if and only if $\kp$ is prime and $\pi_\kp[S]$ contains no zero divisors, or equivalently, $\kp$ is prime and $\kp \cap S = \emptyset$.
     Now for $\kp \in \Spec R \cap \cC$, we have that
-    \[S\inv R / S\inv \kp = \pi_\kp[S]\inv (R/\kp)\]
+    \[S\inv R / S\inv \kp \cong S\inv(R/\kp) \cong \pi_\kp[S]\inv (R/\kp)\]
     is an integral domain, since $\kp \cap S = \emptyset$.
-    This implies that $S\inv \kp$ is prime, hence $\kp = (S\inv \kp)^c \in \cC'$.
+    This implies that $S\inv \kp$ is prime in $S\inv R$, hence we can apply the bijection to give $\kp^{ec} = (S\inv \kp)^c \in \cC'$. 
+    But $\kp \in \cC$, so $\kp=\kp^{ec} \in \cC'$.
+    (The case where $S\inv\kp=(1)$ is trivial.)
+    So we have $\Spec R \cap \cC = \cC'$ which is equal to the set of all prime ideals $\kp$ of $R$ with $\kp \cap S \neq \emptyset$.
     \qedhere
   \end{enum}
 \end{proof}

@@ -1,0 +1,125 @@
+\section{2018-05-01 Lecture}
+
+Last time we proved the codimension 1 version of the real Hahn-Banach theorem.
+We now prove the general case of the Hahn-Banach theorem over the reals using Zorn's Lemma.
+
+\begin{proof}
+  Let $L$ be the set of all linear extensions $f:Z \to \RR$ of $\ph$ with $Y \subseteq Z \subseteq \RR$ satisfyong $f(z) \leq p(z)$ for all $z \in Z$.
+  Then define a partial order on $L$ by setting $f_1 \preceq f_2$ if the domain of $f_1$ is a subset of the domain of $f_2$ and the restriction of $f_2$ to the domain of $f_1$ is $f_1$.
+  $L$ is non-empty since it contains $\ph$.
+  Let $C \subseteq L$ be a chain.
+  Now define $f_C$ to be the function defined on the union of the domains of $f_c$ for all $c \in C$ and which restricts to the each of the $f_c$ on their domains.
+  It is clear that this function is well defined.
+  Then $f_C \in L$, so every chain has an upper bound.
+  Then by Zorn's lemma there exists a maximal element $\ol\ph \in L$.
+
+  We claim that the domain of $\ol\ph$ is $X$.
+  If it is not, then there exists a $z \in X$ not in the domain of $\ol\ph$.
+  Then by the codimension 1 version of the Hahn-Banach theorem there exists a linear extension $\wt\ph$ of $\ol\ph$ to the domian of $\ol\ph$ direct sum with $\RR z$ which is also dominated by $p$.
+  Then $\ol\ph \prec \wt\ph$, contradicting the maximality of $\ol\ph$.
+\end{proof}
+
+\begin{cor}
+  If $(X,\norm{\cdot})$ is a normed space, then for each $a \in X \setminus \{0\}$ there exists a $\ph \in X'$ with $\ph(a)=\norm{a}$ and $\norm{\ph}=1$.
+  In particular, if $X \neq 0$ then $X' \neq 0$.
+\end{cor}
+
+Dual spaces
+\begin{rmk}
+  Recall that the (continuous) dual of a normed space $X$ is $X'=\cL(X,K)$.
+  Since $K$ is complete, $X'$ is always complete.
+\end{rmk}
+
+\begin{defn}
+  The \textbf{double dual} or \textbf{bidual} of $X$ is the space $X''=\cL(X',K)$.
+  There exists a natural embedding of $X$ in to $X''$.
+  For each $x \in X$ define a linear functional $\hat x$ by $\hat x(\ph) = \ph(x)$ for all $\ph \in X'$.
+\end{defn}
+
+\begin{prop}
+  For each $x \in X$, $\hat x \in X''$.
+  Moreover, the map $\Theta: X \to X''$ defined by $x \mapsto \hat x$ is linear, isometric and injective.
+\end{prop}
+
+\begin{proof}
+  We first prove the first part of the proposition.
+  It is easy to see that $\hat x$ is linear.
+  Moreover, we have
+  \[\abs{\hat x(\ph)} = \abs{\ph(x)} \leq \norm{\ph} \norm{x} \implies \norm{\hat x} \leq \norm{x}\]
+  so $\hat x$ is bounded, hence $\hat x \in X''$.
+
+  We now prove the second part of the proposition.
+  It is easy to see that $\Theta$ is linear.
+  Note that to show that $\Theta$ is an isometry we only need to prove that $\norm{\hat x} \geq \norm{x}$.
+  By the corollary to the Hahn-Banach theorem there exists a $\ph_x \in X'$ such that $\ph_x(x) = \norm{x}$ and $\norm{\ph_x}=1$.
+  \[\hat(\ph_x) = \ph_x(x) = \norm{x} = \norm{\ph_x}\norm{x} \implies \norm{\hat x} \geq \norm{x}.\]
+  That $\Theta$ is injective follows from the isometric property.
+\end{proof}
+
+\begin{cor}
+  Every normed space has a completion.
+\end{cor}
+
+\begin{proof}
+  $X$ embeds isometrically via $\Theta$ in to $X''$ which is complete.
+  Then
+  \[X \cong \im\Theta \subseteq \ol{\im\Theta} \subseteq X''.\]
+\end{proof}
+
+\begin{defn}
+  A space $X$ is said to be \textbf{reflexive} if $X'' \cong X$ (isometric isomorphism).
+\end{defn}
+
+The dual of $\ell^p$.
+
+\begin{thm}
+  Let $1<p<\infty$ and let $q = p/(p-1)$ (then $1/p+1/q=1$).
+  Then $(\ell^p)' \cong \ell^q$ (isometric isomorphism).
+\end{thm}
+
+\begin{cor}
+  For $1<p<\infty$, $\ell^p$ is reflexive.
+\end{cor}
+
+\begin{lem}
+  If $1\leq p<\infty$, then:
+  \begin{enum}
+    \io
+    $\ds x = \sum_{k=1}^\infty x_ke_k$ for all $x = (x_k) \in \ell^p$, where $e_k = (\delta_{nk})_{n \geq 1}$.\\
+  (That is, the partial sums go to zero.)
+
+  \io
+  $\ds \ph(x) = \sum_{k=1}^\infty x_k\ph(e_k)$ for all $\ph \in (\ell^p)'$.
+  \end{enum}
+\end{lem} 
+
+\begin{proof}
+  Obvious.
+\end{proof}
+
+\begin{rmk}
+  If $p=\infty$ then the lemma does not hold.
+  For example, take $x=(1)_{n \geq 1}$.
+  Then the partial sums $\sum_{k=1}^n x_ke_k$ do not converge to $x$.
+\end{rmk}
+
+\begin{proof}[Proof of the theorem]
+  If $x \in \ell^p$ and $y \in \ell^q$, then by H\"older's inequality we have
+  \[\abs{\sum_{k=1}^\infty x_ky_k} \leq \norm{x}_p\norm{y}_q\]
+  In particular, the infinite sum on the left hand side converges.
+  Define
+  \begin{align*}
+    \Theta: \ell^p &\to (\ell^q)' \\
+  (\Theta(y))(x) &= \sum_{k=1}^\infty x_ky_k
+  \end{align*}
+  Denote $\Theta(y)$ by $\ph_y$.
+  Then since $\abs{\ph_y(x)} \leq \norm{x}_p \norm{y}_q$ we have $\norm{\ph_y} \leq \norm{y}_q$.
+  $\ph_y$ is clearly linear, so the image of $\ph_y$ is in $(\ell^q)'$.
+
+  We now show that $\Theta$ is an isometric isomorphism.
+  It is clear than $\Theta$ is linear.
+  To see that $\Theta$ is injective, note that
+  \[\Theta(y)=\Theta(y') \iff \sum_{k=1}^\infty x_k(y_k-y_k')=0 \text{ for all } x \in \ell^p.\]
+  Then choose $x = e_k$, so we have that $y_k=y_k'$ for all $k$.
+  We will prove that $\Theta$ is surjective and an isometry in the next lecture.
+\end{proof}
