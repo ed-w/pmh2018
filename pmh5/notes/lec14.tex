@@ -1,0 +1,89 @@
+\section{2018-05-02 Lecture}
+
+More tensor product stuff (mostly omitted).
+
+\begin{rmk}
+  Since any element in $V \otimes W$ is a linear combination of pure tensors, it is enough to look only at pure tensors.
+  If $\ph \in \End V$ and $\psi \in \End W$, then there is a unique map $\ph\otimes\psi \in \End(V \otimes W)$ such that
+  \[(\ph\otimes\psi)(v \otimes w) = \ph(v) \otimes \ph(w)\]
+  for all $v \in V$ and $w \in W$.
+  We can construct this map by first specifying the value of $\ph\otimes\psi$ on a basis $\{v_i \otimes v_j\}$ of $V \otimes W$ where $\{v_i\}$ and $\{w_j\}$ are bases of $V$ and $W$ respectively.
+  Then we need to check that the above equation holds for all pure tensors.
+  If $v = \sum_i a_iv_i$ and $w = \sum_j b_jv_j$, we have
+  \[(\ph\otimes\psi)(v \otimes w) = \sum_i\sum_j a_ib_i \ph(v_i)\otimes\ph(w_j) = \ph\left( \sum_i a_iv_i \right) \otimes \psi\left( \sum_j b_jv_j \right) = \ph(v)\otimes\psi(w).\]
+  Moreover, we have the obvious composition rule $(\ph\otimes\psi)\circ(\ph'\otimes\psi')=(\ph\circ\ph')\otimes(\psi\otimes\psi')$.
+
+  An alternative way to say this is to use the universal property of the tensor product.
+  Define a bilinear map by $(v,w) \mapsto \ph(v)\otimes\psi(w)$.
+  Then we get a unique linear map which we call $\ph\otimes\psi$.
+
+  In fact, if $V$ and $W$ are finite-dimensional, we have an algebra isomorphism
+  \[\End V \otimes \End W \cong \End V \otimes W.\]
+  This can be checked using bases or using universal properties.
+
+  We can define a map form $\End V \times \End W$ to $\End V \otimes W$ that takes $(\ph,\psi)$ to $\ph\otimes\psi$.
+  It is clear from the definition of $\ph\otimes\psi$ that this map is bilinear.
+  Hence it factors through $\End V \otimes \End W$ to give a linear map to $\End V \otimes W$.
+  These spaces have equal dimensions so we only need to check for one of injectivity and surjectivity.
+\end{rmk}
+
+\begin{prop}
+  Let $(V,\rho)$ be a $\CC G$-module and $(W,\sigma)$ be a $\CC H$-module.
+  Then $(V \otimes W, \tau)$ is a $\CC G \times H$-module where $\tau(g,h) = \rho(g)\otimes\sigma(h)$.
+\end{prop}
+
+\begin{cor}
+  If $G=H$, then composing with the diagonal embedding $G \to G \times G$ gives a new group homomorphism $\tau': G \to \GL(V \otimes W)$, so $V \otimes W$ is a $\CC G$-module.
+  In this case, we have $g \cdot (v \otimes w) = g \cdot v \otimes g \cdot w$ on pure tensors.
+\end{cor}
+
+\begin{prop}
+  $\chi_{V \otimes W}(g,h) = \chi_V(g)\chi_W(h)$.
+\end{prop}
+
+\begin{proof}
+  Choose bases $\{v_i\}_{i=1}^n$ and $\{v_j\}_{j=1}^m$.
+  Suppose that $g$ and $h$ have matrices $(a_{ii'})$ and $b_{jj'}$ respectively.
+  Then
+  \[(g,h)\cdot(v_{i'} \otimes w_{j'}) = g \cdot v_{i'} \otimes g \cdot w_{jj'} = \sum_i \sum_j a_{ii'}b_{jj'} v_i \otimes v_j\].
+  So the matrix of $(g,h)$ on $V \otimes W$ in the basis $\{v_i \otimes w_j\}$ is
+  \[(a_{ii'}b_{jj'})\]
+  where the rows are indexed by $(i,j)$ and the columns by $(i',j')$.
+  Then taking traces gives
+  \[\chi_{V \otimes W}(g,h) = \sum_i \sum_j a_{ii} b_{jj} = \chi_V(g)\chi_W(h). \qedhere\]
+\end{proof}
+
+\begin{cor}
+  If $G=H$, then $\chi_{V \otimes W}(g) = \chi_V(g)\chi_W(g)$.
+\end{cor}
+
+\begin{exam}
+  Let $1$, $\eps$ and $P$ be the trivial, sign and unique irreducible two-dimensional representations of $S_3$ respectively.
+  Then $\chi_{P \otimes P} = 1+\eps+\chi_P$, so $P \otimes P \cong \CC \oplus \CC_\eps \oplus P$.
+\end{exam}
+
+\begin{rmk}
+  It is an open problem to find a combinatorial formula for the multiplicities of simple $\CC S_n$-modules in tensor products of two simple $\CC S_n$-modules.
+\end{rmk}
+
+\begin{prop}
+  For any vector spaces $V$ and $W$ we have an isomorphism
+  \[W \otimes V^* \cong \Hom(V,W)\]
+  coming from the bilinear map
+  \begin{align*}
+    W \times V^* &\to \Hom(V,W) \\
+    (w,f) &\mapsto (v \mapsto f(v)w)
+  \end{align*}
+  This can be checked using bases (and dimensions).
+\end{prop}
+
+\begin{cor}
+  We have that $W \otimes V^*$ is a $\CC G$-module with the action
+  \[g \cdot (w \otimes f) = g \cdot w \otimes g \cdot f\]
+  where
+  \[(g \cdot f)(v) = f(g\inv \cdot v).\]
+  Then $\Hom(V,W)$ is a $\CC G$-module with the action
+  \[(g \cdot \ph)(v) = g\ph(g\inv v).\]
+  Then
+  \[\chi_{\Hom(V,W)}(g) = \chi_{W \otimes V^*}(g) = \chi_W(g)\chi_{V^*}(g) = \chi_W(g)\ol{\chi_V(g)}.\]
+\end{cor}
