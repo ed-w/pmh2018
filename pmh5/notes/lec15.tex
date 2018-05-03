@@ -1,0 +1,120 @@
+\section{2018-05-03 Lecture}
+
+\begin{prop}
+  Let $G$ be a finite group and define
+  \[\psi_1 = \frac{1}{\abs{G}} \sum_{g \in G} g \in \CC G.\]
+  Then for any $\CC G$-module $V$, $\psi_1$ acts as the projection on to the subspace
+  \[V^G \defeq \{v \in V \mid gv=v \text{ for all } g \in G\}.\]
+  The projection is defined using the direct sum decomposition of $V$ in to isotypic components.
+\end{prop}
+
+\begin{rmk}
+  By Maschke's theorem, we have
+  \[V = V_1 \oplus \cdots \oplus V_n\]
+  where the $V_i$ are simple submodules.
+  Then
+  \[V^G = V_1^G \oplus \cdots \oplus V_n^G = \bigoplus_{i: V_i \cong \CC} V_i,\]
+  so $V^G$ is the isotypic component of $V$ corresponding to the trivial $\CC G$-module $\CC$.
+\end{rmk}
+
+\begin{proof}
+  We just need to check that $\psi_1[V] \subseteq V^G$ (we have already done this).
+  Then $\psi_1[V_i] \subseteq V_i^G = 0$ if $V_i \not\cong \CC$.
+  If $V_i \cong \CC$, then $\psi_1$ acts on $V_i$ as the identity.
+\end{proof}
+
+\begin{cor}
+  We have
+  \[\dim V^G = \tr\psi_1 = \frac{1}{\abs{G}}\sum_{g \in G}\chi_V(g) = \ang{\chi_V,1}\]
+  where we interpret $\psi_1$ as an operator on $V$.
+  This is a special case of the general fact that the multiplicity of $S_i$ in $V$ is given by $\ang{\chi_i,\chi_V}$ which follows from Schur's orthogonality relations.
+\end{cor}
+
+\begin{proof}[Proof of Schur's orthogonality relations]
+  Let $V$ and $W$ be $\CC G$-modules.
+  Apply this corollary to the $\CC G$-module $\Hom(V,W)$.
+  Then
+  \[\dim \Hom(V,W)^G = \frac{1}{\abs{G}} \sum_{g \in G} \chi_{\Hom(V,W)}(g) = \frac{1}{\abs{G}} \sum_{g \in G} \chi_W(g) \ol{\chi_V(g)} = \ang{\chi_V,\chi_W}.\]
+  By definition, $\Hom(V,W)^G = \Hom_{\CC G}(V,W)$ since $\phi(v) = g\phi(g\inv v)$ if and only if $\phi$ is a $\CC G$-module homomorphism.
+  Therefore
+  \[\dim \Hom_{\CC G}(V,W) = \ang{\chi_W,\chi_V}.\]
+  Then
+  \[\dim \Hom_{\CC G}(S_i,S_j) = \delta_{ij}\]
+  by Schur's lemma for $\CC$.
+\end{proof}
+
+\begin{rmk}
+  We can switch the order of $V$ and $W$ around on one side to obtain
+  \[\ang{\chi_V,\chi_W} = \dim \Hom_{\CC G}(V,W)\]
+  because the inner products $\ang{\chi_V,\chi_W}$ and $\ang{\chi_W,\chi_V}$ are additive in $V$ and $W$ and they agree (i.e.\@ are real) when $V$ and $W$ are simple (then Maschke's theorem allows us to conclude).
+\end{rmk}
+
+We summarise what we know about character tables in the following proposition:
+\begin{prop}
+  Let $G$ be a finite group with conjugacy classes $C_1,\ldots,C_r$ and irreducible characters $\chi_1,\ldots,\chi_r$.
+  (Note that there is the same number of each.)
+  Then character table is the matrix
+  \[\left(\chi_i(C_j)\right)_{i,j=1}^r\]
+  where $\chi_i(C_j)$ means $\chi_i(g)$ for some $g \in C_j$.
+  We follow the following conventions when writing character tables:
+  \begin{enum}
+    \io We label the rows by the characters $\chi_i$.
+    \io We label the columns by a representative of each conjugacy class $C_j$ plus its size $\abs{C_j}$.
+    \io The first row is the trivial character.
+    \io The first column is the identity element (hence contains the dimensions of the corresponding irreducible modules).
+    The sum of the squares of the first column is the size of the group.
+  \end{enum}
+  We have the following properties of the character table:
+  \begin{enum}
+    \io
+    Schur's orthogonality relations tell us that the rows are `weighted orthogonal', that is for rows $i$ and $i'$ we have
+    \[\sum_{j=1}^r \abs{C_j} \chi_i{C_j} \ol{\chi_{i'}(C_j)} = \abs{G} \delta_{ii'}.\]
+
+    \io
+    We also get a second column orthogonality relation, that is for columns $j$ and $j'$ we have
+    \[\sum_{i=1}^r \chi_i(C_j) \ol{\chi_i(C_{j'})} = \frac{\abs{G}}{\abs{C_j}}\delta_{jj'}.\]
+    This can be derived by scaling the character table appropriately to get an orthogonal matrix.
+
+    \io
+    The complex conjugate of a row is also a row (possibly the same row).
+    \[\ol\chi_i = \chi_{S_i^*}\]
+
+    \io
+    The complex conjugate of a column is also a column (possibly the same column).
+    \[\ol{\chi_i(g)} = \chi_i(g\inv)\]
+
+    \io
+    (Twisting) The pointwise product of a row starting with $1$ and any row is also a row (possibly the same row).
+    \[\psi \in G^\vee \qquad \psi\chi_{S_i}=\chi_{S_i^\vee}\]
+
+    \io
+    (Tensor products) The pointwise product of any two rows is a non-negative integer linear combination of rows.
+
+    \io
+    (If all else fails) By definition, $\chi_i(C_j)$ is by definition the trace of a $\chi_i(1) \times \chi_i(1)$ matrix of order dividing $\abs{g}$ for $g \in C_j$.
+    (This is independent of the choice of representative.)
+    So $\chi_i(C_j)$ is a sum of $\chi_i(1)$ $\abs{g}$th roots of 1 for $g \in C_j$.
+  \end{enum}
+\end{prop}
+
+\begin{rmk}
+  The last item tells us that $\chi_i(C_j)$ is always an algebraic integer(a root of a monic polynomial with integer coefficients) since algebraic integers form a ring.
+\end{rmk}
+
+\begin{exam}
+  We now construct the character table of $S_4$.
+  \begin{center}
+    \begin{tabular}[]{r | c c c c c}
+      & 1 & $(1\ 2)$ & $(1\ 2)(3\ 4)$ & $(1\ 2\ 3)$ & $(1\ 2\ 3\ 4)$ \\
+      & 1 & 6 & 3 & 8 & 6 \\ \hline
+      1 & 1 & 1 & 1 & 1 & 1 \\
+      $\eps$ & 1 & $-1$ & 1 & 1 & $-1$ \\
+      $\rho$ & 3 & 1 & $-1$ & 0 & $-1$ \\
+      $\eps\rho$ & 3 & $-1$ & $-1$ & 0 & $-1$ \\
+      $\pi$ & 2 & 0 & 2 & $-2$ & 0
+    \end{tabular}
+  \end{center}
+  where $\rho = \chi_H$ and $H$ is the three-dimensional `hyperplane' representation and $\eps\rho = \chi_{H^\eps}$ where $H^\eps \cong H \otimes \eps$.
+  We can use both orthogonality relations and the twisting/tensor product rules to construct the character table (there are many ways of doing so).
+\end{exam}
+
