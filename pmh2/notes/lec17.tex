@@ -1,0 +1,122 @@
+\section{2018-05-07 Lecture}
+
+(still non-assessable algebraic geometry)
+
+Last time we defined a basis of the (open) topology on $\Spec R$ by the distinguished open sets $\{D_f\}_{f \in R}$.
+Moreover, we have a bijection between $D_f$ and $\Spec R_f$.
+
+\begin{defn}[AG.6]
+  A topological space $X$ is called \text{irreducible} if
+  \begin{enum}
+    \io For proper open subsets $U_1$ and $U_2$ of $X$, the intersection $U_1 \cap U_2$ is non-empty, or equivalently,
+    \io For proper closed subsets $C_1$ and $C_2$, the union $C_1 \cup C_2$ is not the whole space.
+  \end{enum}
+\end{defn}
+
+\begin{prop}[AG.7]
+  If $R \neq 0$, $\Spec R$ is irreducible $\iff$ $\nilrad R$ is a prime ideal.
+\end{prop}
+
+\begin{proof}
+  It is enough to check on the $D_f$s.
+  We have
+  \[D_f = \emptyset \iff f \in \bigcap_{\kp \in \Spec r} \kp \iff f \text{ is nilpotent}.\]
+  Now
+  \[ \emptyset \neq D_g \cap D_f = D_{fg} \iff fg \text{ is not nilpotent}. \]
+  Therefore $\Spec R$ is irreducible, or equivalently, for all $f,g$ such that $fg$ is nilpotent we have that $f$ or $g$ are nilpotent.
+\end{proof}
+
+\begin{cor}[AG.8]
+  If $\kp<R$ is prime, then $\cV(\kp) = \Spec R/\kp$ is irreducible.
+\end{cor}
+
+\begin{proof}
+  $R/\kp$ is an integral domain, hence $\nilrad R/\kp=0$ so is a prime ideal.
+\end{proof}
+
+\begin{cor}[AG.9]
+  If $\kp<R$ then $\Spec R/\kp^n$ is irreducible.
+\end{cor}
+
+\begin{proof}
+  \[\nilrad R/\kp^n = \bigcap_{\substack{\fr q \in \Spec R \\ \kp \subseteq \fr q}} \pi_{\kp^n}[\fr q] = \pi_{\kp^n}[\kp] \text{ is prime}.\]
+\end{proof}
+
+\begin{cor}[AG.10]
+  $\cV(I) = \Spec R/I$ is irreducible $\iff$ $\rad I$ is prime.  
+\end{cor}
+
+\begin{proof}
+  $\cV(I)$ is irreducible $\iff$ $\nilrad R/I$ is prime $\iff$ $\rad I$ is prime.
+\end{proof}
+
+\begin{defn}
+  We say that $\Spec R$ (or $R$ itself) is \textbf{reduced} if $\nilrad R = 0$.
+\end{defn}
+
+\begin{defn}[AG.11]
+  A \textbf{presheaf} (of abelian groups) on a topological space $X$ is a collection
+  \[\ca F = \left( \left\{ \ca F \left( U \right) \right\}_{U \subseteq X \text{ open}}, \res_{V,U}: \ca F (U) \to (V) \text{ for } V \subseteq U \right)\]
+  where
+  \begin{enum}
+    \io $\ca F(U)$ is an abelian group for open subsets $U$ of $X$, and
+    \io $\res_{V,U}: \ca F(U) \to \ca F(V)$ are group homomorphisms (`restrictions') such that
+    \begin{enum}
+      \io $\res_{U,U} = \id$, and
+      \io $\res_{W,V} \circ \res_{V,U} = \res_{W,U}$.
+    \end{enum}
+  \end{enum}
+  A \textbf{sheaf} is a presheaf which further satisfies the following properties:
+  \begin{enum}
+    \io
+    \textbf{Locality}: Let $\{I_u\}_{i \in I}$ be an open covering of $U$ such that $s,t \in \ca F(U)$ with $\res{U_i,U}(s) = \res_{U_i,U}(t)$ for all $i \in I$.
+    Then $s=t$.
+
+    \io
+    \textbf{Gluing}: Let $\{U_i\}_{i \in I}$ be an open covering of $U$ and let $\{s_i \in \ca F(U_i)\}$ be such that for all $i,j \in I$, we have
+    \[\res_{U_i \cap U_j, U_i}(s_i) = \res_{U_i \cap U_j, U_j}(s_j).\]
+    Then there exists an $s \in \ca F(U)$ with $\res_{U_i,U}(s)=s$ for all $i \in I$.
+  \end{enum}
+\end{defn}
+
+\begin{defn}
+  The following defines a \textbf{quasi-coherent sheaf}.
+  If $M$ is finitely generated then it is a \textbf{coherent sheaf}.
+
+  $R$-modules define sheaves.
+  We want to define a sheaf $\wt M$ for $M$ an $R$-module.
+  Define
+  \[\wt M(D_f) = M \otimes_R R_f = M_f.\]
+  If $D_g \subseteq D_f$ (i.e.\@ $fh=g$), then we get a map $\res_{g,f}: M_f \to M_g$ by the universal property of localisation.
+  Let $U \subseteq X$ be open.
+  Then define
+  \[\wt M(U) = \varprojlim_{D_f \subseteq U} \ca F(D_f).\]
+  Let $V \subseteq U$.
+  We want to construct a restriction map $\res_{V,U}: \wt M(U) \to \wt M(V)$.
+  \begin{equation*}
+    \begin{tikzcd}[row sep=huge]
+      \varprojlim_{D_f \subseteq U} \ca F(D_f) \ar[rd, "\pi_{D_g}"'] \ar[rr, "\exists ! \res_{V,U}", dashed] && \varprojlim_{D_f \subseteq V} \ca F(D_f) \ar[ld, "\pi_{D_f}"] \\
+      & \wt M(D_g) &
+    \end{tikzcd}
+  \end{equation*}
+
+  We now check locality.
+  Let $s,t \in \wt M(U)$ such that $\res_{D_f,U}(s) = \res_{D_f,U}(t)$.
+  Now $R(s-t)=N$, so $N_f=0$ for all ideals $f$.
+  Then $N_\kp = \varinjlim_{f \subseteq \kp} N_f = 0$ for all prime ideals $\kp$.
+  Then since $N=0$ is a local property, we have $N=0$, hence $s=t$.
+
+  We now check gluing.
+  For all $f$ let $s_f \in \wt M(D_f)$ be such that for all $f$ and $g$ we have
+  \[\res_{D_{fg},D_f}(s_f) = \res_{D_{fg},D_g}(s_g).\]
+  By the construction of the inverse limit in $\RMod$ (we didn't do this in lecture) the property holds.
+\end{defn}
+
+\begin{exam}
+  Here is a special case of a sheaf.
+  Let $\wt R = \ca O_{\Spec R}$ (the \textbf{structure sheaf} of $\Spec R$).
+  Then the $\wt R(U)$ are rings.
+  For the basis sets $D_f$, we have $\wt M(D_f)=M_f$ and $\wt R(D_f) = R_f$.
+  Moreover, we have that $M_f$ is an $R_f$-module.
+  We also have the more general statement that $\wt M(U)$ is a module over $\wt R(U)$.
+\end{exam}

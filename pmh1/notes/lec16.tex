@@ -1,0 +1,97 @@
+\section{2018-05-07 Lecture}
+
+Recall that for a topological space $X$ we have abelian groups $H_n(X)$ for all $n \in \NN$.
+For $f:X \to Y$ we have induced group homomorphisms $f_*: H_n(X) \to H_n(Y)$.
+
+\begin{thm}
+  If $f: X \to Y$ is a homotopy equivalence then $f_*$ is an isomorphism.
+\end{thm}
+
+\begin{prop}
+  If $f$ and $g$ are homotopic, then $f_*=g_*$.
+\end{prop}
+
+\begin{proof}
+  
+\end{proof}
+
+\begin{defn}
+  A \textbf{chain complex} $(A_\bullet,d_\bullet)$ is a sequence of abelian groups $A_n$ for $n \in \ZZ$ and a sequence of homomorphisms $d_n: A_n \to A_{n-1}$ satisfying 
+  \[d_{n-1}d_n=0\]
+  for all $n$.
+  Then the homology groups of $A_\bullet$ are given by
+  \[H_n(A_\bullet) = \ker d_n/\im d_{n+1}.\]
+  Then $H_n(C_\bullet(X)) = H_n(X)$ and $H_n(\cdots \to C_0(X) \xto{\eps} \ZZ \to 0) = \wt H_n(X)$.
+\end{defn}
+
+\begin{defn}
+  For chain complexes $A_\bullet$ and $B_\bullet$, a \textbf{chain map} is a collection of homomorphisms $\eta_i: A_i \to B_i$ making the following diagram commute for all $n$:
+  \begin{equation*}
+    \begin{tikzcd}
+      \cdots \ar[r] & A_i \ar[r, "d_i"] \ar[d, "\eta_i"]  & A_{i-1} \ar[r] \ar[d, "\eta_i"] & \cdots \\
+      \cdots \ar[r] & B_i \ar[r, "d_i"] & B_{i-1} \ar[r] & \cdots
+    \end{tikzcd}
+  \end{equation*}
+  For example, for a map of topological spaces $f: X \to Y$, we have a chain map $f_\sharp: C_\bullet(X) \to C_\bullet(Y)$.
+\end{defn}
+
+\begin{rmk}
+  For $C_\bullet: \Top \to \Comp(\Ab)$, a chain map $\eta$ induces a homomorphism $H_n(A_\bullet) \to H_n(B_\bullet)$.
+  This is true for all chain complexes more generally.
+\end{rmk}
+
+\begin{defn}
+  A chain homotopy between chain maps $\eta,\xi: A_\bullet \to B_\bullet$ is a collection of group homomorphisms $\{P_n: A_n \to B_{n+1}\}$ such that
+  \[\eta_i-\xi_i = P_{i-1}d_i+d_{i+1}P_i.\]
+  This can be represented by the following diagram (which does not commute):
+  \begin{equation*}
+    \begin{tikzcd}[column sep=huge, row sep=huge]
+      \cdots \ar[r] & A_{i+1} \ar[r, "d_{i+1}"] \ar[d, "\eta_{i+1}", bend left] \ar[d, "\xi_{i+1}"', bend right] & A_i \ar[r, "d_i"] \ar[d, "\eta_i", bend left] \ar[d, "\xi_i"', bend right] \ar[ld, "P_i"] & A_{i-1} \ar[r] \ar[d, "\eta_{i-1}", bend left] \ar[d, "\xi_{i-1}"', bend right] \ar[ld, "P_{i-1}"] & \cdots \\
+      \cdots \ar[r] & A_{i+1} \ar[r, "d_{i+1}"] & B_i \ar[r, "d_i"] & B_{i-1} \ar[r] & \cdots
+    \end{tikzcd}
+  \end{equation*}
+\end{defn}
+
+\begin{lem}
+  If chain maps $\eta,\xi: A \to B$ are chain homotopic, then the maps $\eta_*,\xi_*: H_n(A_\bullet) \to H_n(B_\bullet)$ are the same.
+\end{lem}
+
+\begin{proof}
+  Let $x \in \ker d_n$.
+  Then let $[x]$ be the corresponding element in $A_n$.
+  Then
+  \begin{align*}
+    \eta_*([x]) &= [\eta_n(x)] = \eta_n(x) + \im d_{n+1} \\
+    &= \xi_n(x) + P_{n-1}d_n(x) + d_{n+1}P_n(x) + \im d_{n+1} \\
+    &= \xi_n(x) + \im d_{n+1} = [\xi_n(x)] = \xi_*([x]) \qedhere
+  \end{align*}
+\end{proof}
+
+\begin{lem}
+  If $f, g: X \to Y$ are homotopic, then $f_\sharp,g_\sharp:C_\bullet(X) \to C_\bullet(Y)$ are chain homotopic.
+\end{lem}
+
+\begin{proof}
+  We have $F:X \times I \to Y$ where $F(x,0)=f(x)$ and $F(x,1)=g(x)$ for all $x$.
+  We want to find a $P: C_n(X) \to C_{n+1}(Y)$.
+
+  For $\sigma: \Delta^n \to X$, we have
+  \begin{align*}
+    \wt\sigma: \Delta^n \times I &\to X \times I \\
+    (a,t) &\mapsto (\sigma(a),t)
+  \end{align*}
+  Then we have a map
+  \[F\wt\sigma: \Delta^n \times I \to Y\]
+  such that $F\wt\sigma|_{\Delta^n\times\{0\}}=f\sigma$ and $F\wt\sigma|_{\Delta^n\times\{1\}}=g\sigma$.
+
+  Now $\Delta^n \times I$ is the union of $n+1$ $(n+1)$-simplices: If $[u_0,\ldots,u_n]$ is the $n$-simplex $\Delta^n \times \{0\}$ and $[v_0,\ldots,v_n]$ is the $n$-simplex $\Delta^n \times \{1\}$, the $n+1$ $(n+1)$-simplices are
+  \[ [u_0,w_0,\ldots,w_n], \ldots, [u_0,\ldots,u_i,w_i,\ldots,w_n], \ldots, [u_0\ldots,u_n,w_n].\]
+
+  We define
+  \[P_n(\sigma) = \sum_{i=0}^n (-1)^i F\wt\sigma|_{[u_0,\ldots,u_i,w_i,\ldots,w_n]}.\]
+  We claim that $\p P - P \p = g_\sharp - f_\sharp$.
+
+  We check the cases $n=0$ and $n=1$ (omitted from these notes).
+  The rest of the proof can be found in Hatcher.
+\end{proof}
+

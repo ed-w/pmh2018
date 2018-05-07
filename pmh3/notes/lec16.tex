@@ -52,7 +52,7 @@ Dual spaces
   It is easy to see that $\Theta$ is linear.
   Note that to show that $\Theta$ is an isometry we only need to prove that $\norm{\hat x} \geq \norm{x}$.
   By the corollary to the Hahn-Banach theorem there exists a $\ph_x \in X'$ such that $\ph_x(x) = \norm{x}$ and $\norm{\ph_x}=1$.
-  \[\hat(\ph_x) = \ph_x(x) = \norm{x} = \norm{\ph_x}\norm{x} \implies \norm{\hat x} \geq \norm{x}.\]
+  \[\hat{\ph_x} = \ph_x(x) = \norm{x} = \norm{\ph_x}\norm{x} \implies \norm{\hat x} \geq \norm{x}.\]
   That $\Theta$ is injective follows from the isometric property.
 \end{proof}
 
@@ -85,7 +85,8 @@ The dual of $\ell^p$.
   If $1\leq p<\infty$, then:
   \begin{enum}
     \io
-    $\ds x = \sum_{k=1}^\infty x_ke_k$ for all $x = (x_k) \in \ell^p$, where $e_k = (\delta_{nk})_{n \geq 1}$.\\
+    $\ds x = \sum_{k=1}^\infty x_ke_k$ for all $x = (x_k) \in \ell^p$, where
+    \[e_k = (\overset{1}{0},\ldots,\overset{k-1}{0},\overset{k}{1},\overset{k+1}{0},\ldots).\]
   (That is, the partial sums go to zero.)
 
   \io
@@ -117,7 +118,7 @@ The dual of $\ell^p$.
   $\ph_y$ is clearly linear, so the image of $\ph_y$ is in $(\ell^q)'$.
 
   We now show that $\Theta$ is an isometric isomorphism.
-  It is clear than $\Theta$ is linear.
+  It is clear that $\Theta$ is linear.
   To see that $\Theta$ is injective, note that
   \[\Theta(y)=\Theta(y') \iff \sum_{k=1}^\infty x_k(y_k-y_k')=0 \text{ for all } x \in \ell^p.\]
   Then choose $x = e_k$, so we have that $y_k=y_k'$ for all $k$.

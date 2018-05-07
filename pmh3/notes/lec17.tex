@@ -1,0 +1,90 @@
+\section{2018-05-07 Lecture}
+
+\begin{proof}
+  We will now prove that $\Theta$ is surjective.
+  Let $\ph \in (\ell^p)'$.
+  Then
+  \[\ph(x) = \sum_{n=1}^\infty x_k\ph(e_k)\]
+  for all $x=(x_k)\in\ell^p$.
+  Let $y_k=\ph(x_k)$ and $y=(y_k)$.
+  We will show that $y \in \ell^q$, from which surjectivity follows.
+
+  Define a sequence of vectors $(x^{(n)})_{n \geq 1}$ in $\ell^p$ by
+  \[x_k^{(n)}=
+    \begin{cases}
+      \frac{\abs{y_k}^q}{y_k} & \text{if } k \neq n \text{ and } y_k \neq 0 \\
+      0 & \text{otherwise}
+    \end{cases}
+  \]
+  Then
+  \[\ph(x^{(n)}) = \sum_{k=1}^n x_k^{(n)}\ph(e_k) = \sum_{k=1}^n \abs{y_k}^q.\]
+  so
+  \[\abs{\ph(x^{(n)})} \leq \norm{\ph} \norm{x^{(n)}}_p = \norm{\ph} \left( \sum_{\substack{k=1 \\ y_k \neq 0}}^n \frac{\abs{y_k}^{pq}}{\abs{y_k}^p} \right)^\frac{1}{p} = \norm{\ph} \left( \sum_{k=1^n} \abs{y_k}^q \right)^{1-\frac 1q}\]
+  Putting these two (in)equalities together, we get $\norm{y}_q \leq \norm{\ph}$.
+  Hence $\ph=\ph_y$ and $\norm{y}_q \leq \norm{\ph_y}$.
+
+  We now show that $\Theta$ is an isometry.
+  We have seen that $\norm{\Theta(y)}=\norm{\ph_y}\leq\norm{y}_q$.
+  Also $\norm{y}_q\leq\norm{\ph_y}=\norm{\Theta(y)}$.
+  Therefore $\norm{\Theta{y}}=\norm{y}_q$ for all $y \in \ell^q$.
+\end{proof}
+
+\begin{rmk}
+  If we take $\ell^2$, then we have proved a case of the small Riesz representation theorem: for any $\ph \in (\ell^2)'$ there exists a $z \in \ell^2$ with $\ph(x) = \ang{x,z}$ for all $x \in \ell^2$.
+\end{rmk}
+
+More generally,
+\begin{thm}[Small Riesz representation theorem]
+  Let $\cH$ be a Hilbert space. For all $\ph \in \cH'$ there exists a $z \in \cH$ such that $\ph(x)=\ang{x,z}$ for all $x \in \cH$.
+\end{thm}
+
+\begin{exam}[Other examples of dual spaces]
+  \leavevmode
+  \begin{enum}
+    \io $(\ell^1)' \cong \ell^\infty$
+    \io $(\ell^\infty)' \not\cong \ell^1$
+    \io $(c_0)' \cong \ell^1$
+    \io $(L^p([a,b]))' \cong L^q([a,b])$
+    \io The large Riesz representation theorem for $(\cC([a,b]),\norm{\cdot}_\infty)$: for any $\ph \in (\cC([a,b])'$ there exists a unique regular $\sigma$-additive complex Borel measure $\mu$ on $[a,b]$ such that
+      \[\ph(f) = \int_a^b f(x) \, d\mu(x)\]
+      for all $f \in \cC([a,b])$.
+  \end{enum}
+\end{exam}
+
+Spectral theory
+
+The eigenvalues of an $n \times n$ matrix $T$ over $\CC$ are the roots of the polynomial $\det(\lambda I-T)=0$, or equivalently the values of $\lambda$ for which $\lambda I-T$ is not invertible.
+Spectral theory generalises these ideas to operators $T \in \ell(X) = \ell(X,X)$ where $X$ is a Banach space.
+
+\begin{defn}
+  The \textbf{spectrum} of $T \in \ell(X)$ is the set
+  \[ \sigma(T) = \left\{ \lambda \in \CC \mid \lambda I-T \text{ is not invertible} \right\}. \]
+\end{defn}
+
+\begin{rmk}
+  \leavevmode
+  \begin{enum}
+    \io
+    By the open mapping theorem (or equivalently the bounded inverse theorem), we have that $\lambda I-T$ is non-invertible if either
+    \begin{enum}
+    \io $\lambda I-T$ is not injective (\textbf{an eigenvalue}), or
+    \io $\lambda I-T$ is not surjective (\textbf{something else}).
+    \end{enum}
+
+    \io
+    From algebra we have $X/\ker T \cong \im T$.
+    If $\dim X < \infty$, then $\dim X = \dim\ker T + \dim\im T$, so $T$ is injective if and only if it is surjective.
+    This is not true if $X$ is infinite dimensional.
+
+    Take $L: \ell^2 \to \ell^2$ to be the left-shift operator and $R: \ell^2 \to \ell^2$ to be the right-shift operator.
+    Clearly both $L$ and $R$ have norm $1$.
+    Now $L$ is surjective but not injective and $R$ is injective but not surjective.
+
+    \io
+    If $\dim X<\infty$, then $TS=I \implies ST=I$.
+    However, $LR=I$ but $RL \neq I$.
+
+    \io
+    $\lambda \in \CC$ is an eigenvalue of $T$ $\iff$ there exists an $x \neq 0$ such that $Tx=\lambda x$ $\iff$ $\ker(\lambda I-T) \neq 0$ $\iff$ $\lambda I-T$ is not injective.
+  \end{enum}
+\end{rmk}
