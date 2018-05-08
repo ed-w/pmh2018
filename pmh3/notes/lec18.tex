@@ -1,0 +1,140 @@
+\section{2018-05-08 Lecture}
+
+\begin{thm}
+  Let $X \neq 0$ be a Banach space over $\CC$ and let$T \in \cL(X)$.
+  Then $\sigma(T)$ is a non-empty compact set in $\CC$.
+  Moreover
+  \[ \sigma(T) \subseteq \{ \lambda \in \CC \mid \abs{\lambda} \leq \norm{T} \} \]
+\end{thm}
+
+\begin{rmk}
+  The operator
+  \begin{equation*}
+    T=
+    \begin{bmatrix}
+      0 & 1 \\
+      -1 & 0
+    \end{bmatrix}
+    : \RR^2 \to \RR^2
+  \end{equation*}
+  has no real eigenvalues.
+\end{rmk}
+
+\begin{exam}
+  Let $L: \ell^2 \to \ell^2$ be the left shift operator.
+  Since $\norm{L} = 1$ we must have $\sigma(L) \subseteq \ol{D(0,1)}$.
+  But if $\abs{\lambda}<1$, then $(1,\lambda,\lambda^2,\ldots) \in \ell^2$ and $(\lambda I-L)x=0$.
+  Therefore $D(0,1) \subseteq \sigma(L)$.
+  Since $\sigma(L)$ is compact, we must have $\sigma(L)=\ol{D(0,1)}$.
+
+  If $\abs{\lambda}=1$, is $\lambda I-L$ non-injective, non-surjective or both?
+  We can see that $\abs{\lambda}=1$ implies that $\lambda I-L$ is injective since
+  \[ (\lambda I-L)x=0 \iff x=(1,\lambda,\lambda^2,\ldots) \iff x=0 .\]
+\end{exam}
+
+\begin{exer}
+  \leavevmode
+  \begin{enum}
+    \io Show that if $\abs{\lambda}=1$ then $\im(\lambda I-L)$ is dense in $\ell^2$.
+    \io Is $\lambda I-L: \ell^2 \to \ell^2$ surjective for $\abs{\lambda}<1$? (No.)
+    \io Compute $\sigma(R)$ for $R: \ell^2 \to \ell^2$ the right shift operator. ($\sigma(R)=\ol{D(0,1)}$.)
+  \end{enum}
+\end{exer}
+
+Now we prove the theorem.
+
+\begin{prop}
+  Let $X$ be a non-zero Banach space and $T \in \ell(X)$.
+  Then
+  \[ \sigma(T) = \{ \lambda \in \CC \mid \abs{\lambda} \leq \norm{T} \}. \]
+\end{prop}
+
+\begin{proof}
+  We need to show that if $\abs{T}>\norm{T}$, then $\lambda I-T$ is invertible.
+  We will using the following idea:
+  \[ (\lambda I-T)\inv = \frac{1}{\lambda I-T} = \frac{1}{\lambda \left( I-\frac{1}{\lambda}T \right)} = \frac{1}{\lambda} \sum_{k=0}^\infty \left( \frac{1}{\lambda} \right)^k T^k = \sum_{k=0}^\infty \frac{1}{\lambda^{k+1}}T^k. \]
+  Define
+  \[ S_n = \sum_{k=0}^n \frac{1}{\lambda^{k+1}}T^k. \]
+  Then
+  \[ \sum_{k=0}^\infty \norm{ \frac{T^k}{\lambda^{k+1}} } \leq \sum_{k=0}^\infty \frac{\norm{T}^k}{\abs{\lambda}^{k+1}} < \infty. \]
+  Since $\ell(X)$ is a Banach space, the sequence $S_n$ of partial sums converges, so there exists an $S \in \ell(X)$ such that $S_n \to S$.
+  Also
+  \[ S_n(\lambda I-T) = I - \frac{T^{n+1}}{\lambda^{n+1}} \to I, \]
+  hence $S(\lambda I-T) = I$.
+  Similarly, sine $S_n$ and $(\lambda I-T)$ commute, we have $(\lambda I-T)S=I$, hence $\lambda I-T$ is invertible.
+\end{proof}
+
+\begin{exer}[Important theorem]\label{18:exer}
+  Show that if $\abs{I-T}<1$ then $T$ is invertible and
+  \[ T\inv = \sum_{k=0}^\infty (I-T)^k. \]
+  Equivalently, show that if $\norm{T}<1$ then $(I-T)$ is invertible and
+  \[ (I-T)\inv = \sum_{k=0}^\infty T^k. \]
+\end{exer}
+
+\begin{defn}
+  Let $X$ be a Banach space over $K$.
+  Define the \textbf{general linear group}
+  \[ \GL(X) = \{ T \in \ell(X) \mid T \text{ is invertible} \}. \]
+\end{defn}
+
+\begin{prop}
+  \leavevmode
+  \begin{enum}
+    \io $\GL(X)$ is a group under composition.
+    \io $\GL(X)$ is an open subset of $\ell(X)$.
+    \io The inversion map $T \mapsto T\inv$ on $\GL(X)$ is continuous.
+  \end{enum}
+\end{prop}
+
+\begin{proof}
+  \leavevmode
+  \begin{enum}
+    \io
+    If $T \in \GL(X)$ then by the bounded inverse theorem (open mapping theorem), $T\inv \in \GL(X)$.
+    The rest is obvious.
+
+    \io
+    Let $T_0 \in \GL(X)$.
+    We claim that $B(T_0, \norm{T_0\inv}\inv) \subset \ell(X)$.
+    If $\norm{T-T_0}<\norm{T_0\inv}\inv$, then
+    \[ \norm{I-T_0\inv T} = \norm{T_0\inv (T_0-T)} \leq \norm{T_0\inv}\norm{T_0-T} < 1. \]
+    By exercise \ref{18:exer}, $T_0\inv T \in \GL(X)$.
+    Since $T_0 \in \GL(X)$ which is a group, we have $T \in \GL(X)$.
+
+    \io
+    Let $T,T_0 \in \GL(X)$.
+    We have
+    \[ \norm{T\inv-T_0\inv} = \norm{T_0\inv(T_0-T)T\inv} \leq \norm{T_0\inv}\norm{T_0-T}\norm{T\inv}. \]
+    The main issue with proving continuiy at $T_0$ is that if $T \approx T_0$ then $T \in \GL(X)$ by (b), but we need to show that $\norm{T\inv} \leq f(\norm{T_0},\norm{T_0}\inv)$ for some constant $f(\norm{T_0},\norm{T_0}\inv)$ depending on $\norm{T_0}$ and $\norm{T_0\inv}$.
+
+    If $\norm{T-T_0} \leq 1/(2\norm{T_0\inv})$, then
+    \[ \norm{T-TT_0\inv} = \norm{T_0T_0\inv-TT_0\inv} \leq \norm{T_0-T}\norm{T_0\inv} \leq \frac 12. \]
+    Then by exercise \ref{18:exer}, $TT_0\inv \in \GL(X)$, and
+    \[ (TT_0\inv)\inv = \sum_{k=0}^\infty (I-TT_0\inv)^k \]
+    which implies that
+    \[ \norm{(TT_0\inv)\inv} \leq \sum_{k=0}^\infty \norm{I-TT_0\inv}^k \leq 2. \]
+
+  \begin{exer}
+    Show that $(TT_0\inv)\inv = T_0T\inv$.
+  \end{exer}
+
+  Then
+  \[ \norm{T\inv} = \norm{T_0\inv T_0 T\inv} \leq \norm{T_0\inv}\norm{T_0T\inv} = \norm{T_0\inv} \norm{(TT_0\inv)\inv} \leq 2\norm{T_0\inv}. \]
+  which completes the proof.
+  \end{enum}
+\end{proof}
+
+\begin{cor}
+  $\sigma(T)$ is closed, (hence it is compact).
+\end{cor}
+
+\begin{proof}
+  Define a continuous map
+  \begin{align*}
+    f: \CC &\to \ell(X) \\
+    \lambda &\mapsto \lambda I-T
+  \end{align*}
+  Then
+  \[ \sigma(T) = f\inv\left[ \ell(X) \setminus \GL(X) \right]. \]
+  Since $\GL(X)$ is open, this completes the proof.
+\end{proof}

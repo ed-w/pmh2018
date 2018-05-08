@@ -1,0 +1,128 @@
+\section{2018-05-08 Lecture}
+
+(still non-assessable content)
+
+\begin{defn}
+  Take a point $x$ in a topological space $X$ and let $U$ and $V$ be two open neighbourhoods of $x$.
+A \textbf{germ} is an equivalence class of functions from $X$ to another topological space $Y$ defined by the following relation: if $\ph: U \to Y$ and $\ph': V \to Y$ are two maps, then $(\ph,U) \sim (\ph',V)$ if there exists an open neighbourhood $W \subset U \cap V$ of $X$ such that $\ph|_W = \ph'|_{W'}$.
+\end{defn}i
+
+\begin{defn}[AG.11]
+  Let $X$ be a topological space, $\ca F$ a sheaf on $X$ and $x \in X$.
+  The \textbf{stalk} of $\ca F$ at $x$ is
+  \[ \ca F_x = \varinjlim_{x \in U} \ca F(U). \]
+\end{defn}
+
+\begin{exam}
+  Let $X = \Spec R$, $\ca F = \wt M$, $x = \kp$ and $S = R \setminus \kp$  where $\kp$ is a prime ideal.
+  Then
+  \[ \wt M_\kp = \varinjlim_{\kp \in D_f} \wt M(D_f) = \varinjlim_{f \in S} M_f = M_\kp. \]
+  So stalks are just localisations at prime ideals.
+  Similarly, we have
+  \[ (\ca O_{\Spec R})_\kp = R_\kp. \]
+\end{exam}
+
+We want to see $R$ as functions on $\Spec R$.
+For $\mSpec R \subseteq \Spec R$, we have
+\[ r \in R \qquad r: m \mapsto r + \km \in R/\km. \]
+
+begin assessable content
+
+\S 3 Noetherian and Artinian rings (and modules)
+
+\begin{lem}[3.1]\label{18:cond}
+  Let $(\Sigma, \preceq)$ be a poset.
+  The following are equivalent:
+  \begin{enum}
+    \io\label{18:acc} Every increasing sequence $x_1,x_2,\ldots$ in $\Sigma$ eventually stabilises.
+    \io\label{18:max} Every non-empty subset of $\Sigma$ has a maximal element.
+  \end{enum}
+\end{lem}
+
+\begin{proof}
+  Omitted. Trivial.
+\end{proof}
+
+\begin{defn}
+  Let $M$ be an $R$-module.
+  \begin{enum}
+    \io
+    Let $\Sigma$ be the set of all submodules of $M$ ordered by inclusion.
+    Then condition $\ref{18:acc}$ is called the \textbf{ascending chain condition} (ACC) and condition $\ref{18:max}$ is called the \textbf{maximal condition}.
+    If $M$ satisfies both (or either) of conditions \ref{18:acc} and \ref{18:max} then $M$ is called \textbf{Noetherian}.
+
+    \io
+    Let $\Sigma$ be the set of all submodules of $M$ ordered by reverse inclusion.
+    Then condition $\ref{18:acc}$ is called the \textbf{descending chain condition} (ACC) and condition $\ref{18:max}$ is called the \textbf{minimal condition}.
+    If $M$ satisfies both (or either) of conditions \ref{18:acc} and \ref{18:max} then $M$ is called \textbf{Artinian}.
+  \end{enum}
+\end{defn}
+
+\begin{exam}
+  \leavevmode
+  \begin{enum}
+    \io
+    Let $R=\ZZ$.
+    Then any finite $\ZZ$-module satisfies the ACC and DCC.
+
+    \io
+    Let $R=\ZZ$ and $M=\ZZ$.
+    We have $n\ZZ \subseteq m\ZZ \iff m \mid n$.
+    Then $M$ is Noetherian but not Artinian.
+
+    \io
+    Let
+    \[ G_p = \{x \in \QQ/\ZZ \mid \ord(x) = p^r \text{ for } r \in \NN\}. \]
+    We have submodules
+    \[ G_p^r = \{x \in \QQ/\ZZ \mid (\ord(x) \mid p^r) \}. \]
+    Then $G_p^0 \subset G_p^1 \subset G_p^2 \subset \cdots$, so $G_p$ is not Noetherian.
+
+    \begin{exer}
+      Show that $G_p$ is Artinian by showing that the $G_p^r$ are all of the submodules of $G_p$ (then the minimal condition is satisfied).
+    \end{exer}
+
+    \io
+    Let
+    \[ H_p = \left\{ \frac{m}{p^r} \in \QQ \mid m,r \in \ZZ, r \geq 0 \right\}. \]
+
+    \begin{exer}
+      Show that there is an exact sequence
+      \begin{equation*}
+	\begin{tikzcd}
+	  0 \ar[r] & \ZZ \ar[r] & H_p \ar[r] & G_p \ar[r] & 0
+	\end{tikzcd}
+      \end{equation*}
+    \end{exer}
+    Then by a theorem we will prove later, $H_p$ is neither Artinian nor Noetherian.
+  \end{enum}
+
+  \io
+  Consider the polynomial ring in infinitely many variables: $R = k[x_i \mid i \in \NN]$ and let $M=R$.
+  Since $(x_0) \subset (x_0,x_1) \subset (x_0,x_1,x_2) \subset \cdots$, $M$ is not Noetherian.
+  Since $(x_0) \supset (x_0x_1) \supset (x_0x_1x_2) \supset \cdots$, $M$ is not Artinian.
+\end{exam}
+
+\begin{prop}[3.2]
+  Let $M$ be an $R$-module.
+  Then $M$ is Noetherian $\iff$ every submodule of $M$ is finitely generated.
+\end{prop}
+
+\begin{proof}
+  $\implies$:
+  Let $N$ be a non-zero submodule of $M$.
+  Let $\Sigma'$ be the set of all finitely generated submodules of $N$.
+  Clearly $\Sigma' \neq 0$ so it has a maximal element $N_0$.
+  If $N_0 \subsetneq N$, there exists an $x \in N \setminus N_0$.
+  Hence $N_0 + Rx \subseteq N$.
+  But $N_0 + Rx$ is finitely generated, hence it is in $\Sigma'$, contradicting the maximality of $N_0$.
+  Therefore $N=N_0$, so $N$ is finitely generated.
+
+  $\impliedby$:
+  Let $M_1 \subseteq M_2 \subseteq \cdots$ be an ascending chain in $M$.
+  Then
+  \[ N = \bigcup_{i=1}^\infty M_i \]
+  is a submodule, so we have
+  \[ N = \ang{x_1,\ldots,x_n}_R = \sum_{i=1}^n Rx. \]
+  Now there exists some $k \geq 1$ such that $x_1,\ldots,x_n \in M_k$.
+  Hence $N=M_k$ and the chain stabilises and $M$ is Noetherian.
+\end{proof}
