@@ -1,0 +1,74 @@
+\section{2018-05-09 Lecture}
+
+\begin{exam}
+  Two non-isomorphic groups with the same character table:
+  \[ Q = \{ \pm 1, \pm i, \pm j, \pm k \} \quad\text{and}\quad D_4 = \ang{x,y \mid x^4=1,y^2=1,yxy\inv=x\inv} \]
+  We have
+  \begin{center}
+    \begin{tabular}[]{c | c c c c c}
+      $Q$ & 1 & $-1$ & $\pm i$ & $\pm j$ & $\pm k$ \\ \hline
+      1 & 1 & 1 & 1 & 1 & 1 \\
+      $\psi_1$ & 1 & 1 & $-1$ & 1 & $-1$ \\
+      $\psi_2$ & 1 & 1 & 1 & $-1$ & $-1$ \\
+      $\psi_1\psi_2$ & 1 & 1 & $-1$ & $-1$ & 1 \\
+      $\pi$ & 2 & -2 & 0 & 0 & 0
+    \end{tabular}
+    \hspace{1cm}
+    \begin{tabular}[]{c | c c c c c}
+      $D_4$ & 1 & $x^2$ & $x,x^3$ & $y,x^2y$ & $xy,x^3y$ \\ \hline
+      1 & 1 & 1 & 1 & 1 & 1 \\
+      $\psi_1$ & 1 & 1 & $-1$ & 1 & $-1$ \\
+      $\psi_2$ & 1 & 1 & 1 & $-1$ & $-1$ \\
+      $\psi_1\psi_2$ & 1 & 1 & $-1$ & $-1$ & 1 \\
+      $\pi$ & 2 & -2 & 0 & 0 & 0
+    \end{tabular}
+  \end{center}
+  where $\psi_1$, $\psi_2$ and $\psi_1\psi_2$ are the three non-trivial one-dimensional characters and $\pi$ is the Pauli matrix representation.
+  (Note that by sum of squares we get the entry $\pi(1)$ and then by orthogonality we get the rest of the row.)
+  (The two groups have the same abelianisation.)
+  But the two groups are non-isomorphic since $Q$ contains 6 elements of order 4 but $D_4$ contains only 2 elements of order 4.
+\end{exam}
+
+So the character table does not allow us to reconstruct the group.
+The following definition allows us to distinguish some (but not all) non-isomorphic groups with identical character tables.
+
+\begin{defn}
+  The \textbf{Frobenius Schur-indicator} $\FS(\chi_i)$ of an irreducible character is
+  \[ \FS(\chi_i) = \frac{1}{\abs{G}} \sum_{g \in G} \chi_i(g^2). \]
+\end{defn}
+
+\begin{exam}
+  For $Q$, $\FS(\psi_1)=1$ and $\FS(\pi)=-1$, but for $D_4$, $\FS(\psi_1)=1$ and $\FS(\pi)=1$.
+\end{exam}
+
+\begin{thm}
+  We have
+  \begin{equation*}
+    \FS(\chi_i)=
+    \begin{cases}
+      1 &\text{if $\chi_i$ is real-valued and $S_i$ is of symmetric type} \\
+      0 &\text{if $\chi_i$ is not real-valued} \\
+      -1 &\text{if $\chi_i$ is real-valued and $S_i$ is of skew-symmetric type.}
+    \end{cases}
+  \end{equation*}
+\end{thm}
+
+\begin{rmk}
+  Recall that $\chi_i$ is the character of $S_i$ $\iff$ $\ol{\chi_i}$ is the character of $S_i^*$ for simple $\CC G$-modules $S_i$.
+  Then $\chi_i$ is real valued $\iff S_i \cong_{\CC G} S_i^*$, that is, $S_i$ is \textbf{self-dual}.
+\end{rmk}
+
+\begin{exam}
+  Consider $Z_3$ with characters $1$, $\psi$ and $\psi^2$.
+  Then $\CC_\psi^2 \cong \CC_{\psi^2}$, so $\FS(\psi)=0$.
+\end{exam}
+
+Tensor squares
+If $V$ is a vector space with basis $v_1,\ldots,v_n$, then $V^{\otimes 2}$ has basis $v_i \otimes v_j$ for $1 \leq i,j \leq n$.
+There is a natural endomorphism
+\begin{align*}
+  P: V \otimes V &\to V \otimes V \\
+  v_i \otimes v_j &\mapsto v_j \otimes v_i.
+\end{align*}
+Since $P^2=\id$, we have the direct sum decomposition
+\[ V \otimes V = \Sym^2 V \oplus \wedge^2 V \]

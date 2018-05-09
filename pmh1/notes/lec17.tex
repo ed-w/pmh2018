@@ -1,0 +1,106 @@
+\section{2018-05-09 Lecture}
+
+The fundamental group and the first homology group.
+They are both defined in terms of paths (loops are a type of paths and 1-simplices are paths).
+
+If we have
+\begin{align*}
+  \Psi: \Delta^1 &\isoto I \\
+  (t_0,t_0) &\mapsto t_1 \text{ where } t_0+t-1=1
+\end{align*}
+then we have a map
+\begin{align*}
+  f: I \to X &\leadsto f \circ \Psi: \Delta^1 \to X \\
+  \{ \text{paths in } X\} &\overset{1:1}{\leftrightarrow} \{\text{singular 1-simplices in } X\} \\
+  \{ \text{loops in } X\} &\overset{1:1}{\leftrightarrow} \{\text{singular 1-simplices in } X \text{ and in } \ker \p_n \}
+\end{align*}
+Then
+\[ \p_1(f\Psi) = f\Psi(0,1) - f\Psi(1,0) = f(1)-f(0) \in C_0(X). \]
+
+\begin{lem}
+  The map
+  \begin{align*}
+    h: \pi_1(X,x_0) &\to H_1(X) \\
+    [f] &\mapsto [\Psi(f)]
+  \end{align*}
+  exists and is a group homomorphism.
+\end{lem}
+
+\begin{proof}
+  \textbf{fill in}
+\end{proof}
+
+\begin{thm}
+  If $X$ is path connected then $h: \pi_1(X) \surjto H_1(X)$ is surjective with $\ker  = (\pi_1(X))'$.
+  (Thus $H_1(X)$ is the abelianisation of $\pi_1(X)$.)
+\end{thm}
+
+\begin{proof}
+  Omitted. See Hatcher.
+\end{proof}
+
+\begin{exam}
+  \leavevmode
+  \begin{enum}
+    \io $H_1(S^1)=\ZZ$
+    \io $H_1(S^1 \times S^1) = \ZZ^{\oplus 2}$
+    \io $H_1(S^1 \vee S^1) = \ZZ^{\oplus 2}$
+  \end{enum}
+\end{exam}
+
+(We skip Betti numbers and the Euler characteristic)
+
+2 Relative homology groups
+2.1 Def and long exact sequence
+
+\begin{defn}
+  A long exact sequence is a chain complex with trivial homology groups (so is exact at every term).
+\end{defn}
+
+\begin{defn}
+  For a pair $(X,A)$, define a chain complex $C_\bullet(X,A)$ by
+  \[C_n(X,A) = C_n(X)/X_n(A)\]
+  and boundary homomorphisms
+  \begin{align*}
+    \p_n^r: C_n(X,A) &\to C_n(X,A) \\
+    a + C_n(A) &\mapsto \p_na + C_{n-1}(A)
+  \end{align*}
+  It is clear that $C_\bullet(X,A)$ is a valid chain complex.
+  Nowe we can define the \textbf{relative homology groups}
+  \[H_n(X,A) = H_n(C_\bullet(X,A)) = \ker\p_n^r/\im\p_{n+1}^r.\]
+\end{defn}
+
+Now we have
+\[H_n(X,A) = \left\{ (a + C_n(A)) + \im\p_{n+1}^r \mid a \in C_n(X), \p a \in C_{n-1}(A) \right\}.\]
+Then we get a short exact sequence of chain complexes
+\begin{equation*}
+  \begin{tikzcd}
+    0 \ar[r] & C_\bullet(A) \ar[r, "i_\sharp"] & C_\bullet(X) \ar[r, "j_\sharp"] & C_\bullet(X,A) \ar[r] & 0
+  \end{tikzcd}
+\end{equation*}
+That is, the maps $i_\sharp$ and $j_\sharp$ commute with the boundary homomorphisms $\p$ and $\p^r$.
+Then we get an exact sequence
+\begin{equation*}
+  \begin{tikzcd}
+    H_n(A) \ar[r, "i_*"] & H_n(X) \ar[r, "j_*"] & H_n(X,A)
+  \end{tikzcd}
+\end{equation*}
+with
+\begin{align*}
+  \im i_* = \ker j_* &= \{ [a] \mid a \in C_n(A), \p_n a = 0 \} \\
+  \ker i_* &= \{ [\p b] \mid b \in D_{n+1}(X), \p b \in C_n(A) \} \\
+  \im j_* &= \{ [a + C_n(A)] \mid a \in C_n(X), \p a=0 \}
+\end{align*}
+but it cannot be extended to a short exact sequence in general.
+However we can extend it to a long exact sequence with the following connecting homomorphism:
+\begin{align*}
+  \delta: H_n(X,A) &\to H_{n-1}(A) \\
+  [a + C_n(X)] &\mapsto [\p a]
+\end{align*}
+giving
+\begin{equation*}
+  \begin{tikzcd}[column sep=small]
+    \cdots \ar[r, "\delta"] & H_n(A) \ar[r, "i_*"] & H_n(X) \ar[r, "j_*"] & H_n(X,A) \ar[r, "\delta"] & H_{n-1}(A) \ar[r, "i_*"] & H_{n-1}(X) \ar[r, "j_*"] & H_{n-1}(X,A) \ar[r, "\delta"] & \cdots
+  \end{tikzcd}
+\end{equation*}
+
