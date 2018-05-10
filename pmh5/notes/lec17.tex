@@ -1,0 +1,140 @@
+\section{2018-05-10 Lecture}
+
+\begin{lem}
+  We have
+  \[\chi_{\ca S^2(V)}(g) = \frac 12 \left( \chi_V(g)^2+\chi_V(g^2) \right) \qquad\text{and}\qquad \chi_{\wedge^2(V)}(g) = \frac 12 \left( \chi_V(g)^2-\chi_V(g^2) \right)\]
+\end{lem}
+
+\begin{rmk}
+  Note that $\chi_{\S^2(V)} + \chi_{\wedge^2(V)} = \chi_{V^{\otimes 2}}$.
+\end{rmk}
+
+\begin{proof}
+  Fix a $g \in G$.
+  Since $\rho(g)$ is of finite order, it is diagonalisable (powers of Jordan blocks in $\CC$ cannot give $I$).
+  Then there is an eigenbasis $\{v_1,\ldots,v_n\}$ of $V$ where $g$ acts on $v_i$ as multiplication by its eigenvalue $\lambda_i$.
+  Then $\{v_i \otimes v_j\}$ is a basis of $V \otimes V$, so we get the bases
+  \[ \{ v_i \otimes v_i, v_i \otimes j_v + v_j \otimes v_i \}_{i<j} \quad\text{and}\quad \{v_i \otimes v_j - v_j \otimes v_i \}_{i<j} \]
+  for $\ca S^2(V)$ and $\wedge^2(V)$ respectively.
+  Then in this basis, we have
+  \begin{align*}
+    \chi_{V \otimes V}(g) &= \sum_{i,j=1}^n \lambda_i\lambda_j = \left( \sum_{i=1}^n \lambda_i \right)^2 = \chi_V(g)^2 \\
+    \chi_{\ca S^2(V)}(g) &= \sum_{i=1}^n \lambda_i^2 + \sum_{1 \leq i<j \leq n} \lambda_i\lambda_j = \frac 12 \left( \sum_{i=1}^n \lambda_i^2 + \left( \sum_{i=1}^n \lambda_i \right)^2 \right) = \frac 12 \left( \chi_V(g^2) + \chi_V(g)^2 \right) \\
+    \chi_{\wedge^2(V)}(g) &= \sum_{1 \leq i<j \leq n} \lambda_i\lambda_j = \frac 12 \left( \left( \sum_{i=1}^n \lambda_i \right)^2 - \sum_{i=1}^n \lambda_i^2 \right) = \frac 12 \left( \chi_V(g^2) + \chi_V(g)^2 \right) \qedhere
+  \end{align*}
+\end{proof}
+
+\begin{proof}[Proof of theorem \ref{16:frob-schur}]
+  \begin{align*}
+    \FS(\chi_i) &= \frac{1}{\abs{G}} \sum_{g \in G} \left( \chi_{\ca S^2(V)}(g) - \chi_{\wedge^2(V)}(g) \right) \\
+    &= \ang{\chi_{\ca S^2(V)},1} - \ang{\chi_{\wedge^2(V)},1} = \dim \left( \ca S^2(S_i) \right)^G - \dim \left( \wedge^2(S_i)G \right) \\
+    &=
+    \begin{cases}
+      1 & \text{if $S_i$ is self-dual and of symmetric type} \\
+      0 & \text{if $S_i$ is not self-dual} \\
+      -1 & \text{if $S_i$ is self-dual and of skew-symmetric type}
+    \end{cases}
+  \end{align*}
+\end{proof}
+
+If $V$ is a vector space, then the space $\Bil(V)$ of \textbf{bilinear forms} on $V$ (bilinear maps $V \times V \to \CC$) can be identified with $V^* \otimes V^*$ via the isomorphism
+\begin{align*}
+  V^* \otimes V^* &\isoto \Bil(V) \\
+  f \otimes f' &\mapsto \left( B_{ff'}: (v,v') \mapsto f(v)f(v') \right)
+\end{align*}
+This isomorphism can be checked using bases.
+Then the map $P$ which swaps the factors in the tensor product $V \otimes V$ corresponds to the map
+\[ B \mapsto B^t \quad\text{where}\quad B^t(v,v') = B(v',v) \]
+So $\ca S^2(V)$ is the space of symmetric ($B=B^t$) bilinear forms on $V$ and $\wedge^2(V)$ is the space of skew-symmetric ($B=-B^t$) bilinear forms on $V$.
+
+If $V$ is a $\CC G$-module, then $V^* \otimes V^*$ is a $\CC G$-module with the action
+\[ (g \cdot B)(v,v') = B(g\inv v, g\inv v') \]
+for all $g \in G$, $B \in \Bil(V)$ and $v, v' \in V$.
+We say that a bilinear form is $G$-invariant if
+\[ B(gv,gv')=B(v,v'). \]
+Then the space of $G$-invariant bilinear forms is $(V^* \otimes V^*)^G$, and similarly for symmetric and skew-symmetric $G$-invariant bilinear forms.
+
+If $S_i$ is self-dual, then $\dim(S_i^* \otimes S_i^*)^G=1$ (from the previous lecture), so there exists a unique non-zero bilinear form on $V$ (up to scaling).
+This is either symmetric or skew-symmetric (giving rise to symmetric and skew-symmetric types respectively).
+
+\begin{exam}
+  \lv
+  \begin{enum}
+    \io
+    $D_6$ has an irreducible 2-dimensional representation $V$ given by complexifying the standard representation of $D_6$ on $\RR^2$ ($\rho: G \to \GL_2(\RR)$).
+    We will show that this representation is of symmetric type.
+    $\RR^2$ has an orthogonal basis $e_1,e_2$ with respect to the standard inner product, and each $\rho(g)$ for $g \in G$ preserves dot product since they are all orthogonal transformations.
+    Now define a bilinear form $B(e_i,e_j)=\delta_{ij}$.
+    (Note that this is not an inner product since it is not conjugate symmetric.)
+    Then $B\left( \rho(g)v,\rho(g)v' \right) = B(v,v')$ so $B$ is $G$-invariant.
+    Moreover, it is clearly symmetric.
+
+    \io
+    The quaternion group $Q_8$ has a two-dimensional irreducible representation given by
+    \begin{equation*}
+      i\mapsto
+      \begin{bmatrix}
+	i & 0 \\
+	0 & -i
+      \end{bmatrix}
+      \qquad
+      j\mapsto
+      \begin{bmatrix}
+	0 & -1 \\
+	1 & 0
+      \end{bmatrix}
+      \qquad
+      k\mapsto
+      \begin{bmatrix}
+	0 & -i \\
+	i & 0
+      \end{bmatrix}
+    \end{equation*}
+    Then there is a skew-symmetric bilinear form $B: (v,v') \mapsto \det([v\ v'])$ where we interpret $v$ and $v'$ as column vectors.
+  \end{enum}
+\end{exam}
+
+\begin{defn}[Complexifying real representations]
+  If $U$ is an $\RR G$-module, then $U_\CC \defeq \CC \otimes_\RR U$ is a $\CC G$-module with $\CC$-basis $\{1 \otimes u_1,\ldots,1 \otimes u_n\}$ where $\{u_1,\ldots,u_n\}$ is a basis of $U$.
+\end{defn}
+
+\begin{rmk}
+  If $U$ is simple as an $\RR G$-module, it may be that $U_\CC$ may not be simple as a $\CC G$-module.
+\end{rmk}
+
+\begin{exam}
+  Consider $\RR^2$ as an $\RR Z_3$-module with $\rho(x)$ the rotation by $2\pi/3$ matrix.
+  This is simple because $\rho(x)$ has no eigenvalues.
+  But $\RR^2_\CC$ has a direct sum decomposition in to the $\omega$ and $\omega^2$-eigenspaces, so $\CC^2 = \CC_\psi \oplus \CC_{\psi^2}$.
+\end{exam}
+
+\begin{prop}
+  If $U_\CC$ is simple then it is of symmetric (real) type.
+\end{prop}
+
+\begin{proof}[Sketch]
+  By averaging an arbitrary inner product over the group, we van show that $U$ has an invariant symmetric $\RR$-bilinear form.
+\end{proof}
+
+\begin{rmk}
+  \lv
+  \begin{enum}
+    \io
+    If $S_i$ is self-dual, then by Schur's lemma, the unique (up to scalars) non-zero $\CC G$-module homomorphism from $S_i$ to $S_i^*$ must be an isomorphism.
+    Correspondingly, the unique (up to scalars) non-zero $G$-invariant bilinear form is always \textbf{non-degenerate}, that is, $B(v,v')=0$ for all $v \in V$ implies that $v=0$.
+
+    \io
+    It is a result in linear algebra that an odd dimensional space cannot have a non-degenerate skew-symmetric bilinear form.
+    Thus if $S_i$ is self-dual and $\dim S_i$ is odd, then $S_i$ is of symmetric type.
+  \end{enum}
+\end{rmk}
+
+\begin{rmk}
+  Here is a `proof' that every simple $\CC G$-module is of symmetric type.
+  Let $\wt B: S_i \times S_i \to \CC$ be a symmetric bilinear form.
+  Define
+  \[ B(v,v') = \frac{1}{\abs{G}} \sum_{g \in G} B(gv,gv'). \]
+  Then $B$ is a $G$-invariant symmetric bilinear form, hence $\CC G$ is of symmetric type.
+
+  The problem is that we can have $B(v,v')=0$ for all $v,v' \in V$.
+\end{rmk}

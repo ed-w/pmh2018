@@ -41,7 +41,7 @@ The following definition allows us to distinguish some (but not all) non-isomorp
   For $Q$, $\FS(\psi_1)=1$ and $\FS(\pi)=-1$, but for $D_4$, $\FS(\psi_1)=1$ and $\FS(\pi)=1$.
 \end{exam}
 
-\begin{thm}
+\begin{thm}\label{16:frob-schur}
   We have
   \begin{equation*}
     \FS(\chi_i)=
@@ -73,6 +73,11 @@ There is a natural endomorphism
 Since $P^2=\id$, we have the direct sum decomposition
 \[ V^{\otimes 2} = \ca S^2 (V) \oplus \wedge^2 (V) \]
 where $\ca S^2(V)$ and $\wedge^2(V)$ are the $+1$ and $-1$-eignepsaces of $P$ respectively.
+More specifically, we have that
+\[ \ca S^2(V) = \ang{v_i \otimes v_i, v_j \otimes v_k + v_k \otimes v_j \mid 1 \leq i \leq n, 1 \leq j<k \leq n } \]
+with dimension $(n^2+n)/2$ and
+\[ \ca \wedge^2(V) = \ang{v_j \otimes v_k - v_k \otimes v_j \mid 1 \leq j<k \leq n } \]
+with dimension $(n^2-n)/2$.
 
 Recall that $V \otimes V$ is a $\CC G$-module with the action $g \cdot (v \otimes v') = (g \cdot v) \otimes (g \cdot v')$.
 This action clearly commutes with $P$, so $V^{\otimes 2} = \ca S^2(V) \oplus \wedge^2(V)$ is a $\CC G$-submodule decomposition.
@@ -100,3 +105,6 @@ or
 We know that $\chi_{V \otimes V}(g) = \chi_V(g)^2$.
 Tomorrow we will compute $\chi_{\ca S^2(V)}$ and $\chi_{\wedge^2(V)}$ in terms of $\chi_V$.
 
+\begin{rmk}
+  We also have the names \textbf{real}, \textbf{complex} and \textbf{quaternionic} type for symmetric, complex and skew-symmetric type respectively.
+\end{rmk}
