@@ -1,0 +1,108 @@
+\section{2018-05-14 Lecture}
+
+Let $T \in \cL(X)$ and $X$ be a Banach space over $\CC$.
+The spectrum is the set
+\[ \sigma(T) = \{ \lambda \in \CC \mid \lambda I-T \text{ is not invertible} \}. \]
+
+\begin{thm}
+  $\sigma(T)$ is a compact non-empty set in $\CC$.
+  Moreover,
+  \[ \sigma(T) \subset \{ \lambda \mid \abs{\lambda} \leq \norm{T} \}. \]
+\end{thm}
+
+We have already proved compactness and the inclusion.
+It remains to show that $\sigma(T)$ is non-empty.
+
+\begin{defn}
+  The \textbf{resolvent} $\rho(T)$ of $T$ is the set $\CC \setminus \sigma(T)$.
+  The \textbf{resolvent operator} is the map
+  \begin{align*}
+    R: \rho(T) &\to \cL(X) \\
+    \lambda &\mapsto (\lambda I-T)\inv
+  \end{align*}
+\end{defn}
+
+\begin{lem}
+  Let $\ph \in (\cL(X))'$ and let
+  \[ f_\ph = \ph \circ R: \rho(T) \to \CC. \]
+  Then $f_\ph$ is analytic on the open set $\rho(T)$.
+\end{lem}
+
+\begin{proof}
+  We have to show that if $\lambda_0 \in \rho(T)$, then the limit
+  \[ \lim_{\lambda\to\lambda_0} \frac{f_\rho(\lambda)-f_\rho(\lambda_0)}{\lambda-\lambda_0} \]
+  exists.
+  If $\lambda,\lambda_0 \in \rho(T)$, then
+  \begin{align*}
+    \frac{f_\rho(\lambda)-f_\rho(\lambda_0)}{\lambda-\lambda_0} &= \ph\left( \frac{R(\lambda)-R(\lambda_0)}{\lambda-\lambda_0} \right) \\
+    &= \ph\left( \frac{(\lambda I-T)\inv-(\lambda_0I-T)\inv}{\lambda-\lambda_0} \right) \\
+    &= \ph\left( \frac{(\lambda I-T)\inv(\lambda_0-\lambda)(\lambda_0I-T)\inv}{\lambda-\lambda_0} \right) \\
+    &= -\ph\left( (\lambda I-T)\inv(\lambda_0I-T)\inv \right)
+  \end{align*}
+  where we have used that $A\inv-B\inv=B\inv(B-A)A\inv$.
+  By the continuity of $S \mapsto S\inv$ in $\GL(X)$, we have
+  \[ \lim_{\lambda\to\lambda_0} \frac{f_\rho(\lambda)-f_\rho(\lambda_0)}{\lambda-\lambda_0} = -\ph\left( (\lambda_0I-T)^{-2} \right). \qedhere \]
+\end{proof}
+
+\begin{proof}[Proof that $\sigma(T)$ is non-empty]
+  If $\sigma(R) = \emptyset$ then $f_\ph$ is analytic on all of $\CC$.
+  We claim that $f_\ph$ is bounded.
+
+  If $\abs{\lambda} \geq \norm{T}$, then
+  \[ f_\ph(\lambda) = \abs{\ph(\lambda I-T)\inv} = \abs{ \ph\left( \sum_{k=0}^\infty \frac{1}{\lambda^{k+1}}T^k \right)} \leq \sum_{k=0}^\infty \frac{\abs{\ph(T^k)}}{\abs{\lambda}^{k+1}} \leq \sum_{k=0}^\infty \frac{\norm{\ph} \norm{T}^k}{\abs{\lambda} \abs{\lambda}^k} = \frac{\norm{\ph}}{\abs{\lambda}-\norm{T}} \]
+  where the first inequality follows from the continuity of $\ph$ and the triangle inequality.
+  This converges to 0 as $\abs{\lambda} \to \infty$.
+  Therefore $f_\ph: \CC \to \CC$ is bounded and analytic.
+  By Liouville's theorem we conclude that $f_\ph$ is the zero function.
+
+  So if $\sigma(T)=\emptyset$, then for all $\ph \in (\cL(X))'$, we have $\ph(R(\lambda))=0$ for all $\lambda \in \CC$.
+  By the Hahn-Banach theorem, this implies that $R(\lambda) = 0_{\cL(X)}$ for all $\lambda \in \CC$.
+  But $0_{\cL(X)} \notin \GL(X)$ if $X \neq 0$.
+\end{proof}
+
+\begin{thm}[Liouville's theorem]
+  If $f: \CC \to \CC$ is analytic and bounded then it is constant.
+\end{thm}
+
+\begin{proof}
+  We will use the Cauchy integral formula.
+  \[ f(z-z_0) = \frac{1}{2\pi i} \int_{C_R} \frac{f(z)}{z-z_0} \, dz \]
+  if $f$ is analytic in a domain $D$ which contains the disk/circle $C_R$ of radius $R$ with $z_0$ in its interior.
+  Then
+  \[ f(z_1)-f(z_2) = \frac{1}{2\pi} \abs{ \int_{C_R} \frac{f(z)(z_1-z_2)}{(z-z_1)(z-z_2)} } \, dz \leq \frac{CM}{R^2}2\pi R \to 0 \]
+  where $C$ is a constant and $M = \sup_{z \in C_R} \abs{f(z)}$.
+\end{proof}
+
+The spectral mapping theorem.
+
+Let $A$ be an $n \times n$ matrix over $\CC$.
+Then $\sigma(p(A))=p(\sigma(A))$ for all $p \in \CC[x]$.
+
+\begin{thm}
+  Let $X$ be a Banach space over $\CC$ and let $T \in \cL(X)$.
+  Then $\sigma(p(T))=p(\sigma(T))$ for any polynomial $p(T) \in \CC[t]$.
+\end{thm}
+
+\begin{proof}
+  If $p(t) \in \CC[x]$, then $\sigma(p(T))=\sigma(cI) = \{c\}$, and $\p(\sigma(T))=\{c\}$.
+  Now suppose that $p$ is a non-constant polynomial and let $\mu \in \CC$.
+  Then
+  \[ \mu-p(t) = \alpha(t-\lambda_1)^{m_1}\cdots(t-\lambda_n)^{m_n} \]
+  where $\lambda_1,\ldots,\lambda_n$ are distinct roots of $\mu-p(t)$.
+  Since the map $p(t) \mapsto p(T)$ is an algebra homomorphism, we have
+  \[ \mu I-p(T) = \alpha(T-\lambda_1)^{m_1}\cdots(T-\lambda_n)^{m_n}. \]
+
+  \begin{exer}
+    If $T_1,\ldots,T_n$ are commuting operators in $\cL(X)$, then $T_1 \cdots T_n$ is invertible $\iff$ each $T_i$ is invertible.
+  \end{exer}
+
+  Hence $\mu \in \sigma(p(T))$ $\iff$ one of the $\lambda_i I-T$ is not invertible for some $i$ $\iff$ $\lambda_i \in \sigma(T)$ for some $i$ $\iff$ $\mu-p(\lambda_i)=0$ for some $i$ $\iff$ $\mu \in p(\sigma(T))$.
+\end{proof}
+
+\begin{defn}
+  Let $X$ be a Banach space over $\CC$. The \textbf{spectral radius} of $T \in \cL(X)$ is
+  \[ r(T) = \sup_{\lambda\in\sigma(T)}\abs{\lambda}. \]
+  We know that $r(T) \leq \norm{T}$.
+  We will see tomorrow a formula to calculate the spectral radius from the norm of powers of $T$.
+\end{defn}
+

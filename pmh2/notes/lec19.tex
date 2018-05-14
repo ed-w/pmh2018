@@ -1,0 +1,192 @@
+\section{2018-05-14 Lecture}
+
+\begin{prop}[3.3]
+  Let
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \ar[r] & M' \ar[r,"\iota"] & M \ar[r] & M'' \ar[r,"\pi"] & 0
+    \end{tikzcd}
+  \end{equation*}
+  be an exact sequence of $R$-modules.
+  Then
+  \begin{enum}
+    \io $M$ is Noetherian $\iff$ $M'$ and $M''$ are Noetherian.
+    \io $M$ is Artinian $\iff$ $M'$ and $M''$ are Artinian.
+  \end{enum}
+\end{prop}
+
+\begin{proof}
+  We will only prove 1.\@ since the proof of 2.\@ is analogous.
+
+  $\implies$:
+  Let $M$ be Noetherian and $M_1' \subseteq M_2' \subseteq \cdots$ is an ascending chain of submodules of $M'$.
+  Then $\iota[M_1'] \subseteq \iota[M_2'] \subseteq \cdots$ is an ascending chain in $M$ which must stabilise at some $k \geq 1$.
+  Since $\iota$ is injective, the original chain in $M'$ stabilises at $k$.
+
+  Let $M_1'' \subseteq M_2'' \subseteq \cdots$ be an ascending chain of submodules in $M''$.
+  Then $\pi\inv[M_1''] \subseteq \pi\inv[M_2''] \subseteq \cdots$ is an ascending chain in $M$ which must stabilise at some $k \geq 1$.
+  Then $\pi\circ\pi\inv[M_k'']=\pi\circ\pi\inv[M_{k+n}'']$ for all $n \geq 0$.
+  Since $\pi$ is surjective, this gives $M_k=M_{k+n}$.
+
+
+  $\impliedby$:
+  Assume that $M'$ and $M''$ are Noetherian.
+  Let $M_1 \subseteq M_2 \subseteq \cdots$ is an ascending chain in $M$.
+  Then $M_1 \cap M' \subseteq M_2 \cap M' \subseteq \cdots$ is an ascending chain in $M'$ and $\pi[M_1] \subseteq \pi[M_2] \subseteq \cdots$ is an ascending chain $M''$.
+  Take a $k \geq 1$ such that both chains have stabilised.
+  Assume that $M_k \subset M_{k+n}$ for some $n \geq 0$.
+  Let $m \in M_{k+n}$.
+  Then there exists a $\wt m \in M_k$ such that $m-\wt m \in \ker\pi = \iota[M']$.
+  Then $m \in M_{k+n} \cap \iota[M'] = M_k \cap \iota[M'] \subseteq M_k$ (the last equality is an exercise).
+\end{proof}
+
+\begin{cor}[3.4]
+  \lv
+  \begin{enum}
+    \io
+    Let $\{M_i\}_{i=1}^n$ be a finite collection of Noetherian (resp.\@ Artinian) $R$-modules.
+    Then $\bigoplus_{i=1}^n M_i$ is Noetherian (resp.\@ Artinian).
+
+    \io
+    Let $\ph: M \to N$ be a map of $R$-modules and $M$ is Noetherian.
+    Then $\im\ph$ is Noetherian.
+  \end{enum}
+\end{cor}
+
+\begin{proof}
+  \lv
+  \begin{enum}
+    \io
+    Use the previous proposition inductively.
+    For $k=2,\ldots,n$, use the exact sequence
+    \begin{equation*}
+      \begin{tikzcd}
+	0 \ar[r] & M_k \ar[r] & \ds \bigoplus_{i=1}^k M_i \ar[r] & \ds \bigoplus_{i=1}^{k-1} M_i \ar[r] & 0
+      \end{tikzcd}
+      .
+    \end{equation*}
+
+    \io
+    Use the previous proposition with the exact sequence
+    \begin{equation*}
+      \begin{tikzcd}
+	0 \ar[r] & \ker\ph \ar[r] & M \ar[r, "\ph"] & \im\ph \ar[r] & 0
+      \end{tikzcd}
+      .
+      \qedhere
+    \end{equation*}
+  \end{enum}
+\end{proof}
+
+\begin{defn}[3.5]
+  A ring $R$ is called Noetherian (resp.\@ Artinian) if it is Noetherian (resp.\@ Artinian) as an $R$-module.  
+\end{defn}
+
+\begin{prop}[3.6]
+  Let $R$ be a Noetherian (resp.\@ Artinian) ring and $M$ a finitely generated $R$-module.
+  Then $R$ is Noetherian (resp.\@ Artinian).
+\end{prop}
+
+\begin{rmk}
+  For a Noetherian ring, finitely generated modules and Noetherian modules are exactly the same.
+\end{rmk}
+
+\begin{proof}
+  There exists an $n \geq 0$ and an $R$-module $N$ such that
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \ar[r] & N \ar[r] & R^n \ar[r] & M \ar[r] & 0
+    \end{tikzcd}
+  \end{equation*}
+  is exact.
+  (Every module is the quotient of a free module.)
+  Then the claim follows from the previous two propositions.
+\end{proof}
+
+\begin{prop}[3.7]
+  Let $R$ be Noetherian (resp.\@ Artinian) and $I<R$.
+  Then $R/I$ is Noetherian (resp.\@ Artinian).
+\end{prop}
+
+\begin{proof}
+  Using the exact sequence
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \ar[r] & I \ar[r] & R \ar[r] & R/I \ar[r] & 0
+    \end{tikzcd}
+  \end{equation*}
+  we have that $R/I$ is Noetherian (resp.\@ Artinian) as an $R$-module.
+  Now if $J<R/I$ is an $R/I$-submodule, then $J$ is also an $R$-submodule.
+  Hence $R/I$ satisfies the maximal (resp.\@ minimal) condition.
+\end{proof}
+
+\begin{defn}
+  A length $n$ \textbf{chain} of submodules of a module $M$ is a sequence
+  \[ M = M_0 \supset M_1 \supset M_2 \supset \cdots \supset M_n=0. \]
+  A chain of maximal length is called a \textbf{composition series} of $M$.
+\end{defn}
+
+\begin{rmk}
+  Saying that a chain is of maximal length is the same as saying that each factor $M_i/M_{i+1}$ is simple/irreducible, that is, it has no non-trivial submodules for all $i$.
+\end{rmk}
+
+\begin{prop}[3.9]
+  Suppose that $M$ has a composition series of length $n$.  
+  Then every composition series of length $n$ and any chain can be extended to a composition series.
+\end{prop}
+
+\begin{proof}
+  Exercise.
+\end{proof}
+
+\begin{rmk}
+  Any two composition series are equivalent up to permutations of the factors $M_i/M_{i+1}$.
+\end{rmk}
+
+\begin{prop}[3.10]
+  Let $M$ be an $R$ module.
+  Them $M$ has a composition series $\iff$ $M$ is Noetherian and Artinian.
+\end{prop}
+
+\begin{proof}
+  $\implies$:
+  Any chain has bounded length.
+
+  $\impliedby$:
+  Set $M_0=M$.
+  Since $M$ is Noetherian, we can choose a maximal submodule $M_0 \supset M_1$.
+  Continue inductively for all $n$.
+  Since $M$ is Artinian, this descending chain stabilises.
+  Hence $M_k=0$ for some $0$.
+\end{proof}
+
+\begin{defn}[3.11]
+  A module with a composition series is called a module of \textbf{finite length}.
+\end{defn}
+
+\begin{prop}[3.12]
+  \lv
+  \begin{enum}
+    \io
+    Let $M$ be a Noetherian $R$-module and $u: M \to M$ be a morphism.
+    If $u$ is surjective, then $u$ is an isomorphism.
+
+    \io
+    Let $M$ be a Artinian $R$-module and $u: M \to M$ be a morphism.
+    If $u$ is injective, then $u$ is an isomorphism.
+  \end{enum}
+\end{prop}
+
+\begin{proof}
+  \lv
+  \begin{enum}
+    \io
+    Consider $\ker u \subseteq \ker u^2 \subseteq \cdots$.
+    Assume $u$ is not injective.
+    If $u$ is surjective, then every inclusion is strict, a contradiction.
+
+    \io
+    Do the same with images.
+    \qedhere
+  \end{enum}
+\end{proof}
