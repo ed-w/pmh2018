@@ -1,0 +1,142 @@
+\section{2018-05-15}
+
+\begin{defn}
+  Let $X$ be a Banach space over $\CC$ and $T \in \cL(X)$.
+  The \textbf{spectral radius} of $T$ is
+  \[ r(T) = \sup_{\lambda\in\sigma(T)}\abs{T}. \]
+\end{defn}
+
+\begin{exer}
+  We know that $r(T) \leq \norm{\lambda}$.
+  Show that strict inequality is possible.
+
+  Hint: consider
+  $(\begin{smallmatrix}
+    0 & 1 \\ 0 & 0
+  \end{smallmatrix})$.
+\end{exer}
+
+\begin{exer}
+  Calculate the spectrum of $T: \ell^2 \to \ell^2$ given by
+  \[ T(x) = (x_1+x_2,x_2+x_3,\ldots).\]
+  Hint: use that $T=I+L$ and the polynomial mapping theorem.
+\end{exer}
+
+\begin{exer}
+  Let $T: \CC^n \to \CC^n$ be linear where $\CC^n$ is equipped with the $2$-norm.
+  Show that $\norm{T} = \sqrt{\lambda_{\text{max}}(T^*T)}$ where $T^*=\ol T^\perp$.
+\end{exer}
+
+\begin{thm}[Gelfand]
+  Let $X$ be Banach over $\CC$ and $T \in \cL(X)$.
+  Then
+  \[ r(T) = \lim_{n\to\infty}\norm{T^n}^\frac 1n. \]
+\end{thm}
+
+\begin{proof}
+  Assume that $T \neq 0$.
+
+  By the spectral mapping theorem,
+  \[ \sigma(T^n) = \{ \lambda^n \mid \lambda \in \sigma(R) \}. \]
+  Hence $r(T^n) = (r(T))^n$, so $r(T) \leq (r(T)^n)^\frac 1n \leq \norm{T^n}^\frac 1n$.
+  Then $r(T) \leq \liminf_{n\to\infty} \norm{T^n}^\frac 1n$.
+
+  Now let $\ph \in (\cL(X))'$ and let $f_\ph: \rho(T) \to \CC$ be the map
+  \[ f_\ph(\lambda) = \ph( (\lambda I-T)\inv ). \]
+  Then $f_\ph$ is analytic on $\rho(T)$.
+  Note that if $\lambda$ is such that $\abs{\lambda}>r(T)$, then $\lambda \in \rho(T)$.
+  If $\abs{\lambda} \geq \norm{T}$, then
+  \[ f_\ph(\lambda) = \sum_{k=0}^\infty \frac{1}{\lambda^{k+1}}\ph(T^k). \]
+  Let $z=1/\lambda$ and define
+  \[ g(z) = \sum_{k=0}^\infty \ph(T^k) z^{k+1}. \]
+  The function $g$ is analytic for $\abs{z} \leq 1/\norm{T}$.
+  The function $f_\ph(1/z)$ is analytic for $\abs{z} < 1/r(T)$.
+  Then since $g(z) = f_\ph(1/z)$, the uniqueness of analytic functions shows that $g(z)$ is analytic and equals $f_\ph(1/z)$ for $\abs{z}<1/r(T)$.
+  In particular, it implies that the terms of the power series of $g(z)$ converge to zero for all $\abs{z}<1/r(T)$.
+  So
+  \[ \frac{\ph(T^k)}{\lambda^k} \to 0 \text{ for all } \abs{\lambda}>r(T). \]
+  Then for all $\ph \in (\cL(X))'$ and $\abs{\lambda}>r(T)$, there exists a constant $M_{\ph,\lambda}$ such that
+  \[ \frac{1}{\abs{\lambda}^n}\abs{\ph(T^n)} < M_{\ph,\lambda}. \]
+
+  \begin{exer}\label{20:ex}
+    Let $X$ be a normed space.
+    Show that a subspace $E \in X$ is bounded if and only if
+    \[ \sup_{x \in E} \abs{\ph(x)} < \infty \]
+    for all $\ph \in X'$.
+  \end{exer}
+
+  Fix a $\lambda$ with $\abs{\lambda}>r(T)$.
+  For all $\ph \in (\cL(X))'$ we know that
+  \[ \sup_n \abs{\ph\left( \frac{T^n}{\lambda^n} \right)}<\infty. \]
+  By exercise \ref{20:ex} there exists an $M_\lambda>0$ such that $\norm{T^n/\lambda^n}\leq M_\lambda$ for all $n \geq 1$.
+  Then $\norm{T^n}^\frac 1n \leq \abs{\lambda}(M_\lambda)^\frac 1n$.
+  Hence $\limsup_{n\to\infty} \norm{T^n}^\frac 1n \leq \abs{\lambda}$ for all $\abs{\lambda}>r(T)$.
+  Therefore
+  \[ \limsup_{n\to\infty}\abs{T^n}^\frac 1n \leq r(T). \qedhere \]
+\end{proof}
+
+\begin{exer}
+  If $cH$ is a Hilbert space over $\CC$ and $T$ is a self-adjoint operator, then $r(T)=\norm{T}$.
+\end{exer}
+
+Refining the spectrum
+
+Recall that $\sigma(T) = \{ \lambda\in\CC \mid \lambda I-T \text{ is not invertible} \}$.
+
+\begin{defn}
+  \lv
+  \begin{enum}
+    \io
+    The \textbf{point spectrum} of $T$ is the set
+    \[ \sigma_p(T) = \{ \lambda \in \CC \mid \lambda I-T \text{ is not injective} \}. \]
+    (These are the eigenvalues of $T$.)
+
+    \io
+    The \textbf{continuous spectrum} of $T$ is the set
+    \[ \sigma_c(T) = \{ \lambda \in \CC \mid \lambda I-T \text{ is injective but not surjective, and } \ol{\im(\lambda I-T)}=X\}. \]
+
+    \io
+    The \textbf{residual spectrum} of $T$ is the set
+    \[ \sigma_r(T) = \{ \lambda \in \CC \mid \lambda I-T \text{ is injective but not surjective, and } \ol{\im(\lambda I-T)} \subsetneq X\}. \]
+  \end{enum}
+  Clearly we have $\sigma(T) = \sigma_p(T) \amalg \sigma_c(T) \amalg \sigma_r(T)$.
+\end{defn}
+
+\begin{exam}
+  Let $L: \ell^2 \to \ell^2$ be the left-shift operator.
+  We have already seen that
+  \[ \sigma_p(L) = \{ \lambda \in \CC \mid \abs{\lambda}<1 \} \]
+  and that
+  \[ \sigma(L) = \ol{D(0,1)}. \]
+  We will show that
+  \[ \sigma_c(L) = \{ \lambda \in \CC \mid \abs{\lambda}=1 \} \]
+  and so $\sigma_r(L) = \emptyset$.
+
+  \begin{exer}
+    Let $T$ be an operator on a Hilbert space $\cH$.
+    Then
+    \[ \ker(T^*) = (\im(T))^\perp \]
+    and
+    \[ (\ker(T^*))^\perp = \ol{\im(T)}. \]
+  \end{exer}
+
+  What is $L^*$?
+  We claim that $L^*=R$, the right-shift operator.
+  This is because
+  \[ \ang{Lx,y} = \sum_{k=1}^\infty x_{k+1}\ol{y_k} = \ang{x,Ry}. \]
+  Then
+  \[ \ol{\im(\lambda I-L)} = (\ker(\lambda I-L))^\perp = (\ker(\lambda I-R))^\perp. \]
+  If $\abs{\lambda}=1$, then the operator $\lambda I-R$ is injective.
+  Hence $\ol{\im(\lambda I-L)}=\ell^2$.
+\end{exam}
+
+Compact operators
+
+\begin{defn}
+  Let $X$ and $Y$ be normed spaces.
+  Then $T \in \Hom(X,Y)$ is compact if for any bounded subset $B$ of $X$, the image $T[B] \subseteq Y$ is \textbf{relatively compact}, that is, its closure $\ol{T[B]}$ is compact.
+\end{defn}
+
+\begin{rmk}
+  We will prove that if $T \in \Hom(X,Y)$ is compact, then $T \in \cL(X,Y)$.
+\end{rmk}
