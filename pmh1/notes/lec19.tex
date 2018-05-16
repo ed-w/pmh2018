@@ -1,0 +1,66 @@
+\section{2018-05-16 Lecture}
+
+Last lecture we defined a chain map $S: C_n(X) \to C_n(X)$ based on the barycentric subdivision of $\Delta^n$ in to $(n+1)!$ smaller copies of $\Delta^n$.
+We have a collection of group homomorphisms $T: C_n(X) \to C_{n+1}$ based on $\gamma: \Delta^{n+1} \to \Delta^n$ (an example of which is the projection of a triangle on to one of its faces).
+We have $\p T+T\p = 1-S$, hence $S_*=1_*=\id_{H_n(X)}$.
+More generally, the map $T_m = \sum_{i=0}^{m-1} TS^i$ satisfies $\p T_k+T_k\p = 1-s^k$.
+
+Motivation for the above:
+Let $\cU = \{ U_\alpha \subset X\}$ be a collection of subsets of $X$, and define the subgroup $C_n^\cU(X) = \sum_\alpha X_n(U_\alpha)$ of $C_n(X)$.
+Then the inclusion map $i^\cU: C_n^\cU(X) \injto C_n(X)$ induces a map $i_*^\cU: H_n^\cU(X) \to H_n(X)$.
+
+\begin{prop}
+  If $X = \bigcup_\alpha \inte U_\alpha$, then there is a chain map $\rho:C_n(X) \to C_n^\cU(X)$ such that $\rho \circ i^\cU = \id_{C_n^\cU}$ and group homomorphisms $D: C_n(X) \to C_{n+1}(X)$ such that $\p D+D\p = 1_{C_n(X)} - i^\cU \circ \rho$, and $D|_{C_n^\cU(X)}=0$.
+\end{prop}
+
+\begin{cor}
+  As a consequence, we have $\rho_* \circ i_*^\cU = \id_{H_n^\cU(X)}$ and $i_*^\cU \circ \rho_* = \id_{H_n(X)}$.
+  Therefore $i_*^\cU: H_n^\cU(X) \isoto H_n(X)$ is an isomorphism.
+\end{cor}
+
+\begin{proof}
+  For each singular $n$-simplex $\sigma: \Delta^n \to X$, set $k(\sigma) = \argmin_n S^{n}(\sigma) \in C_n^\cU(X)$.
+  The Lebesgue covering lemma tells us that there exists an $k$ such that $S^k(\sigma) \in C_n^\cU(X)$.
+  Define
+  \begin{align*}
+    D: C_n(X) &\to C_{n+1}(X) \\
+    \sigma &\mapsto T_{k(\sigma)}(\sigma)
+  \end{align*}
+  Clearly $D|_{C_n^\cU}(X)=0$.
+  Now define $\rho' = \id_{C_n(X)} - \p D-D\p$.
+  We will show that $\rho' i^\cU = i^\cU$ and that $\rho'=i^\cU\rho$ for some $\rho: C_n(X) \to C_n^\cU(X)$.
+  The first claim is clear.
+
+  We now prove the second claim.
+  Let $\sigma: \Delta^n \to X$ be arbitrary.
+  Then
+  \begin{align*}
+    \rho'(\sigma) &= \sigma -\p T_{k(\sigma)}(\sigma) - D\p\sigma \\
+    &= \rho - (\rho - S^{k(\sigma)}\sigma - T_{k(\sigma)}\p\sigma) _ D\p\sigma \\
+    &= S^{k(\sigma)}\sigma + (T_{k(\sigma)}-D)\p\sigma
+  \end{align*}
+  For a face $\gamma$ in $\sigma$, we have $k(\gamma) \leq k(\sigma)$.
+  Hence $\rho'(\sigma)$ is a $S^{k(\sigma)}\sigma$ plues a linear combination of terms $(T_{k(\sigma)}-T_{k(\gamma)})(\gamma)$, each of which equals $\sum_{i=k(\gamma)}^{k(\sigma)-1} TS^i\gamma$.
+  Each of the terms are in $C_n^\cU(X)$, hence $\im\rho' \subseteq C_n^\cU(X)$ and so $\rho'$ factors through the inclusion $i^\cU$.
+\end{proof}
+
+2.4 Excision
+
+\begin{thm}[Excision]
+  \lv
+  \begin{enum}
+    \io
+    For a pair $(X,A)$ and a subset $Z \subset X$ with $\ol Z \subset \inte A$, the inclusion $\iota: (X \setminus Z, A \setminus Z) \injto (X,A)$ induces isomorphisms $\iota_*^n: H_n(X \setminus Z, A \setminus Z) \isoto H_n(X,A)$.
+    
+    \io
+    For subsets $A,B \subset X$ with $\inte A \cup \inte B = X$, the inclusion map $\iota: (B,A \cap B) \injto (X,A)$ induces an isomorphism $\iota_*^n: H_n(B, A \cap B) \isoto H_n(X,A)$.
+  \end{enum}
+\end{thm}
+
+\begin{rmk}
+  The two statements are equivalent (use that if $Z = X \setminus B$ then $\ol Z = X \setminus \inte B$).
+\end{rmk}
+
+\begin{proof}
+  \textbf{fill in}
+\end{proof}

@@ -1,0 +1,172 @@
+\section{2018-05-16 Lecture}
+
+The last lecture may or may not be cancelled.
+
+For the rest of the course we will look (briefly) at representations of compact groups, Lie groups and Lie algebras (not in the book).
+
+\begin{defn}
+  A \textbf{topological group} is a group $G$ which has a topology such that multiplication and inversion are continuous.
+  A topological group is \textbf{compact} if it is compact as a topological space.
+\end{defn}
+
+\begin{rmk}
+  A subset of a vector space over $\RR$ or $\CC$ is compact if and only if it is closed and bounded (the Heine-Borel theorem).
+\end{rmk}
+
+\begin{exam}
+  \lv
+  \begin{enum}
+    \io
+    Any group is a topological group with the discrete topology.
+
+    \io
+    The group $\GL_n(\RR)$ is a topological group.
+    (The topology is the subspace topology induced from the standard topology on $\Mat_n(\RR)$.)
+    It is not compact because $\GL_n(\RR)$.
+    It is the preimage of $\RR\setminus\{0\}$ under the continuous function $\det: \Mat_n(\RR) \to \RR$, hence it is open.
+    It is not bounded because scalar multiples of the identity are in $\GL_n(\RR)$.
+
+    \io
+    $\SL_2(\RR)$ is not compact if $n \neq 1$, but it is closed.
+
+    \io
+    The \textbf{orthogonal group} $O_n=O_n(\RR)$ of real orthogonal matrices is compact.
+    The columns of $A \in O_n$ are an orthonormal basis of $\RR^n$, hence $O_n$ is bounded.
+    $O_n$ is closed since the defining relation $A^\perp A=I$ is a set of polynomial equations.
+    Note that $\abs{\det A}=1$ for $A \in O_n$.
+    The \textbf{special orthogonal group} $SO_n=SL_n(\RR) \cap O_n$ is compact.
+
+    \io
+    The \textbf{unitary group} $U_n$ of complex unitary matrices is compact.
+    It is bounded since the columns of $A \in U_n$ are an orthonormal basis of $\CC^n$.
+    It is closed analogously to the case of $O_n$.
+    Note that $\abs{\det A}=1$ for $A \in U_n$.
+    The \textbf{special unitary group} $SU_n = SL_n(\CC) \cap U_n$ is compact.
+  \end{enum}
+\end{exam}
+
+\begin{exam}
+  For $n=1$ we have $O_1=\{1,-1\}$, $SO_1=1$, $U_1=\{z \in \CC^\times \mid \abs{z}=1\} \cong \RR/2\pi\ZZ$ and $SU_1=1$.
+  For $n=2$, we have
+  \[\left\{ 
+      \begin{bmatrix}
+	\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta
+      \end{bmatrix}
+    \right\}
+    \cup
+    \left\{ 
+      \begin{bmatrix}
+	\cos\theta & \sin\theta \\ \sin\theta & -\cos\theta
+      \end{bmatrix}
+  \right\}\]
+  where the first set is the set of rotations of $\RR^2$ about the origin (eigenvalues $\exp(\pm i\theta)$) and the second set is the set of reflections through lines about the origin (eigenvalues $\pm 1$).
+  The first set is precisely $SO_2$.
+  Moreover, we have $SO_2 \cong U_1$ under the usual isomorphism between rotations and complex numbers of modulus 1:
+  \[
+    \begin{bmatrix}
+      \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta
+    \end{bmatrix}
+    \longleftrightarrow
+    \exp(i\theta)
+  \]
+\end{exam}
+
+\begin{exam}
+  $SU_2$ is the set of all matrices
+  \[
+    \begin{bmatrix}
+      \alpha & \beta \\ \gamma & \delta
+    \end{bmatrix}
+  \]
+  with complex entries satisfying $\alpha\delta-\beta\gamma=1$ and
+  \[
+    \begin{bmatrix}
+      \delta & -\beta \\ -\gamma & \alpha
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \ol\alpha & \ol\gamma \\ \ol\beta & \ol\delta
+    \end{bmatrix}
+  \]
+  So $SU_2$ is the set
+  \[\left\{ 
+      \begin{bmatrix}
+	\alpha & \beta \\ -\ol\beta & \ol\alpha
+      \end{bmatrix}
+      \mid
+      \alpha,\beta \in \CC \text{ with } \abs{\alpha}^2+\abs{\beta}^2=1
+  \right\}\]
+  or equivalently
+  \[\left\{ 
+      \begin{bmatrix}
+	a+bi & -c-di \\ c-di & a-bi
+      \end{bmatrix}
+      \mid
+      a,b,c,d \in \RR \text{ with } a^2+b^2+c^2+d^2=1
+  \right\}\]
+  So as a topological space, $SU_2 \cong S^3$ (the unit sphere in $\RR^2$).
+  In fact there are only three spheres ($S^0$, $S^1$ and $S^3$) which can be given the structure of a topological group.
+  Now we have the following isomorphism of $\RR$-algebras:
+  \[\left\{ 
+      \begin{bmatrix}
+	a+bi & -c-di \\ c-di & a-bi
+      \end{bmatrix}
+      \mid
+      a,b,c,d \in \RR
+  \right\}
+  \cong \HH
+  \]
+  so $SU_2$ is isomorphic to $U_1(\HH)$, the group of `unit quaternions': $\{q \in \HH \mid q\ol q=1\}$.
+\end{exam}
+
+\begin{exam}
+  $SO_3$ is the set of all matrices $A \in \Mat_3(\RR)$ such that $A^\perp A=I$ and $\det A=1$.
+  If $\lambda$ is an eigenvalue of $A$, then $\lambda\inv$ is an eigenvalue of $A\inv=A^\perp$, hence of $A$.
+  Since $A$ is a real matrix, its eigenvalues must occur in conjugate pairs, hence $\lambda\inv=\ol\lambda$.
+  Then $\lambda$ is on the unit circle.
+  Since $\det A=1$, the last eigenvalue is $1$, so its eigenvalues are $1$, $\exp i\theta$ and $\exp(-i\theta)$ for some angle $\theta$.
+  Therefore $A$ is a rotation matrix about some axis through the origin (unless $A$ is the identity).
+  Note that this shows that rotations in $\RR^3$ form a group, a fact which is not geometrically obvious.
+\end{exam}
+
+Quaternions were invented to study rotations in $\RR^3$.
+
+\begin{thm}[Hamilton]
+  There is a $2:1$ surjective group homomorphism
+  \[ \eta: U_1(\HH) \to SO_3 \]
+  which sends $a+bi+cj+dk$ to the rotation about the axis $b\bo i + c\bo j + d\bo k$ by an angle of $2\tan\inv(\sqrt{b^2+c^2+d^2}/a)$, where we take the angle to be $\pi$ if $a=0$.
+  The `inverse' takes a rotation about the axis defined by a unit vector $\bo u$ through the angle $\ph$ to the two vectors $\pm( \cos\ph/2 + \sin\ph/2\bo u)$ interpreted as elements of $\HH$.
+\end{thm}
+
+\begin{exam}
+  \io $\pm 1$ corresponds to the identity.
+  \io $\pm i$ corresponds to rotation by $\pi$ about the $x$-axis.
+  \io $1/\sqrt{3}(i+j+k)$ corresponds to rotation by $\pi$ about the axis through $\bo i+\bo j+\bo k$.
+  \io $1/2(1+i-j-k)$ corresponds to rotation by $2\pi/3$ about the axis through $\bo i-\bo j-\bo k$.
+\end{exam}
+
+\begin{defn}
+  A (continuous) \textbf{representation} of a topological group is a vector space $V/\CC$ and a \textbf{continuous} group homomorphism $\rho: G \to \GL(V)$ with the topology on $\GL(V)$ induced from the topology on $\Mat(\CC)$.
+\end{defn}
+
+\begin{rmk}
+  Every subrepresentation of a continuous representation is continuous.
+\end{rmk}
+
+\begin{exam}
+  One-dimensional continuous representations of $U_1$ are the continuous group homomorphisms
+  \[ \psi: U_1 \to \CC^\times. \]
+  (Recall that $\RR/2\pi\ZZ \cong U_1$.)
+  Any \underline{continuous} group homomorphism from $\RR$ to $\CC^\times$ is of the form $x \mapsto \exp xz$ for some $z \in \CC$.
+  So $\psi$ must be of the form
+  \[ \psi_n: \exp(i\theta) \mapsto \exp(in\theta) \]
+  for some $n \in \ZZ$.
+  Since $U_1$ is abelian, the irreducible representations are precisely the one-dimensional representations.
+  In particular, there are infinitely many irreducible representations.
+\end{exam}
+
+\begin{rmk}
+  The situation is much more complicated if we allow representations to be discontinuous.
+  If we take a linear functional $h$ on $\RR/\QQ$, then $x \mapsto \exp(ih(x))$ is a homomorphism.
+  Since $\RR/\QQ$ has an uncountable Hamel basis there are uncountably many such functionals.
+\end{rmk}
