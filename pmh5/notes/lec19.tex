@@ -1,0 +1,164 @@
+\section{2018-05-17 Lecture}
+
+Any finite group with the discrete topology is a compact group.
+Compact groups can be seen as a generalisation of finite groups.
+In the representation theory of finite groups, we often take an average over the group: $\frac{1}{\abs{G}}\sum_{g \in G}$.
+In compact groups, we use an \textbf{invariant measure} (the \textbf{Haar measure}) instead.
+We will use the following fact:
+
+\begin{thm}
+  For a compact group $G$ there is a unique $\CC$-linear function
+  \begin{align*}
+    \cC(G,\CC) &\to \CC \\
+    f &\mapsto \int_G f(g) \, d\mu(g)
+  \end{align*}
+  such that:
+  \begin{enum}
+    \io If $f$ takes values in $\RR_{\geq 0}$, then $\ds \int_G f(g) \, d\mu(g) \in \RR_{\geq 0}$.
+    \io $\ds \int_G 1 \, d\mu(g) = 1$.
+    \io For all $h \in G$ we have
+    \[ \int_G f(hg) \, d\mu(g) = \int_G f(g) \, d\mu(g) = \int_G f(gh) \, d\mu(g) \]
+    (left- and right-invariance).
+  \end{enum}
+\end{thm}
+
+\begin{exam}
+  \lv
+  \begin{enum}
+    \io If $G$ is finite, then $\ds \int_G f(g) \, d\mu(g) = \frac{1}{\abs{G}} f(g)$.
+    \io If $G=U_1$, then $\ds \int_{U_1} f(\exp(i\theta)) d\mu(\exp(i\theta)) = \frac{1}{2\pi} \int_{-\pi}^\pi f(\exp(i\theta)) \, d\theta$.
+    \io If $G=SU_3$, then
+    \[ \int_{SU_2} f(g) d\mu(g) = \frac{1}{\vol(S^3)} \int_{S^3} f(w+xi+yj+zk) \, dw \, dx \, dy \, dz \]
+    where $(w,x,y,z) \in S^3$.
+    When $f$ is a class function, we can choose a conjugacy class representative so that
+    \[ \int_{SU_2} f(g) \, d\mu(g) = \frac 1\pi \int_{-\pi}^\pi f \left( 
+	\begin{bmatrix}
+	  \exp(i\theta) & 0 \\ 0 & \exp(-i\theta)
+	\end{bmatrix}
+    \right) \sin^2\theta \, d\theta \]
+  \end{enum}
+\end{exam}
+
+\begin{rmk}
+  If $f$ is a continuous map from $G$ to a finite-dimensional vector space $V$, then the left- and right-invariance condition still holds for
+  \[ \int_G f(g) \, d\mu(g) \in V. \]
+\end{rmk}
+
+\begin{thm}[Maschke's theorem]
+  Any finite-dimensional continuous representation of a compact group is semisimple.
+\end{thm}
+
+\begin{proof}
+  Same as before but replace $\ds \frac{1}{\abs{G}} \sum_{g \in G}$ with $\ds \int_G d\mu(g)$.
+\end{proof}
+
+\begin{thm}
+  The irreducible characters (continuous maps $\chi_V: G \to \CC$ for irreducible representations $V$) are orthonormal in the space $\cC_c(G,\CC)$ of continuous class functions with respect to the inner product
+  \[ \ang{f,f'} = \int_G f(g) \ol{f'(g)} \, d\mu(g).\]
+\end{thm}
+
+\begin{proof}
+  Similar to the finite case.
+  The results about tensor products and so on still hold.
+\end{proof}
+
+Are the characters an orthonormal basis? Not quite.
+
+\begin{thm}
+  The Hilbert space completion of $\cC_c(G,\CC)$ is the space $L_c^2(G,\CC)$.
+  The irreducible characters form a Schauder basis of $L^2_c(G,\CC)$.
+  That is, if $f \in L^2_c(G,\CC)$ with $\ang{f,\chi_V}=0$ for all irreducible representations $V$, then $f=0$ a.e.
+\end{thm}
+
+\begin{proof}
+  This proof needs to be modified since the finite-dimensional proof used the group algebra.
+  The group algebra needs to be replaces with an $L^2$ version.
+\end{proof}
+
+\begin{exam}[The circle group $U_1$]
+  The irreducible representations of $U_1$ are preciely the one-dimensional representations (it is abelian).
+  One-dimensional continuous representations are
+  \begin{align*}
+    \rho: \exp(i\theta) &\mapsto \exp(in\theta) \\
+    \chi_V: \exp(i\theta) &\mapsto \exp(in\theta).
+  \end{align*}
+  The orthogonality relations give
+  \[ \frac{1}{2\pi} \int_{-\pi}^\pi \exp(in\theta) \exp(-im\theta) \, d\theta =
+    \begin{cases}
+      1 & \text{ if } n=m \\
+      0 & \text{ otherwise}.
+    \end{cases}
+  \]
+  Moreover, $L^2_c(U_1,\CC)=L^2(U_1,\CC)$ is the set of $2\pi$-periodic functions on $\RR$.
+  Then Fourier expansion on the circle is the same as expressing a function in terms of the Schauder basis of irreducible characters of $U_1$.
+\end{exam}
+
+\begin{exam}[$SU_2$]
+  We will first produce some representaions (which will be irreducible).
+  There is a natural representation on $\CC^2$.
+  We will look at the $m$th symmetric tensor power $\cS^m(\CC^2)$ of $\CC^2$.
+  If $\CC^2$ has basis $\{v_1=\bo e_1,v_{-1}=\bo e_2\}$, then $(\CC^2)^{\oplus m}$ has basis $\{v_{\eps_1} \otimes \cdots \otimes v_{\eps_m} \mid \eps_i \in \{-1,1\} \}$.
+  Then $\cS^m(\CC^2)$ has basis
+  \begin{align*}
+    v_m &= v_1 \otimes \cdots \otimes v_1 \\
+    v_{m-2} &= v_1 \otimes \cdots \otimes v_1 \otimes v_{-1} + \cdots + v_{-1} \otimes v_1 \otimes \cdots \otimes v_1 \\
+    v_{m-2i} &= \text{ the sum of all tensor products of $m-1$ $v_i$s and $i$ $v_{-1}s$.}
+  \end{align*}
+  where $i=0,\ldots,m$.
+  So the basis is $\{ v_m ,v_{m-2}, \cdots, v_{-m}\}$.
+  We also have $\dim\cS^m(\CC^2)=m+1$.
+
+  Let $\chi_m = \chi_{\cS^m(\CC^2)}: SU_2 \to \CC$.
+  We have
+  \begin{align*}
+    \begin{bmatrix}
+      \exp(i\theta) & 0 \\ 0 & \exp(-i\theta)
+    \end{bmatrix}
+    v_1 &= \exp(i\theta) v_1 \\
+    \begin{bmatrix}
+      \exp(i\theta) & 0 \\ 0 & \exp(-i\theta)
+    \end{bmatrix}
+    v_{-1} &= \exp(-i\theta) v_{-1}
+  \end{align*}
+  Then in the representation $\cS^m(\CC^2)$, we have
+  \begin{equation*}
+    \begin{bmatrix}
+      \exp(i\theta) & 0 \\ 0 & \exp(-i\theta)
+    \end{bmatrix}
+    v_{m-2j} = \exp(i\theta)^{m-2j} \exp(-i\theta)^j v_{m-2j} = \exp(i\theta)^{m-2j} v_{m-2j}
+  \end{equation*}
+  therefore
+  \begin{equation*}
+    \chi_m \left(
+    \begin{bmatrix}
+      \exp(i\theta) & 0 \\ 0 & \exp(-i\theta)
+    \end{bmatrix}
+  \right) = \sum_{j=0}^m \exp(i(m-2j)\theta) = \frac{\sin(m+1)\theta}{\sin\theta}.
+  \end{equation*}
+  So
+  \begin{align*}
+    \ang{\chi_m,\chi_m} &= \int_{SU_2} \chi_m(g) \ol{\chi_m(g)} \, d\mu(g) \\
+    &= \frac 1\pi \int_{-\pi}^\pi \abs{
+      \chi_m \left( 
+      \begin{bmatrix}
+	\exp(i\theta) & 0 \\ 0 & \exp(-i\theta)
+      \end{bmatrix}
+      \right)
+    } \sin^2\theta \, d\theta \\
+    &= \frac 1\pi \int_{-\pi}^\pi \sin^2(m+1)\theta \, d\theta = 1
+  \end{align*}
+  for all $m$.
+  Hence $\chi_m$ is an irreducible character and so $\cS^m(\CC^2)$ is an irreducible representation for all $m$.
+  For $m \neq n$, we have
+  \[ \ang{\chi_m,\chi_n} = \frac 1\pi \int_{-\pi}^\pi \sin(m+1)\theta \, \sin(n+1)\theta \, d\theta = 0. \]
+  A harder fact is that if $f \in L^2_c(SU_2,\CC)$ is such that
+  \[ \ang{\chi_m,\chi_n} = \frac 1\pi \int_{-\pi}^\pi f \left( 
+    \begin{bmatrix}
+      \exp(i\theta) & 0 \\ 0 & \exp(-i\theta)
+    \end{bmatrix}
+  \right) \sin(m+1)\theta \, \sin\theta \, d\theta, \]
+  then $f=0$.
+  So we have found all of the irreducible characters.
+  Therefore every irreducible continuous representation of $SU_2$ is isomorphic to $\cS^m(\CC)$ for some $m$.
+\end{exam}
+
