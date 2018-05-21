@@ -1,0 +1,117 @@
+\section{2018-05-21 Lecture}
+
+\begin{thm}[3.23, Zariski lemma]
+  Let $k$ be a field and $E$ a finitely generated $k$-algebra.
+  If $E$ is a field then it is a finite algebraic extension of $k$.
+\end{thm}
+
+\begin{proof}
+  Let $x_1,\ldots,x_n$ be the generators of $E$ as a $k$-algebra.
+  Assume that $E$ is not algebraic.
+  Then reorder the generators so that $x_1,\ldots,x_r$ are algebraically independent and $x_{r+1},\ldots,x_n$ are algebraic over $k'=k(x_1,\ldots,x_r)$.
+  So we have
+  \[ k \subseteq k' \subseteq E \]
+  where $E$ is finitely generated as a $k$-algebra and finitely generated as a $k'$-module.
+  Applying the Artin-Tate lemma, we get that $k'$ is a finitely generated $k$-algebra with generators $y_1,\ldots,y_m$.
+  For all $i$ express $y_i$ as $f_i/g_i$ where $f_i,g_i \in k[x_1,\ldots,x_r]$.
+  Then $h = \prod_i g_i + 1$ is a polynomial but is coprime to all of the $g_i$.
+  Then $h\inv \notin k'=k(x_1,\ldots,x_r)$ which is a contradiction, so $E$ is algebraic over $k$.
+  Then $E$ is a finite algebraic extension of $k$.
+\end{proof}
+
+\begin{thm}[3.24, Weak Nullstellensatz]
+  Let $k$ be a field, $A$ a finitely generated $k$-algebra and $\km<A$ a maximal ideal.
+  Then $A/\km$ is a finite extension of $k$.
+  In particular, $A/\km \cong k$ if $k$ is algebraically closed.
+\end{thm}
+
+\begin{proof}
+  Apply the Zariski lemma to the field $A/\km$.
+\end{proof}
+
+\begin{rmk}
+  If $A$ is a finitely generated $k$-algebra and $a \in A$, there is a map
+  \begin{align*}
+    f_a: \mSpec A &\to \ol k \\
+    m &\mapsto \ol a \in A/\km \subseteq \ol k
+  \end{align*}
+\end{rmk}
+
+\begin{cor}[3.25]
+  Let $k$ be a field, $A$ a finitely generated $k$-algebra and $I<A$ a proper ideal.
+  Then there exists a $k$-algebra map $\Phi: A \to \ol k$ such that $I \subseteq \ker \Phi$.
+\end{cor}
+
+\begin{proof}
+  Find a maximal ideal $\km$ containing $I$.
+  Then
+  \[ \Phi: A \to A/\km \injto \ol k. \qedhere \]
+\end{proof}
+
+\begin{cor}[3.26]
+  Let $k$ be a field and $I < k[x_1,\ldots,x_n] \subseteq \ol k[x_1,\ldots,x_n]$ a proper ideal.
+  Then there exists an $(a_1,\ldots,a_n) \in \ol k^n$ such that $f(a_1,\ldots,a_n)=0$ for all $f \in I$ (a common zero).
+\end{cor}
+
+\begin{proof}
+  There exists a map
+  \[ \Phi: k[x_1,\ldots,x_n] \to k[x_1,\ldots,x_n]/\km \injto \ol k \]
+  where $\km=\ker\Phi$ is a maximal ideal containing $I$.
+  Set $a_i=\Phi(x_i)$.
+  Then since $\Phi$ is a $k$-algebra homomorphism, for all $f \in I$ we have
+  \[ 0 = \Phi(f(x_1,\ldots,x_n)) = f(a_1,\ldots,a_n). \qedhere \]
+\end{proof}
+
+\begin{cor}[3.27]
+  Let $k$ be algebraically closed.
+  Then the maximal ideals of $k[x_1,\ldots,x_n]$ are of the form $(x_1-a_1,\ldots,x_n-a_n)$ for some $\bo a = (a_i) \in k^n$.
+\end{cor}
+
+\begin{proof}
+  Let $\km_{\bo a} = (x_1-a_1,\ldots,x_n-a_n)$.
+  Then $k[x_1,\ldots,x_n]/\km_{\bo a}$ is contained in the field $k$ since $x_i \equiv a_i \bmod \km_{\bo a}$.
+  But $k$ also embeds (injectively) in to $k[x_1,\ldots,x_n]/\km_{\bo a}$.
+  Then $k[x_1,\ldots,x_n]/\km_{\bo a} \cong k$, hence $\km_a$ is maximal.
+
+  Let $\km$ be a maximal ideal.
+  Then there exists an $\bo a \in k^n$ such that $f(\bo a)=0$ for all $f \in \km$.
+  Write $f$ as a polynomial in $x_1-a_1,\ldots,x_n-a_n$.
+  Then $f$ has no constant term.
+  Thus $f \in \km_{\bo a}$, hence $\km \subseteq \km_{\bo a}$.
+  But $\km$ is maximal, so $\km = \km_{\bo a}$.
+\end{proof}
+
+\begin{rmk}
+  Since the $\km_{\bo a}$s are different for different $\bo a$s, the choice $\bo a$ of a common zero as in corollary 3.26 is unique.
+\end{rmk}
+
+\begin{cor}[3.28]
+  Let $k$ be algebraically closed.
+  Then there is a bijection
+  \begin{align*}
+    \mSpec k[x_1,\ldots,x_n] &\overset{1:1}{\longleftrightarrow} k^n \\
+    \km_{\bo a} &\overset{1:1}{\longleftrightarrow} \bo a
+  \end{align*}
+\end{cor}
+
+\begin{thm}[3.29, Hilbert's Nullstellensatz]
+  Let $k$ be a field, $I<k[x_1,\ldots,x_n]$ and
+  \[ \cV(I) = \{ \bo a \in \ol k^n \mid f(\bo a) = 0 \text{ for all } f \in I \}. \]
+  If $f(\bo a)=0$ for all $f \in k[x_1,\ldots,x_n]$ and all $\bo a \in \cV(I)$, then $f \in \rad I$.
+\end{thm}
+
+\begin{proof}
+  Let $I = (g_1,\ldots,g_m)$ (since the polynomial ring is Noetherian) and consider the equations
+  \begin{equation}\label{21:eqn-m}
+    g_i(x_1,\ldots,x_n)=0
+  \end{equation}
+  for $1 \leq i \leq m$ and
+  \begin{equation}\label{21:eqn-last}
+    1-yf(x_1,\ldots,x_n)
+  \end{equation}
+  for some indeterminate $y$ and some nonzero polynomial $f$.
+  If $(a_1,\ldots,a_n,b)$ satisfies equations \ref{21:eqn-m}, then $\bo a \in \cV(I)$.
+  So $f(\bo a)=0$, and thus $(a_1,\ldots,a_n,b)$ does not satisfy equation \ref{21:eqn-last}.
+
+  To be continued
+\end{proof}

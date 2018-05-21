@@ -1,0 +1,72 @@
+\section{2018-05-21 lecture}
+
+4 Calculating singular homology gorups
+
+4.1 The long exact sequence for good pairs
+
+Fix a pair $(X,A)$
+
+\begin{equation*}
+  \begin{tikzcd}
+    \emptyset \ar[r] & A \ar[r, "i"] & X \ar[r, "q"] & X/a \ar[r] & \emptyset
+  \end{tikzcd}
+\end{equation*}
+The space $X$ gives rise to a chain complex $C_\bullet(X)$ and homology groups $H_\bullet(X)$ but in general $C_n(X/A) \not\cong C_n(X)/C_n(A)$, so the induced s.e.s\@ of chain complexes is not in general exact.
+
+\begin{defn}
+  A pair is a \textbf{good pair} if $A$ is closed and is a deformation retract of some neighbourhood in $X$.
+\end{defn}
+
+\begin{exam}
+  $(D^n,S^{n-1})$ is a good pair.
+\end{exam}
+
+\begin{thm}
+  For a god pair $(X,A)$ we have group homomorphisms
+  \[ \zeta: \wt H_n(X/A) \to \wt H_{n-1}(A) \]
+  which give a long exact sequence
+  \begin{equation*}
+    \begin{tikzcd}
+      \cdots\ar[r] & \wt H_{n+1}(X/A) \ar[r, "\zeta"] & \wt H_n(A) \ar[r, "i_*"] & \wt H_n(X) \ar[r, "q_*"] & \wt H_n(X/A) \ar[r] & \cdots
+    \end{tikzcd}
+  \end{equation*}
+\end{thm}
+
+\begin{proof}
+  I didn't type this up.
+  See the notes.
+\end{proof}
+
+\begin{exam}
+  Since $(D^k,S^{k+1})$ is a good pair and $D^k/S^{k+1} \cong S^k$, we have a long exact sequence
+  \begin{equation*}
+    \begin{tikzcd}
+      \cdots \ar[r] & \wt H_{n+1}(D^{k+1}) \ar[r] & \wt H_{n+1}(S^{k+1}) \ar[r] & \wt H_n(S^k) \ar[r] & \wt H_n(D^{k+1}) \ar[r] & \wt H_n(S^{k+1}) \ar[r] & \cdots
+    \end{tikzcd}
+  \end{equation*}
+  Since $\wt H_n(D^k)=0$ for all $n$, we have that $\wt H_{n+1}(S^{k+1}) \cong \wt H_n(S^k)$ for all $k,n \geq 0$.
+  So
+  \begin{equation*}
+    \wt H_n(S^k)=
+    \begin{cases}
+      \wt H_{n-k}(S^0) & \text{ if } n \geq k \\
+      \wt H_0(S^{k-n}) & \text{ if } n \leq k.
+    \end{cases}
+  \end{equation*}
+  Since
+  \begin{equation*}
+    \wt H_0(S^l)=\ZZ^{\oplus \pi_0(S^l)-1}=
+    \begin{cases}
+      \ZZ & \text{ if } l=0 \\
+      0 & \text{ otherwise,}
+    \end{cases}
+  \end{equation*}
+  and $\wt H_l(S^0) = H^l(\pt)^2 = 0$ for $l>0$, we have
+  \begin{equation*}
+    \wt H_n(S^k)=
+    \begin{cases}
+      \ZZ & \text{ if } k=n \\
+      0 & \text{ otherwise.}
+    \end{cases}
+  \end{equation*}
+\end{exam}

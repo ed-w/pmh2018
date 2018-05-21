@@ -1,0 +1,133 @@
+\section{2018-05-21 Lecture}
+
+\begin{prop}
+  If $T$ is compact, then $T$ is continuous.
+\end{prop}
+
+\begin{proof}
+  Let $B = \{ x \in X \mid \norm{x} \leq 1 \}$.
+  Since $T$ is compact, $\ol{T[B]}$ is compact, hence bounded.
+  Therefore $\norm{Tx} \leq M$ for all $x$ with $\norm{x} \leq 1$ for some $M$, so $\norm{T} \leq M$.
+\end{proof}
+
+\begin{prop}
+  Let $X$ and $Y$ be normed spaces and let $T \in \cL(X,Y)$.
+  Then $T$ is compact if and only if $T(\ol{B(0,1)})$ is relatively compact, that is, $\ol{T(\ol{B(0,1)})}$ is compact.
+\end{prop}
+
+\begin{proof}
+  $\implies$ is by definition.
+
+  $\impliedby$: Let $B \subseteq X$ be any bounded set.
+  Then there exists an $M$ such that $B \subseteq M \cdot \ol{B(0,1)}$.
+  So $\ol{T(B)} \subseteq \ol{T(M \cdot \ol{B(0,1)})} = \ol{M \cdot T(\ol{B(0,1)})} = M \cdot \ol{T(\ol{B(0,1)})}$ which is compact.
+  (Note that we have used that multiplication by $M$ is a homeomorphism in the last equality.)
+  Since $\ol{T(B)}$ is a closed subset of a compact set, it is also compact.
+\end{proof}
+
+\begin{prop}
+  Let $X$ be a normed space.
+  Then the identity operator is compact if and only if $\dim X < \infty$.
+\end{prop}
+
+\begin{proof}
+  $\ol{B(0,1)}$ is compact if and only if $\dim X < \infty$.
+\end{proof}
+
+\begin{exer}
+  Show that if $\dim Y < \infty$ then every $T \in \cL(X,Y)$ is compact.
+\end{exer}
+
+\begin{exam}
+  Suppose that $K \in L^2([a,b] \times [a,b])$.
+  The operator
+  \begin{align*}
+    T_k: L^2([a,b]) &\to L^2([a,b]) \\
+    f(x) &\mapsto \int_{a}^{b} K(x,y) f(y) \, dy
+  \end{align*}
+  is called a \textbf{Hilbert-Schmidt integral operator}.
+  It is compact.
+\end{exam}
+
+\begin{prop}\label{21:prop}
+  Let $X$ and $Y$ be normed spaces and $T \in \cL(X,Y)$.
+  Then the following are equivalent:
+  \begin{enum}
+    \io $T$ is a compact operator.
+    \io If $(x_n)$ is a bounded sequence in $X$, then the sequence $(Tx_n)$ in $Y$ has a convergent subsequence.
+  \end{enum}
+\end{prop}
+
+We will use the following result:
+\begin{thm}
+  If $X$ is a metric space then $X$ is compact if and only if $X$ is sequentially compact, that is, every sequence has a convergent subsequence.
+\end{thm}
+
+\begin{proof}[Proof of proposition \ref{21:prop}]
+  $(a)\implies(b)$:
+  If $(x_n)$ is a bounded sequence in $X$, then let $B = \{x_n\}$.
+  Since $T$ is compact, $\ol{T(B)}$ is compact.
+  Then $(Tx_n)$ is a bounded sequence in the compact set $\ol{T(B)}$, so it as a convergent subsequence.
+
+  $(b)\implies(a)$:
+  Let $B \subseteq X$ be bounded and let $(y_n)$ be a sequence in $T(B)$.
+  Then $y_n=T(x_n)$ for some $x_n \in B$ for all $n$, and the sequence $(x_n)$ is bounded.
+  Then $(y_n)$ contains a convergent subsequence in $Y$, so $\ol{T(B)}$ is compact by the following exercise.
+\end{proof}
+
+\begin{exer}
+  Let $X$ be a metric space and let $U$ be a non-empty subset of $X$.
+  Suppose that every sequence in $U$ has a subsequence converging in $\ol U$.
+  Show that every sequence in $\ol U$ has a convergent subsequence.
+\end{exer}
+
+\begin{proof}[Solution]
+  For every sequence $(x_n)$ in $\ol U$, there exists a sequence $(y_n)$ in $U$ such that $\norm{x_n-y_n}<1/n$ for all $n$.
+  (This is because $U$ is dense in $\ol U$.)
+  Then there exists a subsequence $(y_{n_k})$ such that $y_{n_k} \to y \in \ol U$.
+  Then
+  \[ \norm{x_{n_k}-y} \leq \norm{x-y_{n_k}} + \norm{t_{n_k}-y} \leq \frac{1}{n_k} + \norm{y_{n_k}-y} \to 0. \qedhere \]
+\end{proof}
+
+\begin{prop}
+  Let $X$ and $Y$ be normed spaces and let
+  \[ \cK(X,Y) = \{ T \in \cL(X,Y) \mid T \text{ is compact } \}. \]
+  Then $\cK(X,Y)$ is a vector space over $K$.
+\end{prop}
+
+\begin{proof}
+  Additivity follows from proposition \ref{21:prop}.
+\end{proof}
+
+The following theorem is used as a tool to show that a given $T \in \cL(X,Y)$ is compact.
+
+\begin{thm}
+  Let $X$ be a normed space and $Y$ a Banach space.
+  If each $T_n: X \to Y$ is compact and $T_n \to T \in \cL(X,Y)$, then $T \in \cK(X,Y)$.
+\end{thm}
+
+\begin{proof}
+  Let $(x_n)$ be a bounded sequence in $X$.
+  We will construct a subsequence $(x_n')$ of $(x_n)$ such that $(Tx_n')$ is convergent in $Y$.
+  To do this we will construct a subsequence $(x_n')$ of $(x_n)$ such that $(T_nx_n')$ is convergent for every $n$.
+
+  Now for all $k$ there exists a subsequence $(x_n^{(k)})_n$ of $(x_n^{(k-1)})$ such that $(T_jx_n^{(k)})_n$ is convergent for all $j \leq k$.
+  This can be constructed inductively.
+  Let $x'=x_m^{(m)}$.
+  Then $(x_m')$ is a subsequence of $(x_m)$.
+  Moreover, $(x_m')_{m \geq k}$ is a subsequence of $(x_n^{(k)})_{m \geq 1}$.
+  So for all $k \geq 1$, we have that $(T_kx_m')_{m \geq 1}$ is convergent.
+  This proves the innermost claim.
+
+  Now we will show that $(Tx_n')_{n \geq 1}$ is Cauchy.
+  \[ \norm{Tx_m'-Tx_n'} \leq \norm{Tx_n'-T_kx_n'} + \norm{T_kx_n'-T_kx_m'} + \norm{T_kx_n'-Tx_n'}. \]
+  Since $(x_n)$ is bounded there exists an $M>0$ such that $\norm{x_n}\leq M$ for all $n$.
+  Then
+  \[ \norm{Tx_m'-Tx_n'} \leq 2M\norm{T-T_k} + \norm{T_kx_n'-T_kx_n'}. \]
+  Let $\eps>0$.
+  Take $k_0$ such that $2M\norm{T-T_k} \leq \eps/2$.
+  Moreover, since $(T_{k_0}x_n')_{n \geq 1}$ is convergent it is Cauchy, thus there exists an $N_\eps$ such that if $n,m \geq N_\eps$ we have
+  \[ \norm{T_{k_0}x_m' - T_{k_0}x_n'} \leq \eps/2. \]
+  Hence $(Tx_n')$ is Cauchy in $Y$ which converges since $Y$ is complete.
+\end{proof}
+
