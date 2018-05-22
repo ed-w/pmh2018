@@ -1,0 +1,122 @@
+\section{2018-05-22 Lecture}
+
+\begin{proof}[Proof (continued)]
+  \[ (g_1,\ldots,g_n,1-yf) = k[x_1,\ldots,x_n,y]. \]
+  Now $f \neq 0$ and vanishes on $\cV(I)$.
+  Then there exists polynomials $p_1,\ldots,p_{m+1} \in k[x_1,\ldots,x_n,y]$ such that
+  \[ 1 = \sum_{i=1}^m p_ig_i + p_{m+1}(1-yf). \]
+  Now apply the map
+  \begin{align*}
+    \ph: k[x_1,\ldots,x_n,y] &\to k(x_1,\ldots,x_n) \\
+    x_i &\mapsto x_i \\
+    y &\mapsto f\inv
+  \end{align*}
+  Then
+  \[ 1 = \sum_{i=1}^m p_i(x_1,\ldots,x_n,f\inv) g_i(x_1,\ldots,x_n). \]
+  We can choose an $N$ large enough such that $f^Np_i(x_1,\ldots,x_n,f\inv) \in k[x_1,\ldots,x_n]$ for $1 \leq i \leq n$.
+  Then
+  \[ f^N = \sum_{i=1}^m f^n p_i(x_1,\ldots,x_n,f\inv) g_i(x_1,\ldots,x_n) \in I, \]
+  hence $f \in \rad I$.
+\end{proof}
+
+\begin{prop}[3.30]
+  Let $A$ be a finitely generated $k$-algebra and $I$ an ideal of $A$.
+  Then
+  \[ \rad I = \bigcap_{I \subseteq \km \in \mSpec A} \km. \]
+  In particular, if $A$ is reduced, then
+  \[ 0 = \bigcap_{\km \in \mSpec A} \km. \]
+\end{prop}
+
+\begin{exer}
+  Check that it suffices to prove the above proposition for $A=k[x_1,\ldots,x_n]$.
+  (Every finitely generated $k$-algebra is a quotient of $k[x_1,\ldots,x_n]$.)
+\end{exer}
+
+\begin{proof}
+  By definition we have
+  \[ \rad I \subseteq \bigcap_{ I \subseteq \km \in \mSpec A } \km. \]
+  Now let $h$ be in the intersection and take $\bo a \in \cV(I) \subseteq \ol k^n$.
+  Consider the evaluation homomorphism:
+  \begin{align*}
+    \eval_{\bo a}: k[x_1,\ldots,x_n] &\to \ol k \\
+    f &\mapsto f(\bo a)
+  \end{align*}
+  Now $\im \eval_{\bo a} \subseteq \ol k$ and is algebraic over $k$.
+  Therefore for any $x \in \im\eval_{\bo a}$ we can use its minimal polynomial to construct $x\inv$.
+  Hence $\im \eval_{\bo a}$ is a field, so $\ker\eval_{\bo a}$ is a maximal ideal.
+  Since $I \subseteq \ker\eval_{\bo a}$, we have $h \in \ker\eval_{\bo a}$, so $h \in \rad I$ by the Nullstellensatz.
+\end{proof}
+
+Artinian rings
+
+\begin{prop}[3.31]
+  Let $R$ be Artinian and $\kp$ a prime ideal of $R$.
+  Then $\kp$ is maximal.
+\end{prop}
+
+\begin{proof}
+  $B=R/\kp$ is an integral domain and is Artinian.
+  Let $x \in B \setminus \{0\}$.
+  Then $(x) \supseteq (x^2) \supseteq (x^3) \supseteq \cdots$, so $(x^n)=(x^{n+k})$ for some $n$ and for all $k \geq 0$.
+  Then $x^{n+1}=x^ny$ for some $y \in B$.
+  Then $x^n(1-xy)=0$, so $y=x\inv$.
+  Then $B$ is a field, so $\kp$ is maximal.
+\end{proof}
+
+\begin{cor}[3.32]
+  In an Artinian ring, the nilradical is precisely the Jacobson radical.
+\end{cor}
+
+\begin{prop}[3.33]
+  An Artinian ring $R$ only has finitely many maximal ideals.
+\end{prop}
+
+\begin{proof}
+  Let
+  \[ \Sigma = \left\{ \bigcap_{i=1}^r \km_i \mid \km_i \in \mSpec R \text{ and } r \in \NN \right\}. \]
+  Then $\Sigma$ has a minimal element $\bigcap_{i=1}^n \km_i$.
+  Therefore $\km \cap \bigcap_{i=1}^n \km_i = \bigcap_{i=1}^n \km_i$ for all $\km \in \mSpec R$, so it is contained in every maximal ideal.
+
+  \begin{lem}
+    If $I_1 \cap \cdots \cap I_n \subseteq \kp$ or $I_1 \cdots I_n \subseteq \kp$ for ideals $I_1,\ldots,I_n<\kp$ with $\kp$ prime, then there exists a $j$ such that $I_j \subseteq \kp$.
+  \end{lem}
+
+  \begin{proof}
+    Since $I_1 \cdots I_n \subseteq I_1 \cap \cdots \cap I_n$, we only need to check it for products.
+    The proof is left as an exercise.
+  \end{proof}
+
+  Then there exists an $i$ such that $\km_i \subseteq \km$ for all $\km \in \mSpec R$.
+  But $\km_i$ is maximal, so $\km_i=\km$.
+\end{proof}
+
+\begin{prop}[3.34]
+  If $R$ is Artinian, then $\nilrad R$ is nilpotent.
+\end{prop}
+
+\begin{proof}
+  By the d.c.c.\@, $(\nilrad R)^N=(\nilrad R)^{N+k}=I$ for some $N$ and all $k$.
+  Assume that $I \neq 0$.
+  Define
+  \[ \Sigma = \left\{ J < R \mid J \cdot I \neq 0 \right\}. \]
+  We know that $I \in \Sigma$, so it is nonempty.
+  Then by the minimal condition, there is a minimal element $J' \in \Sigma$.
+  So there exists an $x \in J'$ such that $x \cdot I \neq 0$.
+  Then $(x) \in \Sigma$, so $(x)=J'$ by minimality.
+  Now consider the ideal $(x \cdot I)$.
+  Then $(x \cdot I) \cdot I = (x \cdot I^2) = (x \cdot I) \neq 0$.
+  Thus $(x) \supseteq (x \cdot I) \in \Sigma$, so $J = (x) = (x \cdot I)$ by minimality.
+  So $x=xy$ for some $y \in I$.
+  Then $x=xy=xy^2=xy^3=\cdots$, but $y \in \nilrad R$ so $x=0$ and hence $x \cdot I = 0$, a contradiction.
+  Therefore $I=0$.
+\end{proof}
+
+\begin{defn}[3.35]
+  Let $R$ be a ring and let $B_Y$ be a chain of prime ideals of length $n$:
+  \[ \kp_0 \subset \kp_1 \subset \kp_2 \subset \cdots \subset \kp_n \]
+  The the \textbf{Krull dimension} $\dim R$ of $R$ is the supremum of the length of all possible chains of prime ideals.
+\end{defn}
+
+\begin{thm}[3.36]
+  A ring $R$ is Artinian if and only if it is Noetherian and $\dim R=0$.
+\end{thm}

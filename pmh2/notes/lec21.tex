@@ -107,11 +107,13 @@
   \end{equation}
   for $1 \leq i \leq m$ and
   \begin{equation}\label{21:eqn-last}
-    1-yf(x_1,\ldots,x_n)
+    1-yf(x_1,\ldots,x_n)=0
   \end{equation}
   for some indeterminate $y$ and some nonzero polynomial $f$.
-  If $(a_1,\ldots,a_n,b)$ satisfies equations \ref{21:eqn-m}, then $\bo a \in \cV(I)$.
-  So $f(\bo a)=0$, and thus $(a_1,\ldots,a_n,b)$ does not satisfy equation \ref{21:eqn-last}.
+  If $(a_1,\ldots,a_n,b) \in \ol k^{n+1}$ satisfies equation \ref{21:eqn-m} for $1 \leq i \leq m$, then $\bo a \in \cV(I)$.
+  By assumption, $f(\bo a)=0$, and thus $(a_1,\ldots,a_n,b)$ does not satisfy equation \ref{21:eqn-last}.
+  Then $(g_1,\ldots,g_n,1-yf)$ has no common zero in $\ol k^{n+1}$, therefore
+  \[ (g_1,\ldots,g_n,1-yf) = k[x_1,\ldots,x_n,y]. \]
 
   To be continued
 \end{proof}
