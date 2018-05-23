@@ -1,0 +1,141 @@
+\section{2018-05-23 Lecture}
+
+For a good pair $(X,A)$, we have $H_n(X,A) \cong \wt H_n(X/A)$, so we can rewrite the long exact sequence in terms of these reduced homology groups.
+
+\begin{cor}
+  For a family $\{(X_\alpha,x_\alpha)\}$ of pointed spaces with $\{x_\alpha\} \subseteq X_\alpha$ a deformation retract of some of some neighbourhood in $X_\alpha$ (i.e.\@ they are each good pairs), we have
+  \[ \bigoplus_\alpha \wt H_n(X_\alpha) \cong \wt H_n\left(\bigvee_\alpha X_\alpha\right) \]
+\end{cor}
+
+\begin{proof}
+  We have
+  \[ \bigoplus_\alpha \wt H_n(\wt X_\alpha) = \bigoplus_\alpha H_n(X_\alpha,\{x_\alpha\}) = H_n \left( \coprod_\alpha X_\alpha, \coprod_\alpha \{x_\alpha\} \right) = \wt H_n \left( \bigvee_\alpha X_\alpha \right). \qedhere \]
+\end{proof}
+
+\begin{exam}
+  We have
+  \begin{equation*}
+    \wt H_n(S^1 \vee S^1)=
+    \begin{cases}
+      \ZZ^{\oplus 2} & \text{ if } n=1 \\
+      0 & \text{ if } n \neq 1
+    \end{cases}
+  \end{equation*}
+\end{exam}
+
+\begin{rmk}
+  Abelian group endomorphisms of $\ZZ$ are uniquely determined by the image of its generator $1$.
+\end{rmk}
+
+\begin{defn}
+  For $f: S^n \to S^n$ where $n>0$, we have one non-zero induced map $f_*: H_n(S^n) \to H_n(S^n)$ which is a group endomorphism of $\ZZ$.
+  Define the \textbf{degree} of $f$ by $\deg f = f_*(1)$.
+\end{defn}
+
+\begin{exer}
+  Show that:
+  \begin{enum}
+    \io $\deg (gf) = \deg(g)\deg(f)$.
+    \io If $f,g: S^n \to S^n$ are homotopic, then $\deg f=\deg g$.
+  \end{enum}
+\end{exer}
+
+4.3 Attaching cells
+
+Let $A$ be a topological space and $\ph: S^{k-1} \to A$ be a map for some $k \geq 1$.
+Let $X = A \sqcup_\ph D^k$ and $\iota: A \injto X$ the inclusion.
+
+\begin{exer}
+  Show that $(X,A)$ is a good pair.
+\end{exer}
+
+\begin{prop}
+  \lv
+  \begin{enum}
+    \io
+    $\ds H_n(X,A)=
+    \begin{cases}
+      \ZZ &\text{ if } n=k \\
+      0 &\text{ if } n \neq k
+    \end{cases}$
+
+    \io
+    $\iota_*: H_n(A) \to H_n(X)$ is an isomorphism if $n \notin \{k-1,k\}$.
+    
+    \io
+    We have an exact sequence
+    \begin{equation*}
+      \begin{tikzcd}
+	0 \ar[r] & H_k(A) \ar[r, "\iota_*"] & H_k(X) \ar[r] & H_k(X,A)=\ZZ \ar[r] & H_{k-1}(A) \ar[r, "\iota_*"] & H_{k-1}(X) \ar[r] & 0
+      \end{tikzcd}
+    \end{equation*}
+  \end{enum}
+\end{prop}
+
+\begin{proof}
+  \lv
+  \begin{enum}
+    \io
+    We have $H_n(X,A) \cong \wt H_n(X/A) \cong \wt H_n(D^k/S^{k-1}) \cong H_n(S^k)$.
+
+    \io
+    This follows from the long exact sequence and part 1:
+    \begin{equation*}
+      \begin{tikzcd}
+      	0=H_{n+1}(X,A) \ar[r] & H_n(A) \ar[r, "\iota_*"] & H_n(X) \ar[r] & H_n(X,A)=0
+      \end{tikzcd}
+    \end{equation*}
+
+    \io
+    This also follows from the long exact sequence and part 1.
+  \end{enum}
+\end{proof}
+
+\begin{cor}
+  For $X=X^l$ an $l$-dimensional cell complex, then
+  \begin{enum}
+    \io $H_n(X)=0$ for $n>l$.
+    \io For $k \leq l$, the inclusion $X^{k-1} \injto X$ induces an isomorphism $H_n(X^{k-1}) \isoto H_n(X)$ if $n<k-1$ and an epimorphism $H_n(X^{k-1}) \surjto H_n(X)$ if $n=k-1$.
+    \io $\ds H_n(X^k,X^{k-1})=
+    \begin{cases}
+      0 &\text{ if } n \neq k \\
+      \ZZ^{\oplus d} &\text{ if } n=k
+    \end{cases}$
+    where $d$ is the number of $k$-cells.
+  \end{enum}
+\end{cor}
+
+\begin{proof}
+  \lv
+  \begin{enum}
+    \io
+    We have a series of inclusions
+    \[ X^0 \injto X^1 \injto \cdots \injto X^{l-1} \injto X^l \injto \cdots \]
+    Let $n>l$.
+    Then $H_n(X^0)=0$ and $H_n(X^l)=0$, so $H_n(X^k)=0$ for $0 \leq k \leq l$.
+
+    \io
+    This also follows from the previous part.
+
+    \io
+    Since $(X^k,X^{k-1})$ is a good pair, we have
+    \[ H_n(X^k,X^{k-1}) = \wt H_n(X^k/X^{k-1}) = \wt H_n \left( \bigvee_\alpha S_\alpha^k \right) = \bigoplus_\alpha \wt H_n(S^k) \qedhere \]
+  \end{enum}
+\end{proof}
+
+5 Simplicial and cellular homology
+
+5.1 $\Delta$-complexes and simplicial homology
+
+\begin{defn}
+  A $\Delta$-complex on $X$ is a collectoin of regular (injective) simplices $\{ \sigma_\alpha: \Delta^{n_\alpha} \to X\}$ such that
+  \begin{enum}
+    \io $X = \coprod_\alpha \sigma_\alpha( \mathring{\Delta}^{n_\alpha} )$ as sets.
+    \io The restriction of $\sigma_\alpha$ to a face is some $(n_\alpha-1)$-simplex $\sigma_\beta$.
+    \io $U \subseteq X$ is open if and only if $\sigma_\alpha\inv[U]$ is open for all $\alpha$.
+  \end{enum}
+\end{defn}
+
+\begin{rmk}
+  Any space with a $\Delta$-complex structure is Hausdorff.
+\end{rmk}

@@ -1,0 +1,136 @@
+\section{2018-05-23 Lecture}
+
+Let $k$ be a field.
+
+\begin{defn}
+  A \textbf{Lie algebra} over $k$ is a vector space $\kg$ with a Lie bracket
+  \[ [\cdot,\cdot]: \kg \times \kg \to \kg \]
+  satisfying
+  \begin{enum}
+    \io bilinearity: ($[x,y]$ issliinear in both $x$ and $y$)
+    \io skew-symmetry: $[x,y]=-[y,x]$ for all $x$ and $y$, or
+    \begin{enum}
+      \io alternativity: $[x,x]=0$ for all $x$.
+    \end{enum}
+    Skew-symmetry implies alternativity if $\cha k \neq 2$.
+    \io the Jacobi identity:
+    \[ [x,[y,z]] + [y,[z,x]] + [z,[x,y]]=0. \]
+  \end{enum}
+\end{defn}
+
+\begin{rmk}
+  By skew-symmetry, the Jacobi identity has many alternative forms.
+  One is the following:
+  \[ [x,[y,z]] = [[x,y],z] + [y,[x,z]]. \]
+  that is, $[x,\cdot]$ is a \textbf{derivation}.
+\end{rmk}
+
+\begin{rmk}
+  $\Mat_n(k)$ viewed as a Lie algebra is called $\gl_n(k)$.
+  $\GL(V)$ viewed as a Lie algebra is called $\gl(V)$.
+\end{rmk}
+
+\begin{exam}
+  Let $A$ be an associative $k$-algebra.
+  Then $A$ is also asliie algebra with the \textbf{commutator bracket}:
+  \[ [a,b]=ab-ba \]
+  for all $a,b \in A$.
+  Properties 1.\@ and 2.\@ are obvious and 3.\@ can be proven by expanding the Jacobi identity.
+\end{exam}
+
+\begin{defn}
+  If $\kg$ is a Lie algebra over $k$, then a Lie \textbf{subalgebra} of $\kg$ is a subspace $\kh$ which is closed under the Lie bracket, that is, $x,y \in \kh \implies [x,y] \in \kh$.
+\end{defn}
+
+\begin{defn}
+  A \textbf{linear Lie algebra} is a Lie subalgebra of $\gl_n(k)$.
+\end{defn}
+
+\begin{exam}
+  $\sli_n(k)$ is the set of matrices of trace zero.
+  It is a Lie subalgebra of $\gl_n(k)$ but not a subalgebra of $\GL_n(k)$.
+  This is because the trace is not multiplicative (but it is a trace class operator).
+\end{exam}
+
+\begin{exam}
+  \lv
+  \begin{enum}
+    \io
+    $\fr{so}_n(k)$ is the set of skew-symmetric ($A^\perp=-A$) matrices.
+    It is a Lie subalgebra of $\gl_n(k)$.
+    Note that the diagonal must be zero, hence they have trace zero.
+    Compare this to the special orthogonal group $SO_n(k)$ which is a subgroup of $\GL_n(k)$ with $A^\perp=A\inv$ and $\det A=1$.
+
+    \io
+    Let $k=\CC$.
+    $\fr u_n$ is the Lie subalgebra of $\gl_n(k)$ consisting of skew-Hermitian ($\ol A^\perp=-A$) matrices.
+    Note that the diagonal entries must be purely imaginary.
+    $\fr{su}_n$ is the Lie subalgebra of $\fr u_n$ consisting of trace zero matrices.
+    For example, we have
+    \[ \fr{su}_2 = \left\{ 
+	\begin{bmatrix}
+	  ia & b+ic \\ -b+ic & -ia
+	\end{bmatrix}
+	\mid a,b,c \in \RR
+    \right\}. \]
+  \end{enum}
+
+  We have omitted most of the proofs that they are indeed Lie subalgebras but we will check that $\fr u_n$ is closed under the commutator.
+  If $A,B \in \fr u_n$, then
+  \begin{align*}
+    \ol{[A,B]}^\perp &= \ol{(AB-BA)}^\perp = (\ol A \ol B - \ol B \ol A)^\perp = \ol B^\perp \ol A^\perp - \ol A^\perp \ol B^\perp \\
+    &= (-B)(-A)-(-A)(-B) = BA-AB = -[A,B]
+  \end{align*}
+\end{exam}
+
+\begin{defn}[Only for the purposes of this course]
+  A \textbf{linear Lie group} is a subgroup $G$ of $\GL_n(\KK)$ where $\KK=\RR$ or $\KK=\CC$ which is an embedded submanifold.
+  That is, in a neighbourhood of each $x \in G$, the embedding of $G$ in $\GL_n(\KK)$ is diffeomorphic to the embedding of $\RR^m$ in $\RR^N$ where $N=n^2$ if $\KK=\RR$ and $N=2n^2$ if $\KK=\CC$ (the dimension of $\GL_n(\KK)$ as a manifold).
+  All of the above groups are linear Lie groups.
+  $m$ is the same at every point and is called the \textbf{dimension} of $G$.
+\end{defn}
+
+\begin{exam}
+  To check that a group is a embedded submanifold we need to check explicitly using the implicit function theorem.
+  For example, we have
+  \[ \SL_n(\RR) \subset \GL_n(\RR) \overset{\text{open}}{\subset} \Mat_n(\RR) \]
+  where
+  \[ \SL_n(\RR) = \{ A \in \Mat_n(\RR) \mid \det A = 1 \} \text{ and } \GL_n(\RR) = \{ A \in \Mat_n(\RR) \mid \det A \neq 0 \}. \]
+  Since $\GL_n(\RR)$ is an open subset we only need to check that $\SL_n(\RR)$ is an embedded submanifold of $\GL_n(\RR)$.
+
+  Now $\det(A)$ is a function $f(a_{ij})$ of $n^2$ variables $a_{ij}$ (where $A=(a_{ij})$).
+  By Laplace expansion we have
+  \[ f(a_{ij}) = \sum_{j=1}^n (-1)^{i+j} a_{ij} \det A_{\hat i \hat j} \]
+  and so
+  \[ \frac{\p f}{\p a_{ij}} = (-1)^{i+j} \det A_{\hat i \hat j}. \]
+  So the only critical points of $f$ are matrices where all $(n-1) \times (n-1)$ minors are zero which implies that $\det A=0$.
+  Then the `level hypersurface' where $f(a_{ij})=1$ is an embedded submanifold (well-defined tangent spaces at all points) by the implicit function theorem.
+\end{exam}
+
+\begin{prop}
+  If $G \subseteq \GL_n(\KK)$ is a linear Lie group, then $T_1G \subseteq \gl_n(\KK)$ is a linear Lie algebra where $T_1G$ is the tangent space to $G$ at the identity matrix $1$.
+\end{prop}
+
+\begin{defn}
+  If $M \subseteq \RR^n$ is an embedded submanifold and $x \in M$, then
+  \[ T_xM = \{ f'(0) \mid f: (-\eps,\eps) \to M \text{ with } f(0)=x \text{ and } f \text{ smooth } \}. \]
+  
+  If $G \subseteq \GL_n(\KK)$ is a linear Lie group, then
+  \[ T_1G = \{ A \in \Mat_n(\KK) \mid \exp(tA) \in G \text{ for all } t \in \RR \}. \]
+\end{defn}
+
+\begin{rmk}
+  Recall that
+  \[ \exp(B) = \sum_{k=0}^\infty \frac{B^k}{k!} \]
+  which converges for all $B$.
+  Note that $\exp(-B)=\exp(N)\inv$, so $\exp(B)$ is always invertible.
+  Note that $\exp B \exp C \neq \exp(B+C)$ in general (it is true only if $B$ and $C$ commute).
+\end{rmk}
+
+\begin{exam}
+  If $G=\SL_n(\CC)$, then
+  \[ T_1(G) = \{ A \in \Mat_n(\CC) \mid \exp tA \in \SL_n(\CC) \text{ for all } t \in \CC \}. \]
+  Since $\det\exp B = \exp\tr B$, we have $\det\exp tA = 1 \iff \tr tA = 0$ for all $t \in \CC \iff \tr A=0$.
+  So $T_1G = \sli_n(\CC)$.
+\end{exam}
+
