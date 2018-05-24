@@ -1,0 +1,143 @@
+\section{2018-05-24 Lecture}
+
+\begin{defn}
+  Let $H$ be a subgroup of $G$ and let $(W,\pi)$ be a representation of $H$.
+  The \textbf{induced representation} $\Ind_H^GW$ is a representation $(V,\rho)$ of $G$ where
+  \[ V = \{ f: G \to W \mid f(gh\inv)=\pi(h)(f(g)) \}, \]
+  for all $g \in G$ and $h \in H$, and
+  \[ \rho(g)(f)(g')=f(g\inv g'). \]
+\end{defn}
+
+\begin{defn}
+  Let $W$ be a $kH$-module.
+  Then the \textbf{coinduced representation} is
+  \[ \Coind_H^GW = kG \otimes_{kH} W. \]
+  If the representations are finite-dimensional, then
+  \[ \Ind_H^GW = (\Coind_H^G(W^*))^*. \]
+\end{defn}
+
+\begin{exam}
+  Let $W=k$ (the trivial representation).
+  Then
+  \[ V = \{ f: G \to k \mid f(gh\inv)=f(g) \} \]
+  for all $g \in G$ and $h \in H$, that is, $V$ is the space of functions from the space of cosets $G/H$ to $k$.
+  Let $S=|G:H|$.
+  If $g_1,\ldots,g_s$ are a complete list of coset representatives, then $V$ has a basis $\{\delta_1,\ldots,\delta_s\}$ where $\delta_i$ is the indicator function on the coset $g_iH$.
+  Then
+  \[ \rho(g)(\delta_i)(g') = \delta_i(g\inv g') = \delta_j \]
+  where $gg_iH=g_jH$.
+  Therefore $G$ acts on the basis $\delta_i$ of $V$ in the same way that it acts on the cosets $g_iH$ of $H$ by left multiplication.
+  (So all representing matrices are permutations.)
+  Then
+  \[ \chi_{\Ind_H^Gk}(g) = \#\{i \mid g \in g_iHg_i\inv\}. \]
+\end{exam}
+
+\begin{prop}
+  Let $\KK=\RR$ or $\CC$.
+  If $G \subseteq \GL_n(\KK)$ is a linear Lie group, then
+  \[ T_1G = \{ A \in \Mat_n(\KK) \mid \exp tA \in G \text{ for all } t \in \RR \} \]
+  is a linear Lie algebra.
+\end{prop}
+
+\begin{proof}
+  Recall that $T_1G$ is a vector space.
+  Let $A,B \in T_1(G)$.
+  We want to show that $[A,B] \in T_1G$.
+  Consider the function
+  \begin{align*}
+    f: \RR^2 &\to G \\
+    (s,t) &\mapsto \exp(sA)\exp(tB)\exp(-sA).
+  \end{align*}
+  Then
+  \[ f(s,t) = \left( \sum_{i=1}^\infty \frac{s^iA^i}{i!} \right) \left( \sum_{j=1}^\infty \frac{s^jA^j}{j!} \right) \left( \sum_{k=1}^\infty \frac{s^kA^k}{k!} \right) \]
+  so regarding $s$ as fixed, $f(s,t)$ is a curve in $G$ with $f(s,0)=1$ and the derivative at $t=0$ is $\exp(sA)B\exp(-sA)$.
+  Then $\exp(sA)B\exp(-sA) \in T_1G$.
+  Then there is a function
+  \begin{align*}
+    g: \TT &\to T_1G \\
+    s &\mapsto \exp(sA)B\exp(-sA)
+  \end{align*}
+  with $g(0)=B$.
+  Then differentiating gives $g'(0)=AB-BA$, so $[A,B] \in T_1G$.
+\end{proof}
+
+\begin{defn}
+  Let $\kg$ and $\kg'$ be Lie algebras over $k$.
+  A \textbf{(Lie algebra) homomorphism} is a $k$-linear map $\tau: \kg \to \kg'$ such that
+  \[ \tau([x,y])=[\tau(x),\tau(y)] \]
+  for all $x,y\ \in \kg$.
+  A \textbf{(Lie algebra) isomorphism} is an invertible homomorphism.
+\end{defn}
+
+\begin{prop}
+  If $\Phi$ is a (suitable) differential group homomorphism: $\Phi: G \to G'$ where $G$ and $G'$ are subgroups of $\GL_n(\KK)$, then $d_1\Phi: T_1G \to T_1G'$ is a Lie algebra homomorphism.
+\end{prop}
+
+\begin{rmk}
+  In general if $\Phi: M \to N$ is a smooth map of embedded submanifolds of $\RR^M$, then for $x \in M$ we have
+  \begin{align*}
+    d_x\Phi: T_xM &\to T_{\Phi(x)}N \\
+    f'(0) &\mapsto (\Phi\circ f)'(0)
+  \end{align*}
+  where $f$ is a smooth map $f:(-\eps,\eps) \to M$ with $f(0)=x$.
+  In the situation of the above proposition, we have
+  \[ d_1 \Phi(A) = \frac{d}{dt} \Phi(\exp(tA))\Big\vert_{t=0}. \]
+  In particular, if $\pi: G \to \GL_m(\KK)$ is a group representation, then
+  \[ d_1\pi: T_1G \to \gl_n(\KK) \]
+  is a Lie algebra representation.
+\end{rmk}
+
+\begin{defn}
+  A \textbf{representation} $(V,\pi)$ of a Lie algebra $\kg$ is a $k$-vector space $V$ with a Lie algebra homomorphism $\pi: \kg \to \gl(V)$.
+\end{defn}
+
+\begin{exam}
+  Recall that we have a family of representations
+  \begin{align*}
+    \Phi_n: U_1 &\to \GL_1(\CC) \\
+    \exp i\theta &\mapsto \exp in\theta.
+  \end{align*}
+  Then $\fr u_1 = i\RR$ and the exponential map $\exp: \fr u_1 \to U_1$ is given by $i\theta \mapsto \exp i\theta$.
+  Then the corresponding Lie algebra representation $d_1\Phi_n: \fr u_1 \to \gl_1(\CC) \cong \CC$ is given by
+  \[ d_1\Phi_n(i\theta) = \frac{d}{dt} \Phi_n(\exp it\theta) \Big\vert_{t=0} = \frac{d}{dt} \exp int\theta \Big\vert_{t=0} = in\theta. \]
+  So $d_1\Phi_n$ is just multiplication by $n \in \ZZ$.
+\end{exam}
+
+\begin{rmk}
+  Multiplication by any complex number would give a Lie algebra homomorphism, that is, a one-dimensional representation of $\fr u_1$.
+  So not all representations of $T_1G$ arise from representations of $G$.
+  This is because $G$ is not simply connected.
+\end{rmk}
+
+\begin{rmk}
+  If $G$ is a connected linear Lie group, then a representation of $G$ is irreducible if and only if the corresponding representation of $T_1G$ is irreducible.
+  Moreover, two representations of $G$ are isomorphic if and only if the corresponding representations of $T_1G$ are isomorphic.
+  So we can think of classifying representations of $G$ as a sub-problem of classifying representations of $\kg$.
+\end{rmk}
+
+\begin{rmk}
+  Note that if $G$ is connected, then $G = \ang{ \exp(tA) \mid A \in T_1G }$.
+  So this allows us to `go backwards'.
+  The exponential map is continuous, so if $G$ is disconnected then the image of the exponential map is contained in the connected component containing $1_G$.
+  For example, the group $O_2$ is a disjoint union of a `circle' of matrices of determinant $1$ (containing $1_{O_2}$) and another `circle' of matrices of determinant $-1$.
+\end{rmk}
+
+\begin{rmk}
+  We will later study $\fr{su}_2$ in more detail.
+  \lv
+  \begin{enum}
+    \io
+    Before we considered representations of $SU_2$ over $\CC$.
+    The Lie algebra
+    \[ \fr{su}_2 = \{ A \in \gl_2(\CC) \mid \tr(A)=0 \text{ and } \ol A = -A \} \]
+    is not a Lie algebra over $\CC$ but is a Lie algebra over $\RR$.
+    When considering homomorphisms $\pi: \fr{su}_2 \to \gl_m(\CC)$ both considered as $\RR$-Lie algebras, it is equivalent to consider homomorphisms of their complexifications (i.e.\@ complex representations):
+    \[ \pi: \sli_2(\CC) \to \gl_n(\CC) \]
+    since we have
+    \[ \sli_2(\CC) \cong \CC \otimes_\RR \fr{su}_2 \cong \fr{su}_2 \oplus i \fr{su}_2. \]
+
+    \io
+    $\sli_2(\CC)$ is not an associative algebra (it is a Lie algebra).
+    We will get around this by considering the \textbf{universal enveloping algebra} $U(\sli_n(\CC))$ which is associative.
+  \end{enum}
+\end{rmk}
