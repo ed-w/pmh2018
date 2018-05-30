@@ -1,0 +1,145 @@
+\section{2018-05-30 Lecture}
+
+Representations of Lie algebras
+
+We will study representations of $\sli_2(\CC) = \{
+  \left[ \begin{smallmatrix}
+    a & b \\ c & -a
+  \end{smallmatrix} \right]
+  \mid a,b,c \in \CC
+\}$
+with the commutator bracket $[x,y]=xy-yx$.
+The standard basis for $\sli_2$ is:
+\begin{equation*}
+  e=
+  \begin{bmatrix}
+    0 & 1 \\ 0 & 0
+  \end{bmatrix}
+  \quad
+  f=
+  \begin{bmatrix}
+    0 & 0 \\ 1 & 0
+  \end{bmatrix}
+  \quad
+  h=
+  \begin{bmatrix}
+    1 & 0 \\ 0 & -1
+  \end{bmatrix}
+\end{equation*}
+
+By definition, a representation of $\sli_2$ is a vector space $V$ over $\CC$ with a Lie algebra homomorphism $\pi: \sli_2 \to \gl(V)$, that is, $\pi$ is linear (determined by $\pi(e)$, $\pi(f)$ and $\pi(h)$) and satisfies $\pi([x,y])=[\pi(x),\pi(y)]$ for all $x,y \in \sli_2$ (it is enough to check on $e$, $f$ and $h$).
+
+The Lie bracket relations in $\sli_2$ are:
+\[ [e,f]=h \quad [h,e]=2e \quad [h,f]=-2f \]
+The above equations contain all of the information in $\sli_2$.
+
+So a representation of $\sli_2$ is a vector space $V$ over $\CC$ with three linear transformations $\pi(e)=E$, $\pi(f)=F$ and $\pi(h)=H$ satisfying
+\[ EF-FE=H \qquad HE-EH=2E \qquad HF-FH=-2F \]
+This is a same as a representation of the associative algebra
+\[ U(\sli_2) = \CC\ang{E,F,H}/(EF-FE-H,HE-EH-2E,HF-FH+2F) \]
+where $(\cdot)$ is a two-sided ideal.
+This algebra is infinite dimensional (in fact it has basis $\{E^aH^bF^c \mid a,b,c \in \NN\}$ or similarly for any ordering of $E$, $H$ and $F$).
+
+More generally:
+\begin{defn}
+  If $\kg$ is a Lie algebra then an enveloping algebra of $\kg$ is an associative algebra $A$ equipped with a Lie algebra homomorphism $\ph: \kg \to A$ where $A$ is a Lie algebra with the commutator bracket.
+  There is a unique (up to isomorphism) \textbf{universal enveloping algebra} $U(\kg)$ with $\iota: \kg \to U(\kg)$ such that for any enveloping algebra $\ph: \kg \to A$ there is a unique algebra homomorphism $\tau: U(\kg) \to A$ such that $\tau \circ \iota = \ph$.
+\end{defn}
+
+\begin{proof}
+  Uniqueness follows from the universal property.
+  We can prove uniqueness by direct construction.
+  Let $\{x_i\}_{i \in I}$ be a basis of $\kg$.
+  Then $[x_i,x_j] = \sum_{k \in I} c_{ij}^k x_k$ for some $c_{ij}^k \in \CC$ (the structure constants).
+  Define
+  \[ U(\kg) = \CC\ang{\{x_i\}_{i \in I} \, \Bigg\vert \, x_ix_j-x_jx_i-\sum_{k \in I} c_{ij}^k x_k} \]
+  and $\iota: \kg \to U(\kg)$ takes $x_i$ to $x_i$.
+\end{proof}
+
+\begin{exam}
+  Let $\kg = \CC\{x,y\} \cong \CC^2$ with $[x,y]=y$.
+  Then $U(\kg) = \CC\ang{x,y}/(xy-yx-y)$.
+\end{exam}
+
+\begin{rmk}
+  As a special case $(A=\End V$) of the universal property, the Lie algebra representations of $\kg$ are precisely the associative algebra representations of $U(\kg)$.
+\end{rmk}
+
+\begin{rmk}
+  \lv
+  \begin{enum}
+    \io $\iota: \kg \to U(\kg)$ is always injective.
+    \io $\dim U(\kg)=\infty$ unless $\kg=0$.
+    (For example, if $\kg = \CC x \cong \CC$ with $[\cdot,\cdot]=0$, then $U(\kg)=\CC[x]$.)
+  \end{enum}
+\end{rmk}
+
+\begin{exam}[Representations of $\sli_2$]
+  \lv
+  \begin{enum}
+    \io $V=0$ with $E=H=F=0$
+    \io $V=\CC$ with $E=H=F=0$ (since they commute)
+    \io $V=\CC^2$ with
+    $E=
+    \left[ 
+      \begin{smallmatrix}
+	0 & 1 \\ 0 & 0
+      \end{smallmatrix}
+    \right]
+    $,
+    $H=
+    \left[ 
+      \begin{smallmatrix}
+	1 & 0 \\ 0 & -1
+      \end{smallmatrix}
+    \right]
+    $ and
+    $F=
+    \left[ 
+      \begin{smallmatrix}
+	0 & 0 \\ 1 & 0
+      \end{smallmatrix}
+    \right]
+    $ (the natural representation).
+    Note that this is irreducible since the matrices have no common eigenvector.
+
+    \io $V=\CC^2$ with
+    $E=
+    \left[ 
+      \begin{smallmatrix}
+	0 & 0 \\ -1 & 0
+      \end{smallmatrix}
+    \right]
+    $,
+    $H=
+    \left[ 
+      \begin{smallmatrix}
+	-1 & 0 \\ 0 & 1
+      \end{smallmatrix}
+    \right]
+    $ and
+    $F=
+    \left[ 
+      \begin{smallmatrix}
+	0 & -1 \\ 0 & 0
+      \end{smallmatrix}
+    \right]
+    $.
+    This is a representation since $[-x^\perp,-y^\perp]=-[x,y]^\perp$.
+    This is also irreducible since the matrices have no common eigenvector.
+    We will show that this is isomorphic to the natural representation, that is, there is some matrix
+    $\left[
+    \begin{smallmatrix}
+      \alpha & \beta \\ \gamma & \delta
+    \end{smallmatrix}
+    \right]$
+    that simultaneously conjugates $E$, $H$ and $F$.
+    (We can take $\alpha=\delta=0$, $\beta=-1$ and $\gamma=1$.)
+  \end{enum}
+  Recall that irreducible representations of $SU_2$ were constructed as $\cS^m(\CC^2)$.
+  If $V$ and $W$ are representations of $\kg$, then $V \otimes W$ is also a representation of $\kg$: if $x \in \kg$, $v \in V$ and $w \in W$ then
+  \[ x(v \otimes w) = xv \otimes w + v \otimes xw \]
+  on simple tensors.
+  Note that this is not the same as with groups.
+  This looks like the product rule since it comes from differentiating $g(v \otimes w) = gv \otimes gw$ where $g=\exp(tA)$.
+\end{exam}
