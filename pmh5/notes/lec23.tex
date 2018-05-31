@@ -1,0 +1,127 @@
+\section{2018-05-31 Lecture}
+
+Irreducible finite-dimensional representations of $\sli_2(\CC)$
+
+We already have some representations: $V=\cS^m(\CC^2)$ where $\CC^2$ has basis $v_1 = \left( \begin{smallmatrix} 1 \\ 0 \end{smallmatrix} \right)$ and $v_{-1} = \left( \begin{smallmatrix} 0 \\ 1 \end{smallmatrix} \right)$.
+So $(\CC^2)^{\otimes m}$ has basis $v_{\eps_1} \otimes \cdots \otimes v_{\eps_m}$ where $\eps_i \in \{-1,1\}$.
+Then $\cS^m(\CC^2)$ has basis $\{ v_{m-2k} \mid 0 \leq k \leq m \}$ where $v_{m-2k}$ is the sum of all tensor products of $(m-k)$ $v_1$s and $k$ $v_{-1}$s.
+In $\CC^2$ we have $hv_1=v_1$ and $hv_{-1}=-v_{-1}$, so $h(v_{\eps_1} \otimes \cdots \otimes v_{\eps_m}) = (\eps_1+\cdots+\eps_m) v_{\eps_1} \otimes \cdots \otimes v_{\eps_m}$ in $(\CC^2)^{\otimes m}$.
+Hence in $\cS^m(\CC^2)$ we have
+\[ hv_{m-2k}=(m-2k)v_{m-2k}. \]
+
+\begin{defn}
+  Eigenvalues of $h$ are called \textbf{weights}, their eigenvectors \textbf{weight vectors} and their eigenspaces \textbf{weight spaces}.
+\end{defn}
+
+So $\cS^m(\CC^2)$ has a basis of weight vectors $v_{m-2k}$ of weight $m-2k$.
+
+\begin{prop}
+  Let $V$ be any representation of $\sli_2$ and let $\lambda \in \CC$.
+  Let $V_\lambda = V_\lambda^H = \{ v \in V \mid Hv = \lambda v \}$ be the $\lambda$-weight space of $V$.
+  Then $E(V_\lambda) \subseteq V_{\lambda+2}$ and $F(V_\lambda) \subseteq V_{\lambda-2}$.
+  So $E$ raises weights by 2 and $F$ lowers weights by 2.
+\end{prop}
+
+\begin{proof}[Proof (partial)]
+  Let $v \in V_\lambda$.
+Since $[H,E]=2E$, we have $h(ev) = ehv+2ev = \lambda ev + 2ev = (\lambda+2)(ev)$.
+\end{proof}
+
+Now we look at the action of $e$ on $\cS^m(\CC^2)$.
+In $\CC^2$ we have $ev_1=0$ and $ev_{-1}=v_1$, so
+\[ ev_{m-2k} = e(v_{\eps_1} \otimes \cdots \otimes v_{\eps_m}) \]
+is a sum of $k$ terms where in each term a different choice of a $v_{-1}$ is changed to a $v_1$ (there are $k$ choices).
+Then $ev_{m-2k}=(m-k+1)v_{m-2k+2}$ since each term $v_{\eps_1} \otimes \cdots \otimes v_{\eps_m}$ in $v_{m-2k+2}$ arises $m-k+1$ times (once for each $\eps_i=1$ since it comes from the corresponding term in $v_{m-2k}$ with $\eps_i=-1$).
+
+So we have the following $(m+1)\times(m+1)$ matrices in the basis $\{v_{m-2k} \mid 0 \leq k \leq m\}$:
+\begin{equation*}
+  H=
+  \begin{bmatrix}
+    m & 0 & 0 & \cdots & 0 \\
+    0 & m-2 & 0 & \cdots & 0 \\
+    0 & 0 & m-4 & \cdots & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & 0 & \cdots & -m
+  \end{bmatrix}
+\end{equation*}
+\begin{equation*}
+  E=
+  \begin{bmatrix}
+    0 & m & 0 & \cdots & 0 & 0 \\
+    0 & 0 & m-1 & \cdots & 0 & 0 \\
+    0 & 0 & 0 & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & \cdots & 0 & 1 \\
+    0 & 0 & 0 & \cdots & 0 & 0
+  \end{bmatrix}
+\end{equation*}
+\begin{equation*}
+  F=
+  \begin{bmatrix}
+    0 & 0 & 0 & \cdots & 0 & 0 \\
+    1 & 0 & 0 & \cdots & 0 & 0 \\
+    0 & 2 & 0 & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & \cdots & 0 & 0 \\
+    0 & 0 & 0 & \cdots & m & 0
+  \end{bmatrix}
+\end{equation*}
+So we can draw the following picture of $\cS^m(\CC^2)$:
+\begin{equation*}
+  \begin{tikzcd}
+    {} & v_{-m} \ar[l, color=blue, "0"] \ar[loop above, color=green, "-m", looseness=20] \arrow[r, bend left, color=red, "1"] & v_{-m+2} \ar[loop above, color=green, "-m+2", looseness=20] \arrow[l, bend left, color=blue, "m"] \arrow[r, bend left, color=red, "2"] & v_{-m+4} \ar[loop above, color=green, "-m+4", looseness=20] \arrow[l, bend left, color=blue, "m-1"] \arrow[r, bend left, color=red, "3"] & \cdots \arrow[l, bend left, color=blue, "m-2"] \arrow[r, bend left, color=red, "m-2"] & v_{m-4} \ar[loop above, color=green, "m-4", looseness=20] \arrow[l, bend left, color=blue, "3"] \arrow[r, bend left, color=red, "m-1"] & v_{m-2} \ar[loop above, color=green, "m-2", looseness=20] \arrow[l, bend left, color=blue, "2"] \arrow[r, bend left, color=red, "m"] & v_m \ar[loop above, color=green, "m", looseness=20] \arrow[l, bend left, color=blue, "1"] \ar[r, "0", color=red, "0"] & {}
+  \end{tikzcd}
+\end{equation*}
+\begin{equation*}
+  \begin{tikzcd}[column sep=huge]
+    { } \ar[r, color=green, "H"] & { } \ar[r, color=red, "E"] & { } \ar[r, color=blue, "F"] & { }
+  \end{tikzcd}
+\end{equation*}
+
+\begin{thm}
+  $\cS^m(\CC^2)$ is an irreducible representation of $\sli_2$.
+\end{thm}
+
+\begin{proof}
+  Any subrepresentation $W \subseteq \cS^m(\CC^2)$ must be an $H$-invariant subspace.
+  Since $H$ avts diagonalisably with distinct eigenvalues (i.e.\@ $\cS^m(\CC^2) = \CC v_m \oplus \CC v_{m-2} \oplus \cdots \oplus \CC v_{-m}$ is the isotypic decomposition for the $\CC x$-module structure where $x$ acts by $H$), $W$ has to be a sum of the one-dimensional subspaces $\CC v_{m-2k}$.
+  Then since $W$ has to be an invariant subspace under $E$ and $F$, it must be $0$ or $\cS^m(\CC^2)$ since $E$ and $F$ `raise' and `lower' weights respectively.
+\end{proof}
+
+\begin{thm}
+  Every irreducible finite dimensional representation of $\sli_2$ is isomorphic to $\cS^m(\CC^2)$ for some $m$ (where $\dim V = m+1$).
+  (We take $\cS^0(\CC^2)$ to be the trivial representation $\CC$.)
+\end{thm}
+
+\begin{proof}
+  We will do this by finding the canonical basis $\{v_{m-2k} \mid 0 \leq k \leq n\}$ inside a finite dimensional representation.
+
+  Since $\dim V<\infty$, $H$ has finitely many eigenvalues.
+  Let $\lambda$ be an eigenvalue of $H$ such that $\lambda+2$ is not a eigenvalue of $H$ (a \textbf{highest weight}) and let $v_\lambda$ be a corresponding eigenvector (a \textbf{highest weight vector}).
+  Then $v_\lambda \neq 0$, $hv_\lambda=v_\lambda$ and $ev_\lambda=0$ since $ev_\lambda \in V_{\lambda+2}$.
+  Also $fv_\lambda \in V_{\lambda-2}$, $f^{2} v_\lambda \in V_{\lambda-4}$ and so on.
+  Let $m \in \NN$ be the largest integer such that $f^m v_\lambda \neq 0$.
+  This must exist because there are only finitely many eigenvalues.
+  Then $f^{m} v_\lambda \in V_{\lambda-2m}$ and $f^{m+1}v_\lambda = 0$.
+
+  \begin{rmk}
+    Note that the composition $f \circ f$ is not the same as the matrix $f$ squared since Lie algebra homomorphisms are not required to be multiplicative.
+  \end{rmk}
+
+  We will now prove that $ef^{i}v_\lambda = i(\lambda+1-i)f^{i-1}v_\lambda$ for all $i \in \NN$.
+  If $i=0$ we take it to be $0$ so the base case is trivial.
+  Then
+  \begin{align*}
+    ef^{i+1}v_\lambda &= eff^{i} v_\lambda = (fe+h)f^{i} v_\lambda = fef^{i} v_\lambda + hf^{i} v_\lambda \\
+    &= i(\lambda+1-i)f f^{i-1}v_\lambda + (\lambda-2i)f^{i}v_\lambda = (i+1)(\lambda-i) f^{i}v_\lambda
+  \end{align*}
+
+  Now all that remains is to show that $\lambda=m$.
+  (This also shows that the highest weight is a non-negative integer.)
+  Letting $i=m+1$ we get $ef^{(m+1)}v_\lambda=(m+1)(\lambda-m)f^{m} v_\lambda=0$.
+  But $f^{m} v_\lambda$ is non-zero so $\lambda=m$.
+
+  Now $\CC\{f^{i} v_m \mid 0 \leq i \leq n\}$ is stable under $e$, $h$ and $f$ so by irreducibility this is the whole of $V$.
+  These vectors are eigenvectors for distinct eigenvalues so are linearly independent, hence they form a basis.
+  Then defining $v_{m-2k} = (1/k!) f^{k} v_m$ takes us to the canonical basis.
+\end{proof}
