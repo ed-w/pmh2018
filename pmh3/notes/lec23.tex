@@ -1,0 +1,78 @@
+\section{2018-06-04 Lecture}
+
+\begin{proof}[Proof of theorem \ref{22:compact}.2]
+  We want to show that if $\lambda \neq 0$ then $\lambda I-T$ is injective if and only if it is surjective.
+  We will use the following lemmas:
+
+  \begin{lem}
+    Let $X$ be a Banach space, let $T: X \to X$ be compact and let $\lambda \neq 0$.
+    If $(\lambda I-T)x_n \to y$ then $([x_n])$ is bounded in $X/\ker(\lambda I-T)$.
+  \end{lem}
+
+  \begin{proof}
+    Suppose (w.l.o.g.) by way of contradiction that $\norm{[x_n]} \geq n$ for all $n$.
+    Let $y_n = [x_n]/\norm{[x_n]} \in X/\ker(\lambda I-T)$.
+    Define $[T] : X/\ker(\lambda I-T) \to X/\ker(\lambda I-T)$ by $[T][x]=[Tx]$.
+
+    \begin{exer}
+      Show that $[T]$ is compact.
+    \end{exer}
+
+    Since $(y_n)$ is bounded, there exists a subsequence $(y_{n_k})$ such that $([T]y_{n_k})$ is converges to some limit point $w$.
+    Then
+    \[ \lambda y_{n_k} = [\lambda I-T]y_{n_k} + [T]y_{n_k} \to w \]
+    since $[\lambda I-T]x_{n_k}$ converges and $\norm{[x_{n_k}]} \to \infty$.
+    This shows that $y_{n_k} \to \lambda\inv w$, hence $[\lambda I-T]w=0$ and so $w=0$.
+    But $\norm{y_{n_k}}=1$ and $y_{n_k} \to \lambda\inv w$ and $\lambda \neq 0$, a contradiction.
+  \end{proof}
+
+  \begin{cor}
+    Let $X$ be a Banach space and let $T: X \to X$ be compact.
+    If $\lambda \neq 0$ then $\im(\lambda I-T)$ is closed.
+  \end{cor}
+
+  \begin{proof}
+    If $(\lambda I-T)x_n \to y$, then by the lemma there exists an $M>0$ such that $\inf{x_n-z} \leq M$ for some $z \in \ker(\lambda I-T)$ and for all $n \geq 1$.
+    Then there exists a bounded sequence $(x_n-z_n)$ with $z_n \in \ker(\lambda I-T)$.
+    Then by compactness there exists a subsequence $(x_{n_k})$ such that $T(x_{n_k}-z_{n_k})$ converges.
+    Then
+    \[ \lambda (x_{n_k}-z_{n_k}) = (\lambda I-T)(x_{n_k}-z_{n_k}) + T(x_{n_k}-z_{n_k}) = (\lambda I-T)x_{n_k} + T(x_{n_k}-z_{n_k}). \]
+  \end{proof}
+
+  If $\lambda \in \sigma(T) \setminus \{0\}$ is not an eigenvalue, then $\lambda I-T$ is injective but not surjective.
+  Let $Y_n = \im(\lambda I-T)^n$.
+  $Y_n$ is closed for all $n$ by the lemma.
+  We will use the following exercise:
+
+  \begin{exer}
+    Show that
+    \[ X=Y_0 \supset Y_1 \supset Y_2 \supset \cdots \]
+    strictly.
+    (Use the injectivity of $\lambda I-T$).
+  \end{exer}
+
+  By Riesz's lemma there exists a sequence $(y_n)$ with $y_n \in Y_n$ and $\norm{y_n}=1$ for each $n$, and $\norm{y_n-y} \geq 1/2$ for all $y \in Y_{n+1}$.
+  We will show that $(Ty_n)$ has no convergent subsequence.
+
+  If $n<m$, then
+  \[ \norm{Ty_n-Ty_m} = \norm{(\lambda I-T)y_n - (\lambda I-T)y_m + \lambda y_m - \lambda y_n} \]
+  which is in $Y_{m+1}$, so since
+  \[ \norm{y-\lambda y_n} = \abs{\lambda} \norm{y/\lambda-y_n} \geq \frac{\abs{\lambda}}{2}, \]
+  we have
+  \[ \norm{Ty_n-Ty_m} \geq \frac{\abs{\lambda}}{2} > 0. \qedhere \]
+\end{proof}
+
+\begin{exer}[Quotient spaces]
+  Let $X$ be a normed space and $Y \subseteq X$ a subspace.
+  \begin{enum}
+    \io
+    Show that $X/Y$ is a vector space with $[x_1]+[x_2]=[x_1+x_2]$ and $\lambda[x] = [\lambda x]$.
+
+    \io
+    Show that if $Y$ is closed, then $X/Y$ is a normed vector space with 
+    \[ \norm{[x]} = \inf_{y \in Y} \norm{x-y} = d(x,Y) \]
+
+    \io
+    Show that if $X$ is Banach and $Y$ is closed then $X/Y$ is Banach.
+  \end{enum}
+\end{exer}
