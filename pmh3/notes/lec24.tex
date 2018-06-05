@@ -1,0 +1,135 @@
+\section{2018-06-05 Lecture}
+
+Spectral theorem for compact normal operators on a Hilbert space
+
+\begin{defn}
+  Let $\cH$ be a Hilbert space and $T \in \cL(\cH)$.
+  Then $T$ is:
+  \begin{enum}
+    \io \textbf{Hermitian} (\textbf{self-adjoint}) if $T^*=T$,
+    \io \textbf{unitary} if $T^*T=TT^*=I$, and
+    \io \textbf{normal} if $T^*T=TT^*$.
+  \end{enum}
+  Recall that $T^* \in \cL(\cH)$ is given by $\ang{Tx,y}=\ang{x,T^*y}$ for all $x,y \in \cH$.
+\end{defn}
+
+\begin{exer}
+  If $S \in \cL(\cH)$ then
+  \[ \norm{S} = \sup_{\norm{x}=1} \abs{\ang{Sx,x}} = \sup_{\norm{x}=\norm{y}=1} \abs{\ang{Sx,y}}. \]
+\end{exer}
+
+\begin{thm}[Spectral theorem]
+  Let $X$ be an infinite dimensional Banach space over $\CC$ and let $T \in \cL(X)$ be compact.
+  Then
+  \begin{enum}
+    \io $0 \in \sigma(T)$
+    \io $\sigma(T) \setminus \{0\} = \sigma_p(T) \setminus \{0\}$
+    \io For all $r>0$, the set $\{ \lambda \in \sigma(T) \mid \abs{\lambda} \geq r \}$ is finite
+    \io If $\lambda \in \sigma(T)$ then $\dim\ker(\lambda I-T)<\infty$
+  \end{enum}
+\end{thm}
+
+\begin{prop}
+  Let $\cH$ be a Hilbert space over $\CC$ and let $T \in \cL(\cH)$.
+  \begin{enum}
+    \io
+    If $T$ is unitary then $\sigma(T) \subseteq \TT$ (the complex unit circle)
+    \io
+    If $T$ is self-adjoint then $\sigma(T) \subset \RR$.
+  \end{enum}
+\end{prop}
+
+\begin{proof}
+  \lv
+  \begin{enum}
+    \io
+    Since $(\lambda I-T)^* = \ol\lambda I-T^*$, we have $\sigma(T^*) = \ol{\sigma(T)}$.
+    Now $T$ is invertible if and only if $T^*$ is invertible, so $\lambda \in \sigma(T) \iff \ol\lambda \in \sigma(T^*)$.
+    The rest of the proof is left as an exercise.
+
+    \io
+    Let $\lambda = a+ib \in \sigma(T)$ so $\lambda I-T$ is not invertible.
+    Then $(\lambda+it)I-(T+itI)$ is not invertible for all $t \in \RR$.
+    Then
+    \begin{align*}
+      \abs{\lambda+it}^2 &\leq r^2(T+itI) \leq \norm{T+itI}^2 = \norm{(T+itT)^*(T+itI)} \\
+      &= \norm{T^*T+itT^*=itT+t^2I} = \norm{T^2+t^2I} \leq \norm{T}^2 + t^2
+    \end{align*}
+    where we have used that $\norm{S}^2=\norm{S^*S}$ (use the exercise).
+    Then
+    \[ a^2 + b^2 + 2bt = a^2 + (b+t)^2 - t^2 \leq \norm{T}^2 \]
+    for all $t \in \RR$, hence $b=0$ (since $\abs{\lambda} \leq \norm{T}$).
+    This shows that $\sigma(T) \subset \RR$.
+  \end{enum}
+\end{proof}
+
+\begin{lem}
+  Let $\cH$ be Hilbert over $\CC$, let $T \in \cL(\cH)$ be normal, let $\lambda \in \CC$ and let $V(\lambda) = \{ x \in \cH \mid Tx = \lambda x \}$.
+  Then
+  \begin{enum}
+    \io $V(\lambda) \perp V(\mu)$ if $\lambda \neq \mu$, and
+    \io Each eigenspace $V(\lambda)$ is $T$- and $T^*$-invariant.
+  \end{enum}
+\end{lem}
+
+\begin{proof}
+  We claim that $Tx=\lambda x \iff T^*x=\ol\lambda x$ for normal operator.
+  (This not true more generally, i.e.\@ for $L, R: \ell^2 \to \ell^2$.)
+  Now
+  \begin{align*}
+    Tx=\lambda x &\iff \ang{Tx-\lambda x,Tx-\lambda x} = 0 \\
+    &\iff \ang{Tx,Tx} - \lambda\ang{x,Tx} - \ol\lambda\ang{Tx,x} + \abs{\lambda}^2\ang{x,x} = 0 \\
+    &\iff \ang{T^*x,T^*x} - \ol\lambda\ang{x,T^*x} - \lambda\ang{T^*x,x} + \abs{\lambda}^2\ang{x,x} = 0 \\
+    &\iff \ang{T^*x-\ol\lambda x,T^*x-\ol\lambda x} = 0 \iff \norm{T^*x-\ol\lambda x}=0.
+  \end{align*}
+  \begin{enum}
+    \io
+    Let $x \in V(\lambda)$ and $y \in V(\mu)$.
+    Then
+    \[ (\lambda-\mu)\ang{x,y} = \ang{\lambda x,y}-\ang{x,\ol\mu y} = \ang{Tx,y} - \ang{x,T^*y} = 0. \]
+    Then $\lambda\neq\mu \implies x \perp y$.
+
+    \io
+    Let $x \in V(\lambda)$.
+    Then $T(Tx)=\lambda Tx$, so $Tx \in V(\lambda)$.
+    Now
+    \[ T(T^*x) = T^*Tx = T^*(\lambda x) = \lambda T^*x, \]
+    so $T^*x \in V(\lambda)$.
+  \end{enum}
+\end{proof}
+
+\begin{thm}[Spectral theorem II]
+  Let $T$ be a compact an normal operator on a complex Hilbert space $\cH$.
+  Then $\cH$ has an orthonormal basis consisting of eigenvectors of $T$.
+  By the lemma this means that
+  \[ \cH = \ol{ \bigoplus_{\lambda \in \sigma(T)} V(\lambda) }. \]
+\end{thm}
+
+\begin{proof}
+  Let
+  \[ M = \ol{ \bigoplus_{\lambda \in \sigma(T)} V(\lambda) } \]
+  so that $\cH = M \oplus M^\perp$.
+  We will show that $M^\perp=0$.
+
+  Let $\wt T = T|_{M^\perp}: M^\perp \to \cH$.
+  We will show that $\im\wt T \subseteq M^\perp$.
+  For all $x \in M^\perp$ and $m \in M$, we have
+  \[ \langle\wt Tx,m\rangle = \ang{Tx,m} = \ang{x,T^*m} = 0 \]
+  since $T^*m \in M$.
+  Hence $\wt Tx \in M^\perp$.
+  It is easy to see that $\wt T$ is compact and normal.
+  We will consider the following cases:
+  \begin{enum}
+    \io
+    If $\sigma(\wt T) = 0$ then $\Vert \wt T \Vert = r(\wt T) = 0$, hence $\wt T = 0$.
+    \begin{exer}
+      If $T \in \cL(\cH)$ is normal and bounded then $r(T) = \norm{T}$.
+    \end{exer}
+    Then every $x \in M^\perp \setminus \{0\}$ is a $0$-eigenvector of $\wt T$, hence $M^\perp \setminus \{0\} \subseteq V(0) \subseteq M$ which implies that $M^\perp \setminus \{0\} = \emptyset$.
+
+    \io
+    If $\sigma(\wt T) \neq 0$ then choose a $\lambda \in \sigma(\wt T) \setminus \{0\}$.
+    By the spectral theorem for compact operators, $\lambda$ is an eigenvalue of $\wt T$, so there exists an $x \in M^\perp \setminus \{0\}$ with $\wt Tx = \lambda x$, hence $Tx = \ol\lambda x$ and so $x \in V(\ol\lambda) \subseteq M$, a contradiction, Then $M^\perp = 0$.
+  \end{enum}
+  By the lemma choosing an orthonormal basis of each $V(\lambda)$ completes the proof.
+\end{proof}

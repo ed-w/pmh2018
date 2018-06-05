@@ -1,0 +1,49 @@
+\section{2018-06-05 Lecture}
+
+\begin{prop}[AG.15]
+  Let $X \subseteq \AF^n$ and $Y \subseteq \AF^m$.
+  Then there is a bijection between the set of $k$-algebra homomorphism from $k[X]$ to $k[Y]$ and the set of all maps of affine varieties from $Y$ to $X$ given by:
+  \begin{align*}
+    \Phi &\longmapsto (\Phi^a: y \mapsto (\Phi(\ol x_1)(y), \ldots, \Phi(\ol x_n)(y))) \\
+    (f^\sharp: p \mapsto p \circ \ol f) &\longleftarrow f
+  \end{align*}
+  It holds that $(\Phi^a)^\sharp=\Phi$ and $(f^\sharp)^a=f$.
+  It also respects composition (the functorial property): for $f: X \to Y $ and $g: Y \to Z$ we have $(g \circ f)^\sharp = g^\sharp \circ f^\sharp$, and $(id_X)^\sharp = \id_{k[X]}$ and $(\id_{k[X]})^a = \id_X$.
+  This shows that isomorphisms get mapped to isomorphisms.
+\end{prop}
+
+\begin{rmk}
+  Why is $\Phi^a$ well-defined?
+  If $f \in \cI(X)$, then since $\Phi$ is a $k$-algebra map we have
+  \[ f(\Phi(\ol x_1)(y),\ldots,\Phi(\ol x_n)(y) = f(\Phi(\ol x_1),\ldots,\Phi(\ol x_n))(y) = \Phi(f(\ol x_1,\ldots,x_n))(y) = \Phi(0)(y) = 0. \]
+\end{rmk}
+
+\begin{rmk}
+  Alternatively, if $\Phi: A \to D$ is a $k$-algebra map, then
+  \begin{align*}
+    \Phi^a: \mSpec B &\to \mSpec A \\
+    \km &\mapsto \Phi\inv[\km]
+  \end{align*}
+  For $\pi: k[x_1,\ldots,x_n] \to k[x_1,\ldots,x_n]/I = A$, we have $\pi^a: \cV(I) \injto \AF^n$.
+  Then the Noether normalisation tells us that there exists an $R \cong k[x_1,\ldots,x_r]$ such that $R \injto A$ and $A$ is a finitely-generated $R$-module.
+  \[ \AF^r \xleftarrow{i^a} \cV(I) \overset{\pi^a}{\injto} \AF^n \]
+  If $A$ is a finitely generated $R$-module then $|\Phi\inv[x]|<\infty$.
+\end{rmk}
+
+\begin{exam}
+  $\cV(XY-1)$, i.e.\@ $A=k[X,Y]/(XY-1) = k[\cV(XY-1)]$.
+  If $X'=X-Y$ then $XY-1 = Y^2-X'Y-1$.
+\end{exam}
+
+Normalisation
+
+Let $A$ be a finitely generated integral domain.
+Then $A \overset{i}{\injto} \ol A \subseteq \Frac A = K$ where $\ol A$ is the integral closure of $A$ in $K \neq k$.
+Then $\ol X$ is the \textbf{normalisation} of $X$ and $i^a: \mSpec\ol A \to \mSpec A = X$.
+
+\begin{exam}
+  $A=k[x,y]/(y^2-x^3)$
+
+  omitted
+\end{exam}
+
