@@ -7,7 +7,7 @@ Let $k$ be a field.
   \[ [\cdot,\cdot]: \kg \times \kg \to \kg \]
   satisfying
   \begin{enum}
-    \io bilinearity: ($[x,y]$ issliinear in both $x$ and $y$)
+    \io bilinearity: ($[x,y]$ is linear in both $x$ and $y$)
     \io skew-symmetry: $[x,y]=-[y,x]$ for all $x$ and $y$, or
     \begin{enum}
       \io alternativity: $[x,x]=0$ for all $x$.
@@ -22,7 +22,7 @@ Let $k$ be a field.
   By skew-symmetry, the Jacobi identity has many alternative forms.
   One is the following:
   \[ [x,[y,z]] = [[x,y],z] + [y,[x,z]]. \]
-  that is, $[x,\cdot]$ is a \textbf{derivation}.
+  that is, the \textbf{adjoint representation} $\ad_x(y) = [x,y]$ is a \textbf{derivation}.
 \end{rmk}
 
 \begin{rmk}
@@ -32,14 +32,14 @@ Let $k$ be a field.
 
 \begin{exam}
   Let $A$ be an associative $k$-algebra.
-  Then $A$ is also asliie algebra with the \textbf{commutator bracket}:
+  Then $A$ is also a Lie algebra with the \textbf{commutator bracket}:
   \[ [a,b]=ab-ba \]
   for all $a,b \in A$.
-  Properties 1.\@ and 2.\@ are obvious and 3.\@ can be proven by expanding the Jacobi identity.
+  Properties 1 and 2 are obvious and 3 can be proven by expanding the Jacobi identity.
 \end{exam}
 
 \begin{defn}
-  If $\kg$ is a Lie algebra over $k$, then a Lie \textbf{subalgebra} of $\kg$ is a subspace $\kh$ which is closed under the Lie bracket, that is, $x,y \in \kh \implies [x,y] \in \kh$.
+  If $\kg$ is a Lie algebra over $k$, then a Lie \textbf{subalgebra} of $\kg$ is a subspace $\kh$ of $\kg$ which is closed under the Lie bracket, that is, $x,y \in \kh \implies [x,y] \in \kh$.
 \end{defn}
 
 \begin{defn}
@@ -48,8 +48,8 @@ Let $k$ be a field.
 
 \begin{exam}
   $\sli_n(k)$ is the set of matrices of trace zero.
-  It is a Lie subalgebra of $\gl_n(k)$ but not a subalgebra of $\GL_n(k)$.
-  This is because the trace is not multiplicative (but it is a trace class operator).
+  It is a Lie subalgebra of $\gl_n(k)$ but not a subalgebra of $\GL_n(k)$ with composition as multiplication.
+  This is because the trace is not multiplicative (but it is a trace class operator, hence is preserved by the commutator).
 \end{exam}
 
 \begin{exam}
@@ -114,7 +114,6 @@ Let $k$ be a field.
 \begin{defn}
   If $M \subseteq \RR^n$ is an embedded submanifold and $x \in M$, then
   \[ T_xM = \{ f'(0) \mid f: (-\eps,\eps) \to M \text{ with } f(0)=x \text{ and } f \text{ smooth } \}. \]
-  
   If $G \subseteq \GL_n(\KK)$ is a linear Lie group, then
   \[ T_1G = \{ A \in \Mat_n(\KK) \mid \exp(tA) \in G \text{ for all } t \in \RR \}. \]
 \end{defn}
@@ -123,7 +122,7 @@ Let $k$ be a field.
   Recall that
   \[ \exp(B) = \sum_{k=0}^\infty \frac{B^k}{k!} \]
   which converges for all $B$.
-  Note that $\exp(-B)=\exp(N)\inv$, so $\exp(B)$ is always invertible.
+  Note that $\exp(-B)=\exp(B)\inv$, so $\exp(B)$ is always invertible.
   Note that $\exp B \exp C \neq \exp(B+C)$ in general (it is true only if $B$ and $C$ commute).
 \end{rmk}
 

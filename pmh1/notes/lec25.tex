@@ -1,0 +1,95 @@
+\section{2018-06-06 Lecture}
+
+5.4 Projective space
+
+Let $k$ be a field.
+Then $k\PP^n = (k^{n+1} \setminus \{0\})/\sim$ where $v \sim \lambda v$ for all $\lambda \in k^\times$.
+This is the set of all lines through the origin.
+As sets, we have $k\PP^N = k^n \amalg k^{n-1} \amalg \cdots \amalg k \amalg \emptyset$ where $k^i$ consists of vectors with the first $i-1$ components zero and the $i$th component 1.
+For $k=\RR$ or $k=\CC$, $k^{n+1}$ is a toplogical (metric) space so $k\PP^n$ is a topological space with the quotient topology.
+
+\begin{lem}
+  $\RR\PP^k$ is a $k$-dimensional cell complex with exactly one $j$-cell for each $0 \leq j \leq k$.
+\end{lem}
+
+\begin{proof}
+  We have $\RR\PP^k = (\RR^{k+1}\setminus\{0\})/\sim\ = S^k/\sim$ where $v \sim -v$ (identifying antipodal points).
+  Let $q_k: S^k \to \RR\PP^k$ be the quotient map.
+  Define the hemisphere $hS^k = \{ v \in S^k \mid v_1 \geq 0 \} \subset S^k$.
+  Then $\RR\PP^k = hS^k/\sim$ where $\sim$ is the restriction of the relation $\sim$ on $S^k$.
+  Now this equivalence relation is only relevant on the boundary $\p hS^k = S^{k-1}$ where it identifies antipodal points.
+  Then $\RR\PP^k \cong S^{k-1}/\sim \sqcup_q hS^k$ where $q_k: S^{k-1} \to S^{k-1}/\sim = \RR\PP^k$ is the quotient map.
+  Therefore $\RR\PP^k \cong \RR\PP^{k-1} \sqcup_{q_{k-1}} D^k$.
+  This gives a cell complex structure for $\RR\PP^k$.
+  Since $\RR\PP^0=\pt$, this gives the result.
+\end{proof}
+
+\begin{exam}
+  $\RR\PP^1 \cong S^1$.
+\end{exam}
+
+\begin{rmk}
+  $q_1: S^1 \to \RR\PP^1 \cong S^1$ is not a homeomorphism (it is not bijective).
+\end{rmk}
+
+An intuitive look at $\pi_1(\RR\PP^2)$
+
+This can be computed using van Kampen's theorem.
+It is $\ZZ/2\ZZ$.
+So we expect that $H_1(\RR\PP^2)=\ZZ/2\ZZ$.
+
+Cellular homology of $\RR\PP^2$
+
+The cellular chain complex is
+\begin{equation*}
+  \begin{tikzcd}
+    \cdots \ar[r] & 0 \ar[r] & \ZZ \ar[r, "\p_2^{CW}"] & \ZZ \ar[r, "\p_1^{CW}"] & \ZZ \ar[r] & 0
+  \end{tikzcd}
+\end{equation*}
+Now $\p_1^{CW}(e^1) = \ph(1)-\ph(-1) = 0$ since there is only one $0$-cell.
+Also $p_2^{CW}(e^2) = (\deg f)e^1$ where $f: S^1 \xto{q_1} \RR\PP^1 \isoto S^1$ and $\deg f = f_*(1)$.
+It is clear that $\deg f = 2$.
+Then $H_0(\RR\PP^2)=\ZZ$, $H_1(\RR\PP^2)=\ZZ/2\ZZ$ and $H_n(\RR\PP^2)=0$ for $n \geq 2$.
+
+Note that this is the first place where we have encountered torsion in a homology group.
+This is because the attaching map has degree 2, so part of the boundary maps on to itself.
+Previously we only had attaching maps with degree 0 (collapsing to a point) and degree 1 (preserving the boundary).
+
+Homology of $\RR\PP^3$
+
+The cellular chain complex is
+\begin{equation*}
+  \begin{tikzcd}
+    \cdots \ar[r] & 0 \ar[r] & \ZZ \ar[r, "0"] & \ZZ \ar[r, "2"] & \ZZ \ar[r, "0"] & \ZZ \ar[r] & 0
+  \end{tikzcd}
+\end{equation*}
+We can deduce that $\p_3^{CW}$ is the zero map from the fact that this is a chain complex.
+This alternating pattern generalises but is harder to compute.
+So we have
+\begin{equation*}
+  H_n(\RR\PP^3)=
+  \begin{cases}
+    \ZZ & n=0 \\
+    \ZZ/2\ZZ & n=1 \\
+    0 & n=2 \\
+    \ZZ & n=3 \\
+    0 & n \geq 4
+  \end{cases}
+\end{equation*}
+
+\begin{lem}
+  $\CC\PP^k$ is a $2k$-dimensional cell complex with 1 cell of each even dimension $\leq 2k$ and 0 cells of each odd dimension $<2k$.
+\end{lem}
+
+This is because the complex plane is two-dimensional over the reals and the disks used in the construction of cell complexes are real.
+This allows us to immediately compute the homology groups:
+
+\begin{cor}
+  \begin{equation*}
+    H_n(\CC\PP^k)=
+    \begin{cases}
+      \ZZ & \text{ if $n$ is even and $n \leq 2k$} \\
+      0 & \text{ if $n$ is odd or $n > 2k$}
+    \end{cases}
+  \end{equation*}
+\end{cor}

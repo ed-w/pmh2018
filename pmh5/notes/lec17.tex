@@ -6,7 +6,7 @@
 \end{lem}
 
 \begin{rmk}
-  Note that $\chi_{\S^2(V)} + \chi_{\wedge^2(V)} = \chi_{V^{\otimes 2}}$.
+  Note that $\chi_{\ca S^2(V)} + \chi_{\wedge^2(V)} = \chi_{V^{\otimes 2}}$.
 \end{rmk}
 
 \begin{proof}
@@ -20,7 +20,7 @@
   \begin{align*}
     \chi_{V \otimes V}(g) &= \sum_{i,j=1}^n \lambda_i\lambda_j = \left( \sum_{i=1}^n \lambda_i \right)^2 = \chi_V(g)^2 \\
     \chi_{\ca S^2(V)}(g) &= \sum_{i=1}^n \lambda_i^2 + \sum_{1 \leq i<j \leq n} \lambda_i\lambda_j = \frac 12 \left( \sum_{i=1}^n \lambda_i^2 + \left( \sum_{i=1}^n \lambda_i \right)^2 \right) = \frac 12 \left( \chi_V(g^2) + \chi_V(g)^2 \right) \\
-    \chi_{\wedge^2(V)}(g) &= \sum_{1 \leq i<j \leq n} \lambda_i\lambda_j = \frac 12 \left( \left( \sum_{i=1}^n \lambda_i \right)^2 - \sum_{i=1}^n \lambda_i^2 \right) = \frac 12 \left( \chi_V(g^2) + \chi_V(g)^2 \right) \qedhere
+    \chi_{\wedge^2(V)}(g) &= \sum_{1 \leq i<j \leq n} \lambda_i\lambda_j = \frac 12 \left( \left( \sum_{i=1}^n \lambda_i \right)^2 - \sum_{i=1}^n \lambda_i^2 \right) = \frac 12 \left( \chi_V(g^2) - \chi_V(g)^2 \right) \qedhere
   \end{align*}
 \end{proof}
 
@@ -34,6 +34,7 @@
       0 & \text{if $S_i$ is not self-dual} \\
       -1 & \text{if $S_i$ is self-dual and of skew-symmetric type}
     \end{cases}
+    \qedhere
   \end{align*}
 \end{proof}
 
@@ -54,7 +55,7 @@ We say that a bilinear form is $G$-invariant if
 \[ B(gv,gv')=B(v,v'). \]
 Then the space of $G$-invariant bilinear forms is $(V^* \otimes V^*)^G$, and similarly for symmetric and skew-symmetric $G$-invariant bilinear forms.
 
-If $S_i$ is self-dual, then $\dim(S_i^* \otimes S_i^*)^G=1$ (from the previous lecture), so there exists a unique non-zero bilinear form on $V$ (up to scaling).
+If $S_i$ is self-dual, then $\dim(S_i^* \otimes S_i^*)^G=1$ (from the previous lecture), so there exists a unique non-zero $G$-invariant bilinear form on $V$ (up to scaling).
 This is either symmetric or skew-symmetric (giving rise to symmetric and skew-symmetric types respectively).
 
 \begin{exam}
@@ -133,7 +134,7 @@ This is either symmetric or skew-symmetric (giving rise to symmetric and skew-sy
   Here is a `proof' that every simple $\CC G$-module is of symmetric type.
   Let $\wt B: S_i \times S_i \to \CC$ be a symmetric bilinear form.
   Define
-  \[ B(v,v') = \frac{1}{\abs{G}} \sum_{g \in G} B(gv,gv'). \]
+  \[ B(v,v') = \frac{1}{\abs{G}} \sum_{g \in G} \wt B(gv,gv'). \]
   Then $B$ is a $G$-invariant symmetric bilinear form, hence $\CC G$ is of symmetric type.
 
   The problem is that we can have $B(v,v')=0$ for all $v,v' \in V$.

@@ -3,7 +3,7 @@
 \begin{thm}[Schur's orthogonality relations]
   Let $G$ be a finite group with and let $k=\CC$.
   Define the following inner product on $F_c(G,\CC)$:
-  \[\ang{f_1,f_2} = \frac{1}{\abs{G}}f_1(g) \ol{f_2(g)}\]
+  \[\ang{f_1,f_2} = \frac{1}{\abs{G}} \sum_{g \in G} f_1(g) \ol{f_2(g)}\]
   Then the irreducible characters $\chi_1,\ldots,\chi_r$ of $G$ are an orthonormal basis of $F_c(G,\CC)$ with respect to this inner product, that is,
   \begin{equation*}
     \ang{\chi_i,\chi_j}=
@@ -74,7 +74,7 @@ Dual spaces
 \begin{rmk}
   If $V$ is a $\CC G$-module, then $V^*$ is a $\CC G$-module with the action
   \[(g \cdot f)(v) = f(g\inv \cdot v)\]
-  for $g \in G$, $f \in V^*$ and $V \in V$.o
+  for $g \in G$, $f \in V^*$ and $V \in V$.
   
   Take bases $v_1,\ldots,v_n$ and $v_1^*,\ldots,v_n^*$ of $V$ and $V^*$ respectively.
   Suppose $g \in G$ has representing matrices $M(g)=(a_{ij}(g))_{ij}$ and $M^*(g)=(a^*_{kl}(g))_{kl}$ relative to the aforementioned bases of $V$ and $V^*$.

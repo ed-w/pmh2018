@@ -25,7 +25,7 @@ We will use the following fact:
 \begin{exam}
   \lv
   \begin{enum}
-    \io If $G$ is finite, then $\ds \int_G f(g) \, d\mu(g) = \frac{1}{\abs{G}} f(g)$.
+    \io If $G$ is finite, then $\ds \int_G f(g) \, d\mu(g) = \frac{1}{\abs{G}} \sum_{g \in G} f(g)$.
     \io If $G=U_1$, then $\ds \int_{U_1} f(\exp(i\theta)) d\mu(\exp(i\theta)) = \frac{1}{2\pi} \int_{-\pi}^\pi f(\exp(i\theta)) \, d\theta$.
     \io If $G=SU_3$, then
     \[ \int_{SU_2} f(g) d\mu(g) = \frac{1}{\vol(S^3)} \int_{S^3} f(w+xi+yj+zk) \, dw \, dx \, dy \, dz \]
@@ -72,7 +72,7 @@ Are the characters an orthonormal basis? Not quite.
 
 \begin{proof}
   This proof needs to be modified since the finite-dimensional proof used the group algebra.
-  The group algebra needs to be replaces with an $L^2$ version.
+  The group algebra needs to be replaced with an $L^2$ version.
 \end{proof}
 
 \begin{exam}[The circle group $U_1$]
@@ -94,7 +94,7 @@ Are the characters an orthonormal basis? Not quite.
 \end{exam}
 
 \begin{exam}[$SU_2$]
-  We will first produce some representaions (which will be irreducible).
+  We will first produce some representations (which will be irreducible).
   There is a natural representation on $\CC^2$.
   We will look at the $m$th symmetric tensor power $\cS^m(\CC^2)$ of $\CC^2$.
   If $\CC^2$ has basis $\{v_1=\bo e_1,v_{-1}=\bo e_2\}$, then $(\CC^2)^{\oplus m}$ has basis $\{v_{\eps_1} \otimes \cdots \otimes v_{\eps_m} \mid \eps_i \in \{-1,1\} \}$.
@@ -102,7 +102,7 @@ Are the characters an orthonormal basis? Not quite.
   \begin{align*}
     v_m &= v_1 \otimes \cdots \otimes v_1 \\
     v_{m-2} &= v_1 \otimes \cdots \otimes v_1 \otimes v_{-1} + \cdots + v_{-1} \otimes v_1 \otimes \cdots \otimes v_1 \\
-    v_{m-2i} &= \text{ the sum of all tensor products of $m-1$ $v_i$s and $i$ $v_{-1}s$.}
+    v_{m-2i} &= \text{ the sum of all tensor products of $m-i$ $v_1$s and $i$ $v_{-1}s$.}
   \end{align*}
   where $i=0,\ldots,m$.
   So the basis is $\{ v_m ,v_{m-2}, \cdots, v_{-m}\}$.
@@ -125,7 +125,7 @@ Are the characters an orthonormal basis? Not quite.
     \begin{bmatrix}
       \exp(i\theta) & 0 \\ 0 & \exp(-i\theta)
     \end{bmatrix}
-    v_{m-2j} = \exp(i\theta)^{m-2j} \exp(-i\theta)^j v_{m-2j} = \exp(i\theta)^{m-2j} v_{m-2j}
+    v_{m-2j} = \exp(i\theta)^{m-j} \exp(-i\theta)^j v_{m-2j} = \exp(i\theta)^{m-2j} v_{m-2j}
   \end{equation*}
   therefore
   \begin{equation*}
@@ -144,7 +144,7 @@ Are the characters an orthonormal basis? Not quite.
 	\exp(i\theta) & 0 \\ 0 & \exp(-i\theta)
       \end{bmatrix}
       \right)
-    } \sin^2\theta \, d\theta \\
+    }^2 \sin^2\theta \, d\theta \\
     &= \frac 1\pi \int_{-\pi}^\pi \sin^2(m+1)\theta \, d\theta = 1
   \end{align*}
   for all $m$.
@@ -152,12 +152,12 @@ Are the characters an orthonormal basis? Not quite.
   For $m \neq n$, we have
   \[ \ang{\chi_m,\chi_n} = \frac 1\pi \int_{-\pi}^\pi \sin(m+1)\theta \, \sin(n+1)\theta \, d\theta = 0. \]
   A harder fact is that if $f \in L^2_c(SU_2,\CC)$ is such that
-  \[ \ang{\chi_m,\chi_n} = \frac 1\pi \int_{-\pi}^\pi f \left( 
+  \[ \ang{\chi_m,f} = \frac 1\pi \int_{-\pi}^\pi f \left( 
     \begin{bmatrix}
       \exp(i\theta) & 0 \\ 0 & \exp(-i\theta)
     \end{bmatrix}
-  \right) \sin(m+1)\theta \, \sin\theta \, d\theta, \]
-  then $f=0$.
+  \right) \sin(m+1)\theta \, \sin\theta \, d\theta = 0, \]
+  then $f=0$ a.e., making the $\chi_m$ a complete orthonomal set.
   So we have found all of the irreducible characters.
   Therefore every irreducible continuous representation of $SU_2$ is isomorphic to $\cS^m(\CC)$ for some $m$.
 \end{exam}

@@ -71,22 +71,22 @@
 	Then since $\dim W' < \dim V < \infty$, we can iterate until completion.
 	
 	$\implies:$
-	Assume $V = V_1 \oplus \cdots \oplus V_n$, where each $V_i$ is a simple submodule of $V$.
-	Let $J \subseteq [n]$ be a maximal set (w.r.t\@ inclusion) such that
-	\[W \cap \bigoplus_{j \in J} V_j = \{0\}\]
+	Assume $V = S_1 \oplus \cdots \oplus S_n$, where each $S_i$ is a simple submodule of $V$.
+	Let $J \subseteq \{1,\ldots,n\}$ be a maximal set (w.r.t\@ inclusion) such that
+	\[W \cap \bigoplus_{j \in J} S_j = \{0\}\]
 	Clearly a maximal set exists since $J = \emptyset$ satisfies the above equation of sets.
 	We claim that 
-	\[W + \bigoplus_{j \in J} V_j = V\]
+	\[W + \bigoplus_{j \in J} S_j = V\]
 	Then the above sum is a direct sum and so we have found a direct sum complement.
 	
 	To prove the above claim, we just need to show that for each $i \notin J$,
-	\[V_i \subseteq W + \bigoplus_{j \in J} V_j\]
+	\[S_i \subseteq W + \bigoplus_{j \in J} S_j\]
 	Consider
-	\[X_i = V_i \cap \left( W + \bigoplus_{j \in J} V_j \right)\]
-	Since $V_i$ is simple, either $X_i = \{0\}$ or $X_i = V_i$.
+	\[X_i = S_i \cap \left( W + \bigoplus_{j \in J} S_j \right)\]
+	Since $S_i$ is simple, either $X_i = \{0\}$ or $X_i = S_i$.
 	In the second case we have the desired inclusion of sets.
 	In the first case the sum
-	\[V_i + \left( \bigoplus_{j \in J} V_j + W \right)\]
+	\[S_i + \left( \bigoplus_{j \in J} S_j + W \right)\]
 	is direct, contradicting the maximality of $J$.
 \end{proof}
 

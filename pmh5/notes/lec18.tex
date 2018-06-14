@@ -22,9 +22,9 @@ For the rest of the course we will look (briefly) at representations of compact 
     \io
     The group $\GL_n(\RR)$ is a topological group.
     (The topology is the subspace topology induced from the standard topology on $\Mat_n(\RR)$.)
-    It is not compact because $\GL_n(\RR)$.
     It is the preimage of $\RR\setminus\{0\}$ under the continuous function $\det: \Mat_n(\RR) \to \RR$, hence it is open.
     It is not bounded because scalar multiples of the identity are in $\GL_n(\RR)$.
+    Therefore it is not compact.
 
     \io
     $\SL_2(\RR)$ is not compact if $n \neq 1$, but it is closed.
@@ -48,7 +48,8 @@ For the rest of the course we will look (briefly) at representations of compact 
 \begin{exam}
   For $n=1$ we have $O_1=\{1,-1\}$, $SO_1=1$, $U_1=\{z \in \CC^\times \mid \abs{z}=1\} \cong \RR/2\pi\ZZ$ and $SU_1=1$.
   For $n=2$, we have
-  \[\left\{ 
+  \[O_2=
+    \left\{ 
       \begin{bmatrix}
 	\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta
       \end{bmatrix}
@@ -139,14 +140,17 @@ Quaternions were invented to study rotations in $\RR^3$.
 \end{thm}
 
 \begin{exam}
-  \io $\pm 1$ corresponds to the identity.
-  \io $\pm i$ corresponds to rotation by $\pi$ about the $x$-axis.
-  \io $1/\sqrt{3}(i+j+k)$ corresponds to rotation by $\pi$ about the axis through $\bo i+\bo j+\bo k$.
-  \io $1/2(1+i-j-k)$ corresponds to rotation by $2\pi/3$ about the axis through $\bo i-\bo j-\bo k$.
+  \lv
+  \begin{enum}
+    \io $\pm 1$ corresponds to the identity.
+    \io $\pm i$ corresponds to rotation by $\pi$ about the $x$-axis.
+    \io $1/\sqrt{3}(i+j+k)$ corresponds to rotation by $\pi$ about the axis through $\bo i+\bo j+\bo k$.
+    \io $1/2(1+i-j-k)$ corresponds to rotation by $2\pi/3$ about the axis through $\bo i-\bo j-\bo k$.
+  \end{enum}
 \end{exam}
 
 \begin{defn}
-  A (continuous) \textbf{representation} of a topological group is a vector space $V/\CC$ and a \textbf{continuous} group homomorphism $\rho: G \to \GL(V)$ with the topology on $\GL(V)$ induced from the topology on $\Mat(\CC)$.
+  A (continuous) \textbf{representation} of a topological group is a $\CC$-vector space $V$ and a \textbf{continuous} group homomorphism $\rho: G \to \GL(V)$ with the topology on $\GL(V)$ induced from the topology on $\Mat(\CC)$.
 \end{defn}
 
 \begin{rmk}
@@ -157,7 +161,7 @@ Quaternions were invented to study rotations in $\RR^3$.
   One-dimensional continuous representations of $U_1$ are the continuous group homomorphisms
   \[ \psi: U_1 \to \CC^\times. \]
   (Recall that $\RR/2\pi\ZZ \cong U_1$.)
-  Any \underline{continuous} group homomorphism from $\RR$ to $\CC^\times$ is of the form $x \mapsto \exp xz$ for some $z \in \CC$.
+  Any \underline{continuous} group homomorphism from $(\RR,+)$ to $\CC^\times$ is of the form $x \mapsto \exp xz$ for some $z \in \CC$.
   So $\psi$ must be of the form
   \[ \psi_n: \exp(i\theta) \mapsto \exp(in\theta) \]
   for some $n \in \ZZ$.

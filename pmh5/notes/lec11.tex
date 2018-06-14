@@ -14,7 +14,7 @@ We will show that $r$ equal to the number of conjugacy classes in $G$.
 	Since $1 \times 1$ matrices are invariant under conjugation, different group homomorphisms give non-isomorphic $\CC G$-modules.
 	
 	Define the \textbf{dual group} (or \textbf{character group})
-	\[G^\vee = \{\text{homomorphisms } \psi: G \to \CC^\times\}.\]
+	\[\wh G = G^\vee = \{\text{homomorphisms } \psi: G \to \CC^\times\}.\]
 	This is an abelian group under pointwise multiplication.
 	For $\psi \in G^\vee$, we can define a one-dimensional $\CC G$-module $\CC_\psi$ in which $g \in G$ acts on $\CC$ as multiplication by $\psi(g)$.
 \end{rmk}
@@ -31,7 +31,24 @@ We will show that $r$ equal to the number of conjugacy classes in $G$.
 	Let $Q$ act on $\HH$ (the Hamiltonian quaternions) by left-multiplication.
 	We can also make $\HH$ a vector space over $\CC$ by right-multiplication.
 	Then $\HH$ as a $\CC$-vector space has basis $\{1,j\}$.
-	Then the representing matrices for elements of $\QQ$ are just the Pauli matrices.
+	Then the representing matrices for elements of $\QQ$ are just the Pauli matrices:
+	\begin{equation*}
+		i=
+		\begin{bmatrix}
+			i & 0 \\ 0 & -i
+		\end{bmatrix}
+		\quad
+		j=
+		\begin{bmatrix}
+			0 & 1 \\ -1 & 0
+		\end{bmatrix}
+		\quad
+		k=
+		\begin{bmatrix}
+			0 & i \\ i & 0
+		\end{bmatrix}
+	\end{equation*}
+	Note that the physics convention is to take out a factor of $i$ in each of the above matrices.
 \end{exam}
 
 \begin{rmk}

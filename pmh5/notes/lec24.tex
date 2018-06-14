@@ -1,0 +1,81 @@
+\section{2018-06-06 Lecture}
+
+\begin{thm}\label{24:thm}
+  Every finite dimensional representation of $\sli_2$ is semisimple, hence is a direct sum of the irreducible representations as in the previous lecture.
+\end{thm}
+
+Since we know the eigenvalues of each of the irreducible representations, we can determine multiplicities by calculating the set of eigenvalues (with multiplicities) of the action of $h$ (weights) then decomposing the set.
+
+\begin{cor}
+  On any finite dimensional representation of $\sli_2$, $h$ acts diagonalisably with integer eigenvalues, the multiplicity of $a$ equals that of $-a$ and the multiplicity of $a+2$ is always less than or equal to the multiplicity of $a$ if $a$ is non-negative.
+\end{cor}
+
+\begin{cor}
+  Every finite dimensional representation of $\sli_2$ arises from a representation of $SU_2$ (because this is true for $\cS^m(\CC^2)$).
+\end{cor}
+
+This allows us to decompose tensor products of irreducible representations easily.
+The tensor product of two weight vectors is still a weight vector.
+If we consider the tensor products of two bases of irreducible representations then we can display it in a rectangular grid.
+This gives the following formula:
+
+\begin{cor}[Clebsch-Gordan rule]
+  WLOG let $m \geq n$.
+  Then
+  \[ V_m \otimes V_n \cong V_{m+n} \oplus V_{m+n-2} \oplus \cdots \oplus V_{m-n}. \]
+\end{cor}
+
+\begin{defn}
+  The \textbf{Casimir element} in $U(\sli_2)$ is
+  \[ \Omega = ef+fe+\frac 12 h^2. \]
+\end{defn}
+
+\begin{prop}
+  $\Omega \in Z(U(\sli_2))$.
+\end{prop}
+
+\begin{proof}
+  A computation.
+  Use the defining relations to rewrite $\Omega$ as necessary.
+\end{proof}
+
+How was $\Omega$ found?
+
+\begin{cor}
+  $\Omega$ acts on each $V_m$ as multiplication by a scalar.
+  In particular,
+  \[ \Omega v_m = \left( m + \frac 12 m^2 \right) v_m = \left( \frac 12 (m+1)^2 - \frac 12 \right) v_m. \]
+\end{cor}
+
+\begin{rmk}
+  $\Omega$ acts on different irreducibles by different scalars.
+\end{rmk}
+
+\begin{proof}[Proof of theorem \ref{24:thm}]
+  Any finite dimensional representation $V$ of $\sli_2$ is a direct sum of generalised eigenspaces $V_\lambda^{\Omega,\text{gen}}$.
+  Since $\Omega \in Z(U(\sli_2))$, each $V_\lambda^{\Omega,\text{gen}}$ is a subrepresentation of $V$.
+  The only possible eigenvalues of $\Omega$ are the numbers $m+(1/2)m^2$ for $m
+  \in \NN$ because every nonzero $V_\lambda^{\Omega,\text{gen}}$ contains some irreducible representation $V_m$.
+  So we can assume that $V=V_{m+(1/2)m^2}^{\Omega,\text{gen}}$, that is, the only eigenvalue of $\Omega$ on $V$ is $m+(1/2)m^2$ for some $m \in \NN$.
+  We want to show that $V \cong \bigoplus V_m$ for some number of copies of $V_m$.
+
+  We can assume by way of contradiction that $V$ is not such a direct sum and that $V$ is a minimal counterexample.
+  Let $W$ be a maximal proper subrepresentation of $V$.
+  Then $W = \bigoplus V_m$ with $k$ copies of $V_m$ and $V/W$ is irreducible, hence $V/W \cong V_m$.
+  
+  Let $v_m' \in V$ be such that $v_m'+V \in V/W$ is a highest weight vector in $V/W$, that is $h(v_m'+W)=mv_m'+W$ and $e(v_m'+W)=0+W$.
+  Since $h$ acts diagonalisably on $W$ we can add suitable elements of $W$ to $v_m'$ so that $hv_m'-mv_m' \in W_m \subset W$ (the $m$-eigenspace of $h$ on $W$).
+  Then $W_{m+2}=0$, so $hev_m'=(m+2)ev_m'=0$ and so $ev_m'=0$.
+
+  Let $w_m' = hv_m'-mv_m' \in W_m$.
+  If $w_m=0$, then $v_m'$ is a highest weight vector of weight $m$, so it generates a subrepresentation $X$ isomorphic to $V_m$.
+  Moreover $v_m' \notin W$ so $X \subseteq W$, hence $X \cap W = 0$ since $X$ is irreducible.
+  Hence $V = W \oplus X$, a contradiction.
+
+  Then $w_m \neq 0$, so it is a highest weight vector and forms part of a copy of $V_m$ with basis $w_m,w_{m-2},\ldots,w_{-,}$ where $w_i{m-2i}=(1/i!)f^iw_m$.
+  Defining $v_{m-2i}'=(1/i!)f^iv_m'$ we can show that $hv_m'-(m-2i)v_{m-2i}'=w_{m-2i}$ by induction on $i$.
+  Since $-m-2$ is not an eigenvalue of $h$ on $V$, we conclude that $v_{-m-2}'=0$.
+  Another induction shows that $ev_{m-2i}'=(m-i+1)v_{m-2i+2}'+w_{m-2i+2}$.
+  Then setting $i=m+1$ gives $w_{-m}=0$, a contradiction since $w_{-m}$ is a basis vector.
+  So there can be no counterexample.
+\end{proof}

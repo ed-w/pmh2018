@@ -49,7 +49,7 @@
     (s,t) &\mapsto \exp(sA)\exp(tB)\exp(-sA).
   \end{align*}
   Then
-  \[ f(s,t) = \left( \sum_{i=1}^\infty \frac{s^iA^i}{i!} \right) \left( \sum_{j=1}^\infty \frac{s^jA^j}{j!} \right) \left( \sum_{k=1}^\infty \frac{s^kA^k}{k!} \right) \]
+  \[ f(s,t) = \left( \sum_{i=1}^\infty \frac{s^iA^i}{i!} \right) \left( \sum_{j=1}^\infty \frac{s^jA^j}{j!} \right) \left( \sum_{k=1}^\infty \frac{(-1)^ks^kA^k}{k!} \right) \]
   so regarding $s$ as fixed, $f(s,t)$ is a curve in $G$ with $f(s,0)=1$ and the derivative at $t=0$ is $\exp(sA)B\exp(-sA)$.
   Then $\exp(sA)B\exp(-sA) \in T_1G$.
   Then there is a function
@@ -63,10 +63,10 @@
 
 \begin{defn}
   Let $\kg$ and $\kg'$ be Lie algebras over $k$.
-  A \textbf{(Lie algebra) homomorphism} is a $k$-linear map $\tau: \kg \to \kg'$ such that
+  A (Lie algebra) \textbf{homomorphism} is a $k$-linear map $\tau: \kg \to \kg'$ such that
   \[ \tau([x,y])=[\tau(x),\tau(y)] \]
   for all $x,y\ \in \kg$.
-  A \textbf{(Lie algebra) isomorphism} is an invertible homomorphism.
+  A (Lie algebra) \textbf{isomorphism} is an invertible homomorphism.
 \end{defn}
 
 \begin{prop}
