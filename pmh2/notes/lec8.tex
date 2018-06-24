@@ -26,12 +26,12 @@
 	$\implies$:
 	\begin{enum}
 		\io
-		$g^*$ is surjective.\par
+		$g^*$ is injective.\par
 		Let $\phi \in \Hom_R(M'',N)$ be such that $g^*(\phi) = \phi g = 0$.
-		Since $g$ is surjective it is left-invertible, hence $\phi=0$.
+		Since $g$ is surjective it is right-invertible, hence $\phi=0$.
 		
 		\io
-		$\im g^* = \ker f^*$ \par
+		$\im g^* = \ker f^*$.\par
 		The inclusion $\subseteq$ is obvious since $\phi^*(gf) = \phi gf = 0$ since $gf=0$.
 		Now we prove the opposite inclusion $\supseteq$.
 		
@@ -50,16 +50,17 @@
 	
 	$\impliedby$:
 	\begin{enum}
-		\io $g$ is surjective \par
+		\io $g$ is surjective.\par
 		Set $N = M''/\im g$ and let $\pi$ be the natural projection.
 		Since $g^*$ is injective for all $N$, we have that $\pi g = 0$ which implies that $\pi=0$, hence $\im g = M$ and so $g$ is surjective.
-		\io $\im f \subseteq \ker g$ \par
+
+		\io $\im f \subseteq \ker g$.\par
 		For all $\phi \in \Hom_R(M'',N)$ we have $\phi gf=0$ since $\im g^* \subseteq \ker f^*$.
 		Then set $N = M''$ and $\phi = \id_{M''}$.
 		Then $gf=0$.
 		
 		\io
-		$\ker g \subseteq \im f$ \par
+		$\ker g \subseteq \im f$.\par
 		Let $N = M/\im f$ and let $\pi$ be the natural projection.
 		Then $\pi \in \ker f^* = \im g^*$.
 		Hence there exists a $\psi \in \Hom_R(M'',N)$ such that $\psi g = \pi$.
@@ -88,6 +89,7 @@ Direct and inverse limits (colimits and limits).
 \end{defn}
 
 \begin{defn}[1.13]
+	\leavevmode
 	\begin{enum}
 		\io Let $(I,\preceq)$ be a directed set.
 		A \textbf{directed system} of $R$-modules indexed by $(I,\preceq)$ is a family of $R$-modules $\{M_i\}_{i \in I}$ and maps

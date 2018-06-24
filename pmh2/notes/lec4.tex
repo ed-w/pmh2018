@@ -14,6 +14,7 @@
 \end{proof}
 
 \begin{rmk}
+  	\leavevmode
 	\begin{enum}
 		\io If $f:R \to R'$ and $p<R'$ is prime, then $f\inv[p]$ is prime.
 		(This is not true for maximal ideals e.g.\@ $\ZZ \injto \QQ$.)
@@ -42,7 +43,7 @@
 	Thus $1 \in \km$, a contradiction.
 	
 	$\supseteq$: Assume $1-xy \in R^\times$ for all $y \in R$ but there exists an $\km \in \mSpec R$ such that $x \notin \km$.
-	Then since $\km$ is maximal, $\km + (x) = R$, so $1=u+ax$ for some $u \in m$ and $a \in R$.
+	Then since $\km$ is maximal, $\km + (x) = R$, so $1=u+ax$ for some $u \in \km$ and $a \in R$.
 	Then $1-ax \in \km$.
 	But this means that $1-ax \notin R^\times$, a contradiction.
 	(This is because $(u)=R$ for any $u \in R^\times$.)
@@ -65,6 +66,7 @@ We have
 We want to put a topology on $\Spec R$.
 
 \begin{prop}[AG.1]
+  	\leavevmode
 	\begin{enum}
 		\io $I \subset I' \implies \cV(I) \supset \cV(I')$
 		\io $\cV(0) = \Spec R$ and $\cV(R) = \emptyset$
@@ -89,6 +91,7 @@ If $S$ is a subset of $R$, then define $\cV(S) = \{\kp \in \Spec R \mid S \subse
 If $Y \subset \Spec R$, then define the \textbf{ideal} of $Y$ to be $\cI(Y) = \cap_{\kp \in Y} \kp$.
 
 \begin{rmk}
+  	\leavevmode
 	\begin{enum}
 		\io $\cV(S) = \cap_{x \in S} \cV((x))$ is closed.
 		\io $\cI(Y)$ is a radical ideal.
@@ -99,6 +102,7 @@ If $Y \subset \Spec R$, then define the \textbf{ideal} of $Y$ to be $\cI(Y) = \c
 \end{rmk}
 
 \begin{prop}[AG.3]
+  	\leavevmode
 	\begin{enum}
 		\io There is a one-to-one order-reversing correspondence between radical ideals of $R$ subsets of $\Spec R$.
 		\io The closed points of closed subsets $Y$ of $\Spec R$ are the maximal ideals in $Y$.
@@ -106,6 +110,7 @@ If $Y \subset \Spec R$, then define the \textbf{ideal} of $Y$ to be $\cI(Y) = \c
 \end{prop}
 
 \begin{proof}
+  	\leavevmode
 	\begin{enum}
 		\io Note that $\cI(\cV(J)) = \rad J$.
 		\io Trivial. \qedhere

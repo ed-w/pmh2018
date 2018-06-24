@@ -33,6 +33,7 @@ begin assessable stuff
 \end{defn}
 
 \begin{exam}
+  	\leavevmode
 	\begin{enum}
 		\io If $R=k$ is a vector space, then $R$-modules are $k$-vector spaces.
 		\io If $R=k[X]$ then an $R$-module $M$ is a $k$-vector space with a linear map $\wt{X} \in \End M$.
@@ -56,6 +57,7 @@ begin assessable stuff
 \end{rmk}
 
 \begin{prop}[1.3]
+  	\leavevmode
 	\begin{enum}
 		\io The set $\Hom_R(M,N)$ is an abelian group with addition.
 		\io The set $\Hom_R(M,N)$ is an $R$-module with pointwise scalar multiplication.
@@ -64,6 +66,7 @@ begin assessable stuff
 \end{prop}
 
 \begin{defn}[1.4]
+  	\leavevmode
 	\begin{enum}
 		\io A submodule $M'$ of $M$ is a subgroup $M'<M$ such that $\mu_M$ restricts to $\mu: R \times M' \to M'$.
 		\io The quotient of $M$ by $M'$ by a submodule $M$ is the quotient group $M/M'$ with $\mu_{M/M'}$ the push down of $\mu_M$:
@@ -77,9 +80,10 @@ begin assessable stuff
 \end{defn}
 
 \begin{exam}
+  	\leavevmode
 	\begin{enum}
-		\io If $I<R$ is a submodule, then $R/I$ is an $R$-module.
-		\io If $f \in \Hom_R(M,N)$, then $ker f$ is a submodule of $M$ and $\im f$ is a submodule of $N$.
+		\io If $I<R$ is an ideal then $R/I$ is an $R$-module.
+		\io If $f \in \Hom_R(M,N)$, then $\ker f$ is a submodule of $M$ and $\im f$ is a submodule of $N$.
 		\io The first isomorphism theorem for groups implies the first isomorphism theorem for modules:
 		\[\ol{f}: M/\ker f \xto{\sim} \im f\]
 		is an $R$-module map for any $f \in \Hom_R(M,N)$.

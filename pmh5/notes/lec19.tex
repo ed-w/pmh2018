@@ -27,7 +27,7 @@ We will use the following fact:
   \begin{enum}
     \io If $G$ is finite, then $\ds \int_G f(g) \, d\mu(g) = \frac{1}{\abs{G}} \sum_{g \in G} f(g)$.
     \io If $G=U_1$, then $\ds \int_{U_1} f(\exp(i\theta)) d\mu(\exp(i\theta)) = \frac{1}{2\pi} \int_{-\pi}^\pi f(\exp(i\theta)) \, d\theta$.
-    \io If $G=SU_3$, then
+    \io If $G=SU_2$, then
     \[ \int_{SU_2} f(g) d\mu(g) = \frac{1}{\vol(S^3)} \int_{S^3} f(w+xi+yj+zk) \, dw \, dx \, dy \, dz \]
     where $(w,x,y,z) \in S^3$.
     When $f$ is a class function, we can choose a conjugacy class representative so that
@@ -157,7 +157,7 @@ Are the characters an orthonormal basis? Not quite.
       \exp(i\theta) & 0 \\ 0 & \exp(-i\theta)
     \end{bmatrix}
   \right) \sin(m+1)\theta \, \sin\theta \, d\theta = 0, \]
-  then $f=0$ a.e., making the $\chi_m$ a complete orthonomal set.
+  for all $m$, then $f=0$ a.e., making the $\chi_m$ a complete orthonomal set.
   So we have found all of the irreducible characters.
   Therefore every irreducible continuous representation of $SU_2$ is isomorphic to $\cS^m(\CC)$ for some $m$.
 \end{exam}

@@ -4,7 +4,7 @@
   $S\inv(-)$ is exact, that is
   \[M' \xto{f} M \xto{g} M''\]
   is an exact sequence of $R$-modules, then
-  \[S\inv M \xto{S\inv f} S\inv M \xto{S\inv g} S\inv M''\]
+  \[S\inv M' \xto{S\inv f} S\inv M \xto{S\inv g} S\inv M''\]
   is an exact sequence of $R$-modules or $S\inv R$-modules.
 \end{prop}
 
@@ -14,13 +14,13 @@
     M' \arrow[rd, "\iota_S \circ f"'] \arrow[r, "\iota_S"] & S\inv M' \arrow[d, "\exists ! S\inv f"] \\
      & S\inv M
   \end{tikzcd}\]
-  where $S\inv f(m/s) = f(nm)/s$.
+  where $(S\inv f)(m/s) = f(m)/s$.
   $S\inv g$ is defined analogously.
-  Then $S\inv g \circ S\inv f (m/s) = (g \circ f)(m)/s = 0$, so $\im S\inv f \subseteq \ker S\inv g$.
+  Then $(S\inv g) \circ (S\inv f) (m/s) = (g \circ f)(m)/s = 0$, so $\im S\inv f \subseteq \ker S\inv g$.
   Now let $m/s \in \ker S\inv g$.
   Then $g(m)/s = 0 \in S\inv M''$, so there exists a $u \in S$ such that $ug(m)=g(um)=0$.
   That is, $um \in \ker g = \im f$, so there exists an $m' \in M'$ such that $um=f(m')$.
-  So there exists a $u \in S$ and an $m \in M'$ such that $m/s = f(m')/(us) = S\inv f(m/(us))$ in $S\inv M$.
+  So there exists a $u \in S$ and an $m \in M'$ such that $m/s = f(m')/(us) = (S\inv f)(m/(us))$ in $S\inv M$.
   Then $\ker S\inv g \subseteq \im S\inv f$.
 \end{proof}
 
@@ -61,7 +61,6 @@
     \ds \bigoplus_{i \in I} S\inv M_i \arrow[r, "\phi"] & \ds S\inv \left( \bigoplus_{i \in I} M_i \right) \\
      & S\inv M_l \arrow[lu, "i_l'"] \arrow[u, "f_l"']
   \end{tikzcd}\]
-
   In the other direction, we have maps
   \[g_l: M_l \xto{\iota_S} S\inv M_l \xto{i_l'} \bigoplus_{i \in I} S\inv M_i\]
   so that there exists a unique map $\ol g$ such that the following diagram commutes:
@@ -76,7 +75,8 @@
   \end{tikzcd}\]
   We now check that $\phi$ and $\psi$ are inverses of each other.
   We have
-  \[\phi\circ\psi(\iota_S\circ\iota_l(m_l)) = \phi(\ol g \circ \iota(m_l)) = \phi(i_l' \circ \iota_s(m_l)) = f_l \circ \iota_S(m_l) = \iota_S \circ \iota_l (m_l).\]
+  \[\phi\circ\psi(\iota_S\circ i_l(m_l)) = \phi(\ol g \circ i_l(m_l)) = \phi(i_l' \circ \iota_S(m_l)) = f_l \circ \iota_S(m_l) = \iota_S \circ i_l(m_l).\]
+  since $S\inv i_l = f_l$.
   We will omit the proof of the other composition.
 \end{proof}
 
@@ -89,9 +89,9 @@
   Then $S\inv M_l=0$ since
   \[\frac{x}{s} = \frac{lx}{ls} = \frac{0}{ls} = \frac{0}{1}\]
   which implies that
-  \[\prod_{l \in I} S\inv M_l = 0.\]
+  \[\prod_{l \geq 2} S\inv M_l = 0.\]
   Now take
-  \[x=\frac{(\bar 1, \bar 1, \bar 1, \ldots)}{1} \in S\inv \left( \prod_{i \in I} M_i \right).\]
+  \[x=\frac{(\bar 1, \bar 1, \bar 1, \ldots)}{1} \in S\inv \left( \prod_{i \geq 2} M_i \right).\]
   Assume $x = 0$.
   Then there exists a $u \in \ZZ \setminus \{0\}$ such that for all $l \geq 2$ we have $u \cdot \bar 1 = 0$ in $M_l$.
   Then we have $l \mid u$ for al $l \geq 2$, a contradiction.
@@ -120,7 +120,7 @@
   To see that $f$ is surjective, note that for all $m \in M$ and $s \in S$ we have $f(1/s \otimes m) = m/s$.
   To see that $f$ is injective, let
   \[y = \sum_{i \text{ finite}} \frac{x_i}{s_i} \otimes m_i \in S\inv R \otimes_R M.\]
-  Set $s_i=\prod_i s_i$ and $t_i = \prod_{j \neq i} s_j$.
+  Set $s=\prod_i s_i$ and $t_i = \prod_{j \neq i} s_j$.
   Then
   \[y = \sum_{i \text{ finite}} \frac{x_it_i}{s} \otimes m_i = \sum_{i \text{ finite}} \frac{1}{s} \otimes (x_it_im_i) = \frac{1}{s} \sum_{i \text{ finite}} (x_it_im_i) \defeq \frac{1}{s} \otimes m.\]
   where we have defined $m$ in the obvious way.

@@ -10,7 +10,7 @@
 
 \begin{proof}
 	Let $(x) \neq 0$ be prime and $(x) \subsetneq (y)$.
-	Then $x=yz$ for some $x \in R$, so $yz \in (x)$.
+	Then $x=yz$ for some $z \in R$.
 	Since $y \notin (x)$, we have $z \in (x)$ so $z=tx$ for some $t \in R$.
 	Then $x=yz=ytx$ or $x(1-yt)=0$, so $yt=1$ and so $1 \in (y)$, that is $(y)=R$.
 \end{proof}
@@ -21,6 +21,7 @@
 \end{defn}
 
 \begin{exam}
+  	\leavevmode
 	\begin{enum}
 		\io $\Spec \ZZ = \{0\} \cup \{\text{primes}\}$ and $\mSpec \ZZ = \{\text{primes}\}$
 		\io $\Spec k[x] = \{0\} \cup \{\text{irreducible polynomials in }X\}$.
@@ -34,6 +35,7 @@ When we look at $\Spec$ and $\mSpec$ in integral domains, the zero ideal plays a
 How can we extend this notion to rings with zero divisors?
 
 \begin{defn}[0.11]
+  	\leavevmode
 	\begin{enum}
 		\io An element $x \in R$ is \textbf{nilpotent} if there exists an $n \geq 0$ such that $x^n=0$.
 		\io The \textbf{nilradical} of $R$ is the set of all nilpotent elements in $R$.
@@ -41,6 +43,7 @@ How can we extend this notion to rings with zero divisors?
 \end{defn}
 
 \begin{prop}[0.12]
+  	\leavevmode
 	\begin{enum}
 		\io $\nilrad R$ is an ideal and $\nilrad(R/\nilrad R)=0$.
 		\io $\nilrad R$ is the intersection of all of the prime ideals of $R$.
@@ -48,9 +51,10 @@ How can we extend this notion to rings with zero divisors?
 \end{prop}
 
 \begin{proof}
+  	\leavevmode
 	\begin{enum}
-		\io Since $R$ is commutative $R \nilrad R = R$.
-		If $x,y \in \nilrad R$ with $x^n=0$ and $y^m=0$, then $(x+y)^m=0$ by the binomial theorem.
+		\io Since $R$ is commutative $R/\nilrad R = R$.
+		If $x,y \in \nilrad R$ with $x^n=0$ and $y^m=0$, then $(x+y)^{m+n}=0$ by the binomial theorem.
 		So $\nilrad R$ is closed under addition.
 		Clearly $\nilrad R$ is closed under additive inversion.
 		Hence $\nilrad R$ is an ideal.
@@ -73,7 +77,7 @@ How can we extend this notion to rings with zero divisors?
 		Then by Zorn's Lemma there exists a maximal element $\kp' \in \Sigma$.
 		We need to show that $\kp'$ is prime.
 		
-		Let $y,y' \in \kp'$.
+		Let $y,y' \notin \kp'$.
 		Then $\kp'+(y)$ and $\kp'+(y')$ are not in $\Sigma$ since $\kp'$ is maximal.
 		So $x^m \in \kp'+(y)$ and $x^n \in \kp' + (y')$, so $x^{n+m} \in \kp' + (yy')$ for some $m$ and $n$.
 		Then $\kp' + (yy') \notin \Sigma$, so $yy' \notin \kp'$, hence $\kp'$ is prime (contrapositive of Euclid's lemma).
@@ -95,6 +99,7 @@ How can we generalise the `nice' properties of prime ideals?
 \end{defn}
 
 \begin{lem}[0.14]
+  	\leavevmode
 	\begin{enum}
 		\io $\rad (0) = \nilrad R$
 		\io If $\pi_I: R \to R/I$ then $\rad I = \pi_I\inv[\nilrad R/I]$.

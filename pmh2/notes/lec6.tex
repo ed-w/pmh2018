@@ -6,8 +6,8 @@ Operations on modules
 	Let $\{M_i\}_{i \in I}$ be a family of submodules of $M$.
 	Then
 	\begin{enum}
-		\io $\displaystyle \sum_{i \in I} M_i = \left\{\sum x_i \mid x_i \in M_i \text{ where finitely many are non-zero}\right\}$ is a submodule
-		\io $\displaystyle \bigcap{i \in I} M_i$ is a submodule
+		\io $\displaystyle \sum_{i \in I} M_i = \left\{\sum x_i \mid x_i \in M_i \text{ where finitely many are non-zero}\right\}$ is a submodule, and
+		\io $\displaystyle \bigcap_{i \in I} M_i$ is a submodule.
 	\end{enum}
 \end{defn}
 
@@ -16,7 +16,7 @@ Operations on modules
 	\begin{enum}
 		\io Let $M'' \subset M' \subset M$ be $R$-modules.
 		Then
-		\[(M/M'')/(M'/M'') \cong M'/M''\]
+		\[(M/M'')/(M'/M'') \cong M/M'\]
 		\io Let $M_1$ and $M_2$ be submodules of $M$.
 		Then
 		\[(M_2+M_1)/M_1 \cong M_2/(M_1 \cap M_2)\]
@@ -24,6 +24,7 @@ Operations on modules
 \end{prop}
 
 \begin{proof}
+  	\leavevmode
 	\begin{enum}
 		\io Consider the kernel of the map
 		\begin{align*}
@@ -137,11 +138,13 @@ Operations on modules
 		(m_l)_{l \in I} &\mapsto \sum_{l \in I}f_l(m_l)
 	\end{align*}
 	Clearly the diagram commutes.
+\end{proof}
 	
+\begin{rmk}
 	We will note that the direct product of $R$-modules is defined by
 	\[M_{\prod} = \{(m_l)_{l \in I} \mid m_l \in M_l\}\]
 	which is the direct sum without the finiteness condition.
-\end{proof}
+\end{rmk}
 
 \begin{rmk}
 	We have

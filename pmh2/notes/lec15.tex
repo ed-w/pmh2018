@@ -37,10 +37,11 @@
 
 \begin{proof}
   We have
-  \begin{multline*}
-    S\inv (M \otimes_R N) \cong S\inv R \otimes_R (M \otimes_R N) \cong (S\inv R \otimes_R M) \otimes_R N \otimes S\inv M \otimes_R N \\
-    \cong (S\inv M \otimes_{S\inv R} S\inv R) \otimes_R N \cong S\inv M \otimes_{S\inv R} (S\inv R \otimes_R N) \cong S\inv M \otimes_{S\inv R} S\inv N
-  \end{multline*}
+  \begin{align*}
+    S\inv (M \otimes_R N) &\cong S\inv R \otimes_R (M \otimes_R N) \cong (S\inv R \otimes_R M) \otimes_R N \\
+    &\cong S\inv M \otimes_R N \cong (S\inv M \otimes_{S\inv R} S\inv R) \otimes_R N \\
+    &\cong S\inv M \otimes_{S\inv R} (S\inv R \otimes_R N) \cong S\inv M \otimes_{S\inv R} S\inv N
+  \end{align*}
   where we have used the associativity of the tensor product.
   The definition of the map on elements follows from the definition of the associativity and localisation-tensor product isomorphisms.
 \end{proof}
@@ -102,7 +103,7 @@ Localisation of ideals
     Let $x \in I^{ec} = (S\inv I)^c$.
     This is true if and only if $x/1=r/s$ for some $r \in I$ and $s \in S$, or equivalently if $u(xs-r)=0$ for some $r \in I$ and $u,s \in S$.
     This is true if and only if $xus \in I$ for some $u,s \in S$ which is true if and only if $x \in \bigcup_{t \in S} (I:t)$.
-    (Note that $1 \in S$.)
+    (If $x \in (I:t)$, then $xus \in I$ for $(u,s)=(t,1)$.)
 
     To prove the second part, note that
     \[I^e = (1) \iff I^{ec} = (1) \iff \exists s \in S \text{ such that } 1 \in (I:s) \iff S \cap I \neq \emptyset.\]

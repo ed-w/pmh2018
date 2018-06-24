@@ -4,7 +4,7 @@
   Let
   \begin{equation*}
     \begin{tikzcd}
-      0 \ar[r] & M' \ar[r,"\iota"] & M \ar[r] & M'' \ar[r,"\pi"] & 0
+      0 \ar[r] & M' \ar[r,"\iota"] & M \ar[r,"\pi"]& M'' \ar[r] & 0
     \end{tikzcd}
   \end{equation*}
   be an exact sequence of $R$-modules.
@@ -31,13 +31,14 @@
 
   $\impliedby$:
   Assume that $M'$ and $M''$ are Noetherian.
-  Let $M_1 \subseteq M_2 \subseteq \cdots$ is an ascending chain in $M$.
-  Then $M_1 \cap M' \subseteq M_2 \cap M' \subseteq \cdots$ is an ascending chain in $M'$ and $\pi[M_1] \subseteq \pi[M_2] \subseteq \cdots$ is an ascending chain $M''$.
+  Let $M_1 \subseteq M_2 \subseteq \cdots$ be an ascending chain in $M$.
+  Then $\iota\inv[M_1] \subseteq \iota\inv[M_2] \subseteq \cdots$ is an ascending chain in $M'$ and $\pi[M_1] \subseteq \pi[M_2] \subseteq \cdots$ is an ascending chain $M''$.
   Take a $k \geq 1$ such that both chains have stabilised.
   Assume that $M_k \subset M_{k+n}$ for some $n \geq 0$.
   Let $m \in M_{k+n}$.
-  Then there exists a $\wt m \in M_k$ such that $m-\wt m \in \ker\pi = \iota[M']$.
-  Then $m \in M_{k+n} \cap \iota[M'] = M_k \cap \iota[M'] \subseteq M_k$ (the last equality is an exercise).
+  Since $\pi$ is surjective there exists a $\wt m \in M_k$ such that $m-\wt m \in \ker\pi = \im\iota$.
+  Since $\iota$ is injective there exists a unique $m' \in M'$ such that $\iota(m') = m - \wt m \in M_{k+n}$, so $\{m'\} = \iota\inv[m-\wt m] \subseteq \iota\inv[M_{k+n}] = \iota\inv[M_k]$.
+  Then $\iota(m') = m - \wt m \in M_k$, so $m \in M_k$.
 \end{proof}
 
 \begin{cor}[3.4]
@@ -84,7 +85,7 @@
 
 \begin{prop}[3.6]
   Let $R$ be a Noetherian (resp.\@ Artinian) ring and $M$ a finitely generated $R$-module.
-  Then $R$ is Noetherian (resp.\@ Artinian).
+  Then $M$ is Noetherian (resp.\@ Artinian).
 \end{prop}
 
 \begin{rmk}
@@ -132,7 +133,7 @@
 
 \begin{prop}[3.9]
   Suppose that $M$ has a composition series of length $n$.  
-  Then every composition series of length $n$ and any chain can be extended to a composition series.
+  Then every composition series is of length $n$ and any chain can be extended to a composition series.
 \end{prop}
 
 \begin{proof}
