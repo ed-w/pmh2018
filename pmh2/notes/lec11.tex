@@ -35,7 +35,7 @@ If $k$ is a field and $A \in \Mat_n(k)$, then the characteristic polynomial is t
 	Thus $\det \wh N=0$.
 	
 	Now there is a homomorphism of commutative rings from $R[x]$ to $\wh R$ which takes $r \in R$ to $rI_n$ and $x$ to $\phi$.
-	We have $p_N(x) = \det(xI_n-N) \in R[x]$.
+	We have $p_N(x) = \det(xI_n-N) = \det( (\delta_{ki}x-a_{ki}) ) \in R[x]$.
 	Then $p_N(x)$ maps to $p_N(N) = \det (\wh N) = 0$.
 \end{proof}
 
@@ -71,7 +71,7 @@ If $k$ is a field and $A \in \Mat_n(k)$, then the characteristic polynomial is t
 \begin{proof}
 	Use corollary 1.21.
 	For $I=\km$, there exists an $x \in R$ such that $x \equiv 1 \bmod \km$ and $xM=0$.
-	Then $1+x \in \km$ so $x$ is a unit.
+	Then $1+x \in \km$ so $x$ is a unit (it is in the Jacobson radical).
 	Then $M=0$.
 \end{proof}
 
