@@ -1,0 +1,107 @@
+\section{2018-07-30 Lecture}
+
+\begin{itm}
+  \io Consultation, backup lecture or tutorial Friday 11--12
+  \io 2 assignments, 20\% each and the final exam is worth 60\%
+\end{itm}
+
+Course plan:
+\begin{itm}
+  \io Basic differential geometry
+  \io Introduction to Riemannian geometry
+  \io Applications to Ricci flow and mean curvature flow at the end
+\end{itm}
+
+In MATH3968 we studied curves and surfaces wich are a classical version of what we are going to study.
+In the first week or two we will briefly recap curves and surfaces.
+
+Section 1. Recap of Euclidean surfaces (surfaces in $\RR^3$).
+
+Subsection 1.1
+
+\begin{defn}[1.1]
+  A \textbf{general regular surface} is a surface $S \cong \RR^N$ such that for each $p \in S$ there is an open neighbourhood $U \subset \RR^N$ such that there is a map $F: V \to S \cap U$ with domain $V \subset \RR^n$ which is homeomorphic and smooth when considered as $F: V \to \RR^N$ and of rank $n$ at each point in $V$.
+  That is, the rank of the Jacobian (or differential) $(dF)(q)$ is equal to $n$ for any $q \in V$.
+\end{defn}
+
+\begin{rmk}
+  Why do we need the condition on the rank?
+  Consider the map
+  \begin{align*}
+    f: [0,\infty) \&\to [0,\infty) \\
+    x &\mapsto x^2.
+  \end{align*}
+  This is a homeomorphism.
+  However we have $(df)(x)=2x$ which is not rank $1$ at $0$.
+  The inverse map $y \mapsto \sqrt{y}$ has undefined differential at $y=0$.
+  So how we view the ray $[0,\infty)$ will be affected by the choice of the chart $f$.
+
+  Here is another example:
+  \begin{align*}
+    \CC &\to \CC \\
+    z &\mapsto z^2
+  \end{align*}
+\end{rmk}
+
+\begin{rmk}
+  We can consider $F$ as a map from $\RR^n$ to $\RR^N$:
+  \[ F = \left( F_1(x_1,\ldots,x_n),\ldots,F_N(x_1,\ldots,x_n) \right). \]
+  Then the differential is
+  \[ dF = \left( \frac{\p F_i}{\p x_j} \right)_{\substack{1 \leq i \leq N \\ 1 \leq j \leq n}}. \]
+  We call $F$ a \textbf{co-ordinate chart}.
+\end{rmk}
+
+\begin{exam}[1.3]
+  Consider the standard unit sphere $S^n \subset \RR^{n+1}$:
+  \[ S^n = \left\{ (x_1,\ldots,x_{n+1}) \in \RR^{n+1} \mid x_1^2 + \cdots + x_{n+1}^2 = 1 \right\}. \]
+  How can we cover it with charts?
+\end{exam}
+
+\begin{rmk}
+  What makes a good definition?
+  \begin{enum}
+    \io The existence of examples
+    \io Robustness
+  \end{enum}
+  In the case of definition 1.1: if $S$ is a regular surface then how rigid is the choice of chart?
+  Recall that for each $p \in S$ we choose an open neighbourhood $U$ and a map $F: V \to U \cap S$ which is homeomorphic, smooth and of full rank.
+  We don't want our definition to be too restrictive.
+
+  It turns out that the choice of charts is fine as long as the map $F: V \to U \cap S$ is homeomorphic, smooth and of full rank.
+\end{rmk}
+
+\begin{defn}[informal]
+  Let $S \subset \RR^N$ be a regular surface.
+  A \textbf{tangent vector} at $p \in S$ is a vector in $\RR^N$ based at $p$ which is ``tangent'' to $S$.
+
+  What does tangent mean?
+  It is a velocity vector at $p$ of a motion (i.e.\@ a parametrised curve) on $S$ through $p$.
+  A curve on $S$ can be written as $F(\alpha(t))$ where $F: V \to U \cap S$ is a co-ordinate chart and $\alpha: (-\eps,\eps) \to V$ is a curve in $V \subset \RR^n$ (an open subset).
+  Then the tangent vector is:
+  \[ \frac{d}{dt} \left( F \circ \alpha \right) (t) \Big|_{t=0} \]
+
+  The set of all tangent vectors of $S$ at $p$ forms a vector space $T_pS$ which is known as the \textbf{tangent space}.
+  (Think about this statement.
+  Hint: use charts.)
+
+  There is a ``natural'' ``smooth'' structure for the set of all tangent vectors over $S$ (for all points in $S$) called the \textbf{tangent bundle}.
+  It can be locally understood using charts.
+  \begin{align*}
+    F: V &\to S \cap U \\
+    \bo u = (u_1,\ldots,u_n) &\mapsto \left( F_1(\bo u),\ldots,F_N(\bo u) \right)
+  \end{align*}
+  with $(0,\ldots,0) \mapsto p$.
+  Consider the co-ordinate curves ($u_i$-curves) for $i=1,\ldots,n$:
+  \[ F\left( 
+      ( \underset{1}{0}, \ldots, \underset{i-1}{0}, \underset{i}{t}, \underset{i+1}{0}, \ldots, \underset{n}{0} )
+    \right)
+  \]
+  for $t \in (-\eps,\eps)$.
+  
+  Then $\frac{\p F}{\p u_i}$
+\end{defn}
+
+\begin{rmk}
+  We can assume that $F(0)=p$ for our chart.
+  This is an equivalent definition (because we can translate and compose with the translation).
+\end{rmk}
