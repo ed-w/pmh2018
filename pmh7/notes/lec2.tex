@@ -1,0 +1,121 @@
+\section{2018-07-31 Lecture}
+
+Tangent vector field
+
+Analogy: a tangent vector in the vector space $T_pS$ at the point $p$ of a surface $S \subset \RR^N$ is like a number and a tangent vector field is like a function.
+
+\begin{defn}
+  Let $S$ be a regular surface with a chart
+  \begin{align*}
+    F: V \subset \RR^n &\to U \cap S \\
+    \vec u = (u_1,\ldots,u_n) &\mapsto \left( F_1(u),\ldots,F_N(u) \right).
+  \end{align*}
+  The partial derivative
+  \[ \frac{\p F}{\p u_i} = \left( \frac{\p F_1}{u_i}, \ldots, \frac{\p F_N}{\p u_i} \right) \]
+  is an $\RR^N$-valued function with variables $u_1,\ldots,u_n$.
+  The space of tangent vector fields of $S$ is spanned by linear combinations of the set
+  \[ \left\{ \frac{\p F}{\p u_i} \right\}_{i=1}^n. \]
+  In this local chart, we have
+  \[ \sum_{i=1}^n f_i \frac{\p F}{\p u_i}, \qquad f_i \in \cC^\infty(V). \]
+\end{defn}
+
+\begin{rmk}
+  Note that $\tfrac{\p F}{\p u_i}$ is the tangent vector of $S$ in the $u_i$-curve direction.
+\end{rmk}
+
+\begin{rmk}
+  We often write simply
+  \[ \frac{\p}{\p u_i} \text{ instead of } \frac{\p F}{\p u_i} \]
+  for a notation that is independent of the chart.
+\end{rmk}
+
+\begin{rmk}
+  In $\RR^N$ it is safe to move vectors (i.e.\@ their basepoints) around.
+  In a more general regular surface, the Euclidean idea of parallel no longer makes sense.
+  So it is important to keep track of the basepoint of the tangent vector.
+\end{rmk}
+
+Differential geometry
+
+Differential calculus (differentiation and integration) on manifolds
+
+We are already familiar with differentiation for functions from $\RR^N \to \RR$.
+Differentiation of a function from $S \to \RR$ is a directional derivative (i.e.\@ a tangent vector).
+A tangent vector field is a section of the tangent bundle, i.e. a (smooth) map from $S \to TS$ which maps $p \to v \in T_pS$.
+
+How can we define the ``derivative'' of a function from $S \to TS$?
+The resultant vector might not be in the tangent bundle.
+We can simply project down in to the relevant tangent plane (since we are considering surfaces in $\RR^N$).
+
+\begin{defn}[1.5]
+  Let $S$ be a regular surface.
+  Let $p \in S$ with co-ordinate chart $F: V \to S \cap U$.
+  For any point $q \in S \cap U$ with $F(\vec u)=q$, define two tangent vector fields:
+  \begin{align*}
+    X(q) &= \sum_{i=1}^n f_i(\vec u) \frac{\p F}{\p u_i} \\
+    Y(q) &= \sum_{i=1}^n g_i(\vec u) \frac{\p F}{\p u_i}.
+  \end{align*}
+  Consider $X(p)$ as the Euclidean vector at $p$ and $Y$ as the $\RR^N$-valued function
+  \begin{align*}
+    \bar Y: V &\to T_qS \injto T_q\RR^N \isoto \RR^N \\
+    q &\mapsto Y(q)
+  \end{align*}
+  Then we have the derivative of $Y$ in the $X$-direction at $q$:
+  \[ \nabla_XY = \proj_{TS} D_X(\bar Y) \]
+  where $\proj$ is the Euclidean projection on to the subspace $T_pS \subset T_p\RR^N = \RR^N$.
+  Here $D_X(\bar Y)$ is the directional derivative of $\bar Y$ in the direction of $X$ (at a given point $p$).
+  This is the \textbf{Levi-Civita covariant derivative}.
+\end{defn}
+
+\begin{exer}
+  Compute the differentiation of the rotation vector field (of constant angular velocity) of the 2-sphere in its own direction.
+\end{exer}
+
+1.2 Fundamental forms
+
+\begin{defn}
+  \textbf{A fundamental form}, denoted by $FF$, is a family of symmetric bilinear maps $FF_p: T_pS \times T_pS \to \RR$ parametrised by $p \in S$ such that it is smooth in $p$.
+\end{defn}
+
+Let $S \subset \RR^N$.
+There are two particularly important fundamental forms:
+
+\begin{defn}[1.7]
+The \textbf{first fundamental form}, $I$, is directly induced by the Euclidean inner product in $\RR^N$.
+  That is,
+  \[ I_p(X,Y) = \ang{X,Y} \]
+  for $X,Y \in T_pS \subset T_p\RR^N \cong \RR^N$, and $\ang{\cdot,\cdot}$ is the Euclidean inner product.
+\end{defn}
+
+\begin{rmk}
+  \lv
+  \begin{enum}
+    \io
+    Think about measuring the speed of motions (i.e.\@ the length of tangent vectors) in $S \subset \RR^N$.
+
+    \io
+    Global quantities (motions) could be affected.
+    (Infitesimally, $I$ is just the Euclidean inner product).
+    As an example, consider $S^1 \subset \RR^2$.
+    The diameter of $S^1$ in $\RR^2$ is $2$ but in $S^1$ it is $\pi$.
+  \end{enum}
+\end{rmk}
+
+Before we look at the second fundamental form:
+
+Now consider $S \subset \RR^N$ with a chart $F: V \to S \cap U$ where $V \subset \RR^n$ is an open subset and $N=n+1$.
+This is a hypersurface.
+In this setting, we have a normal vector field of $S$ in $\RR^{n+1}$ (up to a sign).
+
+Suppose we have a global unit normal vector field $\nu$ of $S \subset \RR^{n+1}$ which is a smooth $\RR^{n+1}$-valued function on $S$.
+
+\begin{defn}
+  Keep the above setting.
+  The \textbf{second fundamental form}, $II$, is:
+  \[ II_p(X,Y) = \ang{D_X\bar\nu,Y} = I_p(D_X\bar\nu,Y) \]
+  where $X,Y \in T_pS$, $\bar\nu(q) = \nu(q) \in T_pS \subset T_p\RR^{n+1} \cong \RR^{n+1}$ and $D_X\bar\nu$ is the directional derivative.
+\end{defn}
+
+\begin{exer}
+  Prove that $I$ and $II$ are fundamental forms.
+\end{exer}
