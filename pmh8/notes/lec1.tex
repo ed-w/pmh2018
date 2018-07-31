@@ -1,0 +1,68 @@
+\section{2018-07-31 Lecture}
+
+The mathematics of imaging
+
+What is an inverse problem?
+
+Some examples here
+
+Impedance tomography
+
+Apply a voltage to the boundary of a region, measure current and try to determine conductivity.
+
+Let $\Omega \subseteq \RR^n$ be an open bounded set with a smooth boundary.
+We will model conductivity with a (smooth) symmetric matrix $\gamma \in \cC^\infty(\Omega,\Sym)$ which is also bounded: $C > \gamma(x)> 1/C$ for all $x \in \bar\Omega$ for some $C$.
+This accounts for different conductivities in different directions.
+The input voltage (potential) is a function $f \in \cC^\infty(\p\Omega)$.
+Let $u$ be the interior induced voltage (potential).
+Then Kirchoff's laws state that
+\[ \nabla \cdot \gamma \nabla u_f = 0 \]
+in $\Omega$, where $u_f|_{\p\Omega} = f$ (a Dirichlet condition), and $\hat n \cdot \gamma \nabla u_f|_{\p\Omega} \in \cC^\infty(\p\Omega)$ is the surface flux (a Neumann condition).
+(Here $\gamma\nabla u_f$ is the current and $\hat n$ is the normal vector at the boundary.)
+
+How do we know a solution exists?
+Leave this question for now.
+
+We have a Dirichlet-Neumann map (also known as a voltage-current map):
+\[ \Lambda_\gamma: f \mapsto \hat n \cdot \gamma \nabla u_f \in \cC^\infty(\p\Omega). \]
+Is $\gamma \mapsto \Lambda_\gamma$ injective?
+NO!
+If $F: \Omega \to \Omega$ is smooth,  $F\inv$ is smooth and $F|_{\p\Omega}=\id$, then $\Lambda_\gamma = \Lambda_{\tilde\gamma}$ where
+\[ \tilde\gamma = \left( \frac{dF \, \gamma \, dF^\intercal}{\abs{\det dF}} \right). \]
+This is just a change of basis.
+
+\begin{exer}
+  Peove this.
+  Hint: $\nabla \cdot \gamma \nabla u = 0 \iff \nabla \cdot \tilde \gamma \nabla \tilde u = 0$ for $\tilde u = u \circ F\inv$.
+\end{exer}
+
+It is conjectured that this is the only obstruction (i.e.\@ if $\Lambda_{\gamma_1}=\Lambda_{\gamma_2}$ then there exists an $F: \Omega \to \Omega$ smooth with smooth inverse such that $\gamma_1 = F_* \gamma_2$.
+This is known in dimension 2.
+
+We will look at a simpler problem
+
+Assume that $\vec\gamma(x) = \gamma(x) \id$ for $\gamma(x) \in \cC^\infty(\Omega,\RR)$.
+(So the conductivity is isotropic, hence scalar.)
+Then $\gamma \mapsto \Lambda_\gamma$ is injective.
+
+This is known as the \textbf{Calder\'on problem}.
+
+Course outline:
+
+\begin{itm}
+  \io
+  We will solve the Calder\'on problem for $n \geq 3$.
+  (The case $n=2$ is harder and requires another trick.)
+
+  \io
+  The partial data problem for $n \geq 3$ (when the boundary conditions are known only over a subset of the whole boundary).
+  Can we still solve the Calder\'on problem?
+
+  \io
+  The case $n=2$.
+
+  \io
+  Fundamental theory.
+  We will use theorems without proof in the earlier sections.
+  So this course is wil proceed from the top to the bottom.
+\end{itm}
