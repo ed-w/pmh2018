@@ -1,0 +1,102 @@
+\section{2018-08-02 Lecture}
+
+\begin{exer}
+Show that the Dirichlet-Neumann map $\Lambda_\gamma: f \mapsto \hat n \cdot \gamma(x) \nabla u_f|_{\p\Omega}$ is linear on $C^\infty(\p\Omega)$.
+\end{exer}
+
+\begin{thm}\label{2:thm1}
+  Let $\gamma_1$ and $\gamma_2$ be smooth isotropic conductivities.
+  If $\Lambda_{\gamma_1}=\Lambda_{\gamma_2}$, $\gamma_1|_{\p\Omega}=\gamma_2|_{p\Omega}$ and $\p_\nu\gamma_1|_{\p\Omega}=\p_\nu\gamma_2|_{\p\Omega}$, then $\gamma_1=\gamma_2$.
+  ($\p_\nu$ is the normal derivative.)
+\end{thm}
+
+Schr\"odinger operator
+
+\begin{defn}
+  Let $\Omega \subseteq \RR^n$ be a smooth domain and $q \in C^\infty(\bar\Omega)$.
+  We have a boundary value problem $\Delta+q$ (the Schr\"odinger operator) on $\Omega$.
+  Assume that
+  \[ (\Delta+q)u=0 \text{ on } \Omega \qquad u_f|_{\p\Omega}=f \]
+  has a unique solution $u_f$ for all $f \in C^\infty(\p\Omega)$.
+  
+  Define $\Lambda_q: f \mapsto \p_\nu u_f$.
+\end{defn}
+
+\begin{exer}
+  Show that $\Lambda_q$ is a linear map.
+\end{exer}
+
+\begin{thm}\label{2:thm2}
+  The map $q \mapsto \Lambda_q$ is injective.
+\end{thm}
+
+\begin{exer}
+  Show that $\Lambda_q$ is self-adjoint.
+\end{exer}
+
+We will use this result to prove theorem \ref{2:thm1}.
+
+\begin{proof}[Proof of theorem \ref{2:thm1}]
+  Show that
+  \[ \nabla \cdot \gamma \nabla u = 0 \qquad u|_{\p\Omega} \]
+  if and only if
+  \[ (\Delta+q)w=0 \qquad w|_{\p\Omega}=\sqrt{\gamma}f \]
+  where
+  \[ q = \frac{\Delta\sqrt{\gamma}}{\sqrt{\gamma}} \text{ and } w=\sqrt{\gamma}u. \]
+  So we can define the Dirichlet-Neumann map $\Lambda_q$.
+  When $q$ is defined as above, we have
+  \[ \Lambda_q f = \frac{1}{\sqrt{\gamma}} \Lambda_\gamma \left( \frac{f}{\sqrt{\gamma}} \right) + \frac{1}{2} \left( \gamma\inv \p_\nu \gamma \right) f. \]
+  So if $\gamma_1,\gamma_2$ satisfy $\Lambda_{\gamma_1}=\Lambda_{\gamma_2}$, $\gamma_1=\gamma_2$ on $\p\Omega$ and $\p_\nu \gamma_1 = \p_\nu \gamma_2$ on $\p\Omega$, then $\Lambda_{q_1}=\Lambda_{q_2}$ (with $q_1$ and $q_2$ defined as above).
+  So by theorem \ref{2:thm2}, we have $q_1=q_2$, hence
+  \[ \frac{\Delta\sqrt{\gamma_1}}{\sqrt{\gamma_1}} = \frac{\Delta\sqrt{\gamma_2}}{\sqrt{\gamma_2}}. \]
+  Set
+  \[ v = \log \left(  \frac{\gamma_1}{\gamma_2} \right). \]
+  Then
+  \[ \nabla \cdot \left( \sqrt{\gamma_1\gamma_2} \nabla v \right) = 2 \sqrt{\gamma_1\gamma_2} \left( \frac{\Delta\sqrt{\gamma_1}}{\sqrt{\gamma_1}} - \frac{\Delta\sqrt{\gamma_2}}{\sqrt{\gamma_2}} \right) = 0 \]
+  in $\Omega$.
+  Now $v=0$ in $\p\Omega$.
+  Then by the existence and uniqueness theorem, we have that $v \equiv 0$ in $\Omega$, hence $\gamma_1=\gamma_2$.
+\end{proof}
+
+\begin{proof}[Proof of theorem \ref{2:thm2} for $n \geq 3$]
+  \begin{prop}[Green's identity]
+    If $(\Delta+q_j)u_j=0$ for $j=1,2$ and $u_1,u_2 \in C^\infty(\bar\Omega)$, then
+    \[ \int_\Omega u_1(q_1-q_2)u_2 = \int_{\p\Omega} u_1(\Lambda_{q_1}-\Lambda_{q_2})u_2. \]
+  \end{prop}
+
+  \begin{proof}
+    Let $v \in C^\infty(\bar\Omega)$ solve the boundary value problem $(\Delta+q_1)v=0$ in $\Omega$ and $v|_{\p\Omega}=u_2|_{\p\Omega}$.
+    We have
+    \[ \int_\Omega u_1(\Delta+q_1)u_2 = \pm \int_\Omega u_2(q_1-q_2)u_2 \]
+    and
+    \begin{align*}
+      \int_\Omega u_1(\Delta+q_1)u_2 &= \int_\Omega u_1(\Delta+q_1)(u_2-v) \\
+      &= \int_\Omega \left( (\Delta+q)u_1 \right)(u_2-v) \pm \int_{\p\Omega} (\p_\nu u_1)(u_2-v) \pm \int_{\p\Omega} u_1 \p_\nu(u_2-v) \\
+      &= \pm \int_{\p\Omega} u_1 \p_\nu (u_2-v) = \pm \int_{\p\Omega} u_1\left( \Lambda_{q_2}(u_2|_{\p\Omega}) - \Lambda_{q_1}(u_2|_{\p\Omega}) \right) \\
+      &= \pm \int_{\p\Omega} u_1 \left( \Lambda_{q_1}-\Lambda_{q_2} \right)(u_2|_{\p\Omega}) \qedhere
+    \end{align*}
+  \end{proof}
+
+  \begin{cor}
+    If $\Lambda_{q_1}=\Lambda_{q_2}$ implies that
+    \[ \int_\Omega u_2(q_2-q_1)u_1=0, \]
+    then for all solutions $u_1,u_2$ we have $(\Delta+q_j)u_j=0$.
+  \end{cor}
+\end{proof}
+
+Special solutions (complex geometric objects)
+
+Suppose $q_1=q_2=0$.
+What is a ``good'' set of solutions to $\Delta u=0$?
+(Non-rigorously)
+
+If $\rho \in \CC^n$ with $\rho=\zeta+i\eta$ for $\zeta,\eta \in \RR^n$ satisfies $\rho \cdot \rho = 0$ (that is, $\abs{\zeta}=\abs{\eta}$ and $\zeta \perp \eta$), then set $u=\exp(\rho \cdot x)$.
+Then $\Delta u=0$.
+
+If $q_1,q_2 \neq 0$ we still expect solutions which ``look like'' $\exp(\rho \cdot x)$.
+Pick $(\Delta+q_j)u_j=0$, $u_1=\exp\left( (\zeta+i\eta) \cdot x \right)$ and $u_2=\exp\left( (-\zeta+i\eta) \cdot x \right)$.
+Then
+\[ 0 = \int_\omega u_1(q_1-q_2)u_2 = \int_\Omega \exp(2i\eta \cdot x) (q_1-q_2) = \mathcal{F} \left( (q_1-q_2)\id_\Omega \right), \]
+so $q_1-q_2=0$ since the Fourier transform is injective.
+We transform the equation in to this form so we can use that the leading term of the differential equation has constant leading term.
+
