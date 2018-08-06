@@ -5,8 +5,8 @@ Show that the Dirichlet-Neumann map $\Lambda_\gamma: f \mapsto \hat n \cdot \gam
 \end{exer}
 
 \begin{thm}\label{2:thm1}
-  Let $\gamma_1$ and $\gamma_2$ be smooth isotropic conductivities.
-  If $\Lambda_{\gamma_1}=\Lambda_{\gamma_2}$, $\gamma_1|_{\p\Omega}=\gamma_2|_{p\Omega}$ and $\p_\nu\gamma_1|_{\p\Omega}=\p_\nu\gamma_2|_{\p\Omega}$, then $\gamma_1=\gamma_2$.
+  Let $\gamma_1$ and $\gamma_2$ be smooth isotropic conductivities (hence scalars).
+  If $\Lambda_{\gamma_1}=\Lambda_{\gamma_2}$, $\gamma_1|_{\p\Omega}=\gamma_2|_{\p\Omega}$ and $\p_\nu\gamma_1|_{\p\Omega}=\p_\nu\gamma_2|_{\p\Omega}$, then $\gamma_1=\gamma_2$.
   ($\p_\nu$ is the normal derivative.)
 \end{thm}
 
@@ -14,12 +14,12 @@ Schr\"odinger operator
 
 \begin{defn}
   Let $\Omega \subseteq \RR^n$ be a smooth domain and $q \in C^\infty(\bar\Omega)$.
-  We have a boundary value problem $\Delta+q$ (the Schr\"odinger operator) on $\Omega$.
+  We have a boundary value problem $\Delta+q=0$ (the Schr\"odinger operator) on $\Omega$.
   Assume that
   \[ (\Delta+q)u=0 \text{ on } \Omega \qquad u_f|_{\p\Omega}=f \]
   has a unique solution $u_f$ for all $f \in C^\infty(\p\Omega)$.
-  
-  Define $\Lambda_q: f \mapsto \p_\nu u_f$.
+  Define
+  \[ \Lambda_q: f \mapsto \p_\nu u_f. \]
 \end{defn}
 
 \begin{exer}
@@ -35,12 +35,13 @@ Schr\"odinger operator
 \end{exer}
 
 We will use this result to prove theorem \ref{2:thm1}.
+We transform the equation in to this form so we can use that the leading term of the differential equation has constant coefficient.
 
 \begin{proof}[Proof of theorem \ref{2:thm1}]
   Show that
-  \[ \nabla \cdot \gamma \nabla u = 0 \qquad u|_{\p\Omega} \]
+  \[ \nabla \cdot \gamma \nabla u = 0 \text{ and } u|_{\p\Omega} = f \]
   if and only if
-  \[ (\Delta+q)w=0 \qquad w|_{\p\Omega}=\sqrt{\gamma}f \]
+  \[ (\Delta+q)w=0 \text{ and } w|_{\p\Omega}=\sqrt{\gamma}f \]
   where
   \[ q = \frac{\Delta\sqrt{\gamma}}{\sqrt{\gamma}} \text{ and } w=\sqrt{\gamma}u. \]
   So we can define the Dirichlet-Neumann map $\Lambda_q$.
@@ -61,13 +62,13 @@ We will use this result to prove theorem \ref{2:thm1}.
 \begin{proof}[Proof of theorem \ref{2:thm2} for $n \geq 3$]
   \begin{prop}[Green's identity]
     If $(\Delta+q_j)u_j=0$ for $j=1,2$ and $u_1,u_2 \in C^\infty(\bar\Omega)$, then
-    \[ \int_\Omega u_1(q_1-q_2)u_2 = \int_{\p\Omega} u_1(\Lambda_{q_1}-\Lambda_{q_2})u_2. \]
+    \[ \int_\Omega u_1(q_1-q_2)u_2 = \pm \int_{\p\Omega} u_1(\Lambda_{q_1}-\Lambda_{q_2})u_2. \]
   \end{prop}
 
   \begin{proof}
     Let $v \in C^\infty(\bar\Omega)$ solve the boundary value problem $(\Delta+q_1)v=0$ in $\Omega$ and $v|_{\p\Omega}=u_2|_{\p\Omega}$.
     We have
-    \[ \int_\Omega u_1(\Delta+q_1)u_2 = \pm \int_\Omega u_2(q_1-q_2)u_2 \]
+    \[ \int_\Omega u_1(\Delta+q_1)u_2 = \int_\Omega u_2(q_1-q_2)u_2 \]
     and
     \begin{align*}
       \int_\Omega u_1(\Delta+q_1)u_2 &= \int_\Omega u_1(\Delta+q_1)(u_2-v) \\
@@ -82,6 +83,8 @@ We will use this result to prove theorem \ref{2:thm1}.
     \[ \int_\Omega u_2(q_2-q_1)u_1=0, \]
     then for all solutions $u_1,u_2$ we have $(\Delta+q_j)u_j=0$.
   \end{cor}
+
+  The result now follows since $q_1=q_2$.
 \end{proof}
 
 Special solutions (complex geometric objects)
@@ -98,5 +101,3 @@ Pick $(\Delta+q_j)u_j=0$, $u_1=\exp\left( (\zeta+i\eta) \cdot x \right)$ and $u_
 Then
 \[ 0 = \int_\omega u_1(q_1-q_2)u_2 = \int_\Omega \exp(2i\eta \cdot x) (q_1-q_2) = \mathcal{F} \left( (q_1-q_2)\id_\Omega \right), \]
 so $q_1-q_2=0$ since the Fourier transform is injective.
-We transform the equation in to this form so we can use that the leading term of the differential equation has constant leading term.
-

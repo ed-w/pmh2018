@@ -1,0 +1,104 @@
+\section{2018-08-06 Lecture}
+
+Check that the two fundamental forms are smooth and symmetric.
+
+It is clear that $I$ is symmetric since $I_p(X,Y) = \ang{X,y} = \ang{Y,X} = I_p(Y,X)$.
+To check smoothness, take a co-ordinate chart containing $p$:
+\begin{align*}
+  F: V &\to U \cap S \\
+\vec u = (u_1,\ldots,u_n) &\mapsto \left( F_1(u),\ldots,F_N(u) \right)
+\end{align*}
+for all $p \in U \cap S$.
+By abuse of notation, we will also say $p \in V$.
+Then
+\[ I_p \left( \frac{\p F}{\p u_i}, \frac{\p F}{\p u_j} \right) = \ang{ \frac{\p F}{\p u_i}, \frac{\p F}{\p u_j} } = \sum_{k=1}^N \frac{\p F_k}{\p u_i} \frac{\p F_k}{\p u_j}. \]
+Here $S$ is regular, so $F$  is a smooth map $V \to U \cap S \injto \RR^N$, so $I_p(\p_{u_i},\p_{u_j})$ is smooth as a function over $v$ for all $i$ and $j$.
+
+To check that $II$ is symmetric, we compute.
+Extend $X, Y \in T_pS$ to a tangent vector field near $p$.
+For example, if
+\[ X = \sum_{i=1}^n a_i \frac{\p}{\p u_i} \bigg\vert_p, \]
+we can can have
+\[ X = \sum_{i=1}^n X_i \frac{\p}{\p u_i} \]
+over $V$ (or $S \cap U$), where the $X_i$ are smooth functions with $X_i(p) = a_i$.
+Likewise if
+\[ Y = \sum_{i=1}^n b_i \frac{\p}{\p u_i} \bigg\vert_p, \]
+let
+\[ Y = \sum_{i=1}^n Y_i \frac{\p}{\p u_i} \]
+over $V$ where $Y_i$ is smooth with $Y_i(p)=b_i$ for all $i$.
+
+Now by the product rule, we have
+\[ II_p(X,Y) = \ang{D_X \bar\nu, Y} = D_X \ang{\bar\nu, \bar Y} - \ang{\bar\nu, D_X\bar Y} \]
+and
+\[ II_p(Y,X) = \ang{D_Y \bar\nu, X} = D_Y \ang{\bar\nu, \bar X} - \ang{\bar\nu, D_Y\bar X} \]
+So we need to take derivatives of $X$ and $Y$, hence we need a smooth extension near $p$.
+Note that the inner product of a tangent vector and a normal vector is zero.
+So we want to show
+\[ \ang{\bar\nu, D_X Y} = \ang{\bar\nu, D_Y X} \]
+or equivalently 
+\[ D_XY - D_YX \in T_pS. \]
+We now calculate.
+\begin{align*}
+  (D_XY)(F) &= \left( D_{ \sum_{i=1}^n X_i \frac{\p}{\p u_i} } \sum_{j=1}^n \frac{\p}{\p u_j} \right)(F) \\
+  &= \sum_{i=1}^n \sum_{j=1}^n X_i \frac{\p}{\p u_i} Y_j \frac{\p F}{\p u_j} \\
+  &= \sum_{i,j} X_i \frac{\p Y_j}{\p u_i} + \sum_{i,j} X_i Y_j \frac{\p^2 F}{\p u_i \p u_j}
+\end{align*}
+Since $F$ is smooth, we can swap the order of partial derivatives.
+Hence $D_XY-D_YX$ is a linear combination of the $\p/\p u_i$, hence is in $T+pS$.
+
+\begin{exer}
+  Show that $II_p$ is smooth.
+\end{exer}
+
+\begin{defn}
+  \lv
+  \begin{enum}
+    \io
+    A \textbf{principal curvature} is an eigenvalue of $II_p$ when considered as a symmetric matrix with respect to a basis of $T_pS$ which is orthonormal with respect to $I_p$.
+    \[ \left( II_p(e_i,e_j) \right)_{ij} \qquad \{e_i \in T_pS\}_{i=1}^n \qquad I_p(e_i,e_j) = \delta_{ij} \]
+    This is independent of the choice of basis.
+    Alternatively, we have the \textbf{shape operator}
+    \[ A_p: X \in T_pS \mapsto D_X \bar\nu \in T_pS. \]
+
+    \begin{exer}
+      Show that $D_X \bar\nu \in T_pS$.
+    \end{exer}
+    
+    This is also called the second fundamental form:
+    \[ II_p(X,Y) = \ang{A_p(X),Y} \]
+    and is symmetric (as in $II$).
+    $A_p$ is also called the principal curvature.
+    A \textbf{principal direction} is an eigenvector of $A_p: T_pS \to T_pS$.
+
+    \io
+    The \textbf{mean curvature} is $\tr A_p$ (i.e.\@ the sum of the principal curvatures).
+
+    \io
+    The \textbf{Gauss curvature} is $\det A_p$ (i.e.\@ the product of the principal curvatures).
+  \end{enum}
+\end{defn}
+
+Let us generalise $II$ to a general surface $S \subset \RR^N$ where we do not require $N=n+1$.
+Define
+\begin{align*}
+  II_p: T_pS \times T_pS \times N_pS &\to \RR \\
+  (X,Y,\nu) &\mapsto \ang{D_X\bar\nu,Y}(p)
+\end{align*}
+We need to show that different extensions of  $\nu$ to a normal vector field near $p$ give the same outcome.
+
+\begin{exer}
+  Show this.
+  There is a hint in the notes.
+  Show that
+  \[ II_p(X,Y,\nu) = -\ang{\bar\nu, D_XY} \]
+  using the same idea as in proving that $II_p$ is symmetric.
+  This shows that only the value of $\nu$ at $p$ matters.
+\end{exer}
+
+So 
+\[ II_p(X,Y) = -\proj_{NS} D_XY(p) \in N_p(S) \]
+and
+\[ D_XY = \nabla_XY - II(X,Y). \]
+
+1.3 Classical attractions
+
