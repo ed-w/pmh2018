@@ -1,0 +1,69 @@
+\section{2018-08-07 Lecture}
+
+1.3 Classical attractions (classical differential geometry)
+
+\begin{thm}[Gauss' Theorema Egregium]
+  The Gauss curvature $K=\det(II)$ of a surface $S \subset \RR^3$ depends only on the first fundamental form $I$, not $II$ itself.
+\end{thm}
+
+\begin{thm}[Gauss-Bonnet Theorem]
+  For a closed surface $S \subset \RR^3$, we have
+  \[ \iint_S K \, dA = 2\pi \chi(S) \]
+  This equation links differential calculus with topology and connects local and global quantities.
+  So the integral is an invariant.
+\end{thm}
+
+\begin{proof}[Proof idea]
+  The Gauss-Bonnet Formula
+
+  In an open ``region'' $R$ (contractible, i.e.\@ homeomorphic to a disk) of $S \subset \RR^3$ with piecewise smooth boundary $\gamma$, we have
+  \[ \iint_R K \, dA + \int_\gamma k_g \, ds + \sum_i \alpha_i = 2\pi \]
+  where the $\alpha_i$ are the ``turning angles''.
+  This is effectively Stokes' theorem (i.e.\@ the fundamental theorem of calculus).
+\end{proof}
+
+2. Manifolds and Vector Bundles
+
+2.1 Manifolds in Whitney's eyes
+
+\begin{defn}[2.1]
+  A \textbf{(smooth) manifold} is a topological space $M$ satisfying that for each $p \in M$ there exists an open neighbourhood $U$ of $p$ in $M$ with a homeomorphism $F: V \to U$ with domain $V \subset \RR^n$ open.
+  In addition, the map $F$ is smooth and of rank $n$ when considered as maps between open subsets of the sets $V$ through intersections of the sets $U$ (that is, we compose co-ordinate maps and their inverses to give a map between two charts which maps through their intersection in $M$).
+  Such a map $F$ is called a \textbf{co-ordinate chart}
+  The positive integer $n$ is the \textbf{dimension} of $M$ as a smooth manifold.
+\end{defn}
+
+Compare this with the definition of a regular surface in $\RR^N$.
+
+\begin{rmk}
+  This definition does not embed $M$ in $\RR^N$, it is merely a set with topology.
+  We can speak of homeomorphisms but not diffeomorphisms (yet) because we cannot differentiate without reference to charts.
+\end{rmk}
+
+\begin{exam}
+  If $M = U_1 \cup U_2$ with $F_1: V_1 \to U_1$ and $F_2: V_2 \to U_2$ then you only need to check $F_2\inv \circ F_1$ and $F_1\inv \circ F_2$.
+  These are called \textbf{transition functions} and are a generalisation of a change of basis.
+\end{exam}
+
+\begin{rmk}
+  Given an atlas $\ca A$ for a manifold $M$, the largest possible atlas containing $\ca A$ (which exists) is called a \textbf{maximal atlas}.
+  (Basically we are adding as many charts as possible which are compatible with $\ca A$ in the sense of the smooth condition.)
+\end{rmk}
+
+Now that we have defined co-ordinate charts, we can define smooth functions on a manifold.
+
+\begin{defn}
+  Let $f: M \to \RR$ be continuous and denote the manifold structure of $M$ (at some point) be as follows:
+  \[ \RR^n \supset V \xto{F} U \injto M \xto{f} \RR. \]
+  Then $f$ is defined to be smooth if $f \circ F$ is smooth for all co-ordinate maps $F$.
+\end{defn}
+
+\begin{rmk}
+  Check that this definition is well-defined.
+  
+  Since the transition functions $F_1\inv \circ F_2$ is smooth, a change of variables preserves smoothness.
+\end{rmk}
+
+\begin{defn}[2.2]
+  A \textbf{submanifold} $S$ of a manifold $M$ is a topological subspace $S \subset M$ such that for all $p \in S$ there is a co-ordinate chart $F: V \to U \subset M$ of $M$ around $p$ such that $F(V \cap \RR^m) = S \cap U$ where $\RR^m \subset \RR^n$ is the Euclidean subspace of the first $m$ co-ordinates, that is, $\RR^m \times \{ \vec 0 \} \subset \RR^m \times \RR^{n-m} = \RR^n$.
+\end{defn}

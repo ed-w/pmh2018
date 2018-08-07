@@ -1,0 +1,120 @@
+\section{2018-08-07 Lecture}
+
+Recall: we want to prove that $q \mapsto \Lambda_q$ is injective.
+We have Green's identity:
+\[ \int_\Omega u_2(q_1-q_2)u_2 = \int_{\p\Omega} u_1(\Lambda_{q_1}-\Lambda_{q_2})u_2\vert_{\p\Omega} \]
+where $(\Delta+q_j)u_j)=0$.
+We have $\Lambda_{q_1}=\Lambda_{q_2}$.
+We want to find a dense subset of functions in order to show that $q_1=q_2$.
+We will do this folowing the method outlined at the end of the last lecture.
+
+\begin{prop}[Complex geometric optics]\label{3:cgo}
+  Let $\rho\cdot\rho=0$ and $\abs\rho$ sufficiently large.  
+  There exists a solution $u \in \cC^\infty(\bar\Omega)$ solving $(\Delta+q)u=0$ and $u=\exp(\rho\cdot x)(1+r)$ where $r$ is a error term which satisfies
+  \[ \norm{r}_{L^2} \leq \frac{C}{\abs\rho} \text{ as } \abs\rho \to \infty. \]
+\end{prop}
+
+\begin{rmk}
+  If there was no $q$, we would expect $u=\exp(\rho\cdot x)$.
+  The $q$ gives rise to the error term $r$>
+\end{rmk}
+
+\begin{rmk}[Physical intuition]
+  The quantity $\rho$ is like the frequency of a wave.
+  When $\abs\rho$ is large, this is like a high-frequency wave which penetrates the medium and affects the wave very little (so as $\abs\rho$ gets larger the solution looks more like an undisturbed wave).
+\end{rmk}
+
+\begin{proof}[Proof of theorem \ref{2:thm2} for $n \geq 3$ assuming proposition \ref{3:cgo}]
+  Let $\xi \in \RR^n$.
+  Choose $\zeta, \eta \in \RR^n$ of unit length such that $\zeta$, $\eta$ and $\xi$ are mutually perpendicular (here we have used $n \geq 3$).
+  Define
+  \begin{align*}
+    \rho_1 &= t\zeta + i\left( \sqrt{t^2-\abs\xi^2} \eta + \xi \right) \\
+    \rho_2 &= -t\zeta + i\left( -\sqrt{t^2-\abs\xi^2} \eta + \xi \right)
+  \end{align*}
+  for large $t$.
+  (We will let $t \to \infty$ later on.)
+
+  So $\rho_1 \cdot \rho_1 = 0$, $\rho_2 \cdot \rho_2 = 0$ and $\abs{\rho_1}, \abs{\rho_2} \to 0$ as $t \to \infty$.
+  Then there exist solutions to $(\Delta+q_j)u_j=0$ given by $u_j=\exp(\rho_j\cdot x)(1+r_j)$ with $r_1,r_0 \to 0$ in $L_2$ as $t \to \infty$.
+  Now apply Green's identity:
+  \[ 0 = \int_\Omega i_1(q_1-q_2)u_2 = \int_\Omega \exp(2i\xi)(1+r_1+r_2+r_1r_2)(q_1-q_2). \]
+  The terms $r_i$ hide the appearances of $t$ in the above equation.
+  By Cauchy-Schwarz, taking the limit as $t \to \infty$ gives
+  \[ \int_\Omega \exp(2i\xi)(q_1-q_2) = \cF(I_\Omega(q_1-q_2)) = 0. \]
+  The by injectivity of $\cF$ we are done.
+\end{proof}
+
+So the proof wasn't so hard once we assumed proposition \ref{3:cgo}.
+This proposition hides the bulk of the proof.
+
+Weak solutions
+
+We want to solve $(\Delta+q)u=0$ in $\Omega$ where $u \in \cC^\infty(\bar\Omega)$.
+It is difficult to construct a smooth solution directly.
+We can create a weak solution first and then show that it is smooth.
+
+\begin{defn}
+  A \textbf{weak solution} is an $L^2$ function $u$ such that
+  \[ \int_\Omega u(\Delta+q)\ph 0 \text{ for all } \ph \in \cC_c^\infty(\Omega). \]
+  ($\cC_c$ denotes compactly supported functions.)
+  Note that $u$ is not required to be smooth.
+  If $u$ is smooth, then integrating by parts gives
+  \[ \int_\Omega \ph(\Delta+q)u=0 \text{ for all } \ph \in \cC_c^\infty(\Omega) \]
+  which implies that $u$ is a solution in the proper sense.
+\end{defn}
+
+Here is how the proof of proposition \ref{3:cgo} will proceed.
+Let $\wt\Omega$ be an open subset of $\RR^n$ such that $\Omega \subsetneq \wt\Omega$.
+We will construct a weak solution $\wt\Omega$ and we will show that it is in fact smooth on $\Omega$.
+
+\begin{prop}[A famous estimate]\label{3:est}
+  Let $q \in L^\infty(\wt\Omega)$.
+  Then there exists a $c>0$ such that for all $\rho$ with $\abs\rho$ sufficiently large and $\rho\cdot\rho=0$, we have
+  \[ \norm{\exp(-\rho \cdot x)(\Delta+q)\exp(\rho\cdot x) u} \geq c\abs\rho\norm{u} \text{ for all } u \in \cC_c^\infty(\wt\Omega). \]
+  In particular, this means that if $(\Delta+q)\exp(\rho\cdot x)u=0$ and $u \in \cC_c^\infty(\wt\Omega)$, then $u \equiv 0$.
+  So there are no compactly supported smooth solutions.
+\end{prop}
+
+\begin{cor}[Solvability]\label{3:solv}
+  There exists a constant $c>0$ such that for all $\abs\rho$ large and $f \in L^2$, there exists an $r \in L^2(\wt\Omega)$ solving 
+  \[ \exp(-\rho\cdot x)(\Delta+q)\exp(\rho\cdot x)r=f \]
+  in the weak sense, and
+  \[ \norm{r}_{L^2(\wt\Omega)} \leq \frac{C\norm{f}_{L^2(\wt\Omega)}}{\abs\rho}. \]
+\end{cor}
+
+This is a deeper statement than Lax-Milgram from functional analysis.
+
+\begin{proof}[Proof of corollary \ref{3:solv}]
+  Define
+  \[ \cH = \left\{ \exp(\bar\rho \cdot x)(\Delta+q)\exp(-\bar\rho\cdot x)u \mid u \in \cC_c^\infty(\wt\Omega) \right\} \subseteq L^2(\wt\Omega). \]
+  (This is the range of the adjoint operator.)
+  Note that this space is neither complete nor dense in $L^2$.
+  Define a linear functional $F: \cH \to \CC$ by
+  \[ F\left( \exp(\bar\rho \cdot x)(\Delta+q)\exp(-\bar\rho\cdot x)u \right) = \int_{\wt\Omega} f \bar u. \]
+  This is well-defined because of proposition \ref{3:cgo}.
+  In fact it is bounded:
+  \[ \abs{ F\left( \exp(\bar\rho \cdot x)(\Delta+q)\exp(-\bar\rho\cdot x)u \right) } = \abs{ \int_{\wt\Omega} f \bar u } \leq \norm{f}\norm{u} \leq \frac{C\norm{f}}{\abs\rho} \norm{\exp(\bar\rho \cdot x)(\Delta+q)\exp(-\bar\rho\cdot x)u} \]
+  By Hahn-Banach, $F$ extends to a bounded linear functional $F$ on $L^2(\wt\Omega)$ with the same bound.
+  So
+  \[ \abs{F(w)} \leq \frac{C\norm{f}}{\abs\rho}\norm{w} \text{ for all } w \in L^2(\wt\Omega). \]
+  By the Riesz representation theorem, there exists an $r \in L^2(\wt\Omega)$ such that
+  \[ F(w) = \int_{\wt\Omega} r\bar w \]
+  with
+  \[ \norm{r} = \norm{F} \leq \frac{C\norm{f}}{\abs\rho}\norm{w}. \]
+  Now we need to check that $r$ is a weak solution.
+  \[ F \left( \exp(\bar\rho \cdot x)(\Delta+q)\exp(-\bar\rho\cdot x)u \right) = \int r \overline{ \exp(\bar\rho \cdot x)(\Delta+q)\exp(-\bar\rho\cdot x)u } = \int f\bar u \text{ for all } u \in \cC_c^\infty. \]
+  Hence $\exp(\bar\rho \cdot x)(\Delta+q)\exp(-\bar\rho\cdot x)r = f$ in the weak sense.
+\end{proof}
+
+\begin{proof}[Proof of proposition \ref{3:cgo}]
+  We need weak solutions to $(\Delta+q)u=0$ in $\wt\Omega$.
+  Take $u=\exp(\rho\cdot x)(1+r)$ as an ansatz.
+  Then we have
+  \[ (\Delta+q)\exp(\rho\cdot x) = \exp(\rho\cdot x)q. \]
+  By corollary \ref{3:solv} we can solve for $r \in \wt\Omega$ such that
+  \[ \norm{r} \leq \frac{C\norm{q}}{\abs{p}}. \qedhere \]
+\end{proof}
+
+So we have brought it down to proving the estimate (proposition \ref{3:est}).
+This is where the hard work is.
