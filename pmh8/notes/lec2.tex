@@ -62,20 +62,22 @@ We transform the equation in to this form so we can use that the leading term of
 \begin{proof}[Proof of theorem \ref{2:thm2} for $n \geq 3$]
   \begin{prop}[Green's identity]
     If $(\Delta+q_j)u_j=0$ for $j=1,2$ and $u_1,u_2 \in C^\infty(\bar\Omega)$, then
-    \[ \int_\Omega u_1(q_1-q_2)u_2 = \pm \int_{\p\Omega} u_1(\Lambda_{q_1}-\Lambda_{q_2})u_2. \]
+    \[ \int_\Omega u_1(q_1-q_2)u_2 = \int_{\p\Omega} u_1(\Lambda_{q_1}-\Lambda_{q_2})u_2. \]
   \end{prop}
 
   \begin{proof}
     Let $v \in C^\infty(\bar\Omega)$ solve the boundary value problem $(\Delta+q_1)v=0$ in $\Omega$ and $v|_{\p\Omega}=u_2|_{\p\Omega}$.
     We have
-    \[ \int_\Omega u_1(\Delta+q_1)u_2 = \int_\Omega u_2(q_1-q_2)u_2 \]
+    \[ \int_\Omega u_1(\Delta+q_1)u_2 = \int_\Omega u_1(q_1-q_2)u_2 \]
     and
     \begin{align*}
       \int_\Omega u_1(\Delta+q_1)u_2 &= \int_\Omega u_1(\Delta+q_1)(u_2-v) \\
-      &= \int_\Omega \left( (\Delta+q)u_1 \right)(u_2-v) \pm \int_{\p\Omega} (\p_\nu u_1)(u_2-v) \pm \int_{\p\Omega} u_1 \p_\nu(u_2-v) \\
-      &= \pm \int_{\p\Omega} u_1 \p_\nu (u_2-v) = \pm \int_{\p\Omega} u_1\left( \Lambda_{q_2}(u_2|_{\p\Omega}) - \Lambda_{q_1}(u_2|_{\p\Omega}) \right) \\
-      &= \pm \int_{\p\Omega} u_1 \left( \Lambda_{q_1}-\Lambda_{q_2} \right)(u_2|_{\p\Omega}) \qedhere
+      &= \int_{\p\Omega} (\p_\nu u_1)(u_2-v) + \int_{\p\Omega} u_1 \p_\nu(u_2-v) - \int_\Omega \left( (\Delta+q_1)u_1 \right)(u_2-v) \\
+      &= \int_{\p\Omega} u_1 \p_\nu (u_2-v) \\
+      &= \int_{\p\Omega} u_1\left( \Lambda_{q_2}(u_2|_{\p\Omega}) - \Lambda_{q_1}(u_2|_{\p\Omega}) \right) \\
+      &= \int_{\p\Omega} u_1 \left( \Lambda_{q_1}-\Lambda_{q_2} \right)(u_2|_{\p\Omega})
     \end{align*}
+    where we have used the product rule and the divergence theorem.
   \end{proof}
 
   \begin{cor}
@@ -93,11 +95,11 @@ Suppose $q_1=q_2=0$.
 What is a ``good'' set of solutions to $\Delta u=0$?
 (Non-rigorously)
 
-If $\rho \in \CC^n$ with $\rho=\zeta+i\eta$ for $\zeta,\eta \in \RR^n$ satisfies $\rho \cdot \rho = 0$ (that is, $\abs{\zeta}=\abs{\eta}$ and $\zeta \perp \eta$), then set $u=\exp(\rho \cdot x)$.
+If $\rho \in \CC^n$ with $\rho=\zeta+i\eta$ for $\zeta,\eta \in \RR^n$ satisfies $\rho \cdot \rho = 0$ (that is, $\abs{\zeta}=\abs{\eta}$ and $\zeta \perp \eta$), then set $u=e^{\rho\cdot x}$.
 Then $\Delta u=0$.
 
-If $q_1,q_2 \neq 0$ we still expect solutions which ``look like'' $\exp(\rho \cdot x)$.
-Pick $(\Delta+q_j)u_j=0$, $u_1=\exp\left( (\zeta+i\eta) \cdot x \right)$ and $u_2=\exp\left( (-\zeta+i\eta) \cdot x \right)$.
+If $q_1,q_2 \neq 0$ we still expect solutions which ``look like'' $e^{\rho \cdot x}$.
+Pick $(\Delta+q_j)u_j=0$, $u_1=e^{ (\zeta+i\eta) \cdot x}$ and $u_2=e^{ (-\zeta+i\eta) \cdot x }$.
 Then
-\[ 0 = \int_\omega u_1(q_1-q_2)u_2 = \int_\Omega \exp(2i\eta \cdot x) (q_1-q_2) = \mathcal{F} \left( (q_1-q_2)\id_\Omega \right), \]
+\[ 0 = \int_\omega u_1(q_1-q_2)u_2 = \int_\Omega e^{2i\eta \cdot x} (q_1-q_2) = \mathcal{F} \left( (q_1-q_2)\id_\Omega \right), \]
 so $q_1-q_2=0$ since the Fourier transform is injective.
