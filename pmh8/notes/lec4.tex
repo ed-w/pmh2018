@@ -1,0 +1,101 @@
+\section{2018-08-09 Lecture}
+
+Note that we use the ``geometer's Laplacian'': $\Delta=-\nabla^2$.
+
+\begin{prop}[Carleman estimate (proposition \ref{3:est})]
+  Let $q \in L^\infty(\wt\Omega)$, let $\eta,\zeta \in \RR^n$ with $\abs{\eta}=\abs{\zeta}=1$ and define $\rho=t(\eta+i\zeta)$ where we will let $t \to \infty$.  
+  Then for some constant $C>0$ we have
+  \begin{eqn}
+    \norm{e^{-t\rho\cdot x}(\Delta+q)e^{t\rho\cdot x}u}_{L^2(\wt\Omega)} \geq Ct\norm{u}_{L^2(\wt\Omega)}
+  \end{eqn}
+  for all $u \in \cC_c^\infty(\wt\Omega)$.
+\end{prop}
+
+\begin{proof}
+  We will make the following simplifications:
+  \begin{enum}
+    \io
+    Replace $u$ with $e^{-\zeta\cdot x}u$.
+    Then it suffices to prove
+    \begin{eqn}
+      \norm{e^{-t\eta\cdot x}(\Delta+q)e^{t\eta\cdot x}u}_{L^2(\wt\Omega)} \geq Ct\norm{u}_{L^2(\wt\Omega)}.
+    \end{eqn}
+
+    \io
+    Assume WLOG that $q=0$.
+
+    \io
+    By rotation assume WLOG that $\eta=e_n=(0,0,\ldots,0,1)$.
+  \end{enum}
+  Let $t=1/h$ and let $h \to 0$.
+  We will prove a more general estimate:
+
+  For all $u \in \cC^\infty(\wt\Omega)$ with $u|_{\p\wt\Omega}=0$, we have for some constant $C>0$,
+  \begin{eqn}
+    h^3 \int_{\p\wt\Omega_+} \abs{\nu\cdot e_n} \abs{\p_\nu u}^2 + h^2 \norm{u}^2 \leq C \norm{ e^\frac{-x_n}{h} h^2\Delta e^{\frac{x_n}{h}}u}^2 - h^3\int_{\p\wt\Omega_-} \abs{\nu\cdot e_n} \abs{\p_\nu u}^2 
+  \end{eqn}
+  where
+  \[ \p\wt\Omega_\pm = \left\{ x \in \p\wt\Omega \mid \pm \nu(x) \cdot e_n \geq 0 \right\} \]
+  where $\nu(x)$ is the outward pointing normal vector at $x$.
+
+  Define
+  \[ \ph = x_n + \frac{h}{2} x_n^2 \]
+
+  Now we expand the conjugated Laplacian:
+  \begin{align*}
+    e^\frac{-\ph}{h} h^2 \Delta e^\frac\ph h &= \overbrace{h^2\Delta - \abs{\nabla\ph}^2}^{\defeq A, \text{ self-adjoint}} - \overbrace{(\nabla\ph \cdot h\nabla + h\nabla \cdot (\nabla\ph))}^{\defeq -iB, \text{ anti-self-adjoint}} \\
+    &= A+iB
+  \end{align*}
+  Then using integration by parts (noting that $u$ is zero on the boundary), we have
+  \begin{align*}
+    \norm{ e^\frac{-\ph}{h} h^2 \Delta e^\frac\ph h u }^2 &= \norm{ (A+iB)u}^2 = \norm{Au}^2+\norm{Bu}^2 + \ang{Au,iBu} + \ang{iBu,Au} \\
+    &= \norm{Au}^2 + \norm{Bu}^2 - \ang{iBAu,u}_{\wt\Omega} + \ang{iABu,u}_{\wt\Omega} - ih^2\ang{iBu,\p_\nu u}_{\p\wt\Omega} \\
+    &= \norm{Au}^2 + \norm{Bu}^2 + i\ang{[A,B]u,u}_{\wt\Omega} -ih^2\ang{iBu,\p_\nu u}_{\p\wt\Omega}
+  \end{align*}
+  and where
+  \begin{align*}
+    [A,B] &= AB-BA \\
+    &= (h^2\Delta-\abs{\nabla\ph}^2)(i(\nabla\ph \cdot h\nabla + h\nabla \cdot (\nabla\ph)) - i(\nabla\ph \cdot h\nabla + h \nabla \cdot (\nabla\ph)) (h^2\Delta - \abs{\nabla\ph}^2) \\
+      &= \frac hi \left( -4h(h\p_{x_n})^2 + 4h(1+hx_n)^2 \right)
+  \end{align*}
+  where $\nabla\ph = (1+hx_n)e_n$.
+  Note that we have defined inner products to be linear in the first argument.
+  Then
+  \begin{align*}
+    \norm{ e^\frac{-\ph}{h} h^2 \Delta e^\frac\ph h u }^2 &\geq i\ang{[A,B]u,u}_{\wt\Omega} -ih^2\ang{iBu,\p_\nu u}_{\p\wt\Omega} \\
+    &= 4h^2 \norm{\p_{x_n}u}^2 + 4h^2\norm{(1+hx_n)u}^2 - ih^2\ang{iBu,\p_\nu u}_{\p\wt\Omega}
+  \end{align*}
+  Note that the last term would not exist if we were considering compactly supported functions.
+  Let us look at the last term.
+  We have
+  \begin{align*}
+    iBu|_{\p\wt\Omega} &= i( \nabla\ph \cdot h\nabla u + h\nabla \cdot (\nabla\ph )u) \mid_{\p\wt\Omega} \\
+    &= 2i( (1+hx_n)e_n \cdot h \nabla u) \\
+    &= 2i( (1+hx_n)e_n \cdot (\p_\nu u) \nu
+  \end{align*}
+  where
+  \[ \nabla u = (\p_\nu u) \nu + (\nabla u)^\parallel = (\p_\nu u)\nu \]
+  since $u|_{\p\wt\Omega} = 0$.
+  So we have shown
+  \[ \norm{ e^\frac{-\ph}{h} h^2 \Delta e^\frac\ph h u }^2 \geq Ch^2\norm{u}^2 + h^3 \int_{\p\wt\Omega} e_n \cdot \nu \abs{\p_\nu u}^2. \]
+  Substituting in the definition of $\ph$, we have
+  \[ \norm{ e^\frac{-\ph}{h} h^2 \Delta e^\frac\ph h u }^2 = \norm{ e^{-\frac{x_n}{h}-\frac{x_n^2}{2}} h^2 \Delta e^{\frac{x_n}{h}+\frac{x_n^2}{2}} }^2 \leq c \norm{ e^{\frac{x_n}{h}} h^2 \Delta e^{\frac{x_n}{h}+\frac{x_n^2}{2}} }^2 \]
+  where we have used that $\Vert e^{x_n/2}v \Vert$ is bounded on $\wt\Omega$.
+  Then replacing $u$ by $e^{-x_n^2/2}u$ we get
+  \[ \norm{ e^\frac{x_n}{h} h^2 \Delta e^\frac{x_n}h u }^2 \geq Ch^2\norm{u}^2 + h^3 \int_{\p\wt\Omega} e_n \cdot \nu \abs{\p_\nu u}^2 \]
+  or alternatively
+  \[ \norm{ e^\frac{-x_n}{h} h^2 (\Delta+q)u }^2 \geq Ch^2 \norm{e^\frac{-x_n}{h} u }^2 + h^2 \int_{\p\wt\Omega_+} \abs{e_n \cdot \nu} \abs{ e^\frac{-x_n}{h} \p_\nu u }^2 + \int_{\p\wt\Omega_-} \abs{ e^\frac{-x_n}{h} \p_\nu u }^2. \]
+  Note that we have omitted some unimportant constant factors.
+\end{proof}
+
+Intuition
+
+If we take the Fourier transform of the conjugated Laplacian, we get
+\[ a = \abs\xi^2 - \abs{\nabla\ph}^2 \qquad b = 2\xi \cdot \nabla\ph. \]
+Of we take the Fourier transform of the commutator bracket, we get
+\[ \cF \left( [A,B] \right) = \frac{h}{2i}\{a,b\} = \frac{h}{2i} \left( \nabla_\xi a \cdot \nabla_x b - \nabla_x a \cdot \nabla_\xi b \right) \]
+where $\{\cdot,\cdot\}$ is the Poisson bracket.
+If $\ph(x_n)=x_n$ then $\{a,b\}=0$, but if
+\[ \ph(x_n)=x_n + \frac{hx_n^2}{2} \]
+then
+\[ \{a,b\} = 4h^2(1+hx_n)^2. \]

@@ -41,10 +41,10 @@ We now calculate.
 \begin{align*}
   (D_XY)(F) &= \left( D_{ \sum_{i=1}^n X_i \frac{\p}{\p u_i} } \sum_{j=1}^n \frac{\p}{\p u_j} \right)(F) \\
   &= \sum_{i=1}^n \sum_{j=1}^n X_i \frac{\p}{\p u_i} Y_j \frac{\p F}{\p u_j} \\
-  &= \sum_{i,j} X_i \frac{\p Y_j}{\p u_i} + \sum_{i,j} X_i Y_j \frac{\p^2 F}{\p u_i \p u_j}
+  &= \sum_{i,j} X_i \frac{\p Y_j}{\p u_i} \frac{\p F}{\p u_j} + \sum_{i,j} X_i Y_j \frac{\p^2 F}{\p u_i \p u_j}
 \end{align*}
 Since $F$ is smooth, we can swap the order of partial derivatives.
-Hence $D_XY-D_YX$ is a linear combination of the $\p/\p u_i$, hence is in $T+pS$.
+Hence $D_XY-D_YX$ is a linear combination of the $\p/\p u_i$, hence is in $T_pS$.
 
 \begin{exer}
   Show that $II_p$ is smooth.
