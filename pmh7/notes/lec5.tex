@@ -1,0 +1,107 @@
+\section{2018-08-13 Lecture}
+
+\begin{rmk}[2.3]
+  These two definitions are ``abstract'' because one starts with a topological space.
+  However, there exists a classical result by Whitney relating it to the earlier definition of regular surfaces in $\RR^N$.
+  Roughly speaking, any manifold can be realised as a surface in $\RR^N$ for some $N$, that is, as a submanifold of $\RR^N$ for some $N$.
+\end{rmk}
+
+\begin{exer}
+  Prove the last claim of the remark (submanifold).
+\end{exer}
+
+\begin{exer}[2.4]
+  $\RR^n$ is a manifold with the change of variables in multivariate calculus as the transition functions.
+  
+  Warning: using polar co-ordinates the open set has to exclude the origin.
+\end{exer}
+
+\begin{exam}
+  Examples of submanifolds:
+  \begin{itm}
+    \io $\RR^n \subseteq \RR^m$ for $n \leq m$.
+    \io The graph of a smooth $\RR^{n-m}$ valued function over $\RR^m$ is a submanifold of $\RR^n$.
+
+    Let $(x,y) \in \RR^n \times \RR^{m-n} = \RR^n$.
+    The graph of $f$ is the set of points $(x,f(x))$.
+    Consider $(x,y-f(x))$ as the new co-ordinates for $\RR^n$.
+    We need to check that the Jacobian is invertible.
+    \begin{equation*}
+      \frac{\p(x,y-f(x))}{\p(x,y)}=
+      \begin{bmatrix}
+	\frac{\p x}{\p x} & \frac{\p x}{\p y} \\
+	\frac{\p(y-f(x))}{\p x} & \frac{\p(y-f(x))}{\p y}
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+	I_m & 0 \\
+	\frac{\p f}{\p x} & I_{n-m}
+      \end{bmatrix}
+    \end{equation*}
+    Clearly the transition function has inverse $(x,y) \mapsto (x,y+f(x))$.
+    So it is indeed a co-ordinate chart.
+    Then the graph $y=f(x)$ corresponds to the subset of points of the form $(x,0)$ for the new co-ordinate chart.
+  \end{itm}
+\end{exam}
+
+\begin{exer}[2.7]
+  Prove that a submanifold as defined in definition 2.2 is equivalent to being locally a level surface, that is, the zero locus set of $\{f_i\}_{i=1}^k$ where the Jacobian of the $f_i$s with respect to \emph{local} co-ordinates of the ambient manifold is of full rank.
+\end{exer}
+
+\begin{proof}
+  Let $S$ be a submanifold inside a manifold $M$.
+  To show that a property holds locally we need to check it on some co-ordinate chart about every $p \in S$.
+  Let $F: S \cap U \to \RR^m \cap V \subset \RR^n$ be the chart.
+  The direction $\implies$ is trivial since $S$ is defined locally by the vanishing of the last $n-m$ co-ordinates.
+  So if our co-ordinates are $(x,y) \in \RR^m \times \RR^{n-m} = \RR^n$, we can take $\{f_i\}=y$.
+  To check that it is full rank, we compute
+  \begin{equation*}
+    \frac{\p(f_i)}{\p(x,y)}=
+    \begin{bmatrix}
+      0 & I_{m-n}
+    \end{bmatrix}_{(n-m) \times n}
+  \end{equation*}
+  Now we prove the $\impliedby$ direction.
+  Let
+  \[ U \cap S = \{ f_1 = \cdots = f_{n-m} = 0 \}. \]
+  We have a local chart $V \subset \RR^n$ with local co-ordinates $(x,y)$.
+  Then
+  \begin{equation*}
+    \frac{\p(f)}{\p(x,y)}=
+    \begin{bmatrix}
+      \frac{\p f}{\p x} & \frac{\p f}{\p y}
+    \end{bmatrix}_{(n-m) \times n}
+  \end{equation*}
+  is of full rank, so we can assume that $\p f/\p y$ is an invertible $(n-m) \times (n-m)$ matrix (by rearranging co-ordinates).
+  This is how we get $y$.
+  Then we can use the co-ordinate map $(x,y) \mapsto (x,f(x,y))$.
+  By a similar calculation to the previous example this map has invertible Jacobian, so we can apply the inverse function theorem to show that there is some (possible smaller) open set $U'$ such that $(x,y) \mapsto (x,f)$ is a change of co-ordinates.
+  Then $f=0$ defines the submanifold in the co-ordinates $(x,f)$.
+\end{proof}
+
+\begin{rmk}
+  A graph is defined by $y=f(x)$ and a level surface by $y-f(x)=0$.
+\end{rmk}
+
+\begin{defn}
+  Two manifolds $M_1$ and $M_2$ are \textbf{diffeomorphic} if there are smooth maps $f: M_1 \to M_2$ and $g: M_2 \to M_1$ such that $f \circ g = \id_{M_2}$ and $g \circ f = \id_{M_1}$.
+  In this case $g=f\inv$ and $f=g\inv$ and they are \textbf{diffeomorphisms}.
+\end{defn}
+
+\begin{rmk}
+  If $F_1: U_1 \to V_1$ and $F_2: U_2 \to V_2$ are co-ordinate charts for $M_1$ and $M_2$ respectively, then $f$ is defined to be smooth when $F_2 \circ f \circ F_1\inv$ is smooth.
+  This is independent on the choice of charts.
+  (Here we define the co-ordinate maps from a subset of the manifold to a subset of Euclidean space).
+\end{rmk}
+
+\begin{rmk}
+  If $M_1$ and $M_2$ are diffeomorphic then they are the same smooth manifold.
+  The diffeomorphism $f: M_1 \to M_2$ translates all of the charts for $M_2$ to $M_1$ and they are all compatible.
+\end{rmk}
+
+\begin{rmk}[Gluing]
+  We can define our manifold structure as a disjoint union of open sets modulo some equivalence relation (gluing the intersections) subject to some comptability condition.
+  We can add in as many compatible charts as possible (the maximal atlas).
+  So two compatible atlases give the same manifold structure.
+  Diffeomorphisms between manifolds are basically a change of variables on the same manifold.
+\end{rmk}

@@ -1,0 +1,116 @@
+\section{2018-08-14 Lecture}
+
+The partial data problem
+
+Recall
+\[ \p\Omega_\pm(e_n) = \left\{ x \in \p\Omega \mid \pm \nu(x) \cdot e_n \geq 0 \right\} \]
+where $\nu$ is the outward pointing normal vector.
+We want a set that is compactly contained in the above.
+Define
+\[ \p\Omega_{+,\eps}(e_n) = \left\{ x \in \p\Omega \mid \nu(x) \cdot e_n \geq \eps \right\}. \]
+
+\begin{thm}[Partial data]\label{5:partial}
+  Suppose that for all $f \in \cC^\infty(\p\Omega)$, we have
+  \[ (\Lambda_{q_1}f)|_{\p\Omega_{+,\eps/2}(e_n)} = (\Lambda_{q_2}f)|_{\p\Omega_{+,\eps/2}(e_n)}. \]
+\end{thm}
+We have the same assumptions on $q_i$ as before.
+
+Unique continuation of elliptic PDE
+
+Consider the equation $(\Delta+q)u=0$ and let $\Gamma \subset \p\Omega$ be an open subset.
+Suppose that $u|_{\Gamma}=0$ and $\p_\nu u|_\Gamma=0$.
+Does this imply that $u \equiv 0$ in $\Omega$?
+So the partial data problem is the inverse problem of this question.
+
+Consider the case $q=0$ (harmonic functions).
+Extend $\Omega$ ``past'' $\Gamma$ in to a little ``bubble'' where you define $u=0$ in the bubble.
+Then using the Cauchy-Riemann equations it is a holomorphic function, hence zero.
+
+\begin{proof}[Proof of theorem \ref{5:partial}]
+  Recall the Carleman estimate from last time:
+  \[ h^3 \int_{\p\Omega_+} (e_n \cdot \nu) \abs{e^\frac{-x_n}h \p_nu u}^2 \leq \norm{e^\frac{-x_n}h h^2 (\Delta+q) u}^2 + h^3 \int_{\p\Omega_-} (e_n \cdot \nu) \abs{e^\frac{-x_n}h \p_\nu u}^2. \]
+  Let's see where the proof of the full data problem goes wrong here.
+  As before we have the Green's identity
+  \begin{equation}\label{5:green}
+  \int_\Omega u_1(q_1-q_2)u)2 = \int_{\p\Omega} u_1(\Lambda_{q_1}-\Lambda_{q_2})u_2 = \int_{\p\Omega_{+,\eps/2}} u_1(\Lambda_{q_1}-\Lambda_{q_2}) u_2
+\end{equation}
+  so we get leftover terms from the boundary.
+
+  We will need this proposition.
+  \begin{prop}[CGO improved]\label{5:cgo}
+    If $\rho\cdot\rho=0$ for some $\rho\in\CC^n$ and $\abs{\rho} \to \infty$, then there exists a solution $(\Delta+q)u=0$ in $\Omega$ with $u \in \cC^\infty(\bar\Omega)$ where
+    \[ u=e^{\rho\cdot x}(1+r) \]
+    with
+    \[ \norm{r}_{L^2} \leq \frac C{\abs\rho} \text{ and } \norm{dr}_{L^2} \leq C. \]
+  \end{prop}
+
+  Fix a $\xi \in \RR^n$ with $\xi \perp e_n$.
+  Choose an $\eta \in S^{n-1}$ such that $e_n \perp \eta \perp \xi$.
+  Let
+  \begin{align*}
+    u_1 &= e^{(-te_n + i(\xi-\sqrt{t^2-\abs\xi^2}\eta))\cdot x}(1+r_1) \\
+    u_2 &= e^{(te_n + i(\xi+\sqrt{t^2-\abs\xi^2}\eta))\cdot x}(1+r_1)
+  \end{align*}
+  Substituting this in to equation \ref{5:green}, we get that the left hand side equals
+  \[ \int_\Omega e^{2i \xi\cdot x} (q_1-q_2) (1+r_1+r_2+r_1r_2) \xto{t\to\infty} \cF(q_1-q_2)(2\xi). \]
+  But we do not know a priori that the right hand side of equation \ref{5:green} is zero.
+  We will show that it goes to zero as $t\to\infty$.
+
+  Set $t=1/h$.
+  Then
+  \begin{align*}
+    \abs{LHS} &\leq \int_{\p\Omega_{+,\eps/2}(e_n)} \abs{u_1(\Lambda_{q_1}-\Lambda_{q_2})u_2} \\
+    &\leq \int_{\p\Omega_{+,\eps/2}(e_n)} \norm{1+r_1} \abs{e^\frac{-x_n}h(\Lambda_{q_1}-\Lambda_{q_2})u_2} \\
+    &\leq \norm{1+r_1}_{L^2(\Omega)} \norm{e^\frac{-x_n}h(\Lambda_{q_1}-\Lambda_{q_2})u_2}_{L^2(\p\Omega_{+,\eps/2})} \\
+  \end{align*}
+  Recall that we have the following:
+  \begin{gather*}
+    \Lambda_{q_2}u_2 = \p_\nu u_2|_{\p\Omega} \\
+    \Lambda_{q_1}u_2 = \p_\nu v \\
+    (\Delta+q_1)v=0 \\
+    v|_{\p\Omega} = u_2|_{\p\Omega}
+  \end{gather*}
+  So
+  \[ (\Lambda_{q_1}-\Lambda_{q_2})u_2 = \p_\nu (u_2-v) \]
+  and
+  \[ (u_2-v)|_{\p\Omega} = u_2|_{\p\Omega} - u_2|_{p\Omega} = 0. \]
+  Now we can apply the Carleman estimate to $u=u_2-v$.
+  We get
+  \begin{align*}
+    \abs{LHS} &\geq \norm{1+r_1}_{L^2(\p\Omega)} \sqrt{h} \norm{e^\frac{-x_n}h (\Delta+q)(u_2-v)}_{L^2} \\
+     &= \norm{1+r_1}_{L^2(\p\Omega)} \sqrt{h} \norm{e^\frac{-x_n}h (\Delta+q_1)u_2}_{L^2} \\
+     &= \norm{1+r_1}_{L^2(\p\Omega)} \sqrt{h} \norm{e^\frac{-x_n}h (q_1-q_2)u_2}_{L^2} \\
+     &\leq \sqrt{h} \norm{1+r_1}_{L^2(\p\Omega)}\norm{1+r_2}_{L^2{\Omega}} \\
+     &\leq \sqrt{h} \norm{d(1+r_1)}_{L^2(\Omega)}\norm{1+r_2}_{L^2{\Omega}}
+  \end{align*}
+  which goes to $0$ as $h \to 0$.
+  In the last step we have used the \emph{trace theorem} which we will prove later on.
+  So $\cF(q_1-q_2)(2\xi)=0$ only for $\xi\perp e_n$.
+
+  How to extend this result?
+  By ``wiggling'' $e_n$ around the area we get that $\cF(q_1-q_2)(2\xi)=0$ holds in a wheel-wedge shaped region in $\RR^n$.
+  How does this help?
+  We will using the following theorem:
+
+  \begin{thm}[Paley-Wiener]
+    Let $q \in L^2(\RR^n)$ with the support of $q$ compact.
+    Then
+    \[ \hat q(\xi) = \int e^{ix\cdot\xi} q \]
+    extends to an entire function on $\CC^n$.
+  \end{thm}
+
+  \begin{proof}[Proof of the Paley-Wiener theorem]
+    We have
+    \[ \hat q(\xi+i\eta) = \int e^{i(\xi+i\eta)\cdot x} q(x) dx. \]
+    Use dominated convergence and compactness to show that its power series converges everywhere.
+  \end{proof}
+
+  So by analytic continuation $\cF(q_1-q_2)(2\xi)=0$ everywhere.
+
+  \begin{proof}[Proof idea for proposition \ref{5:cgo}]
+    We have the Carleman estimate for all $u \in \cC_c^\infty(\Omega)$:
+    \[ h \left( \norm{h \, du} + \norm{u}_{L^2} \right) \leq \norm{e^\frac{-x_n}h h^2 (\Delta+q) e^\frac{x_n}h u}_L^2. \]
+    Note that $\norm{h\, du} + \norm{u}_{L^2} = \norm{u}_{H^1}$ (see the assignment).
+    Then we can shift to the dual norm ($H^1 \mapsto L^2$ and $L^2 \mapsto H^{-1}$) to get the derivative.
+  \end{proof}
+\end{proof}

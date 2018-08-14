@@ -1,0 +1,98 @@
+\section{2018-08-14 Lecture}
+
+2.2 Tensor bundle
+
+We will use the tangent vector bundle as the main example to illustrate the notion of a vector bundle.
+
+Recall that a tangent vector of a surface in $S \subset \RR^N$ is the velocity of a motion on the surface.
+We can still use this point of view for the tangent vector of a manifold $M$ at $p$.
+
+More precisely, for a co-ordinate chart
+\begin{align*}
+  F: V &\to U \cap p \\
+  \vec u = (u_1,\ldots,u_n) &\mapsto F(\vec u)
+\end{align*}
+where $V \subset \RR^n$, $U \subset M$ and $F(\vec a)=p$.
+We will consider as motions the co-ordinate curves
+\[ F(a_1,\ldots,a_{i-1},u_i,a_{i+1},a_n) \]
+and their corresponding velocities
+\[ \frac{\p}{\p u_i}. \]
+Note that $\tfrac{\p F}{\p u_i}$ doesn't make sense without further explanation since $M$ is not embedded in $\RR^N$.
+We will make it more explicit.
+Let $I=[-\eps,\eps]$.
+Then we can define a curve
+\begin{align*}
+  I \xto{F\inv\circ\alpha} V \xto{F} U \subset M \\
+  t \mapsto u(t) \mapsto F(u(t))
+\end{align*}
+So if we define the curve $\alpha(t) = F(u(t))$, we can consider $F\inv\circ\alpha$ as a motion in $\RR^n$.
+Then
+\[ \frac{d(F\inv\circ\alpha)}{dt} = \sum_{i=1}^n \frac{du_i}{dt}e_i \]
+where
+\[ (F\inv\circ\alpha)(t) = u(t) = \left( u_1(t),\ldots,u_n(t) \right) \]
+and $e_i$ is the $i$th standard basis vector.
+Formally, we have
+\[ \frac{d\alpha}{dt} = \sum_{i=1}^n \frac{du_i}{dt} \frac{\p}{\p u_i} \]
+where $\tfrac{\p}{\p u_i}$ in $U \subset M$ corresponds to $e_i$ in $V=\RR^n$.
+This is the total derivative rule:
+\[ \sum_{i=1}^n \frac{du_i}{dt} \frac{\p}{\p u_i} = \frac{d}{dt}. \]
+In practice, we measure the velocity of a motion by ``meaningful'' quantities.
+This leads to viewing tangent vectors as an operator on functions.
+If we have a function $f: U \to \RR$, then we can compute its derivative along the curve $\alpha$:
+\[ \frac{d(f\circ\alpha)}{dt} = \frac{d}{dt}(f\circ F)\circ\overbrace{(F\inv\circ\alpha)}^{t \mapsto u(t)} = \sum_{i=1}^n \frac{du_i}{dt}\frac{\p(f\circ F)}{d u_i}. \]
+This lets us view the quantity $\tfrac{d\alpha}{dt}$ by its action on all functions $f: U \to \RR$.
+
+\begin{rmk}
+  The above is an example of the idea that we can understand points in $M$ in terms of their co-ordinates.
+\end{rmk}
+
+\begin{exer}
+  Show that this action is linear and satisfies the Leibniz (product) rule.
+\end{exer}
+
+Now let us introduce the formal definition of a vector bundle.
+
+\begin{defn}[2.11]
+  A \textbf{smooth vector bundle} over a manifold $M$ is a smooth manifold $E$ such that there exists a smooth map
+  \[ P: E \to M \]
+  sastisfying the following properties for all $p \in M$:
+  \begin{itm}
+    \io
+    The fibre $P\inv(p)$ over $p$ is a vector space (which we denote by $E_p$).
+
+    \io
+    There is an open neighbourhood $U \subset M$ of $p$ such that there exists a diffeomorphism
+    \[ B: P\inv(U) \to U \times \RR^k \]
+    with $P_1 \circ B = P$ where $U \times \RR^k$ has the standard product structure (topology) which respects the vector operations for $\RR^k$ and $P_1: U \times \RR^k \to U$ is the projection to the first component.
+    The map $B$ is called a \textbf{local trivialisation} of $E$.
+  \end{itm}
+
+  By ``respects the vector operations'' we mean that the vector operations are smooth.
+  For example, assume that for all $p \in U$ we have a point $(p,S_1(p)) \in U \times \RR^k$ where $S_1: U \to \RR^k$ is smooth (and similarly for $(p,S_2(p))$.
+  Then the ``sum'' $(p, S_1(p)+S_2(p))$ in $\RR^k$ is smooth.
+  Applying $B$, we have points $S_1(p), S_2(p) \in P\inv(p)$.
+  Then the sum operation $S_1(p)+S_2(p)$ is smooth.
+  This condition is to guarantee that the following commutative diagram varies smoothly for $p \in U$:
+  \begin{equation*}
+    \begin{tikzcd}
+      P\inv(U) \ar[rd, "P"'] \ar[rr, "B"] & & U \times \RR^k \ar[ld, "P_1"] \\
+      & U &
+    \end{tikzcd}
+  \end{equation*}
+\end{defn}
+
+Using this picture we can define the tangent vector bundle.
+Here is one way to define the tangent bundle.
+
+\begin{defn}
+  The \textbf{tangent bundle} $TM$ of a manifold $M$ is the set of all the velocities on $M$ and the map $P$ takes a velocity at $p$ to the point $p$.
+  Then the fibre $P\inv(p)$ over $p$ is the set of all the derivatives at $p$ for functions defined near $p$.
+  The local trivialisation map $B: P\inv(U) \to U \times \RR^n$ takes a velocity $v$ at the point $p$ to the point $(p,v)$ (in a local co-ordinate chart $U$).
+\end{defn}
+
+But with this point of view it is not obvious why $TM$ is a smooth manifold.
+We will now give a different point of view that will show how to put a smooth manifold structure on $TM$ in a more explicit way.
+
+Recall that we constructed a manifold by ``gluing'' (or identifying) together open sets.
+Likewise we can construct a vector bundle by gluing together the local trivialisation sets $\coprod_{i \in I} V_i \times \RR^k / \text{gluing}$.
+
