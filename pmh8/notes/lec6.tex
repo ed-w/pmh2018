@@ -1,0 +1,77 @@
+\section{2018-08-16 Lecture}
+
+\begin{thm}[$n=2$]
+  Assume that $\Lambda_{q_1}=\Lambda_{q_2}$ and $q_1|_{\p\Omega}=q_2|_{\p\Omega}$.
+  Then $q_1 \equiv q_2$ in $\Omega$.
+\end{thm}
+
+\begin{rmk}
+  We don't actually need the boundary assumption but it simplifies the proof.
+\end{rmk}
+
+Why do we expect the case $n=2$ to be different?
+We have a silly reason (we need three orthogonal vectors for our complex geometric optics) but what is the conceptual reason?
+
+The \textbf{Green's function} of $\Delta$ is the function $G(x)$ which satisfies $\Delta G(x) = \delta_0$ where $\delta_0$ is the delta ``function'' at the origin.
+For $n=2$ we have $G(x) = \log\abs{x}$ and for $n \geq 3$ we have $G(x) = \abs{x}^{-(n-2)}$.
+So $G(x)$ has good local behaviour (near the origin) but bad global behaviour for $n=2$ and the reverse is true for $n \geq 3$.
+
+\begin{defn}
+  We will use the \textbf{Wirtinger derivatives} for functions on $\CC \cong \RR^2$:
+  \[ \p = \frac{\p}{\p z} = \frac 12 \left( \frac{\p}{\p x} - i \frac{\p}{\p y} \right) \qquad \bar\p  = \frac{\p}{\p \bar z} = \frac 12 \left( \frac{\p}{\p x} + i\frac{\p}{\p y} \right). \]
+\end{defn}
+
+\begin{proof}[Sketch of proof]
+  Observe that $\bar\p z = 0$ and $\bar\p e^{iz^2/h}=0$ for $h>0$.
+  Then $\Delta e^{iz^2/h}=0$ and $\Delta e^{i\bar z^2/h}=0$.
+  We will construct solutions to $(\Delta+q_j)u_j=0$:
+  \[ u_1 = e^\frac{iz^2}{h}(1+r) \qquad u_2 = e^\frac{i\bar z^2}{h}(1+r') \]
+  where $r,r' \to 0$ in a suitable way.
+  Then plugging this in to our usual Green's identity, we get
+  \begin{align*}
+    0 &= \int_\Omega e^\frac{2i(x^2-y^2)}{h}(q_1-q_2)(1+r+r'+rr') \\
+    &= \int_\Omega e^\frac{2i(x^2-y^2)}{h}(q_1-q_2) + o(h)
+  \end{align*}
+  as $h\to\infty$.
+
+  We will use the following result.
+  \begin{exer}
+    Let $\ph\in\cC^\infty(\RR^n)$ be such that $\abs{\det(d\ph)} \geq C > 0$ for some $C$.
+    Then for any $q \in \cC_c^\infty(\RR^n)$, we have if
+    \[ I \defeq \int e^\frac{i\ph}h q = O(h^\infty) \]
+    as $h \to \infty$, then for all $k \in \NN$ there exists a $C_k$ such that $\abs I \leq C_k h^k$.
+  \end{exer}
+  However, $x^2-y^2$ has critical points so we cannot directly apply this result.
+
+  We need the following theorem:
+  \begin{thm}[Stationary phase]\label{6:stat}
+    If $q \in \cC_c^\infty(\RR^n)$, then
+    \[ \abs{ \int e^\frac{2i(x^2-y^2)}h q - q(0)h } \leq Ch^2 \]
+    where $C \leq \norm{q}_{H^4}$
+  \end{thm}
+
+  So this integral acts like a delta function at the critical point.
+  Applying this theorem, we get $0 = h(q_1-q_2)(0)+o(h)$ so $(q_1-q_2)(0)=0$.
+  We can then apply $z \mapsto z-z_0$ for any $z_0 \in \Omega$, so we get that $(q_1-q_2)(z_0)=0$ for all $z_0 \in \Omega$.
+\end{proof}
+
+\begin{proof}[Proof of theorem \ref{6:stat}]
+  Let $q \in \cC_c^\infty(\RR^2)$.
+  The integral is purely oscillating but we want some decay at infinity so we write
+  \begin{align*}
+    \int_{\RR^2} e^\frac{i(x^2-y^2)}h q(x,y) &\overset{\text{DCT}}= \lim_{\eps\to 0} \int e^\frac{i(x^2-y^2)}h e^{-\eps(x^2+y^2)} q(x,y) \\
+    &\overset{\text{Plancherel}}= \lim_{\eps\to 0} \int \hat q(\xi) \left( e^\frac{i(x^2-y^2)}h e^{-\eps(x^2-y^2)} \right)^\wedge (\xi) \\
+    &\overset{(*)}= h \lim_{\eps\to 0} \int \hat q(\xi) (\eps-i)^\frac{-1}2 (\eps+i)^\frac{-1}2 e^{-\eps h(\xi_1^2+\xi_2^2)} e^{\frac{-ih}2 \frac{(\xi_1^2-\xi_2^2)}{1+\eps^2}} \\
+    &\overset{\text{DCT}}= Ch \int \hat q(\xi) e^\frac{-ih(\xi_1^2-\xi_2^2)}2 \\
+    &= Ch \int \hat q(\xi) + Ch \int \hat q(\xi) \left( e^\frac{-ih(\xi_1^2-\xi_2^2)}2 -1 \right)
+  \end{align*}
+  We will prove $*$ later.
+  The first integral is just $Chq(0)$ which is $O(h)$.
+  Now let us look at the second integral (call it $R$).
+  \begin{align*}
+    \abs R &\leq Ch \int \abs{\hat q(\xi)} \abs\xi^2 \\
+    &= Ch \int \abs{\wh{\Delta q}(\xi)} (1+\abs\xi^2)(1+\abs\xi^2)\inv \\
+    &\leq Ch \norm{\wh{\Delta q}(\xi)(1+\abs\xi^2)}_{L^2} \\
+    &\leq Ch \norm{\Delta q}_{H^2} \leq Ch\norm{q}_{H^4} \qedhere
+  \end{align*}
+\end{proof}
