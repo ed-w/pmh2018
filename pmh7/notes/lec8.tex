@@ -1,0 +1,101 @@
+\section{2018-08-21 Lecture}
+
+\begin{rmk}[Clarification of the definition of vector bundles (2.11)]
+  Let $B: P\inv(U) \to U \times \RR^k$ be as in definition 2.11.
+  For $U \times \RR^k$ we have the product structure which clearly preserves the vector operation and this would justify the vector operations being smooth for $P\inv(U)$.
+  If $S_1, S_2: U \to \RR^k$ are smooth, then $S_1+S_2: U \to \RR^k$ is smooth (vector fields).
+\end{rmk}
+
+\begin{exam}
+  The differential is an example of a (smooth) \textbf{bundle map}:
+  \begin{equation*}
+    \begin{tikzcd}
+      TM_1 \ar[d] \ar[r, "d\Phi"] & TM_2 \ar[d] \\
+      M_1 \ar[r, "\Phi"] & M_2
+    \end{tikzcd}
+  \end{equation*}
+  Recal that if $\Phi$ is a smooth map of manifolds, then $d\Phi$ is a well-defined linear map given by
+  \[ d\Phi \left( \frac{\p}{\p u_i} \right) = \sum_{j=1}^n \frac{\p \Phi_j}{\p u_i} \frac{\p}{\p v_j}. \]
+  Here $( \tfrac{\p\Phi_j}{\p u_j})$ is a smooth matrix-valued function.
+
+  Note that $M_1$ and $M_2$ need not have the same dimension.
+  For example, we can have
+  \[ \Phi: \vec u = (u_1,\ldots,u_n) \mapsto (\Phi_1(\vec u),\ldots,\Phi_m(\vec u)). \]
+
+  We have the following properties:
+  \begin{itm}
+    \io If $M_1 \xto{\Psi} M_2 \xto{\Phi} M_3$, then $d(\Phi\circ\Psi)=d\Phi\circ d\Psi$.
+    \io If $\Phi$ is a diffeomorphism then $d(\Phi\inv)=(d\Phi)\inv$.
+    This is because $d(\id_M)=\id_{TM}$.
+  \end{itm}
+
+  This shows that the differential is a covariant functor from the category of manifolds (and smooth maps) to the category of vector spaces.
+\end{exam}
+
+Induced bundles
+
+The idea is to extend linear algebra for vector spaces to vector bundles.
+We start with a vector bundle $P: E \to M$.
+We can define a \textbf{dual bundle} $P^*: E^* \to M$ where $E^*$ is defined locally by $(E^*)_p=(E_p)^*$.
+Is this a smooth manifold?
+We can answer this question using the gluing point of view.
+
+Let $F_1, F_2: V \to U$ be different co-ordinate charts on $U \subset M$ (take their intersection w.l.o.g.) with $F_1(\vec u)=F_2(\vec v)=p$.
+Then the transition map is given by
+\begin{align*}
+  V \times \RR^n &\to V \times \RR^n \\
+  (\vec u, \vec \alpha) &\mapsto (\vec u, A \vec \alpha)
+\end{align*}
+where $A$ is the relevant Jacobian (transition) matrix and $\alpha$ is a column vector.
+Then on $E^*$ we define the transition map
+\begin{align*}
+  V \times (\RR^n)^* &\to V \times (\RR^n)^* \\
+  (\vec u, \vec \beta^*) &\mapsto (\vec v, \vec \beta^* A\inv)
+\end{align*}
+where $\vec\beta^*$ is the dual vector with respect to the standard basis.
+We need to make sure that the ``dual action'' is not affected by the choice of trivialisation.
+We require $\langle\vec\beta^*,\vec\alpha\rangle = \langle\vec\beta^*B,A\vec\alpha\rangle$ for all $\alpha,\beta\in\RR^n$ which forces $B=A\inv$.
+
+So why is $E^*$ a smooth vector bundle?
+We need to check that the order of gluing does not matter.
+If we perform $\vec\alpha \rightsquigarrow B\vec\alpha \rightsquigarrow AB\vec\alpha$, then we have $\vec\beta^* \rightsquigarrow \vec\beta^* B\inv \rightsquigarrow \vec\beta^*B\inv A\inv = \vec\beta^* (AB)\inv$.
+Note that the above construction is independent of the choice of basis: if we have a different basis related by a change of basis matrix $H$, then substituting $HAH\inv$ for $A$ the same property holds.
+
+We can also define the following bundles:
+\begin{itm}
+  \io the \textbf{tensor product bundle}: $E_1 \otimes E_2 \to M$,
+  \io the \textbf{tensor bundle}: $E^{\otimes 2} \to M$,
+  \io the \textbf{symmetric bundle}: $\cS^2(E) \to M$, and
+  \io the \textbf{antisymmetric bundle}: $\bigwedge^2 E \to M$.
+\end{itm}
+
+For the tangent bundle $TM \to M$, we have the \textbf{cotangent bundle}: $T^*M \to M$ and the tensor bundles $\bigotimes T^*M$, $\bigotimes TM$, $\bigwedge T^*M$ and $\bigwedge TM$.
+
+\begin{exer}
+  Describe the unviersal bundle of the Grassmanian.
+\end{exer}
+
+2.3 Tangent vector fields, the Lie derivative and the Lie bracket
+
+For a manifold $M$ let $\cC^\infty(M)$ be the set of smooth functions $f: M \to \RR$ (or $\CC$).
+
+\begin{defn}
+  Let $E$ be a vector bundle over $M$.
+  A \textbf{smooth section} of $E$ is a map
+  \[ S: M \to E \]
+  such that $P \circ S = \id_M$ and using charts of $M$ and the associated trivialisations of $E$, $S$ is represented as a smooth $\RR^n$-valued function.
+  The set of all sections of $E$ is denoted $\Gamma(M,E)$.
+\end{defn}
+
+\begin{rmk}
+  \lv
+  \begin{enum}
+    \io
+    The condition $P \circ S = \id_M$ says that $S(p) \in E_p$ for all $p \in M$.
+
+    \io
+    If $F: V \to U$ is a chart for $M$ and $B: P\inv(U) \to U \times \RR^k$ is the associated trivialisation, then the map
+    \[ V \xto{F} U \xto{S} P\inv U \xto{B} U \times \RR^k \xto{F\inv \times \id} V \otimes \RR^k \]
+    is smooth.
+  \end{enum}
+\end{rmk}

@@ -1,0 +1,79 @@
+\section{2018-08-21 Lecture}
+
+\begin{lem}
+  \begin{equation}\tag{\ref{6:ft}}
+    \cF \left( e^{\frac{i(x^2-y^2)}{h}}e^{-\eps(x^2+y^2)} \right) (\xi) = h(\eps-i)^{-\frac{1}{2}}h(\eps+i)^{-\frac{1}{2}}e^{\frac{-i(\xi_1^2-\xi_2^2)h}{1+\eps^2}}e^{\frac{-\eps h(\xi_1^2+\xi_2^2)}{1+\eps^2}}
+  \end{equation}
+\end{lem}
+
+\begin{proof}
+  It suffices to prove it for $h=1$ and then rescale by a change of variables.
+  \begin{align*}
+    \cF\left( e^{i(x^2-y^2)-\eps(x^2+y^2)} \right)(2\xi) &= \int_{\RR^2} e^{i(x^2-y^2)-\eps x^2-\eps y^2}e^{-2ix\xi_1-2iy\xi_2} \\
+    &= \underbrace{\int_\RR e^{ix^2-\eps x^2-2ix\xi_1} \, dx}_I \int_\RR e^{-iy^2-\eps y^2-2iy\xi_2} \, dx
+  \end{align*}
+  The other integral is left as an exercise.
+  By completing the square, we have
+  \[ (i-\eps)(x^2-2i(i-\eps)\inv\xi_1x)=(i-\eps)(x-i(i-\eps)\inv\xi_1)^2 + (1-\eps)\inv\xi_1^2\]
+  so
+  \[ I = e^{(i-\eps)\inv\xi_1^2} \int_\RR e^{(i-\eps) { \Bigg( \underbrace{ x+\frac{i\eps}{1+\eps^2}\xi_1}_{z}\Bigg)^2 }} \, dx. \]
+  Now the integrand is analytic, so we can use an ``expanding rectangle'' to shift down the line of integration to $\Im z=0$:
+  \[ I = e^{(1-\eps)\inv\xi_1^2} \int_\RR e^{(i-\eps)z^2} \, dz. \]
+  (Note that the ``vertical sides'' of the rectangle go to zero in the integral as the rectangle gets expanded to infinity.)
+  Now set $w = (\eps-i)^{1/2}z$.
+  Then
+  \[ I = e^{(1-\eps)\inv\xi_1^2} \int_\Gamma e^{w^2} \, dz = e^{(1-\eps)\inv\xi_1^2} \int_\RR e^{-\Re(w)^2+\Im(w)^2} \, dz \]
+  where $\Gamma$ is the line along $(-i+\eps)^{1/2}$.
+  Here we have chosen the square root of $\eps-i$ to have the smaller absolute value of the argument (closer to the positive real line).
+  This is to avoid the line $-\Im w = \Re w$.
+  Then we can deform $\Gamma$ until it becomes the real line $\Im w=0$ (noting again that the edges go to zero in the integral as they move out to infinity)
+  Then
+  \[ I = e^{(1-\eps)\inv\xi_1^2} \int_\RR e^{-w^2} \, dz = e^{(1-\eps)\inv\xi_1^2}\sqrt{\pi}  \]
+  Combining this with the other integral gives the desired result.
+\end{proof}
+
+Construction of CGO
+
+We want solutions to $(\Delta+q)u=0$ where $u=e^{iz^2/h}(1+r)$ and $r=o(h)$ as $h \to 0$.
+Now we compute the conjugated Laplacian:
+\[ 0=(\Delta+q)e^\frac{iz^2}{h}(1+r) = (\Delta+q)e^\frac{iz^2}{h}r+qe^\frac{iz^2}{h} \]
+or equivalently
+\[ -q = e^\frac{iz^2}h (\Delta+q) e^\frac{iz^2}h r. \]
+
+Our strategy will be as before to prove the Carleman estimate and use it to construct $r$.
+However it will not be sufficient because the quadratic term in the exponential gives an estimate of only $o(\sqrt{h})$, not $o(h)$ as required.
+So we will need to do some further work.
+
+\begin{prop}[Carleman estimate]
+  For all $u \in \cC_c^\infty(\Omega)$, we have
+  \[ \norm{ e^\frac{iz^2}h (\Delta=q) e^\frac{iz^2}h u}_{L^2} \geq \frac{1}{\sqrt{h}} \norm{u}_{L^2}. \]
+\end{prop}
+
+\begin{rmk}
+  Recall that with linear phase we get $\geq \norm{u}_{L^2}/h$.
+  Why do we get a factor of $\sqrt{h}$ now?
+  Because the exponential now has a critical point near which it behaves like a constant.
+  So it behaves somewhere between a constant and a linear function.
+\end{rmk}
+
+\begin{proof}
+  As before, it suffices to prove it in the case $q=0$ and w.l.o.g.\@ we can assume $u$ is a real function.
+  We will prove
+  \[ \norm{e^\frac{xy}h \Delta e^\frac{-xy}h u}_{L^2} \geq \norm{u}_{L^2}. \]
+  Set $\ph(x,y)=-xy$ and note that $\Delta\ph=0$.
+  Set $\ph_1=\ph-(h/2)x^2$ and note that $\Delta\ph_1=h>0$.
+  Define $\bar\p=\p_x+i\p_y$ and $\p=\p_x-i\p_y$ and note that $-\Delta=1/2\bar\p\p$.
+  
+  Now we split the operator in to its self-adjoint and skew-self-adjoint parts.
+  Let $\omega \in \cC_c^\infty(\Omega)$ be arbitrary.
+  \begin{align*}
+    \norm{e^{-\frac\ph h} \bar\p e^\frac \ph h w}^2 &= \norm{ \left( \p_x + i\frac{\p_y\ph_1}h \right)w + \left( i\p_y+\frac{\p_x\ph_1}h \right)w}^2 \\
+    &\geq \ang{\left( \p_x + i\frac{\p_y\ph_1}h \right)w,\left( i\p_y+\frac{\p_x\ph_1}h \right)w} + \ang{\left( i\p_y+\frac{\p_x\ph_1}h \right)w,\left( \p_x + i\frac{\p_y\ph_1}h \right)w} \\
+    &\geq \ang{\left[ i\p_y+\frac{\p_x\ph_1}h, \p_x + i\frac{\p_y\ph_1}h \right]w,w} = \frac 2h \ang{(\Delta\ph_1)w,w} = 2\norm{w}^2
+  \end{align*}
+  so 
+  \[ \norm{e^\frac{\ph_1}h \bar\p e^\frac{\ph_1}h w}_{L^2} \geq 2 \norm{w}_{L^2} \]
+  for all $w \in \cC_c^\infty(\Omega)$.
+  We will continue this proof next time.
+\end{proof}
+

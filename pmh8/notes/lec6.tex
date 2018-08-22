@@ -58,14 +58,14 @@ So $G(x)$ has good local behaviour (near the origin) but bad global behaviour fo
 \begin{proof}[Proof of theorem \ref{6:stat}]
   Let $q \in \cC_c^\infty(\RR^2)$.
   The integral is purely oscillating but we want some decay at infinity so we write
-  \begin{align*}
-    \int_{\RR^2} e^\frac{i(x^2-y^2)}h q(x,y) &\overset{\text{DCT}}= \lim_{\eps\to 0} \int e^\frac{i(x^2-y^2)}h e^{-\eps(x^2+y^2)} q(x,y) \\
-    &\overset{\text{Plancherel}}= \lim_{\eps\to 0} \int \hat q(\xi) \left( e^\frac{i(x^2-y^2)}h e^{-\eps(x^2-y^2)} \right)^\wedge (\xi) \\
-    &\overset{(*)}= h \lim_{\eps\to 0} \int \hat q(\xi) (\eps-i)^\frac{-1}2 (\eps+i)^\frac{-1}2 e^{-\eps h(\xi_1^2+\xi_2^2)} e^{\frac{-ih}2 \frac{(\xi_1^2-\xi_2^2)}{1+\eps^2}} \\
-    &\overset{\text{DCT}}= Ch \int \hat q(\xi) e^\frac{-ih(\xi_1^2-\xi_2^2)}2 \\
-    &= Ch \int \hat q(\xi) + Ch \int \hat q(\xi) \left( e^\frac{-ih(\xi_1^2-\xi_2^2)}2 -1 \right)
-  \end{align*}
-  We will prove $*$ later.
+  \begin{align}
+    \int_{\RR^2} e^\frac{i(x^2-y^2)}h q(x,y) &\overset{\text{DCT}}= \lim_{\eps\to 0} \int e^\frac{i(x^2-y^2)}h e^{-\eps(x^2+y^2)} q(x,y) \nonumber \\
+    &\overset{\text{Plancherel}}= \lim_{\eps\to 0} \int \hat q(\xi) \left( e^\frac{i(x^2-y^2)}h e^{-\eps(x^2-y^2)} \right)^\wedge (\xi) \nonumber \\
+    &= h \lim_{\eps\to 0} \int \hat q(\xi) (\eps-i)^\frac{-1}2 (\eps+i)^\frac{-1}2 e^{-\eps h(\xi_1^2+\xi_2^2)} e^{\frac{-ih}2 \frac{(\xi_1^2-\xi_2^2)}{1+\eps^2}} \label{6:ft} \\
+    &\overset{\text{DCT}}= Ch \int \hat q(\xi) e^\frac{-ih(\xi_1^2-\xi_2^2)}2 \nonumber \\
+    &= Ch \int \hat q(\xi) + Ch \int \hat q(\xi) \left( e^\frac{-ih(\xi_1^2-\xi_2^2)}2 -1 \right) \nonumber 
+  \end{align}
+  We will prove equation \ref{6:ft} later.
   The first integral is just $Chq(0)$ which is $O(h)$.
   Now let us look at the second integral (call it $R$).
   \begin{align*}

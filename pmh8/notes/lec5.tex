@@ -12,6 +12,7 @@ Define
 \begin{thm}[Partial data]\label{5:partial}
   Suppose that for all $f \in \cC^\infty(\p\Omega)$, we have
   \[ (\Lambda_{q_1}f)|_{\p\Omega_{+,\eps/2}(e_n)} = (\Lambda_{q_2}f)|_{\p\Omega_{+,\eps/2}(e_n)}. \]
+  Then $q_1=q_2$.
 \end{thm}
 We have the same assumptions on $q_i$ as before.
 
@@ -106,11 +107,11 @@ Then using the Cauchy-Riemann equations it is a holomorphic function, hence zero
   \end{proof}
 
   So by analytic continuation $\cF(q_1-q_2)(2\xi)=0$ everywhere.
+\end{proof}
 
-  \begin{proof}[Proof idea for proposition \ref{5:cgo}]
-    We have the Carleman estimate for all $u \in \cC_c^\infty(\Omega)$:
-    \[ h \left( \norm{h \, du} + \norm{u}_{L^2} \right) \leq \norm{e^\frac{-x_n}h h^2 (\Delta+q) e^\frac{x_n}h u}_L^2. \]
-    Note that $\norm{h\, du} + \norm{u}_{L^2} = \norm{u}_{H^1}$ (see the assignment).
-    Then we can shift to the dual norm ($H^1 \mapsto L^2$ and $L^2 \mapsto H^{-1}$) to get the derivative.
-  \end{proof}
+\begin{proof}[Proof idea for proposition \ref{5:cgo}]
+  We have the Carleman estimate for all $u \in \cC_c^\infty(\Omega)$:
+  \[ h \left( \norm{h \, du} + \norm{u}_{L^2} \right) \leq \norm{e^\frac{-x_n}h h^2 (\Delta+q) e^\frac{x_n}h u}_L^2. \]
+  Note that $\norm{h\, du} + \norm{u}_{L^2} = \norm{u}_{H^1}$ (see the assignment).
+  Then we can shift to the dual norm ($H^1 \mapsto L^2$ and $L^2 \mapsto H^{-1}$) to get the derivative.
 \end{proof}

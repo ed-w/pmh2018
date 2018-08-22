@@ -1,0 +1,87 @@
+\section{2018-08-20 Lecture}
+
+Last time we defined vector bundles and the tangent bundle.
+What is the manifold structure on $TM$? we can define this using gluing.
+
+Let $M$ be a manifold.
+Locally we have $M = \bigcup_{i \in I} U_i$ where the $U_i$ are co-ordinate charts.
+Note that the union is not disjoint.
+Let $F_i: V_i \to U_i$ where $V_i \subset \RR^n$ be the associated maps.
+For each $U_i$, take $TU_i$ to be $TV_i = V_i \times \RR^n$.
+
+What happens at the intersections?
+Suppose $U = U_1 \cap U_2 \neq \emptyset$ and consider the restrictions of the co-ordinate maps $F_1: V_1 \to U$ and $F_2: V_2 \to U$.
+Then we can view $TU$ both as $V_1 \times \RR^n$ and as $V_2 \times \RR^n$.
+For $TU \longleftrightarrow V_1 \times \RR^n$ we have
+\[ \sum_{i=1}^n a_i \frac{\p}{\p u_i}\Bigg\vert_{(u_1,\ldots,u_n)} \longleftrightarrow (u_1,\ldots,u_n,a_1,\ldots,a_n) \]
+and likewise for $TU \longleftrightarrow V_2 \times \RR^n$ we have
+\[ \sum_{i=1}^n b_i \frac{\p}{\p v_i}\Bigg\vert_{(v_1,\ldots,v_n)} \longleftrightarrow (v_1,\ldots,v_n,b_1,\ldots,b_n). \]
+How can we make these two compatible?
+We want
+\[ \sum_{i=1}^n a_i \frac{\p}{\p u_i} = \sum_{j=1}^n b_j \frac{\p}{\p v_j}. \]
+We will make a change of variables.
+Using the chain rule, we have
+\[ \sum_{i=1}^n a_i \frac{\p}{\p u_i} = \sum_{i=1}^n \sum_{j=1}^n a_i \frac{\p v_i}{\p u_j} \frac{\p}{\p v_j} \]
+so we want
+\[ b_j = \sum_{i=1}^n a_i \frac{\p v_j}{\p u_i}. \]
+Now define
+\begin{align*}
+  V \times \RR^n &\to V_2 \times \RR^n \\
+  (\vec u, \vec a) &\mapsto (\vec v, \vec b)
+\end{align*}
+and
+\[ \vec b = \left( \frac{\p v_i}{\p u_j} \right)_{i,j=1}^n \vec a. \]
+We need to check the following properties:
+\begin{enum}
+  \io The map $V \times \RR^n \to V \times \RR^n$ is the identity.
+  \io The inverse map is given by
+  \[ \vec a = \left( \frac{\p u_i}{\p v_j} \right)_{i,j=1}^n \vec b. \]
+  \io The order of gluing does not matter (the chain rule):
+  \[ \vec c = \left( \frac{\p v_i}{\p w_j} \right)_{i,j=1}^n \vec b \text{ and } \vec b = \left( \frac{\p u_i}{\p v_j} \right)_{i,j=1}^n \vec a \text{ implies } \vec c = \left( \frac{\p u_i}{\p w_j} \right)_{i,j=1}^n \vec a. \]
+\end{enum}
+Then this gluing defines an equivalence relation so we can define
+\[ TM = \coprod_{i \in I} V_i \times \RR^n \Big/ \sim. \]
+We need to check the following properties to show that this is a smooth manifold:
+\begin{enum}
+  \io It is locally Euclidean ($V \times \RR^n \subset \RR^{2n}$).
+  \io The transition function
+  \[ (\vec u, \vec a) \mapsto \left( \vec v, \left( \frac{\p v}{\p u} \right) \vec a \right) \]
+  is smooth (with smooth inverse) on intersections of charts.
+\end{enum}
+So $TM$ is a smooth vector bundle.
+
+\begin{rmk}[2.12]
+  To sum up, we have three views of the tangent space:
+  \begin{enum}
+    \io Differentiation of scalar functions (velocity)
+    \io Equivalence classes of local trivialisations
+    \io Whitney's view on manifolds (embedding in Euclidean space)
+  \end{enum}
+\end{rmk}
+
+\begin{defn}[2.13]
+  Let $\Phi: M_1 \to M_2$ be a smooth map of manifolds.
+  The \textbf{differential} of $\Phi$ at $p \in M_1$ is the linear map
+  \[ (d\Phi)_p: T_pM_1 \to T_pM_2 \]
+  defined as follows:
+  For any $X \in T_pM_1$ take a motion $\alpha(t)$ with $\alpha(0)=p$ and $\alpha'(0)=X$.
+  Then
+  \[ (d\Phi)_p(X) = \frac{d\Phi(\alpha(t))}{dt}\Bigg\vert_{t=0}. \]
+\end{defn}
+
+We need to show that this definition is well-defined.
+In particular, it needs to be independent of the choice of $\alpha$ and is a linear map.
+
+Let $X = \sum_i a_i \tfrac{\p}{\p u_i} \in T_pM_1$ and let $F_1: V_1 \to U_1 \subset M_1$ and $F_2: V_2 \to U_2 \subset M_2$ be two co-ordinate maps with co-ordinates $\vec u=(u_1,\ldots,u_n)$ and $\vec v=(v_1,\ldots,v_n)$ respectively.
+Moreover, let $F_1(\vec 0)=p$ and $\vec v = (v_1(\vec u),\ldots,v_n(\vec u))$.
+Choose $\alpha(t)$ to be $F_1(a_1t,\ldots,a_nt) \in U_1$.
+Then $\tfrac{d\alpha}{dt}=F_1(a_1,\ldots,a_n) \in V_1$.
+So
+\[ \Phi(\alpha(t)) = \Phi(a_1t,\ldots,a_nt) = (v_1(a_1t,\ldots,a_nt),\ldots,v_n(a_1t,\ldots,a_nt)) \]
+which gives
+\[ \frac{d\Phi(\alpha(t))}{dt} = \left( \sum_{j=1}^n \frac{\p v_1}{\p u_j}a_j, \ldots, \sum_{j=1}^n \frac{\p v_n}{\p u_j}a_j \right). \]
+Note that $a_j$ is the $j$th component of $\tfrac{d\alpha}{dt}|_{t=0}$.
+Therefore
+\[ d\Phi(X) = \sum_{i=1}^n \left( \sum_{j=1}^n \frac{\p v_i}{\p u_j} a_j \right) \frac{\p}{\p v_j}. \]
+At $p$, $(\tfrac{\p v_i}{\p u_j})$ is a fixed matrix and $X$ is related to $d\Phi(X)$ only by the $a_j$s.
+Therefore only the vector $\alpha'(0)$ matters and all other information of $\alpha$ is irrelevant.
