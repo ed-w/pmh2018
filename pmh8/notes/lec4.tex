@@ -3,7 +3,7 @@
 Note that we use the ``geometer's Laplacian'': $\Delta=-\nabla^2$.
 
 \begin{prop}[Carleman estimate (proposition \ref{3:est})]
-  Let $q \in L^\infty(\wt\Omega)$, let $\eta,\zeta \in \RR^n$ with $\abs{\eta}=\abs{\zeta}=1$ and define $\rho=t(\eta+i\zeta)$ where we will let $t \to \infty$.  
+  Let $q \in \cC^\infty(\wt\Omega)$, let $\eta,\zeta \in \RR^n$ with $\abs{\eta}=\abs{\zeta}=1$ and define $\rho=t(\eta+i\zeta)$ where we will let $t \to \infty$.  
   Then for some constant $C>0$ we have
   \begin{eqn}
     \norm{e^{-t\rho\cdot x}(\Delta+q)e^{t\rho\cdot x}u}_{L^2(\wt\Omega)} \geq Ct\norm{u}_{L^2(\wt\Omega)}
@@ -71,7 +71,7 @@ Note that we use the ``geometer's Laplacian'': $\Delta=-\nabla^2$.
   \begin{align*}
     iBu|_{\p\wt\Omega} &= i( \nabla\ph \cdot h\nabla u + h\nabla \cdot (\nabla\ph )u) \mid_{\p\wt\Omega} \\
     &= 2i( (1+hx_n)e_n \cdot h \nabla u) \\
-    &= 2i( (1+hx_n)e_n \cdot (\p_\nu u) \nu
+    &= 2i(1+hx_n)e_n \cdot (\p_\nu u) \nu
   \end{align*}
   where
   \[ \nabla u = (\p_\nu u) \nu + (\nabla u)^\parallel = (\p_\nu u)\nu \]
@@ -84,7 +84,7 @@ Note that we use the ``geometer's Laplacian'': $\Delta=-\nabla^2$.
   Then replacing $u$ by $e^{-x_n^2/2}u$ we get
   \[ \norm{ e^\frac{x_n}{h} h^2 \Delta e^\frac{x_n}h u }^2 \geq Ch^2\norm{u}^2 + h^3 \int_{\p\wt\Omega} e_n \cdot \nu \abs{\p_\nu u}^2 \]
   or alternatively
-  \[ \norm{ e^\frac{-x_n}{h} h^2 (\Delta+q)u }^2 \geq Ch^2 \norm{e^\frac{-x_n}{h} u }^2 + h^2 \int_{\p\wt\Omega_+} \abs{e_n \cdot \nu} \abs{ e^\frac{-x_n}{h} \p_\nu u }^2 + \int_{\p\wt\Omega_-} \abs{ e^\frac{-x_n}{h} \p_\nu u }^2. \]
+  \[ \norm{ e^\frac{-x_n}{h} h^2 (\Delta+q)u }^2 \geq Ch^2 \norm{e^\frac{-x_n}{h} u }^2 + h^2 \int_{\p\wt\Omega_+} \abs{e_n \cdot \nu} \abs{ e^\frac{-x_n}{h} \p_\nu u }^2 + h^2 \int_{\p\wt\Omega_-} \abs{e_n \cdot \nu} \abs{ e^\frac{-x_n}{h} \p_\nu u }^2. \]
   Note that we have omitted some unimportant constant factors.
 \end{proof}
 
