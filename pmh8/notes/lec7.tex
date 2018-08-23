@@ -46,7 +46,7 @@ So we will need to do some further work.
 
 \begin{prop}[Carleman estimate]
   For all $u \in \cC_c^\infty(\Omega)$, we have
-  \[ \norm{ e^\frac{iz^2}h (\Delta=q) e^\frac{iz^2}h u}_{L^2} \geq \frac{1}{\sqrt{h}} \norm{u}_{L^2}. \]
+  \[ \norm{ e^\frac{iz^2}h (\Delta+q) e^\frac{iz^2}h u}_{L^2} \geq \frac{1}{\sqrt{h}} \norm{u}_{L^2}. \]
 \end{prop}
 
 \begin{rmk}
@@ -65,7 +65,7 @@ So we will need to do some further work.
   Define $\bar\p=\p_x+i\p_y$ and $\p=\p_x-i\p_y$ and note that $-\Delta=1/2\bar\p\p$.
   
   Now we split the operator in to its self-adjoint and skew-self-adjoint parts.
-  Let $\omega \in \cC_c^\infty(\Omega)$ be arbitrary.
+  Let $w \in \cC_c^\infty(\Omega)$ be arbitrary.
   \begin{align*}
     \norm{e^{-\frac\ph h} \bar\p e^\frac \ph h w}^2 &= \norm{ \left( \p_x + i\frac{\p_y\ph_1}h \right)w + \left( i\p_y+\frac{\p_x\ph_1}h \right)w}^2 \\
     &\geq \ang{\left( \p_x + i\frac{\p_y\ph_1}h \right)w,\left( i\p_y+\frac{\p_x\ph_1}h \right)w} + \ang{\left( i\p_y+\frac{\p_x\ph_1}h \right)w,\left( \p_x + i\frac{\p_y\ph_1}h \right)w} \\

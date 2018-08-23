@@ -1,0 +1,83 @@
+\section{2018-08-23 Lecture}
+
+\begin{proof}
+  Continuing on from last time:
+  \begin{align*}
+    \norm{ e^{-\frac{\ph_1} h}\Delta e^\frac{\ph_1} h u}^2 &= \Big\Vert e^{-\frac{\ph_1}h} \bar\p e^\frac{\ph_1}h \underbrace{e^{-\frac{\ph_1}h} \p e^\frac{\ph_1}h u}_w \Big\Vert^2 \\
+    &\geq \norm{ e^{-\frac{\ph_1}h}\p e^\frac{\ph+1}h u}^2 \geq \norm{ (\p_x-i\p_y)u + i\frac{(\p_x-i\p_y)\ph_1}h u}^2  \\
+      &= \norm{(\p_x-i\p_y)u}^2 + \norm{\frac{(\p_x-i\p_y)\ph_1}hu}^2 + \frac 2h \ang{\p_x u, u \p_x\ph_1} + \frac 2h \ang{\p_y u, u\p_y \ph_1} \\
+      &= \norm{du}^2 + \frac{1}{h^2} \norm{\abs{d\ph_1}u}^2 + \frac 1h \ang{u,u\underbrace{\Delta\ph_1}_h} = \norm{du}^2 + \frac 1{h^2} \norm{\abs{d\ph_1}u}^2 + \norm{u}^2\\
+      &\geq \norm{\bar\p u}^2 + \frac 1{h^2} \norm{u\p\ph_1}^2 \overset{\text{C-S}}{\geq} \frac 1{2h} \abs{\ang{\bar\p u^2,\p\ph_1}} = \frac 1{2h} \abs{\ang{u^2,\p^2\ph_1}} \geq \frac 1{2h} \norm{u}^2
+  \end{align*}
+  since
+  \[ \p^2\ph_1 = \p^2(-xy-\frac h2 x^2) = -h+ri. \]
+  Because $\abs{d\ph_1}$ has zeros we get a worse order of $h$ on the estimate.
+\end{proof}
+
+\begin{prop}[Existence of CGO]
+  There exists a solution to $(\Delta+q)u=0$ of the form
+  \[ u=e^{\frac{iz^2}h}(1+r) \]
+  and
+  \[ \norm{r}_{L^2} \geq \sqrt h C. \]
+\end{prop}
+
+\begin{proof}
+  Define $\cA \subset L^2(\Omega)$ by:
+  \[ \cA = \left\{ e^{-\frac{iz^2}h}(\Delta+q)e^\frac{iz^2}h u \mid u \in \cC_c^\infty(\Omega) \right\}. \]
+  For all $f \in L^2$ define a linear functional
+  \begin{align*}
+    L_f: \cA &\to \CC \\
+    e^{-\frac{iz^2}h}(\Delta+q)e^\frac{iz^2}h u &\mapsto \int_\Omega fu
+  \end{align*}
+  which is well-defined because of the Carleman estimate (the difference of two different expressions integrates to zero).
+  We can see that $L_f$ is bounded using the Carleman estimate since
+  \[ \abs{L_f(e^{-\frac{iz^2}h}(\Delta+q)e^\frac{iz^2}h u)} \leq \norm{f}_{L^2}\norm{u}_{L^2} \leq \sqrt{h}\norm{f}\norm{e^{-\frac{iz^2}h}(\Delta+q)e^\frac{iz^2}h u}. \]
+  So by the Hahn-Banach theorem and the Riesz representation theorem there exists an $r \in L^2(\Omega)$ such that
+  \[ L_f(v) = \int_\Omega rv \]
+  for all $v \in L^2(\Omega)$ and
+  \[ \norm{t}_{L^2} \leq \norm{L_f} \leq \sqrt{h}\norm{f}. \]
+  Then for all $u \in \cC_c^\infty(\Omega)$ we have
+  \[ \int_\Omega fu = L_f(e^{-\frac{iz^2}h}(\Delta+q)e^\frac{iz^2}h u) = \int_\Omega r(e^{-\frac{iz^2}h}(\Delta+q)e^\frac{iz^2}h u) \]
+  so $r$ solves
+  \[ e^{-\frac{iz^2}h}(\Delta+q)e^\frac{iz^2}h r = f \]
+  in the weak sense, and $\norm{r}_{L^2} \leq \sqrt{h}f$.
+  Then as in the case $n \geq 3$ we can plug our ansatz in to the equation to conclude.
+\end{proof}
+
+However this is not enough to show $q_1-q_2=0$ because if we proceed as in the case $n \geq 3$, using Green's identity we get
+\[ 0 = h(q_1-q_2)(0) + O(h^2) + O(\sqrt{h}) \]
+where the term $(r+r'+rr')$ in $u_1u_2$ gives the $O(\sqrt{h})$ term.
+We want to get the linear term (the first term).
+
+Finer approximation for CGO
+
+We have
+\[ (\Delta+q)e^\frac{iz^2}h=qe^\frac{iz^2}h \]
+where $q = O(1)$ in $h$.
+We want to improve this to
+\[ (\Delta+q)e^\frac{iz^2}h(1+r_1)=o_{L^2}(\sqrt{h}). \]
+Then using this in the CGO solution replaces the $O(\sqrt{h})$ term with an $o(h)$ term which is what we want.
+
+The operators $\p\inv$, $\bar\p\inv$:
+Let $f \in \cC_c^\infty(\RR^2)$.
+Define
+\begin{align*}
+  \left(\bar\p\inv f\right)(z) &= \int_{\RR^2} \frac{f(w)}{z-w} \, dw \wedge d\bar w \\
+  \left(\p\inv f\right)(z) &= \int_{\RR^2} \frac{f(w)}{\bar z-\bar w} \, dw \wedge d\bar w
+\end{align*}
+where $dz \wedge d\bar z = dx \, dy$.
+
+\begin{exer}
+  Show that these are indeed inverses.
+\end{exer}
+
+\begin{proof}[Solution]
+  We have
+  \[ \bar\p\inv f(z) = \int_{\RR^2} \frac{f(w)}{z-w} = \int_{\RR^2} \frac{f(z-w)}{w} \]
+  so
+  \begin{align*}
+    \bar\p\bar\p\inv f(z) &= \bar\p_z \int_{\RR^2} \frac{f(z-w)}{w} \overset{\text{DCT}}{=} -\int_{\RR^2} \bar\p_w f(z-w) \\
+    &= \lim_{\eps\to 0} \int_{\RR^2 \setminus B_\eps(0)} \frac 1w \bar\p_w f(z-w) \overset{\text{IbP}}= \lim_{\eps\to0} \int_{\p B_\eps(0)} \frac{x+iy}{\abs{x+iy}} \frac 1w f(z-w)
+  \end{align*}
+  which when evaluated gives $f(z)$.
+\end{proof}
