@@ -1,0 +1,75 @@
+\section{2018-08-28 Lecture}
+
+\begin{rmk}
+  If there is an $\eps>0$ for this $u(t,p)$ for all $p \in M$, then $\eps$ can be taken to be $\infty$ (that is, an integral curve can be extended piecewise forever).
+  $\eps$ can be small, but $N\eps\to\infty$ as $N\to\infty$.
+\end{rmk}
+
+We define
+\[ u(t,p) = \exp(tx)(p). \]
+We have the composition law
+\[ \exp(aX) \circ \exp(bX) = \exp( (a+b)X ). \]
+This follows by uniqueness of the solution to the ODE system.
+So for $X\in\Gamma(M,TM)$ with $M$ compact, the set $\{ \exp(tX) \mid t \in \RR \}$ forms a one-parameter group of automorphisms of $M$.
+We just need to check $\exp(0X)=\id_M$.
+Note also that $\exp(-tX)=(\exp(tX))\inv$.
+The map $(\exp(\cdot X))(\cdot)$ is a flow.
+
+Now we introduce the Lie derivative.
+Let $X\in\Gamma(M,TM)$ with $M$ compact.
+Since $\exp(tX): M \to M$ we have $d(\exp(tX))_p: T_pM \to T_{\exp(tX)(p)}M$.
+For a given $p \in M$ we have for all $t \in \RR$:
+\[ d(\exp(-tX))|_{\exp(tX)(p)}[Y(\exp(tX)(p))] \in T_pM. \]
+So we can define the \textbf{Lie derivative} of $Y$ with respect to $X$ at $p \in M$:
+\[ (\cL_XY)(p) = \frac{d}{dt}\bigg\vert_{t=0}d(\exp(-tX))[Y(\exp(tX)(p))] \in T_pM. \]
+Then $\cL_XY \in \Gamma(M,TM)$.
+We have another notion called the Lie bracket for tangent vector fields:
+\[ [X,Y] = X \circ Y - Y \circ X \]
+where $X,Y\in\Gamma(M,TM)$ are considered as functionals on $\cC^\infty(M)$.
+If we have $X=\sum_iX_i\p_{u^i}$ and $Y=\sum_jY_j\p_{u^j}$ then
+\[ [X,Y] = \sum_{i,j} X_i \frac{\p Y_j}{\p u_i} - Y_i \frac{\p X_j}{\p u_i} \frac{\p}{\p u_j} \in \Gamma(M,TM). \]
+We can also use this as a definition but we need to show that it is independent fo co-ordinates (so is indeed global).
+This computation shows that the Lie bracket (in our original definition) is indeed a tangent vector (i.e. it only has first derivatives), a fact which is not a priori obvious.
+
+\begin{prop}[2.19]
+  For $X,Y\in\Gamma(M,TM)$ we have
+  \[ \cL_XY=[X,Y]. \]
+\end{prop}
+
+\begin{proof}
+  Let $p \in M$ be arbitrsary.
+  Take $\alpha_t(s)$ be a motion through $\exp(tX)(p)$ in the direction of $Y(\exp(tX)(p))$ at $s=0$.
+  Let $F: V \to U \subset M$ be a co-ordinate chart with co-ordinates $u=(u_1,\ldots,u_n)$ around $p$ and containing $\exp(tX)(p)$ for small $\abs t$.
+  Now we calculate:
+  \begin{align*}
+  \left( (\cL_XY)(p) \right)_j &= \frac{d}{dt} \bigg\vert_{t=0} \left( d(\exp(-tX)) [Y(\exp(tX)(p)] \right)_j \\
+    &= \frac{\p}{\p t} \bigg\vert_{t=0} \frac{\p}{\p s} \bigg\vert_{s=0} [\exp(-tX)(\alpha_t(s))]_j \\
+    &= \frac{\p}{\p s}\bigg\vert_{s=0} \left[ -X_j(\alpha_0(s)) + \frac{\p}{\p t}\bigg\vert_{t=0}[\alpha_t(s)]_j \right] \\
+    &= -\sum_{i=1}^n Y_i \frac{\p X_j}{\p u_i} + \frac{\p}{\p t}\bigg\vert_{t=0} [Y_j(\exp(tX)(p))] \\
+    &= -\sum_i Y_i \frac{\p X_j}{\p u_i} + \sum_i X_i \frac{\p Y_j}{\p u_i} \\
+    &= [X,Y]_j \qedhere
+  \end{align*}
+\end{proof}
+
+\begin{cor}
+  $\cL_XY=-\cL_YX$.
+\end{cor}
+
+\begin{exam}[2.21]
+  Let $G=GL_n(\RR)$ be the group of invertible $n\times n$ real matrices.
+  It is a manifold since $GL_n(\RR)\subset\Mat_n(\RR)\cong\RR^{n^2}$ and is open.
+  It is also a Lie group.
+  We can view the tangent bundle $TG=G\times\RR^{n^2}$ in two ways: firstly as parallel in $\RR^{n^2}$ and secondly in terms of the group structure.
+  At $g\in G$, for $A\in\Mat_n(\RR)=T_{\id} G$, $gA$ is the tangent vector at $g$ for $A$.
+  This provides a way to identify $T_gG$ with $T_{\id}G$ and thus trivialise $TG$.
+  (All tangent spaces are isomorphic by the functorial property of $d$.)
+  If $gA$ is the tangent vector, then $ge^{tA}$ is the motion.
+  We can consider $A$ as a constant vector field over $G$: then the flow is $\exp(tA): g \mapsto g\exp(tA)$.
+  Then
+  \begin{align*}
+    [A,B] = \cL_AB(\id) &= \frac{d}{dt}\bigg\vert_{t=0} d(\exp(-tA))[e^{tA}B] \\
+    &= \frac{\p}{\p t}\bigg\vert_{t=0} \frac{\p}{\p s}\bigg\vert_{s=0} e^{tA}e^{sB}e^{-tA} \\
+    &= AB-BA
+  \end{align*}
+  so it is consistent with the matrix bracket.
+\end{exam}

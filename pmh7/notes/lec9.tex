@@ -1,0 +1,79 @@
+\section{2018-08-27 Lecture}
+
+2.3 $\Gamma(M,TM)$, Lie derivative and Lie bracket
+
+Recall that $\Gamma(M,E)$ is the space of sections of the vector bundle $E \to M$.
+So $\Gamma(M,TM)$ is the space of tangent vector fields of $M$.
+For $X \in \Gamma(M,TM)$ we have $X_p \in T_pM$.
+One can construct a group of automorphisms of $M$ as follows:
+
+Consider a co-ordinate chart $F: V \to U \subset M$ around $p \in M$ with $F(0)=p$.
+Let $\vec u = (u_1,\ldots,u_n)$ be the co-ordinates in $V$.
+We have the following system of ODEs:
+\begin{align}
+  \frac{d\vec u}{dt} &= \vec X(\vec u) \\
+  \vec u(0) &= 0 = F\inv(p).
+  \label{9:ode}
+\end{align}
+Here $X=\sum_{i=1}^nX_i\tfrac{\p}{\p u_i}$ and equation \ref{9:ode} means
+\[ \frac{du_i(t)}{dt}=X_i(\vec u(t)) \]
+for $i=1,\ldots,n$.
+This first order linear system of ODEs has a solution for $t\in(-\eps,\eps)$ for sufficiently small $\eps>0$.
+
+This is a ``local'' construction and needs to be glued over $M$.
+We need to check that different curves in $V_1$ and $V_2$ correspond to the same curve in $U_1 \cap U_2$.
+So this is merely an issue of change of variables for $U_1 \cap U_2$.
+Let $\vec u = (u_1,\ldots,u_n)$ and $\vec v = (v_1,\ldots,v_n)$ be the co-ordinates for $V_1$ and $V_2$ respectively.
+In $V_1$, we have
+\begin{align*}
+  \frac{du}{dt}&=X(u)\\
+  u(0)&=F_1\inv p
+\end{align*}
+and in $V_2$ we have
+\begin{align*}
+  \frac{dv}{dt}&=Y(v)\\
+  v(0)&=F_2\inv p
+\end{align*}
+The vector field $X$ is given by $\sum_iX_i\tfrac{\p}{\p u_i}$ in $U_1$ and $\sum_jY_j\frac{\p}{\p v_j}$ in $U_2$ with the two expressions related by
+\[ Y_j=\sum_iX_i\frac{\p v_j}{\p u_i}. \]
+We need to check that
+\[ u(t)=F_1\inv \circ F_2 \circ v(t). \]
+So we differentiate:
+\[ \frac{du_i}{dt} = \sum_j \frac{\p u_i}{\p v_j} \frac{dv_j}{dt} = \sum_j \frac{\p u_i}{\p v_j} Y_j = \sum_j \frac{\p u_i}{\p v_j} \sum_k X_k \frac{\p v_j}{\p u_k} = \sum_k \delta_{ik} X_k = X_i. \]
+This shows that we can get the solution $u(t)$ from the solution $v(t)$ by applying a change of variables.
+
+More generally, by the uniqueness of solutions for the ODE system, we know that this is the only solution.
+So this construction of a solution to the system is independent of the choice of co-ordinates.
+Moreover, this solution $u(t,p)$ is smooth with respect to $p$.
+This is because the vector field $X(q) = \sum_i X_i(q) \tfrac{\p}{\p u_i}|_q$ is smooth with respect to $q$ in the domain, so the solution to the system
+\begin{align*}
+  \frac{du}{dt}(t,p) &= X(u(t,p)) \\
+  u(0.p) &= F\inv(p)
+\end{align*}
+is also smooth.
+
+\begin{prop}
+  On a manifold $M$, let $X \in \Gamma(M,TM)$ and for all $p \in M$ let $u(t,p) \in M$ be an integral curve.
+  Then $u(t,p)$ for a fixed $t\in(-\eps,\eps)$ is an automorphism of $M$.
+\end{prop}
+
+\begin{proof}[Proof and clarification]
+  We have for a fixed $t$
+  \begin{align*}
+    u(t,\cdot): M &\to M \\
+    p &\mapsto u(t,p)
+  \end{align*}
+  \textbf{The issue is $\eps$ can be different for different $p$.}
+  To get around this issue we will assume in this course that \textbf{$M$ is compact}.
+  Then
+  \[ M = \bigcup_{i=1}^N U_i = \bigcup_{i=1}^N \tilde U_i \]
+  where $\tilde U_i \subsetneq U_i$ for each $i$. % I think we need the closure of \tilde U_i to be in U_i as well
+  Then for each $p \in \tilde U_i$ has a uniform $\eps_i>0$, so we can take $\eps=\min\eps_i$.
+
+  So $u(t,\cdot)$ is smooth.
+  Why is it an automorphism (a diffeomorphism $M \to M$)?
+  Take $-X \in P(M,TM)$.
+  Then the solution $\bar u(t,p)$ to the equations will be the inverse of $u(t,p)$.
+\end{proof}
+
+

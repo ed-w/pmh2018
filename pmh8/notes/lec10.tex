@@ -1,0 +1,110 @@
+\section{2018-08-30 Lecture}
+
+Recall that $\Phi=iz^2=\phi+i\psi$ where $\psi=x^2-y^2$.
+Note that $\bar\p\psi(0)=\bar\psi(0)=0$, but the Hessian matrix of $\psi$ at $0$ is nondegenerate ($\pm 1$ on the diagonal).
+
+We need to prove the following estimate to finish off the computation from last time:
+\begin{prop}\label{10:prop}
+  If $\chi\in\cC_c^\infty(\Omega)$, $b\in\cC^\infty(\bar\Omega)$ and $b(0)=0$, then
+  \[ \norm{\bar\p\inv e^{i\psi/h}\chi b}_{L^2} \leq o(\sqrt{h}). \]
+\end{prop}
+
+\begin{rmk}[Intuition]
+  \begin{align*}
+    \left( \bar\p\inv e^{i\psi/h}\chi b \right)(z) &= \int_{\RR^2} e^{i\psi/h} \frac{\chi b}{z-\xi} \, d\xi_1 \, d\xi_2 \\
+    &= -ih \int_{\RR^2} \frac{\bar\p}{\bar\p\psi} e^{i\psi/h} \frac{\chi b}{z-\xi} \, d\xi_1 \, d\xi_2
+  \end{align*}
+  As $h \to 0$ the integral oscillates faster and we expect some cancellation.
+  We can get an extra factor of $h$ this way.
+  If it wasn't for the division by zero we would get $o(h)$.
+  But because we need to deal with this we only get $o(\sqrt{h})$.
+\end{rmk}
+
+We will need the following lemma.
+
+\begin{lem}[Interpolation lemma]\label{10:interp}
+  Let $p_0,p_1\in(1,\infty)$.
+  Set $p_t$ such that
+  \[ \frac1{p_t} - \frac{1-t}{p_0}+\frac t{p_1}. \]
+  Then
+\[ \norm{f}_{L^{p_t}(\Omega)} \leq C\norm{f}_{L^{p_0}(\Omega)}^{1-t}\norm{f}_{L^{p_1}(\Omega)}^t. \]
+\end{lem}
+
+\begin{proof}[Proof of proposition \ref{10:prop}]
+  We will use the interpolation lemma.
+  Consider first the $p<2$ case.
+  Let $\wt\chi\in\cC_c^\infty(\RR^2)$ and $\wt\chi\equiv1$ near $0$.
+  Define $\wt\chi_\delta(\xi)=\wt\chi(\xi/\delta)$.
+  So $\wt\chi_\delta$ has support contained inside a smaller ball than $\wt\chi$ by a factor of $\delta$.
+  Then
+  \begin{align*}
+    \norm{\bar\p\inv e^{i\psi/h}\chi b}_{L^p(\Omega)} &= \norm{\int_{\RR_\xi^2}\frac{e^{i\psi/h}}{z-\xi}\chi v \, d\xi_1 \, d\xi_2}_{L_z^p(\Omega)} \\
+    &\leq \norm{\int_{\RR_\xi^2}\frac{e^{i\psi/h}}{z-\xi}\wt\chi_\delta\chi v \, d\xi_1 \, d\xi_2}_{L_z^p(\Omega)} + \norm{\int_{\RR_\xi^2}\frac{e^{i\psi/h}}{z-\xi}(1-\wt\chi_\delta)\chi b \, d\xi_1 \, d\xi_2}_{L_z^p(\Omega)} \\
+    &\leq \int_{\RR_\xi^2}\abs{\wt\chi_\delta\chi b}\underbrace{\norm{\frac{1}{z-\xi}}_{L_z^p(\Omega)}}_{\text{finite since }p<2}\wt\chi_\delta\chi b \, d\xi_1 \, d\xi_2 + \norm{\int_{\RR_\xi^2}\frac{e^{i\psi/h}}{z-\xi}(1-\wt\chi_\delta)\chi v \, d\xi_1 \, d\xi_2}_{L_z^p(\Omega)} \\
+  &\leq C\delta^2 + h\norm{\int_{\RR_\xi^2}\bar\p e^{i\psi/h}\left( \frac{(1-\wt\chi_\delta)\chi b}{\p\bar\psi(z-\xi)}\right) \, d\xi_1 \, d\xi_2}_{L_z^p(\Omega)}
+  \end{align*}
+  Call the integral $I$.
+  Then
+  \begin{align*}
+    I &= \int_{\RR_\xi^2}\bar\p e^{i\psi/h}\left( \frac{(1-\wt\chi_\delta)\chi b}{\p\bar\psi(z-\xi)}\right) \, d\xi_1 \, d\xi_2 \\
+    &= \lim_{\eps\to0} \int_{\RR_\xi^2\setminus B_\eps(z)}\bar\p e^{i\psi/h}\left( \frac{(1-\wt\chi_\delta)\chi b}{\p\bar\psi(z-\xi)}\right) \, d\xi_1 \, d\xi_2 \\
+    &= \lim_{\eps\to0} \int_{\RR_\xi^2\setminus B_\eps(z)}e^{i\psi/h}\bar\p \left( \frac{(1-\wt\chi_\delta)\chi b}{(\p\bar)\psi(z-\xi)}\right) \, d\xi_1 \, d\xi_2 + \lim_{\eps\to0} \int_{\p B_\eps(z)}\frac{z-\xi}{\abs{z-\xi}}\left( \frac{(1-\wt\chi_\delta)\chi b}{\p\bar\psi(z-\xi)}\right) \, d\xi_1 \, d\xi_2 \\
+    &= \lim_{\eps\to0} \int_{\RR_\xi^2\setminus B_\eps(z)}\frac{e^{i\psi/h}}{z-\xi}\bar\p \left( \frac{(1-\wt\chi_\delta)\chi b}{(\p\bar)\psi}\right) \, d\xi_1 \, d\xi_2 + \lim_{\eps\to0} \frac1\eps \int_{\p B_\eps(z)}\frac{(1-\wt\chi_\delta)\chi b}{\p\bar\psi} \, d\xi_1 \, d\xi_2 \\
+    &= \int_{\RR_\xi^2}\frac{e^{i\psi/h}}{z-\xi}\bar\p \left( \frac{(1-\wt\chi_\delta)\chi b}{(\p\bar)\psi}\right) \, d\xi_1 \, d\xi_2 + \frac{(1-\wt\chi_\delta)\chi b}{\p\bar\psi}\bigg\vert_z \\
+  &= \int_{\RR_\xi^2}\frac{e^{i\psi/h}}{z-\xi} \delta\inv \frac{(\bar\p_\xi\wt\chi)\left( \frac\chi\delta \right)\chi b}{(\p\bar)\psi} \, d\xi_1 \, d\xi_2 + \int_{\RR_\xi^2}\frac{e^{i\psi/h}}{z-\xi}(1-\wt\chi_\eps)\bar\p_\xi\left( \frac{\chi b}{\bar\p\psi} \right) \, d\xi_1 \, d\xi_2 + \frac{(1-\wt\chi_\delta)\chi b}{\p\bar\psi}\bigg\vert_z 
+  \end{align*}
+  Now substitute this in:
+  \begin{align*}
+    \norm{\bar\p\inv e^{i\psi/h}\chi b}_{L^p} &\leq C\delta^2 + h\left( \delta\inv \norm{ \int_{\RR^2} \frac{\chi(\bar\p_\xi\wt\chi)\left( \frac\chi\delta \right)}{\abs{z-\xi}} }_{L_z^p} + \Bigg\Vert \int_{\RR_\xi^2} \overbrace{\frac{\abs{\bar\p_\xi\left( \frac{\chi b}{\bar\p\psi} \right)}}{\abs{z-\xi}}}^{\sim\xi/\abs\xi} \Bigg\Vert_{L_z^p} + C' \right) \\
+    &\leq C\delta^2 + h(\delta\inv \int \underbrace{(\bar\p_\xi\wt\chi)\left( \frac\xi\delta \right)}_{=0 \text{ outside } B_{z,\delta}} \, d\xi + C') \\
+    &\leq C\delta^2+h(\delta+C') \\
+    &\overset{\delta\to0}{\leq} C''h
+  \end{align*}
+  Now we look at $p>2$.
+  \[ \norm{\bar\p\inv e^{i\psi/h}\chi b}_{L^p(\Omega)} = \norm{ \int_{\RR^2} \frac{e^{i\psi/h}}{z-\xi}\chi b \, d\xi_1 \, d\xi_2 }_{L_z^p(\Omega)} \leq C \norm{ \int_{\RR^2} \frac1{abs{z-\xi}}\, d\xi_1 \, d\xi_2 }_{L_z^p(\Omega)} \leq C'. \]
+  (Since we got a good estimate for $p<2$ a bad one suffices here.)
+  Now choose $p_0<2$ and $p_1>>2$.
+  Then $1/2=(1-t)/p_0+t/p_1$ for $t$ near $0$.
+  Applying interpolation, we get
+  \[ \norm{\bar\p\inv e^{i\psi/h}\chi b}_{L^2(\Omega} \leq Ch^{1-t}. \qedhere \]
+\end{proof}
+
+In order to prove the interpolation lemma we need the following lemma.
+
+\begin{lem}[Hadamard's 3-line theorem]
+  Let $f(z)$ be continuous in $\{0 \leq \Re(z) \leq 1\}$ and unifomrly bounded and analytic in the interior.
+  Define
+  \[ M(x) = \sup_y \abs{f(x+iy)}. \]
+  Then
+  \[ M(x) \leq M(0)^{1-x}M(1)^x. \]
+\end{lem}
+
+\begin{exer}
+  Look up the proof (using the maximum modulus principle).
+\end{exer}
+
+\begin{proof}[Proof of lemma \ref{10:interp}]
+  Let $1/p_1+1/q_1=1/p_0+1/q_0=1$ and define
+  \[ \frac1{q_t}=\frac{1-t}{q_0}+\frac t{q_1}. \]
+  (Then $1/p_t+1/q_t=1$.)
+  Then
+  \[ \norm{f}_{p_t} = \sup\left\{ fg \mid \norm{g}_{q_t} \right\} \]
+  and we can restrict the set to just simple functions $g$ by density.
+  So
+  \[ g = \sum_{k=1}^n \abs{a_k} e^{i\theta_k}E_k \]
+  where the $E_k$s are indicator functions.
+  Define
+  \[ \alpha(z) = \frac{1-z}{q_0}+\frac z{q_1}, \]
+  set
+  \[ g(z) = \sum_{k=1}^m \abs{a_k}^\frac{\alpha(z)}{\norm{\alpha(z)}}e^{i\theta_k}E_k\]
+  and let
+  \[ \Psi(z) = \int fg_z \]
+  which is analytic (by dominated convergence).
+  Now $\norm{g_{iy}}_{L^{q_0}}=1$ (exercise), so
+  \[ \abs{\Psi(iy)} = \abs{\int fg_{iy}} \leq \norm{f}_{p_0}\norm{g_{iy}}_{q_0}=\norm{f}_{p_0}. \]
+  Similarly
+  \[ \abs{\Psi(1_iy)}=\abs{\int fg_{1+iy}}\leq\norm{f}_{p_1}{\norm{g_{1+iy}}_{q_1}}\leq\norm{f}_{p_1}. \]
+  Then
+  \[ \abs{\Psi(x)} \leq \norm{f}_{p_1}^x \norm{f}_{p_0}^{(1-x)} \leq \norm{f}_{p_1} \]
+  for all $\norm{g}_{q_t}=1$, then we can take the supremum.
+\end{proof}

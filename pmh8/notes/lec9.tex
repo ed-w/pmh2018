@@ -1,0 +1,82 @@
+\section{2018-08-28 Lecture}
+
+Let $\Phi=iz^2=\ph+i\psi$.
+(Note that $\psi=x^2-y^2$.)
+Recall that we have the following solvability result:
+For all $f \in L^2(\Omega)$ there exists a solution $r$ such that
+\[ e^{-\Phi/h}(\Delta+q)e^{\Phi/h}r=f \]
+for $h>0$, and
+\[ \norm{r}_{L^2(\Omega)} \leq \sqrt{h} \norm{f}_{L^2(\Omega)}. \]
+
+We want
+\[ e^{-\Phi/h}(\Delta+q)e^{\Phi/h}(1+r_1)=o_{L^2}(\sqrt{h}) \text{ as } h\to 0. \]
+It suffices to show that
+\[ e^{-\Phi/h}(\Delta+q)e^{\Phi/h}r_1=-q+o_{L^2}(\sqrt{h}) \text{ as } h\to 0 \text{ where } r_1=o_{L^2}(\sqrt{h}). \]
+It suffices to show that
+\[ e^{-\Phi/h}\Delta e^{\Phi/h}r_1=-q+o_{L^2}(\sqrt{h}) \text{ as } h\to 0 \text{ where } \norm{r_1}_{L^2}=o(\sqrt{h}). \]
+We use that $\Delta=\bar\p\p$.
+Since $\bar\p$ is zero on analytic functions, it suffices to show that
+\[ \bar\p e^{-\Phi/h}\p e^{\Phi/h}r_1=-q+o_{L^2}(\sqrt{h}) \text{ as } h\to 0 \text{ where }\norm{r_1}_{L^2}=o(\sqrt{h}). \]
+Since $\p$ is zero on anti-analytic functions (conjugates of analytic functions), it suffices to show that
+\begin{align*}
+  \bar\p e^{-\Phi/h}e^{\bar\Phi/h}\p e^{\Phi/h}e^{\bar\Phi/h}r_1&=-q+o_{L^2}(\sqrt{h}) \text{ as } h\to 0 \text{ where }\norm{r_1}_{L^2}=o(\sqrt{h}) \\
+  \impliedby \bar\p e^{-2i\psi/h}\p e^{2i\psi/h}r_1&=-q+o_{L^2}(\sqrt{h}) \text{ as } h\to 0 \text{ where }\norm{r_1}_{L^2}=o(\sqrt{h}) \\
+  \impliedby e^{-2i\psi/h}\p e^{2i\psi/h}r_1&=-\bar\p\inv q+a+o_{H^1}(\sqrt{h}) \text{ as } h\to 0 \text{ where }\norm{r_1}_{L^2}=o(\sqrt{h})
+\end{align*}
+where $a$ is any analytic funciton.
+Then choose $\bar\p a$ such that $a(0)=(\bar\p\inv q)(o)$.
+\[ \impliedby e^{-2i\psi/h}\p e^{2i\psi/h}r_1=-\bar\p\inv b+o_{H^1}(\sqrt{h}) \text{ as } h\to 0 \text{ where }\norm{r_1}_{L^2}=o(\sqrt{h}) \]
+
+Here is a heuristic argument.
+\begin{equation}
+  \left( \p+\frac{2i\p\psi}{h} \right)r_1 = b+o_{H^1}(\sqrt{h})
+  \label{9:star}
+\end{equation}
+If we define 
+\[r_1=h\frac{b}{2i\p\psi}\]
+then
+\[ \left( \p+\frac{2i\p\psi}{h} \right)r_1 = b+O(h) \]
+but $b/\p\psi$ is singular at $0$.
+
+Take $\chi\in\cC_c^\infty(\Omega)$ to be a cutoff function that is identically $1$ near $0$.
+Write $b=\chi b+(1-\chi)b$.
+Now set
+\[ r_{1,2} = h \frac{(1-\chi)b}{2i\p\psi} \]
+and
+\[ r_{1,1} = e^{-2i\psi/h}\p\inv e^{2i\psi/h}\chi b. \]
+This is valid since $1-\chi$ is zero in a neighbourhood of $0$.
+Set $r_1=r_{1,1}+r_{1,2}$.
+We claim that $r_1$ satisfies equation \ref{9:star}.
+\begin{align*}
+  \p r_1 + \frac{2i\p\psi}{h}r_1 &= e^{-2i\psi/h}\p e^{2i\psi/h}r_{1,1}+\p r_{1,2} + \frac{2i\p\psi}{h}r_{1,2} \\
+  &= \chi b +h\p\frac{(1-\chi)b}{2i\p\psi} + (1-\chi)b = b+O_{H^1}(h) \\
+\end{align*}
+
+\begin{prop}
+  $\norm{r_{1,1}}_{L^2} \leq o(\sqrt h)$.
+\end{prop}
+
+So we have shown
+\begin{prop}
+  There exists an $r_1$ with $r_1=r_{1,1}+r_{1,2}$ and
+  \[ r_{1,1} = e^{-2i\psi/h}\p\inv e^{2i\psi/h}\chi b, \ b(0)=0, \]
+  \[ r_{1,2} = hf, \ f \in \cC_c^\infty(\Omega). \]
+  such that 
+  \[ e^{-\Phi/h}(\Delta+q)e^{\Phi/h}(1+r_1)=o_{L^2}(\sqrt{h}) \text{ and } \norm{r_{1,1}}_{L^2} \leq o(\sqrt h). \]
+\end{prop}
+
+Now apply solvability to get $r_2$ with $\norm{r_2}_{L^2} \leq o(h)$ such that
+\[ e^{-\Phi/h}(\Delta+q)e^{\Phi/h}(1+r_1+r_2)=0. \]
+Now we can solve the Calderon problem.
+Recall that we have
+\[ 0 = \int u_1(q_1-q_2)u_2 \text{ and } (\Delta+q_j)u_j=0. \]
+Then
+\begin{align*}
+  0 &= \int e^{iz^2/h}e^{i\bar z^2/h} (q_1-q_1)(1+r_1+r_2)(1+r_1'+r_2') \\
+  &= \int e^{2i\psi/h}(q_1-q_2)(1+r_1+r_2)(1+r_1'+r_2') \\
+  &= \int e^{2i\psi/h}(q_1-q_2)(1+r_1+r_1') + o(h) \\
+  &= \int e^{2i\psi/h}(q_1-q_2) + \int e^{2i\psi/h}(r_{1,1}+r_{1,2}) + \int e^{2i\psi/h}(r_{1,1}'+r_{1,2}') \\
+  &= \underbrace{h(q_1-q_2)(0)}_{\text{stationary phase}} + \int e^{2i\psi/h}(r_{1,1}+r_{1,2}) + \underbrace{\int e^{2i\psi/h}g}_{o(1)\text{ (exercise, Riemann-Lebesgue}} \\
+    &= h(q_1-q_2)(0) + \int_{z\in\Omega} (q_1-q_2) \int_{w \in \RR^2} \frac{e^{2i\psi/h}}{w-z} \chi(w)b(w) + o(h) \\
+    &= h(q_1-q_2)(0) + \int_{w \in \RR^2} \chi(w)b(w) e^{2i\psi/h} \int_{z \in \Omega} \frac{(q_1-q_2)(z)}{w-z} + o(h)
+\end{align*}
