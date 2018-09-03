@@ -1,0 +1,94 @@
+\section{2018-09-03 Lecture}
+
+Recall that $\cL_XY=[X,Y]$ for $X,Y\in\Gamma(M,TM)$.
+
+\begin{rmk}
+  The Lie derivative also differentiates the direction $X$.
+  This is very different from the directional derivative $D_XY$.
+  Furthermore, the value of $(\cL_XY)(p)$ depends on the values of $X$ and $Y$ near $p$, not just at $p$.
+  The Lie derivative is also anti-symmetric with respect to $X$ and $Y$, as can be seen from the bracket formula.
+\end{rmk}
+
+\begin{rmk}
+  The Lie derivative also respects submanifold structures.
+  Let $S$ be a submanifold of $M$ and $X \in \Gamma(S,TS) \subset \Gamma(M,TM)$.
+  Then $\cL_XY=[X,Y]\in\Gamma(S,TS)$.
+  To see this, we have locally $S \cap U \subset M \cap U$ where $U$ is a chart in $M$.
+  If $(u_1,\ldots,u_n)$ are the co-ordinates on $M$, then $(u_1,\ldots,u_k,0,\ldots,0)$ are the co-ordinates on $S$.
+  Let $X=X^i\p_i$ and $Y=Y^j\p_j$ where $X^i=0$ and $Y^i=0$ for $i>k$.
+  Then $[X,Y]$ is a linear combination of the $\p_i$ for $i=1,\ldots,k$ using the formula for the Lie bracket we computed last time.
+  
+  Here is another way to look at it: if $X,Y\in\Gamma(M,TM)$, then $X|_S,Y|_S\in\Gamma(S,TS)$.
+  Then $[X,Y]_M|_S$ is the same as $[X|_S,Y|_S]_S$.
+\end{rmk}
+
+\begin{thm}[Frobenius]
+  For a manifold $M$, let $E$ be a sub-bundle of $TM$.
+  If $[X,Y]\in\Gamma(M,E)$ for any $X,Y\in\Gamma(M,E)$,then for each point $p \in M$ there exists a ``local'' submanifold $S$ through $p$ such that $TS=E|_S$.
+\end{thm}
+
+\begin{proof}[Explanation]
+  We can use the property of closure under the Lie bracket to construct a co-ordinate system $(u_i)_{i=1}^n$ such that $\{\p_i\}_{i=1}^k$ generates $E$ (using induction).
+  Note that $[\p_i.\p_j]=0$ and this property is in some sense equivalent to the closure property $[X,Y]\in\Gamma(M,E)$.
+  Then $[X_i\p_i,Y_j\p_j]\in\ang{\p_i,\p_j}$.
+
+  About the ``local'' condition: torus irrational slope line dense
+  Every point $p$ is contained in a open set which is a submanifold.
+\end{proof}
+
+\begin{prop}
+  Let $M$ be a manifold and let $\{U_i\}_{i\in I}$ be a locally finite open cover of $M$, that is, the set $\{i\in I \mid p \in U_i\}$ is finite for all $p$.
+  Then there exists a set $\{\rho_i\in\cC_c^\infty(U_i,\RR_{\geq0})\}_{i\in I}$ such that $\sum_{i\in I}\rho_i \equiv 1$.
+\end{prop}
+
+\begin{proof}[Explanation]
+  This can be constructed using cutoff functions.
+  For each $U_i$ you can construct a non-negative function $\rho_i\in\cC_c^\infty(U_i)$ and $\{\supp(\rho_i)\}_{i\in I}$ also covers $M$.
+  We can construct these functions piecewise, for example using as a first step
+  \begin{equation*}
+    f(x)=
+    \begin{cases}
+      e^{-\frac1x} & x>0 \\
+      0 & x\leq0
+    \end{cases}
+  \end{equation*}
+  which is smooth.
+  By local finiteness the sum $\sum_{i\in I}\rho_i$ makes sense and is a well-defined positive-valued function over $M$ by construction.
+  Then we can normalise so that the sum is $1$.
+\end{proof}
+
+3. Differentiation over a manifold
+
+3.1 Metric and connection
+
+\begin{defn}[3.1]
+  Let $M$ be a smooth manifold.
+  A \textbf{Riemannian metric} $g$ is a smoothly varying family of Euclidean inner products
+  \[ g_p: T_pM \times T_pM \to \RR \]
+  parametrised by $p \in M$ where the smoothness is understood using local co-ordinates (trivialisations of $TM$).
+  More rigorously, $g\in\Gamma(M,\cS^2(T^*M))$ and $g(p)$ is positive definitefor all $p$, hence is an inner product.
+  Then $(M,g)$ is called a \textbf{Riemannian manifold}.
+\end{defn}
+
+\begin{rmk}
+  This is a generalisation of the First Fundamental Form of a regular surface in $\RR^N$.
+  By a classical result of Nash, every Riemannian manifold $(M,g)$ can be embedded in some $R^N$ with $g$ the same as the Euclidean inner product on $\RR^N$ restricted to $M$.
+\end{rmk}
+
+\begin{defn}
+  If $N$ is a submanifold of $M$ and the metric $g_2$ on $N$ is the restriction to $N$ of the metric $g_1$ on $M$, then $(N,g_2)$ is a \textbf{Riemannian submanifold} of $(M,g_1)$.
+\end{defn}
+
+\begin{defn}[3.3]
+  For any Riemannian manifold $(M,g)$, there exists (by Nash) an embedding $(M,g) \subset (\RR^N,g_E)$ in which $M$ is a Riemannian submanifold of $\RR^N$.
+  Then the \textbf{Levi-Civita connection} is defined as
+  \[ \nabla_XY = \proj_{T_pM} D_x(\bar Y) \]
+  where $p \in M$, $X \in T_pM$ and $Y\in\Gamma(M,TM)$.
+\end{defn}
+
+Here are some aspects of the Levi-Civita connection:
+\begin{itm}
+  \io It doesn't depend on the choice of $(\RR^N,g_E)$.
+  \io It generalises to vector bundles.
+\end{itm}
+
