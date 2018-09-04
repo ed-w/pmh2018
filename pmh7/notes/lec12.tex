@@ -1,0 +1,105 @@
+\section{2018-09-04 Lecture}
+
+\begin{rmk}
+  $\nabla$ depends only on $(M,g)$ and not on the embedding in to Euclidean space (this will be obvious by the below discussion).
+\end{rmk}
+
+\begin{defn}
+  A \textbf{connection} $\nabla$ for a vector bundle $E$ over a manifold $M$ is a map
+  \begin{align*}
+    \nabla: \Gamma(M,TM) \times \Gamma(M,E) &\to \Gamma(M,E) \\
+    (X,Y) &\mapsto \nabla_XY
+  \end{align*}
+  which is $\RR$-linear with respect to both components and also satisfies
+  \begin{enum}
+    \io $\nabla_{fX}Y=f\nabla_XY$, and
+    \io $\nabla(fY)=(Xf)\nabla_XY+f\nabla_XY$.
+  \end{enum}
+  for all $X\in\Gamma(M,TM)$, $Y\in\Gamma(M,E)$ and $f\in\cC^\infty(M)$.
+\end{defn}
+
+We will usually be concerned only with the case $E=TM$.
+
+\begin{rmk}
+  \lv
+  \begin{enum}
+    \io
+    This is a local notion; that is, $(\nabla_XY)_p$ depends only on the values of $X$ and $Y$ near $p$.
+
+    We will first check this claim for $X$.
+    By $\RR$-linearity it suffices to check that $(\nabla_XY=0)_p$ if $X\equiv0$ in some neighbourhood $U$ of $p$.
+    Take a smooth cutoff (bump) function $\rho$ with $\supp\rho\subset U$ and $\rho\equiv1$ in some even smaller neighbourhood $V$ of $p$.
+    By construction we have $X=\rho X$.
+    Then $\nabla_XY=\nabla_{\rho X}Y=\rho\nabla_XY$, so evaluating at $p$ gives $(\nabla_XY)_p=\rho(p)(\nabla_XY)_p=0$.
+
+    We now check this claim for $Y$; that is, we will check that $(\nabla_XY)_p=0$ if $Y\equiv0$ in some neighbourhood $U$ of $p$.
+    Take another such smooth cutoff function $\rho$.
+    Then $\nabla_XY=\nabla_X(\rho Y)=(X\rho)Y+\rho\nabla_XY$.
+    Now $(X\rho)(p)=0$ since $\rho\equiv1$ on $V$.
+    Then evaluating at $p$ as before gives $(\nabla_XY)_p=0$.
+
+    \io
+    $\nabla$ is tensorial (pointwise) in the $X$-component; that is, for all $p\in M$ we have
+    \[ (\nabla_{X_1}Y)_p=(\nabla_{X_2}Y)_p \text{ if } X_1(p)=X_2(p). \]
+    To see this, note first that the previous part allows us to perform calculations locally in any neighbourhood of $p$.
+    Take a co-ordinate chart $F: V \to U \subset M$ with co-ordinates $(u_i)_{i=1}^n$.
+    Set $X_1-X_2=X=X^i\p_i$ where $(X^i)_p=0$ for all $i$.
+    Then $(\nabla_XY)_p=(X^i\nabla_{\p_i}Y)_p=0$ where we have used the following exercise to justify the $C^\infty$-linearity in the first argument.
+
+    Note that this does not hold for $Y$!
+
+    \begin{exer}
+      Show that if $U$ is open in $M$, then a smooth function $f:U \to \RR$ can be extended to a smooth function $F:M \to \RR$ such that $F|_V=f$ for some open set $V \subseteq U$.
+      Hint: use cutoff functions.
+    \end{exer}
+
+    So the $C^\infty$-linearity in the first argument ensures that the dependence of the corresponding component is pointwise.
+    However, differentiation is not a pointwise notion (we need a small neighbourhood in order to differentiate).
+
+    \io
+    Locally, the information of a connection is all contained in a $1$-form-valued matrix $(\alpha_{ij}\in\Gamma(U,T^*U))_{ij}$ for some neighbourhood $U$ in $M$.
+    Then $\nabla_XV_i=\sum_{i=1}^n \alpha_{ij}(X)V_j$ where $\{V_i\}$ is a local frame for the bundle $E$ (or $TU$), $X\in\Gamma(U,TU)$, $\alpha\in\Gamma(U,T^*U)$ and $\alpha_{ij}(X)$ is the natural pairing between $T^*U$ and $TU$.
+    More explicitly, we have
+    \[ \nabla_X f^iV_i = (Xf^i)V_i+f^i\nabla_XV_i \]
+    where the sum is over $i=1,\ldots,k=\rank E$.
+    So given a matrix $(\alpha_{ij})$ we can define the corresponding connectoin.
+    This shows the $\cC^\infty$-linearity for the $X$-component (since $\alpha_{ij}(\cdot)$ is $\cC^\infty$-linear).
+    This matrix is sometimes called the \textbf{connection matrix}.
+
+    \io
+    We can construct a connection on any vector bundle $E$ over $M$ using a partition of unity.
+    Take an open covering $\{U_i\}$ of $M$ such that each $U_i$ is a trivialising set for $E$.
+    In each $U_i$ we can choose any matrix $(\alpha_{ij}\in\Gamma(U,T^*U))_{ij}$.
+    This gives (locally) a connection $\nabla^{(i)}$ in $U_i$.
+    Now take a partition of unity $\{\rho_i\}$ subordinate to the open cover $\{U_i\}$.
+    Then define
+    \[ \nabla_XY = \nabla_X (\sum_i\rho_iY) = \sum_i \nabla_X^{(i)}(\rho_iY). \]
+
+    \begin{exer}
+      Show that this indeed defines a connection.
+    \end{exer}
+  \end{enum}
+\end{rmk}
+
+Now for a Riemannian manifold $(M,g)$ there is a particularly good connection for the tangent bundle $TM$ called the \textbf{Levi-Civita connection}.
+It (is the unique connection that) satisfies the following two properties:
+\begin{enum}
+  \io
+  Compatibility with $g$; that is,
+  \[ \nabla_X(g(Y,Z)) \defeq X(g(Y,Z)) = g(\nabla_XY,Z)+g(Y,\nabla_XZ) \]
+  for all $X,Y,Z\in\Gamma(M,TM)$.
+  Note that the Euclidean connection satisfies this Leibniz rule.
+  (This can also be understood as $\nabla_Xg=0$ where we consider $g$ as an element of $\Gamma(M,T^*M\otimes T^*M)$.)
+
+  \io
+  Symmetry or torsion-free; that is, the torsion
+  \[ \tau(X,Y) \defeq \nabla_XY-\nabla_YX-[X,Y] \]
+  is identically zero.
+
+  \begin{exer}
+    Show that the torsion is a tensor, that is,
+    \[ \tau(f_1X,f_2Y)=f_1f_2\tau(X,Y) \]
+    for all $f_1,f_2\in\cC^\infty(M)$.
+  \end{exer}
+\end{enum}
+
