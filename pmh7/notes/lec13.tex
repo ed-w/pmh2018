@@ -1,0 +1,105 @@
+\section{2018-09-10 Lecture}
+
+Recall that $\nabla_XY=\proj_{TM}D_X\bar Y$ where we embed $(M,g)$ in $(\RR^N,g_E)$.
+We then gave an alternative definition: $\nabla$ is the unique connection satisfying the following properties:
+\begin{enum}
+  \io Compatibility with $g$: $X(g(Y,Z)) = g(\nabla_XY,Z) + g(Y,\nabla_XZ)$
+  \io Torsion-free: $\tau(X,Y) = \nabla_XY - \nabla_YX - [X,Y] = 0$
+\end{enum}
+
+\begin{exer}
+  Show that $\tau$ is a skew-symmetric tensor over $\cC^\infty(M)$.
+\end{exer}
+
+To see that they are equivalent, here is another definition of the (Levi-Civita) connection.
+We will write $(\cdot,\cdot)$ for $g(\cdot,\cdot)$ from now on.
+
+For $X,Y,Z\in\Gamma(M,TM)$, we define
+\[ F(X,Y,Z) = X(Y,Z) + Y(X,Z) - Z(X,Y) - ([X,Z],Y) - ([Y,Z],X) - ([Y,X],Z) \]
+and then define $2(\nabla_XY,Z)=F(X,Y,Z)$.
+Here we think of $(\nabla_XY,Z)$ as a map
+\begin{align*}
+  F: \Gamma(M,TM)\times\Gamma(M,TM)\times\Gamma(M,TM) &\to \cC^\infty(M) \\
+  (X,Y,Z) &\mapsto (\nabla_XY,Z).
+\end{align*}
+There are some things we need to check to show that this indeed gives a connection.
+
+Check that $F$ is $\cC^\infty(M)$-linear in the $Z$-component:
+\begin{align*}
+  F(X,Y,fZ) &= X(Y,fZ) + Y(X,fZ) - fZ(X,Y) - ([X,fZ],Y) - ([Y,fZ],X) - ([Y,X],fZ) \\
+  &= fF(X,Y,Z) + X(f)(Y,Z) + Y(f)(X,Z) - (X(f)Z,Y) - (Y(f)Z,X) = fF(X,Y,Z).
+\end{align*}
+where we have used the product rule and that
+\[ [X,fZ](\cdot) = X(fZ(\cdot)) - fZ(X(\cdot)) = X(f)Z(\cdot) - f[X,Z](\cdot). \]
+
+So we can define $F(X,Y,Z)=g(\wt F(X,Y),Z)$.
+
+\begin{exer}
+  Show that $F$ is $\cC^\infty$-linear in the $X$-component.
+\end{exer}
+
+Now we check the product rule for the $Y$-component.
+\begin{align*}
+  F(X,fY,Z) &= fY(X,Z) - 2(X,fY) - ([X,Z],fY) - ([fY,Z],X) - ([fY,X],Z) \\
+  &= fF(X,Y,Z) + 2X(f)(Y,Z).
+\end{align*}
+Then
+\[ (\wt F(X,fY).Z) = f(\wt F(X,Y),Z) - (X(f)Y,Z), \]
+so
+\[ \wt F(X,fY) = f\wt F(X,Y) - X(f)Y. \]
+The $\RR$-linearity in all components is clevar.
+So $\wt F$ satisfies the properties of a connection, hence $\wt F(X,Y)=\wt\nabla_XY$.
+
+Now we show that $\wt\nabla$ satisfies the properties of a Levi-Civita connection.
+
+We have
+\[ 2(\wt\nabla_YX,Z) = Y(X,Z) + X(Y,Z) - Z(Y,X) - ([Y,Z],X) - ([X,Z],Y) - ([X,Y],Z) \]
+so
+\[ 2(\wt\nabla_XY-\wt\nabla_YX,Z) = 2([X,Y],Z). \]
+Since this is true for all $Z$, it follows that $\wt\nabla$ is torsion-free.
+By direct calculation we also have
+\[ 2(\wt\nabla_XY,Z) + 2(\wt\nabla_XZ,Y) = 2X(Y,Z) \]
+which shows that $\wt\nabla$ is compatible with the metric.
+
+Now suppose that $\wh\nabla$ is another connection that is torsion-free and compatible with $g$.
+Then
+\begin{align*}
+  &X(Y,Z) + Y(X,Z) - Z(X,Y) - ([X,Z],Y) - ([Y,Z],X) - ([Y,X],Z) \\
+  &= (\wh\nabla_XY,Z) + (\wh\nabla_XZ,Y) + (\wh\nabla_YX,Z) + (\wh\nabla_YZ,X) - (\wh\nabla_ZX,Y) - (\wh\nabla_ZY,X) \\
+  &\quad - (\wh\nabla_XZ-\wh\nabla_ZX,Y) - (\wh\nabla_YZ-\wh\nabla_ZY,X) - (\wh\nabla_YX-\wh\nabla_XY,Z) \\
+  &= 2(\wh\nabla_XY,Z) = 2(\wt\nabla_XY,Z).
+\end{align*}
+So the alternative definition (a connection which is torsion-free and compatible) is equivalent to this explicit formula.
+
+\begin{exer}
+  Calculate this connection in local co-ordinates.
+  For a local frame $\{u_i\}_{i=1}^n$, find $\Gamma_{ij}^k$ where
+  \[ \wh\nabla_{\p_i} \p_j = \Gamma_{ij}^k\p_k. \]
+\end{exer}
+
+Induced connection on a Riemannian submanifold.
+Let $(M,g_1)$ be a Riemannian submanifold of $(N,g_2)$.
+Then the connection $\wh\nabla^N$ for $(N,g_2)$ in the alternative definitoin restricts to the connection $\wh\nabla^M$ for $(M,g_1)$ in the alternative definition, that is
+\[ \wh\nabla_X^MY = \proj_{TM}(\wh\nabla_X^NY) \]
+for $X,Y\in\Gamma(M,TM)=\Gamma(M,TN|_M)$.
+We can justify this using the explicit formula.
+We can extend $X$ and $Y$ can be extended to $N$.
+Since the formula is true in $M$, it is also true in $N$.
+We have
+\[ (\wh\nabla_X^MY,Z) = (\wh\nabla_X^NY,Z) \]
+for all $Z\in\Gamma(M,TM)$, hence by uniqueness this follows.
+We need the projection because we need to choose $\nabla_XY$ in $\Gamma(M,TM)$.
+
+\begin{exer}
+  Show that for $(\RR^N,g_E)$, the directional derivative is the Levi-Civita connection (in the alternative definition).
+\end{exer}
+
+So our definition $\nabla_XY=\proj_{TM}(D_X\bar Y)$ for $(M,g)$ is the same as the alternative definition.
+Thus all three definitions are equivalent.
+
+Induced connection on tangent bundles
+We have defined $\nabla$ on $TM$.
+What about for $T^*M$?
+We have
+\[ \nabla_X\ang{\alpha,Y} = X\ang{\alpha,Y} = \ang{\nabla_X\alpha,Y} + \ang{\alpha,\nabla_XY} \]
+and $\nabla_X\alpha \in \Gamma(M,T^*M)$ (justify these claims).
