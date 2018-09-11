@@ -1,0 +1,92 @@
+\section{2018-09-11 Lecture}
+
+We have defined the Levi-Civita connection $\nabla$ for $TM$ and for $T^*M$.
+We can extend it to any tensor bundle by $\nabla(a \otimes b) = (\nabla a)\otimes b + a \otimes (\nabla b)$.
+
+Here is another way of viewing a connection $\nabla$.
+Originally, we defined
+\begin{align*}
+  \nabla: \Gamma(M,TM) \times \Gamma(M,TM) &\to \Gamma(M,TM) \\
+  (X,Y) &\mapsto \nabla_XY.
+\end{align*}
+Equivalently, we can have
+\begin{align*}
+  \nabla: \Gamma(M,TM) &\to \Gamma(M,T^*M \otimes TM) \\
+  Y &\mapsto (\nabla Y)(\square) = \nabla_\square Y
+\end{align*}
+because $\nabla$ is tensorial (pointwise) in the first component.
+Here $(\nabla Y)(X) = \ang{\nabla Y,X}$ is the dual action of $T^*M$ on $TM$. % check this
+We will write the additional argument as the first component. % check this
+
+3.2 Curvatures
+
+Motivation:
+\begin{enum}
+  \io
+  $\nabla$ is differentiation which is not a pointwise quantity.
+
+  \io
+  Classical differential geometry: if $C \subset \RR^3$ is a curve, then $\kappa$ and $\tau$ (based on $\tfrac{d^2\alpha}{ds^2}$) determines $C$.
+  
+  \io
+  In classical differential geometry, the Gauss curvature is defined by the first fundamental form which is generalised to the Riemannian metric.
+\end{enum}
+
+This motivates the Riemannian curvature.
+
+\begin{defn}[3.12]
+  For a Riemannian manifold $(M,g)$, we have the following composition of $\nabla$ for different bundles:
+  \[ \nabla^2: \Gamma(M,TM) \xto{\nabla \text{ for } TM} \Gamma(M,T^*M \otimes TM) \xto{\nabla \text{ for } T^*M \otimes TM} \Gamma(M,T^*M\otimes T^*M\otimes TM) \]
+  Namely, for $X,Y,Z\in\Gamma(M,TM)$, we have
+  \[ \nabla^2(X,Y,Z) = \nabla_X\nabla_Y Z - \nabla_{\nabla_XY}Z. \]
+  Then we define the \textbf{Riemannian curvature} $\Rm$ of $(M,g)$ by
+  \[ \Rm(X,Y)Z = \left[ \nabla^2(X,Y) - \nabla^2(Y,X) \right]Z = \nabla^2(X,Y,Z) - \nabla^2(Y,X,Z) \]
+  which is a tensor
+  \[ \Rm \in \Gamma(M,\overbrace{T^*M}^X\otimes \overbrace{T^*M}^Y\otimes \overbrace{T^*M}^Z\otimes TM). \]
+\end{defn}
+
+Justification of this definition:
+\begin{enum}
+  \io
+  By the Leibniz rule, we have
+  \[ \nabla_X(\nabla_YZ) = (\nabla_X\nabla Z)Y + \nabla_{\nabla_XY}Z \]
+  so rearranging gives us the right formula for $\nabla^2(X,Y,Z)$.
+
+  \io
+  We need to check that $\Rm$ is a tensor, that is it is $\cC^\infty$-linear in all three arguments.
+  See the notes for this (but we did do it in class).
+  So far we have only used the torsion-free property of $\nabla$.
+  (So in principle we can define a curvature tensor for any torsion-free metric).
+  Note also that $\nabla^2(X,Y)(Z)$ alone is not a tensor (we need to take the anti-commutator).
+\end{enum}
+
+Now we investigate symmetries of the Riemannian curvature tensor $\Rm$.
+There is an equivalent way to express this tensor $\Rm(X,Y)(Z)\in\Gamma(M,TM)$:
+\[ \Rm(X,Y,Z,W) = g(\Rm(X,Y)Z,W) \]
+which is equivalent by nondegeneracy of $g$.
+This allows us to write down the symmetries of $\Rm$ in a simpler way.
+
+We have the following symmetry results:
+\begin{prop}
+  \lv
+  \begin{enum}
+    \io $\Rm(X,Y,Z,W) = -\Rm(Y,X,Z,W)$.
+    \io $\Rm(X,Y,Z,W) = -\Rm(X,Y,W,Z)$ (this is where $\nabla g=0$ is used).
+  \end{enum}
+\end{prop}
+
+\begin{proof}
+  The first is left as an exercise.
+  The second is in the notes (but we did it in class).
+\end{proof}
+
+\begin{rmk}
+  Here is an equivalent definition of $\Rm$:
+  \[ \Rm(X,Y)(Z) = \nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z - \nabla_{[X,Y]}Z. \]
+\end{rmk}
+
+We also have the First Bianchi Identity:
+\begin{prop}
+  \[ \Rm(X,Y,Z,W) + \Rm(Y,Z,X,W) + \Rm(Z,X,Y,W) = 0 \]
+\end{prop}
+

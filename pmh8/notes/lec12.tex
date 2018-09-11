@@ -1,0 +1,103 @@
+\section{2018-09-11 Lecture}
+
+Note that the restriction map $R$ is not injective (we can take any function with support contained in the upper half plane).
+However it is surjective.
+
+\begin{prop}
+  There exists an $R^+: H^{k-\frac12}(\RR^{n-1}) \to H^k(\RR^n_+)$ such that $R \circ R^+ = \id$.
+  Furthermore, we can construct $R^+$ in such a way that
+  \[ \norm{R^+f}_{H^k(\RR_+^n)} \leq C\norm{f}_{H^{k-\frac12}(\RR^{n-1})}. \]
+  (So $R^+$ is bounded.)
+\end{prop}
+
+\begin{proof}
+  For $f\in\cC_c^\infty(\RR^{n-1})$, define $R^+$ by
+  \[ (\wh{R^+f})(\xi',\xi_n) \defeq \wh u(\xi',\xi_n) \defeq \wh f(\xi') 2\sqrt\pi \frac{e^{-\frac{-\xi_n^2}{1+\abs{\xi'}^2}}}{\sqrt{1+\abs{\xi'}^2}}. \]
+  So we extend by taking the Fourier transform of $f$ and the multiplying by an appropriately scaled Gaussian.
+
+  \begin{exer}
+    If $f\in\cC_c^\infty(\RR^{n-1})$, then
+    \[ \abs{\p_{\xi'}^\alpha \wh f(\xi')} \leq C_{\alpha,N} (1+\abs{\xi'}^2)^\frac N2 \]
+    for all $\alpha\in\NN^{n-1}$ and $N\in\NN$.
+  \end{exer}
+
+  \begin{exer}
+    \[ \abs{\p_\xi^\alpha \wh u(\xi)} \leq C_{\alpha,N} (1+\abs\xi^2)^\frac N2 \]
+    for all $\alpha$ and $N$.
+  \end{exer}
+
+  We now claim that $u(x',0)=f(x')$.
+  We compute:
+  \begin{align*}
+    u(x',0) &= \int_{\RR^n} e^{i\xi'\cdot x'} \wh u(\xi',\xi_n) \ d\xi' \ d\xi_n \\
+    &= 2\sqrt\pi \int_{\RR^{n-1}} e^{i\xi'\cdot x'} \wh f(\xi') \int_\RR \frac{e^-\frac{\xi_n^2}{1+\abs{\xi'}^2}}{\sqrt{1+\abs{\xi'}^2}} \ d\xi_n \ d\xi' \\
+    &= \int_{\RR^{n-1}} e^{i\xi'\cdot x'} \wh f(\xi') \ d\xi' = f(x')
+  \end{align*}
+  where the integrals converge absolutely by the above exercises.
+
+  We now show boundedness.
+  We have
+  \begin{align*}
+    \norm{R^+f}_{H^k(\RR^n)} &= \int_{\RR^n} (1+\abs\xi^2)^k \abs{\wh u(\xi)}^2 \ d\xi \\
+    &= \int_{\RR^{n-1}} \int_\RR (1+\abs\xi^2)^k \frac{e^{-\frac{2\xi_n^2}{1+\abs{\xi'}^2}}\abs{\wh f(\xi')}^2}{1+\abs{\xi'}^2} \ d\xi_n \ d\xi' \\
+    &= \int_\RR e^{-t^2}(1+t^2)^k \int_{\RR^{n-1}} (1+\abs{\xi'}^2)^{k-\frac12} \abs{\wh f(\xi')}^2 \ d\xi' \\
+      &= C\norm{f}_{H^{k-\frac12}(\RR^{n-1})}
+  \end{align*}
+  where we have made the change of variables
+  \[ t=\frac{\xi_n}{\sqrt{1+\abs{\xi'}^2}} \]
+  and we have ignored some constant factors from the Jacobian determinant.
+  \textbf{fill in}
+\end{proof}
+
+Now we consider restriction to a general domain with smooth boundary.
+
+\begin{defn}
+  Let $\Omega \subseteq \RR^n$ be an open set.
+  Define $\Omega$ to be \textbf{smooth} if for all $x\in\p\Omega$ there exists an open neighbourhood $N \subseteq \RR^n$ containing $x$ and a diffeomorphism $\Psi: N \to \Psi(N) \subseteq \RR^n$ such that $\Psi(N\cap\p\Omega)\subseteq\RR^{n-1}$ and $\Psi(N\cap\Omega)\subseteq\RR_+^n$.
+\end{defn}
+
+\begin{rmk}
+  $\psi = \Psi|_{N\cap\p\Omega}: N\cap\p\Omega \to \RR^{n-1}$ is a co-ordinate chart.
+  Then the set $\{ (N_x\cap\p\Omega,\psi_x) \mid x \in \p\Omega \}$ is an atlas for the smooth manifold $\p\Omega$.
+\end{rmk}
+
+\begin{lem}[Partition of unity]
+  Let $\{U_j\}$ be a (locally) finite cover of $\ol\Omega$.
+  Then there exists a set $\{\chi_j\}$ of smooth functions with $\supp\chi_j\subseteq U_j$ for all $j$ such that $\sum_j \chi_j \equiv 1$.
+\end{lem}
+
+\begin{defn}[Sobolev spaces on manifolds]
+  Let $M$ be a compact manifold without boundary.
+  (We could relax these assumptions.)
+  Let $\{(U_j,\psi_j)\}$ be a co-ordinate cover of the manifold and let $\{\chi_j\}$ be a partition of unity subordinate to that cover.
+  For $u\in\cC^\infty(M)$, define
+  \[ \norm{u}_{H^s(M)}^2 = \sum_j \norm{(\chi_ju)\circ\psi_j\inv}_{H^s(\RR^n)} \]
+  for all $s\in\RR$.
+  Now define
+  \[ H^s(M) = \ol{\cC^\infty(M)}^{\norm\cdot_{H^s(M)}}. \]
+\end{defn}
+
+\begin{exer}
+  Check that the definition is independent of the choice of $\{(U_j,\psi_j)\}$ and $\{\chi_j\}$ up to equivalence of norms.
+\end{exer}
+
+We can now prove theorem \ref{11:boundary}.
+
+%\begin{thm}[Restriction to $\p\Omega$]
+%  Let $\Omega\subseteq\RR^n$ be a smooth bounded domain and let $k\geq1$ with $k\in\NN$.
+%  The there exists a restriction operator
+%  \[ R: H^k(\Omega) \to H^{k-\frac12}(\p\Omega) \]
+%  such that $Ru=u|_{\p\Omega}$ for $u\in\cC^\infty(\bar\Omega)$.
+%\end{thm}
+
+\begin{proof}
+  By definition, for all $x\in\p\Omega$ there exists an open neighbourhood $N_x\subseteq\RR^n$ containing $x$ and a diffeomorphic co-ordinate map $\Psi_x: N \to \Psi_x(N_x)\subseteq\RR^n$ such that
+  \[ \Psi(N_x\cap\p\Omega)\subseteq\RR^{n-1}=\{x_n=0\} \]
+  and 
+  \[ \Psi(N_x\cap\Omega)\subseteq\RR_+^n=\{x_n>0\}. \]
+  Let $\{(U_j,\Psi_j)\}$ be a finite co-ordinate cover of $\p\Omega$ and append to it an additional open set $U_0$ to cover the interior (so all of $\Omega$ is covered).
+  Then $\ol\Omega \subseteq \bigcup_j U_j$.
+  Let $\{\chi_j\}$ be a partition of unity subordinate to this cover.
+  For all $u\in\cC^\infty(\ol\Omega)$, write $u=\sum_j\chi_ju$.
+  Then $\supp(\chi_ju)\subseteq U_j$, so $(\chi_ju)\circ\Psi_j\inv\in\cC^\infty(\ol{\RR_+^n})$.
+\end{proof}
