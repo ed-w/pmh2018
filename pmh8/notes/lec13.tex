@@ -1,0 +1,101 @@
+\section{2018-09-13 Lecture}
+
+\begin{proof}[Proof of theorem \ref{11:boundary} (continued)]
+  Now define for $j\neq0$:
+  \[ R(\chi_ju) = R_{\RR^{n-1}} \left( (\chi_ju) \circ \Psi_j \inv \right) \circ \psi_j. \]
+  Note that $(\chi_0u)|_{\p\Omega}=0$ so we can ignore it for the purposes of defining $R$.
+  Then we can define for all $u\in\cC^\infty(\ol\Omega)$.
+  \[ Ru = \sum_{j\neq0} R(\chi_ju). \]
+  So we have
+  \begin{align*}
+    \norm{Ru}_{H^{k-\frac12}(\p\Omega)} &= \sum_{j\neq0} \norm{ R_{\RR^{n-1}} \left( (\chi_ju)\circ\Psi_j\inv \right) }_{H^{k-\frac12}(\RR^n)} \\
+    &\leq \sum_{j\neq0} \norm{ (\chi_ju)\circ\Psi_j\inv }_{H^k(\RR_+^n)} \\
+    &= C\sum_{j\neq0} \norm{\chi_ju}_{H^k(\Omega)} \leq C'\norm{u}_{H^k(\Omega)} \qedhere
+  \end{align*}
+\end{proof}
+
+\begin{exer}
+  Let $k\in\NN$ with $k\geq1$.
+  Then there exists a bounded operator
+  \[ R^+: H^{k-\frac12}(\p\Omega) \to H^k(\Omega) \]
+  such that $R\circ R^+=\id$.
+  Furthermore, $R^+$ can be chosen uniquely so that
+  \[ R^+\left( H^{k-\frac12}(\p\Omega) \right) = \ker(R)^\perp. \]
+\end{exer}
+
+Now that we have defined restriction to the boundary, we can talk about boundary value problems.
+
+\begin{rmk}
+  We will write $u|_{\p\Omega}$ for $Ru$ even if $u\notin\cC^\infty(\ol\Omega)$.
+\end{rmk}
+
+We want to solve $\nabla\cdot\gamma\nabla u=0$ in $\Omega$ with $u|_{\p\Omega}=f\in H^\frac12(\p\Omega)$.
+
+\begin{defn}
+  Let $s\in\RR$ with $s\geq0$.
+  Note that every function in $\cC_c^\infty(\Omega)$ can be naturally extended to a function in $\cC_c^\infty(\RR^n)$ by letting it be zero outside $\Omega$.
+  Now define
+  \[ H_0^s(\Omega) = \ol{\cC_c^\infty(\Omega)}^{H^s(\RR^n)}. \]
+  Note that $H_0^k(\Omega) \subsetneq H^k(\Omega)$ when $k\in\NN$ and $k\geq1$.
+\end{defn}
+
+If $u\in H_0^k(\Omega)$ and $k\geq1$, then there exists a sequence $u_j\in\cC_c^\infty(\Omega)$ such that
+\[ u_j \xto{H^k(\Omega)} u \text{ and } R(u) = \lim_{j\to\infty}R(u_j)=0. \]
+Thus $H_0^k(\Omega) \subseteq \ker(R_{H^k(\Omega)})$ for $k\geq1$.
+
+\begin{exer}
+  Show that $\ker(R_{H^1(\Omega)})=H_0^1(\Omega)$.
+  (Hint: first do this for $\RR_+^n$.)
+\end{exer}
+
+General discussion of dual spaces in functional analysis.
+
+Let $(H,(\cdot,\cdot))$ be a Hilbert space and let $X \subseteq H$ be a Banach space.
+For example, we have $H_0^1(\Omega) \subseteq L^2(\Omega)$.
+Consider the dual space $X^*$ of $X$.
+If $h \in H$, define $\iota_{X^*}: H \to X^*$ by
+\[ \ang{\iota_{X^*}h,x}_{X^*,X} = (x,h)_H. \]
+So $H$ embeds in to $X^*$, giving us $X \subseteq H \subseteq X^*$.
+
+If $x^* \in X^*$, we say that $x^* \in H$ if $x^* = \iota_{X^*} h$ for some $h \in H$, that is, there exists an $h \in H$ such that $\ang{x^*,x}_{X^*,X} = (h,x)_H$ for all $x \in X$.
+
+\begin{defn}
+  Let $s\in\RR$ with $s\leq0$.
+  Define
+  \[ H^s(\Omega) = \left( H_0^{-s}(\Omega) \right)^*. \]
+  Then
+  \[ H_0^{-s}(\Omega) \subseteq L^2(\Omega) \subseteq H^s(\Omega) \]
+  for all $s\leq0$ and for $u\in H^s(\Omega)$ we say that $u\in L^2(\Omega)$ if
+  \[ \ang{v,u}_{H_0^{-s},H^s} = \int_\Omega uv \]
+  for all $v \in H_0^{-s}(\Omega)$.
+\end{defn}
+
+\begin{prop}[Differentiation]
+  The map $u \mapsto \p_{x_j}u$ defined for $u\in\cC^\infty(\ol\Omega)$ extends to a bounded linear map from $H^k(\Omega) \to H^{k-1}(\Omega)$ for all $k\in\ZZ$.
+\end{prop}
+
+\begin{proof}
+  If $k\geq1$ this is obvious.
+  Now let $k\leq0$ and $u\in\cC^\infty(\ol\Omega)$.
+  Then
+  \begin{align*}
+    \norm{\p_{x_j}u}_{H^{k-1}(\Omega)} &= \sup\left\{ \ang{\p_{x_j}u,v} \ \big\vert \ v\in H_0^{1-k}(\Omega) \text{ and } \norm{v}_{1-k} \leq 1 \right\} \\
+    &= \sup\left\{ \ang{\p_{x_j}u,v} \ \big\vert \ v\in \cC_c^\infty(\Omega) \text{ and } \norm{v}_{1-k} \leq 1 \right\} \\
+    &= \sup\left\{ \int_\Omega \p_{x_j}uv \ \Big\vert \ v\in \cC_c^\infty(\Omega) \text{ and } \norm{v}_{1-k} \leq 1 \right\} \\
+    &= \sup\left\{ -\int_\Omega u\p_{x_j}v \ \Big\vert \ v\in \cC_c^\infty(\Omega) \text{ and } \norm{v}_{1-k} \leq 1 \right\} \\
+    &\leq \sup\left\{ \int_\Omega uv' \ \Big\vert \ v'\in \cC_c^\infty(\Omega) \text{ and } \norm{v'}_{-k} \leq C \right\} \\
+    &= \sup\left\{ \ang{u,v'}_{H^k,H^{-k}} \ \big\vert \ v'\in H_0^k(\Omega) \text{ and } \norm{v'}_{-k} \leq C \right\} \\
+    &\leq C\norm{u}_{H^k}.
+  \end{align*}
+
+  \begin{exer}
+    Show that $\cC^\infty(\ol\Omega)$ is dense in $H^{-\abs{k}}(\Omega)$.
+  \end{exer}
+  Then the BLT theorem concludes the proof.
+\end{proof}
+
+\begin{exer}[Integration by parts]
+  Let $u\in H_0^1$ and $v\in L^2$.
+  Then
+  \[ \ang{\p_{x_j}v,u}_{H^{-1},H_0^1} = -\int_\Omega v\p_{x_j}u .\]
+\end{exer}

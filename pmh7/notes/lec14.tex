@@ -45,6 +45,12 @@ This motivates the Riemannian curvature.
   \[ \Rm \in \Gamma(M,\overbrace{T^*M}^X\otimes \overbrace{T^*M}^Y\otimes \overbrace{T^*M}^Z\otimes TM). \]
 \end{defn}
 
+\begin{rmk}
+  What we really mean by $\nabla^2(X,Y,Z)$ is the tensor field $\nabla^2Z=\nabla\nabla Z$ applied to the arguments $(X,Y)$, where the innermost argument is used first.
+  Then the above computation for $\nabla^2(X,Y,Z)$ is just the Leibniz rule.\:
+  \[ (\nabla^2 Z)(X,Y) = (\nabla_X(\nabla Z))(Y) = \nabla_X( (\nabla_Z)Y) - (\nabla Z)(\nabla_XY) = \nabla_X\nabla_YZ - \nabla_{\nabla_XY}Z. \]
+\end{rmk}
+
 Justification of this definition:
 \begin{enum}
   \io

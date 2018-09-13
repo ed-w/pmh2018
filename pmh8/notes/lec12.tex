@@ -46,7 +46,6 @@ However it is surjective.
   where we have made the change of variables
   \[ t=\frac{\xi_n}{\sqrt{1+\abs{\xi'}^2}} \]
   and we have ignored some constant factors from the Jacobian determinant.
-  \textbf{fill in}
 \end{proof}
 
 Now we consider restriction to a general domain with smooth boundary.
@@ -90,7 +89,7 @@ We can now prove theorem \ref{11:boundary}.
 %  such that $Ru=u|_{\p\Omega}$ for $u\in\cC^\infty(\bar\Omega)$.
 %\end{thm}
 
-\begin{proof}
+\begin{proof}[Proof of theorem \ref{11:boundary}]
   By definition, for all $x\in\p\Omega$ there exists an open neighbourhood $N_x\subseteq\RR^n$ containing $x$ and a diffeomorphic co-ordinate map $\Psi_x: N \to \Psi_x(N_x)\subseteq\RR^n$ such that
   \[ \Psi(N_x\cap\p\Omega)\subseteq\RR^{n-1}=\{x_n=0\} \]
   and 
@@ -99,5 +98,7 @@ We can now prove theorem \ref{11:boundary}.
   Then $\ol\Omega \subseteq \bigcup_j U_j$.
   Let $\{\chi_j\}$ be a partition of unity subordinate to this cover.
   For all $u\in\cC^\infty(\ol\Omega)$, write $u=\sum_j\chi_ju$.
-  Then $\supp(\chi_ju)\subseteq U_j$, so $(\chi_ju)\circ\Psi_j\inv\in\cC^\infty(\ol{\RR_+^n})$.
+  Then $\supp(\chi_ju)\subseteq U_j$, so $(\chi_ju)\circ\Psi_j\inv\in\cC^\infty(\ol{\RR_+^n})$ for $j\neq0$.
+
+  We will finish this proof in the next lecture.
 \end{proof}
