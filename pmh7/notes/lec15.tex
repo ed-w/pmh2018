@@ -1,0 +1,90 @@
+\section{2018-09-17 Lecture}
+
+We have one more symmetry of the Riemann curvature tensor:
+\begin{prop}
+  \[ \Rm(X,Y,Z,W) = \Rm(Z,W,X,Y). \]
+\end{prop}
+
+\begin{proof}
+  This is a direct application of the First Bianchi Identity:
+  \begin{align*}
+    \Rm(X,Y,Z,W) + \Rm(Y,Z,X,W) + \Rm(Z,X,Y,W) &= 0 \\
+    \Rm(W,X,Y,Z) + \Rm(X,Y,W,Z) + \Rm(Y,W,X,Z) &= 0 \\
+    \Rm(Z,W,X,Y) + \Rm(W,X,Z,Y) + \Rm(X,Z,W,Y) &= 0 \\
+    \Rm(Y,Z,W,X) + \Rm(Z,W,Y,X) + \Rm(Z,Y,Z,X) &= 0 
+  \end{align*}
+  where we are using the permutation $(W \ Z \ Y \ X)$ going down the columns.
+  Now summing up the equations and cancelling out gives
+  \[ 2\Rm(Z,X,Y,W) + 2\Rm(Y,W,X,Z) = 0. \]
+  So
+  \[ \Rm(X,Z,Y,W) = -\Rm(Z,X,Y,W) = \Rm(Y,W,X,Z). \qedhere \]
+\end{proof}
+
+\begin{rmk}
+  By the above, we can restate the First Bianchi Identity as
+  \[ \Rm(X,Y,Z,W) \Rm(X,Z,W,Y) + \Rm(X,W,Y,Z) = 0. \]
+  In fact, we can take cyclic permutations of any three of the arguments.
+\end{rmk}
+
+Now let us consider $\nabla\Rm$.
+
+\begin{prop}[Second Bianchi Identity]
+  Recall that $\Rm \in \Gamma(M,T^*M\otimes T^*M\otimes T^*M\otimes T^*M)$.
+  (This is the four-argument version with inner product.
+  Recall that the first argument goes under the $\nabla$.)
+  The Levi-Civita connection $\nabla$ on $TM$ induces a connection on the above bundle.
+  So $\nabla\Rm \in \Gamma(M,(T^*M)^{\otimes 5})$.
+  Then
+  \[ \nabla\Rm(X,Y,Z,W,V) + \nabla\Rm(Y,Z,X,W,V) + \nabla\Rm(Z,X,Y,W,V). \]
+\end{prop}
+
+\begin{proof}
+  We want
+  \[ (\nabla_X\Rm)(Y,Z,W,V) + \cdots = \nabla_X(\Rm(Y,Z,W,V)) + \cdots, \]
+  however, by the Leibniz rule we have
+  \[ \nabla_X(\Rm(Y,Z,W,V)) = (\nabla_X\Rm)(Y,Z,W,V) + \Rm(\nabla_XY,Z,W,V) + \cdots. \]
+  We need to extend $Y$, $Z$, $W$ and $V$ to a neighbourhood around $p$.
+  We will use a standard simplification (we will justify this later).
+  We can assume that for each $p$, we have $\nabla_TU=0$ at the point $p$ where $T,U\in\{X,Y,Z,W,V\}$.
+  (Note that this does not imply higher derivatives are zero as well.)
+  Expanding, we have
+  \[ \nabla_X(\Rm(Y,Z,W,V)) = \left( \nabla_X\nabla_Y\nabla_ZW - \nabla_X\nabla_Z\nabla_YW - \nabla_X\nabla_{[Y,Z]}W, V \right). \]
+  Now using the definition of the Riemann curvature endomorphism, we have
+  \[ (\nabla_X\nabla_Y\nabla_ZW,V) = \Rm(X,Y,\nabla_ZW,V) + (\nabla_Y\nabla_X\nabla_ZW,V) + (\nabla_{[X,Y]}\nabla_ZW,V). \]
+  The first term is zero by tensoriality, and $\nabla_{[X,Y]}=\nabla_XY-\nabla_YX=0$ by torsion-freeness.
+  So $(\nabla_X\nabla_Y\nabla_Z,V)=(\nabla_Y\nabla_X\nabla_ZW,V)$ at $p$, and similarly for the other terms.
+  The after cancellation we have
+  \[ \nabla_X(\Rm(Y,Z,W,V)) + \cdots = -(\nabla_x\nabla_{[Y,Z]}W + \cdots, V). \]
+  Furthermore, we have
+  \[ (\nabla_X\nabla_{[Y,Z]}W,V) = \Rm(X,[Y,Z],W,V) + (\nabla_{[Y,Z]}\nabla_XW,V) + \left(\nabla_{\left[ X,[Y,Z] \right]}W,V \right) \]
+  at $p$, similarly to before.
+  Then
+  \[ \nabla(\Rm_X(Y,Z,W,V)) + \cdots = -\left( \nabla_{\left[ X,[Y,Z] \right] + \cdots} W,V \right) = 0 \]
+  by the Jacobi identity.
+\end{proof}
+
+Note that all of these results are pointwise.
+
+\begin{rmk}
+  This is a classical result due to Gauss or Riemann (?)
+  If $\Rm\equiv0$, then $(M,g)$ is locally Euclidean.
+
+  Here is an explanation:
+  \[ 0 = \Rm(\p_i,\p_j,\p_k,\p_l) = (\nabla_{p_i}\nabla_{\p_j}\p_k,\p_l) + (\nabla_{\p_j}\nabla_{\p_i}\p_k,\p_l) - (\nabla_{[\p_i,\p_j]},\p_k,\p_l). \]
+  The rightmost term is zero since $\p_i$ and $\p_j$ commute, so the covariant derivatives $\nabla_{\p_i}$ and $\nabla_{\p_j}$ commute.
+  The goal is to use this to construct Euclidean co-ordinates.
+  (We will see an indication of how to do this later.)
+\end{rmk}
+
+Motivation: there is too much information in the tensor $\Rm$.
+We want to make it more ``compact''.
+This motivates several new definitions of curvature.
+
+The first of these is the sectional curvature which is a generalisation of the Gauss curvature of a surface.
+
+\begin{defn}
+  For all $p\in M$ and $X,Y\in T_pM$, we define the \textbf{sectional curvature} in the $XY$-plane by
+  \[ K(X,Y) = \frac{\Rm(X,Y,X,Y)}{\abs{X \wedge Y}^2}. \]
+  Note that $X$ and $Y$ must be linearly independent in order for them to span a $2$-dimensional subspace of the tangent space $T_pM$.
+  The expression $\abs{X \wedge Y}$ is the area of the parallelogram spanned by $X$ and $Y$ in $T_pM$.
+\end{defn}
