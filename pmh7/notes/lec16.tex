@@ -1,0 +1,114 @@
+\section{2018-09-18 Lecture}
+
+\begin{prop}
+  The sectional curvature $K(X,Y)$ does not depend on the choice of $X$ and $Y$, only on the $2$-plane $\spn\{X,Y\} \subseteq T_pM$.
+\end{prop}
+
+\begin{proof}
+  Let $X=ae_1+be_2$ and $Y=ce_1+de_2$ where $a,b,c,d\in\RR$.
+  Then
+  \[ \Rm(X,Y,X,Y) = (a^2d^2+b^2c^2-2abcd)\Rm(e_1,e_2,e_1,e_2) \]
+  using the symmetries of $\Rm$.
+  Also
+  \[ \abs{X \wedge Y}^2 = \abs X^2 \abs Y^2 - (X,Y)^2 = a^2d^2+b^2c^2-2abcd. \]
+  Then $K(X,Y) = K(e_1,e_2)$.
+\end{proof}
+
+\begin{proof}[Gauss' Theoream Egregium]
+  The Gauss curvature $K$ of a surface in $\RR^3$ depends only on the first fundamental form.
+\end{proof}
+
+\begin{proof}
+  Let $S \subset \RR^3$ be a regular surface.
+  We will prove that
+  \[ K = -\Rm(e_1,e_2,e_1,e_2). \]
+  Consider the Riemannian manifold $(S,g_E|_S)$.
+  We will choose \emph{normal co-ordinates} at each $p\in S$ where the frame $\{e_1,e_2\}$ is orthonormal and $\nabla_{e_i}e_j=0$ for $i\neq j$.
+  As a co-ordinate frame, we also have $[e_i,e_j]=0$ at $p$ for all $i$ and $j$.
+  Recall that $(\nabla_XY)_p = \proj_{T_pS}D_X(\ol Y)$.
+  Set
+  \begin{align*}
+    D_{e_1}e_1 &= h_1e_1+h_2e_2+g_1\nu \\
+    D_{e_2}e_1 &= f_1e_1+f_2e_2+g_2\nu \\
+    D_{e_2}e_2 &= l_1e_1+l_2e_2+g_3\nu.
+  \end{align*}
+  Note that
+  \[ D_{e_2}e_1-D_{e_1}e_2 = \nabla_{e_2}e_1-\nabla_{e_1}e_2 = [e_1,e_2] = 0. \]
+  At $p$ we have $f_i=h_i=l_i=0$.
+  Near $p$ we have
+  \begin{align*}
+    D_{e_1}e_1 &= h_1e_1+h_2e_2 \\
+    D_{e_2}e_1 &= f_1e_1+f_2e_2 \\
+    D_{e_2}e_2 &= l_1e_1+l_2e_2.
+  \end{align*}
+  So at $p$ we have
+  \begin{align*}
+    \Rm(e_1,e_2,e_1,e_2) &= (\nabla_{e_1}\nabla_{e_2}e_1,e_2) - (\nabla_{e_2}\nabla_{e_1}e_1,e_2) - (\nabla_{[e_1,e_2]}e_1,e_2) \\
+    &= e_1(\nabla_{e_2}e_1,e_2) - (\nabla_{e_2}e_1,\nabla_{e_1}e_2) - e_2(\nabla_{e_1}e_1,e_2) + (\nabla_{e_1}e_1,\nabla_{e_2}e_2) \\
+    &= e_1(\nabla_{e_2}e_1,e_2) - e_2(\nabla_{e_1}e_1,e_2) = e_1(D_{e_2}e_1,e_2) - e_2(D_{e_1}e_1,e_2) \\
+    &= (D_{e_1}D_{e_2}e_1,e_2) + (D_{e_2}e_1,D_{e_1}e_2) - (D_{e_2}D_{e_1}e_1,e_2) - (D_{e_1}e_1,D_{e_2}e_2) \\
+    &= \ol\Rm(e_1,e_2,e_1,e_2) + (D_{e_1}e_2,\nu)(D_{e_2}e_1,\nu) - (D_{e_1}e_1,\nu)(D_{e_2}e_2,\nu) \\
+    &= -K
+  \end{align*}
+  where $\ol\Rm\equiv0$ is the Riemann curvature tensor on $(\RR^3,g_E)$.
+\end{proof}
+
+Some classical results on sectional curvature.
+
+\begin{prop}
+  The sectional curvatures for all $2$-planes in $T_pM$ determine $\Rm$ at $p$.
+\end{prop}
+
+\begin{proof}
+  We have
+  \[ \Rm(X+Y,Z,X+Y,Z)-\Rm(X-Y,Z,X-Y,Z) = 4\Rm(X,Z,Y,Z), \]
+  so
+  \[ \Rm(X,Z+W,X,Z+W)-\Rm(X,Z-W,X,Z-W) = 2\Rm(X,W,Y,Z) + 2\Rm(X,Z,Y,W). \]
+  Then using the First Bianchi Identity, 
+  \[ \Rm(X,W,Y,Z) + \Rm(X,Y,Z,W) + \Rm(X,Z,W,Y) = 0 \]
+  and the following identities:
+  \begin{align*}
+    \Rm(X,W,Y,Z) &= \Rm(X,Z,W,Y) + \Rm(X,W,Y,Z) + \Rm(X,Z,Y,W) \\
+    \Rm(X,W,Y,Z) &= \Rm(X,Y,W,Z) + \Rm(X,Z,W,Y) + \Rm(X,Y,W,Z)
+  \end{align*}
+  we have $3\Rm(X,Y,Z,W)=$ sectional curvature terms.
+\end{proof}
+
+\begin{rmk}
+  The space of all sectional curvatures at a point has dimension $n(n-1)/2$ if $\dim M=n$.
+  So the curvature tensor $\Rm(\cdot,\cdot,\cdot,\cdot)$ has dimension $n^2(n-1)^2$ modulo all the symmetries and the First Bianchi Identity.
+\end{rmk}
+
+\begin{prop}[Schur's theorem]
+  If $(M,g)$ has dimension $\geq 3$ and constant sectional curvature at each point, then the sectional curvature is constant over $M$.
+\end{prop}
+
+Ricci curvature
+
+\begin{defn}
+  For all $X,Y\in T_pM$ there is a linear map
+  \begin{align*}
+    A(X,Y): T_pM &\to T_pM \\
+    Z &\mapsto \Rm(Z,X)Y.
+  \end{align*}
+  Recall
+  \[ \Rm(Z,X)Y = \nabla_Z\nabla_XY-\nabla_X\nabla_ZY-\nabla_{[Z,X]}Y. \]
+  Define the \textbf{Ricci curvature tensor} $\Ric\in\Gamma(M,T^*M \otimes T^*M)$ by
+  \[ \Ric(X,Y) = \tr A(X,Y). \]
+\end{defn}
+
+\begin{prop}
+  $\Ric(X,Y) = \Ric(Y,X)$.
+\end{prop}
+
+\begin{proof}
+  Let $\{e_i\}_{i=1}^n$ be an orthonormal basis of $T_pM$.
+  \begin{align*}
+    \tr A(X,Y) &= \sum_{i=1}^n (\Rm(e_i,X)Y,e_i) = \sum \Rm (e_i,X,Y,e_i) \\
+    &= \sum \Rm(Y,e_i,e_i,X) = \sum \Rm(e_i,Y,X,e_i) = \tr A(Y,X) \qedhere
+  \end{align*}
+\end{proof}
+
+Scalar curvature.
+
+For a Riemannian manifold $(M,g)$, both $g$ and $\Ric$ are symmetric $2$-tensors.

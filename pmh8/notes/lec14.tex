@@ -1,0 +1,117 @@
+\section{2018-09-18 Lecture}
+
+\begin{exer}
+  Let $k\geq0$ and define
+  \[ \left(D_{jh}(u)\right)(x) = \frac{u(x+he_j)-u(x)}{h}. \]
+  Then for all $u\in H^{k+1}(\Omega) \cap H_0(\Omega)$.
+  \[ \norm{D_{jh}u}_{H^k(\Omega)} \leq C\norm{u}_{H^{k+1}(\Omega)} \]
+  with $C$ independent of $h$.
+  Furthermore, we have $D_{jh}u \to \p_{x_j}u$ in $H^k$.
+\end{exer}
+
+\begin{thm}[Existence and uniqueness of solutions to boundary value problems]\label{14:thm}
+  Let $\Omega\subseteq\RR^n$ be a bounded smooth domain and let $\gamma\in\cC^\infty(\ol\Omega,\Sym)$ be an $n\times n$ symmetric matrix of smooth functions on $\ol\Omega$ such that for all $x\in\ol\Omega$, every eigenvalue of $\gamma$ is bounded above by $C>0$ and below by $1/C>0$.
+  Then for all $F \in H^{-1}(\Omega)=(H_0^1(\Omega))^*$ and for all $f\in H^\frac12(\p\Omega)$, there exists a unique $u\in H^1(\Omega)$ solving
+  \[ \nabla\cdot\gamma\nabla u=F \qquad \text{and} \qquad u|_{\p\Omega}=f. \]
+  Furthermore, we have
+  \[ \norm{u}_{H^1} \leq C\left( \norm{F}_{H^{-1}} + \norm{f}_{H^\frac12} \right) \]
+  where $C$ is independent of $f$ and $F$.
+\end{thm}
+
+We will need the following inequality:
+
+\begin{prop}[Poincare's inequality]\label{14:poincare}
+  For all $u \in H_0^1(\Omega)$, the following inequality holds:
+  \[ C\norm{u}_{H^1(\Omega)} = C\left( \norm{\nabla u}_{L^2} + \norm{u}_{L^2} \right) \leq \norm{\nabla u}_{L^2} \leq \norm{u}_{H^1}. \]
+\end{prop}
+
+\begin{proof}[Proof of theorem \ref{14:thm}, uniqueness]
+  Suppose $\nabla\cdot\gamma\nabla u=0$ and $u|_{\p\Omega}=0$.
+  We want to show that $u\equiv0$.
+  By exercise \ref{13:ker} we have $u \in H_0^1(\Omega)$.
+  Then
+  \[ 0 = \abs{\int_\Omega u \nabla\cdot\gamma\nabla u} = \abs{\int_\Omega \nabla u\cdot\gamma\nabla u} \geq c\int_\Omega\abs{\nabla u}^2 \geq C\norm{u}_{H^1(\Omega)}^2. \]
+  In the second equality we have used integration by parts.
+  We have used in the first $\geq$ that $\gamma$ is positive definite with eigenvalues bounded below uniformly and in the second $\geq$ proposition \ref{14:poincare}.
+\end{proof}
+
+\begin{proof}[Proof of theorem \ref{14:thm}, existence]
+  First consider the case where $f\equiv0$.
+  Define for $u,v \in H_0^1(\Omega)$:
+  \[ (u,v)_\gamma = \int_\Omega \nabla u \cdot\gamma \nabla v. \]
+  Then by proposition \ref{14:poincare}, we have
+  \[ \norm{u}_{H^1(\Omega)} \geq \norm{u}_\gamma \geq C\norm{\nabla u}_{L^2(\Omega)} \geq \norm{u}_{H^1(\Omega)} \]
+  so $\norm\cdot_\gamma$ is equivalent to $\norm\cdot_{H^1(\Omega)}$.
+  Hence $\norm\cdot_\gamma$ makes $H_0^1(\Omega)$ in to a Hilbert space, so by the Riesz representation theorem, for all $F\in H^{-1}(\Omega)$ there exists a $u_F\in H_0^1(\Omega)$ such that
+  \[ \ang{F,v} = (u_F,v)_\gamma = \int_\Omega \gamma(\nabla u_F) \cdot \nabla v = \ang{\nabla\cdot \gamma\nabla u_F,v} \]
+  for all $v \in H_0^1(\Omega)$.
+  In the last equality we have used integration by parts.
+  Hence $\nabla\cdot\gamma u_F=F$.
+  Furthermore, by Riesz and the equivalence of norms we have the bound
+  \[ \norm{u_F}_\gamma \leq \norm{F}_{H^{-1}}. \]
+
+  Now consider the general case of $f\in H^\frac12(\p\Omega)$ and $F\in H^{-1}(\Omega)$.
+  Recall that $R^+: H^\frac12(\p\Omega) \to H^1(\Omega)$ is such that $R(R^+f)=f$ and $\norm{R^+f}_{H^1} \leq \norm{f}_{H^\frac12}$.
+  Define
+  \[ \wt F = F - \nabla\cdot\gamma\nabla(R^+f) \in H\inv(\Omega). \]
+  Then by the $f\equiv0$ case there exists a $u_{\wt F} \in H_0^1(\Omega)$ solving
+  \[ \nabla\cdot\gamma\nabla u_{\wt F} = \wt F = F-\nabla\cdot\gamma\nabla(R^+f). \]
+  Hence
+  \[ \nabla\cdot\gamma\nabla\left( u_{\wt F}+R^+f \right) = F, \]
+  so we can take
+  \[ u_F = u_{\wt F}+R^+f. \]
+  Then $u_F|_{\p\Omega} = R(u_F) = R(u_{\wt F}) + f = f$ as required.
+
+  Now it remains only to prove the inequality.
+  We have
+  \begin{align*}
+    \norm{u_{\wt F}}_{H^1} &\leq \norm{\wt F}_{H\inv} \leq \norm{F}_{H\inv} + \norm{\nabla\cdot\gamma\nabla R^+f}_{H\inv} \leq \norm{F}_{H\inv} + \norm{R^+f}_{H^1} \\
+    &\leq \norm{F}_{H\inv} + \norm{f}_{H^\frac12},
+  \end{align*}
+  then
+  \[ \norm{u}_{H^1} \leq \norm{u_{\wt F}}_{H^1} + \norm{R^+f}_{H^1} \leq C\left( \norm{F}_{H\inv} + \norm{f}_{H^\frac12} \right). \qedhere \]
+\end{proof}
+
+\begin{proof}[Proof of proposition \ref{14:poincare}]
+  WLOG assume that $\Omega$ is contained in the ``hyperstrip'' $\{0\leq x_n\leq1\}$.
+  It suffices to prove
+  \[ C\norm{\nabla u}_{L^2} \geq \norm{\nabla u}_{L^2} + \norm{u}_{L^2} \]
+  for all $u \in \cC_c^\infty(\Omega)$ by density.
+  Then
+  \[ \abs{u(x',x_n)}^2 = \abs{ \int_0^{x_n} \frac{\p u}{\p x_n}(x',z) \ ds}^2 \leq \int_0^1 \abs{\frac{\p u}{\p x_n}(x',s)}^2 \ ds, \]
+  so
+  \begin{align*}
+    \int_\Omega \abs{u(x',x_n)}^2 &\leq \int_{\RR^{n-1}} dx' \int_0^1 dx_n \int_0^1 ds \ \abs{\frac{\p u}{\p x_n}(x's)}^2 = \int_{\RR^{n-1}} dx' \int_0^1 ds \ \abs{\frac{\p u}{\p x_n}(x's)}^2 \\
+    &\leq \int_{\RR^{n-1}} dx' \int_0^1 ds \ \abs{\nabla u(x's)}^2 = \int_\Omega \abs{\nabla u}^2 
+  \end{align*}
+  Note that if $\Omega \subseteq \{0\leq x_n \leq L\}$, then the constant depends increases with $L$.
+\end{proof}
+
+\begin{defn}[Dirichlet-Neumann map]
+  For all $f\in H^\frac12(\p\Omega)$, let $u_f\in H^1$ be a solution of $\nabla\cdot\gamma\nabla u=0$ and $u|_{\p\Omega}=f$.
+  Then
+  \[ \Lambda_\gamma f = \wh n \cdot \gamma\nabla u_f|_{\p\Omega}. \]
+  Let $f\in H^\frac12(\p\Omega)$.
+  Define an element of $(H^\frac12(\p\Omega))^* \cong H^{-\frac12}(\p\Omega)$ (this isomorphism was an exercise) by
+  \[ \ang{\Lambda_\gamma f,g} = \int_\Omega (\gamma\nabla u_f)\cdot(\nabla R^+g). \]
+  for all $g\in H^\frac12(\p\Omega)$.
+\end{defn}
+
+\begin{rmk}
+  Why are these two definitions the same (in a sense)?
+  Let $u_f, R^+g \in \cC^\infty(\bar\Omega)$.
+  Then
+  \[ \ang{\Lambda_\gamma f,g} = \int_\Omega (\nabla\cdot\gamma\nabla u_f) R^+g + \int_{\p\Omega} (\wh n\cdot\gamma\nabla u_f)g \]
+  for all $g\in \cC^\infty(\p\Omega)$.
+  So $\Lambda_\gamma f = \wh n\cdot\gamma\nabla u_f$.
+\end{rmk}
+
+\begin{rmk}
+  How do we know $\Lambda_\gamma f$ is a member of the dual space?
+  Note that
+  \[ \abs{\ang{\Lambda_\gamma}} \leq \norm{\nabla u_f}_{L^2} \norm{\nabla R^+g}_{L^1} \leq \norm{g}_{H^\frac12{\p\Omega}}\norm{f}_{H^\frac12(\p\Omega)}, \]
+  hence $\Lambda_\gamma f \in (H^\frac12(\p\Omega))^*$.
+  Furthermore,
+  \[ \Lambda_\gamma: H^\frac12(\p\Omega) \to \left( H^\frac12(\p\Omega) \right)^* \]
+  is a bounded linear transformation.
+\end{rmk}
