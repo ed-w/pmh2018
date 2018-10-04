@@ -38,12 +38,15 @@ We will use this result to prove theorem \ref{2:thm1}.
 We transform the equation in to this form so we can use that the leading term of the differential equation has constant coefficient.
 
 \begin{proof}[Proof of theorem \ref{2:thm1}]
-  Show that
-  \[ \nabla \cdot \gamma \nabla u = 0 \text{ and } u|_{\p\Omega} = f \]
-  if and only if
-  \[ (\Delta+q)w=0 \text{ and } w|_{\p\Omega}=\sqrt{\gamma}f \]
-  where
-  \[ q = \frac{\Delta\sqrt{\gamma}}{\sqrt{\gamma}} \text{ and } w=\sqrt{\gamma}u. \]
+  \begin{exer}
+    Show that
+    \[ \nabla \cdot \gamma \nabla u = 0 \text{ and } u|_{\p\Omega} = f \]
+    if and only if
+    \[ (\Delta+q)w=0 \text{ and } w|_{\p\Omega}=\sqrt{\gamma}f \]
+    where
+    \[ q = \frac{\Delta\sqrt{\gamma}}{\sqrt{\gamma}} \text{ and } w=\sqrt{\gamma}u. \]
+  \end{exer}
+
   So we can define the Dirichlet-Neumann map $\Lambda_q$.
   When $q$ is defined as above, we have
   \[ \Lambda_q f = \frac{1}{\sqrt{\gamma}} \Lambda_\gamma \left( \frac{f}{\sqrt{\gamma}} \right) + \frac{1}{2} \left( \gamma\inv \p_\nu \gamma \right) f. \]

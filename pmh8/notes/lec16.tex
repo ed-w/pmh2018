@@ -1,0 +1,120 @@
+\section{2018-10-02 Lecture}
+
+Motivation for distribution theory
+
+Consider Poisson's equation:
+\[ \Delta u=F. \]
+We can give a ``right-inverse function'' $u(x)$ (or \textbf{Green's function}) for $\Delta$:
+\[ u(x) = \int G(x-y)F(y) \, dy \]
+where
+\begin{equation*}
+  G(x-y)=
+  \begin{cases}
+    C_2\log\abs{x-y} & \text{if }n=2 \\
+    C_3\frac1{\abs{x-y}^{n-2}} & \text{if }n\geq3
+  \end{cases}
+\end{equation*}
+Then
+\[ \Delta_y G(x-y) = \delta(x,y) \]
+and so
+\[ \int (\Delta_y\ph) G(x-y) \, dy = \int \ph(y) \delta_0(x,y) \, dy = \ph(x). \]
+The function $G$ doesn't really exist on its own (it is undefined at the origin).
+We only use it to integrate against another function.
+
+Why distributions and wavefront sets?
+
+\begin{exam}
+  \lv
+  \begin{enum}
+    \io
+    We have an operation define a priori on ``good'' functions.
+    For example, the restriction map on Sobolev spaces: if $S \subseteq \RR^n$ is a codimension $1$ manifold and if $u\in H^s(\RR^n)$ for $s>1/2$, then $u|_S\in H^{s-1/2}(S)$.
+    Here is the distribution version: any distribution $u$ can be restricted to any submanifold of $\RR^n$ of any codimension as long as $WF(u)$ is ``compatible'' with $S$.
+
+    Why is this more powerful (less regularity required) than the Sobolev version?
+
+    \begin{enum}
+      \io
+      Set
+      \[ u(x_1,x_2) = \frac{1}{\sqrt{\abs{x_1}}} \in L\loc^1 \setminus L\loc^2. \]
+      The singularities are the $x_2$-axis ($x_1=0$).
+      Then $u|_{\{x_2=0\}}=1/\sqrt{\abs{x_1}} \in L\loc^1(\RR)$.
+      In fact, $u$ can be restricted to a submanifold $S$ as long as $e_2 \notin T_pS$ if $p \in S \cap \{x_1=0\}$.
+
+      \io
+      (Trace of an operator.)
+      Consider the heat equation
+      \[ \p_t u = \Delta u \]
+      and $u(0)=u_0$ on $M$.
+      Then
+      \[ u(t,x) = \int_M K_t(x,y) u_0(y) \, dy \]
+      where $K_0(x,y) = \delta_0(x,y)$.
+      It turns out that $K_t(x,y) \in \cC^\infty(M \times M)$ if $t>0$.
+      Define
+      \[ \tr K_t = \int_m K_t(x,x) \, dx. \]
+      This trace is useful because it gives us geometric properties:
+      \[ \tr K_t \sim t^{-n/2} \vol(M) + o(t^{-n/2}). \]
+      It turns out that we can define $\tr(K(\cdot,\cdot))$ as long as $\diag(M \times M)$ is ``compatible'' with $WF(K(\cdot,\cdot))$.
+    \end{enum}
+
+    \io
+    (Oscillatory integrals.)
+    We want to invert $\Delta+1$, that is, solve $(\Delta+1)u=F$.
+    Taking the Fourier transform, we get
+    \[ \wh u = \frac1{1+\abs\xi^2} \wh f, \]
+    so
+    \[ u(x) = \int \frac{e^{i\xi\cdot x}}{1+\abs\xi^2} \int e^{-iy \cdot\xi} F(y) \, dy \, d\xi = \int dy F(y) \int d\xi \frac{e^{i\xi\cdot(x-y)}}{1+\abs\xi^2}. \]
+    The integral
+    \[ \int d\xi \frac{e^{i\xi\cdot(x-y)}}{1+\abs\xi^2} \]
+    is not a-priori integrable, but we can understand this in the context of distributions.
+
+    \io
+    (Tracking singularities.)
+    This was the original motivation for wavefront sets.
+  \end{enum}
+\end{exam}
+
+We will now give a precise definition.
+
+\begin{defn}[Distributions in $\RR^n$]
+  Let $X\subseteq\RR^n$ be open.
+  A linear functional $u: \cC_c^\infty(X) \to \CC$ is called a \textbf{distribution} of order $N$ if there exists an $N\in\NN_0$ such that for all compact $K \subset\subset X$, there exists a $C>0$ such that
+  \[ \abs{\ang{u,\ph}} \leq C\sum_{\abs\alpha\leq N} \sup_X \abs{\p^\alpha\ph} \]
+  for all $\ph\in\cC_c^\infty(X)$ with $\supp\ph\subseteq K$.
+  The vector space over $\CC$ of all distributions on $X$ is denoted $\cD'(X)$.
+\end{defn}
+
+\begin{exam}
+  \lv
+  \begin{enum}
+    \io
+    Let $u\in L\loc^1(\RR^n)\subseteq\cD'(\RR^n)$.
+    Then define
+    \[ \ang{u,\ph} = \int u\ph \]
+    for all $\ph\in\cC_c^\infty(\RR^n)$.
+    When we say that $u$ is a distribution in $L\loc^1$, we mean that it can be represented as in the above equation.
+    This distribution is of order $0$.
+
+    \io
+    Let $\mu$ be a probability measure on $X$.
+    Then for each such $\mu$, define
+    \[ \ph \mapsto \int \ph \, d\mu \]
+    is a distribution of order $0$.
+    If $\mu$ is a point mass at $x_0 \in X$, then
+    \[ \int \ph \, d\mu = \ph(x_0) = \ang{\delta_{x_0},u}. \]
+
+    \io
+    Let $X=\RR$.
+    Then for $\ph\in\cC_c^\infty(\RR)$, define
+    \begin{align*}
+      \ang{\pv\frac1x,\ph} &\defeq \lim_{\eps\to0^+} \left( \int_{-\infty}^{-\eps} \frac{\ph(x)}{x}\, dx + \int_\eps^\infty \frac{\ph(x)}{x} \, dx \right) \\
+      &= \lim_{\eps\to0^+} \bigg( \int_{-\infty}^{-\eps} \log(-x)\ph'(x)\, dx - \left[ \ph(x)\log(-x) \right]_{-\infty}^{-\eps} \\
+      &\quad - \int_\eps^\infty \log(x)\ph'(x) \, dx + \left[ \ph(x)\log(x) \right]_\eps^\infty \bigg) \\
+      &= \int_{-\infty}^0 \log\abs{x}\ph'(x) - \int_0^\infty \ph'(x)\log\abs{x}
+    \end{align*}
+    
+    \io
+    Compute
+    \[ \ph \mapsto \lim_{\eps\to0} \int_\eps^\infty \frac{\ph(x)-\ph(0)}{x} \, dx. \]
+  \end{enum}
+\end{exam}

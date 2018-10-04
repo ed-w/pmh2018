@@ -1,0 +1,107 @@
+\section{2018-10-02 Lecture}
+
+3.2 Curvatures
+
+Ricci curvature and scalar curvature
+
+\begin{defn}[Scalar curvature]
+  Define
+  \begin{align*}
+    \wt\Ric: T_pM &\to T_pM \\
+    X \mapsto \wt\Ric(X)
+  \end{align*}
+  where $\wt\Ric(X)$ is defined by
+  \[ \Ric(X,Y) = g(\wt\Ric(X),Y). \]
+  Then the \textbf{scalar curvature is}
+  \[ R = \tr\wt\Ric = \sum_{i=1}^n \left( \wt\Ric(e_i),e_i \right) = \sum_{i=1}^n \Ric(e_i,e_i) \]
+  for an orthonormal basis $\{e_i\}_{i=1}^n$ of $T_pM$.
+\end{defn}
+
+\begin{rmk}
+  In light of the symmetries of $\Rm$, the ``only'' way (up to a sign) to take traces of $\Rm$ are $\Ric$ and $R$.
+  To see this, note that taking the trace just means substituting $e_i$ for any two places in $\Rm(X,Y,Z,W)$ and summing over $i$.
+  The only non-trivial way to do so is to pick one in each set of $\{X,Y\}$ and $\{Z,W\}$, and up to a sign there is only one such way to do so.
+  This gives $\Ric(Y,Z)$ from which point there is only one way to take the trace.
+\end{rmk}
+
+\begin{exam}
+  Calculate $\Ric$ and $R$ for $S^2 \subset \RR^3$.
+\end{exam}
+
+This concludes section 3.
+So we have all the tools we need now and we will apply them.
+
+4. Variational approach (and applications)
+
+Motivation: shortest distance
+
+For $(M,g)$ and for all $p,q\in M$, let $\gamma:[a,b]\to M$ be such that $\{\gamma(a),\gamma(b)\}=\{p,q\}$.
+Then the arc-length is
+\[ \abs\gamma = \int_a^b \abs{\frac{d\gamma}{dt}}\, dt \]
+where
+\[ \abs{\frac{d\gamma}{dt}} = \sqrt{g\left(\frac{d\gamma}{dt},\frac{d\gamma}{dt}\right)}. \]
+
+\begin{prop}
+  $\abs\gamma$ depends only on the trajectory of the curve $\gamma([a,b])$.
+\end{prop}
+
+\begin{proof}
+  \lv
+  \begin{enum}
+    \io
+    Let $\mu$ be a orientation-preserving reparametrisation of $t$ where $\mu(a)=c$ and $\mu(b)=d$.
+    Then
+    \[ \abs{\gamma(\mu)} = \int_c^d \abs{\frac{d\gamma}{d\mu}} \, d\mu = \int_a^b \abs{\frac{d\gamma}{dt}\cdot\frac{dt}{d\mu}}\frac{d\mu}{dt}\, dt = \abs{\gamma(t)} \]
+    since $\tfrac{dt}{d\mu}$ is always positive.
+
+    \io
+    Now let $\mu$ be an orientation-reversing reparametrisation of $t$ where $\mu(d)=a$ and $\mu(c)=b$ where $c<d$.
+    Then
+    \[ \abs{\gamma(\mu)} = \int_c^d \abs{\frac{d\gamma}{d\mu}} \, d\mu = - \int_b^a \abs{\frac{d\gamma}{dt}}\left(-\frac{dt}{d\mu}\right)\frac{d\mu}{dt}\ ,dt = \abs{\gamma(t)} \]
+    since $\tfrac{dt}{d\mu}$ is always positive.
+  \end{enum}
+\end{proof}
+
+\begin{rmk}
+  Orientation does not matter for scalar quantities such as area. volume etc. but it does matter for vector quantities.
+\end{rmk}
+
+We want to find the shortest distance between two points.
+From a ``differential'' point of view, it is a critical point of the length functional.
+
+More precisely:
+Let $\gamma(t)$ for $t\in[a,b]$ be the shortest distance curve.
+A \textbf{smooth variation} (or smooth deformation) of $\gamma$ is a smooth family of curves $\gamma(t,s)$ for $(t,s) \in [a,b] \times (-\eps,\eps)$ such that $\gamma(t,0)=\gamma(t)$ for all $t$, $\gamma(a,s)=\gamma(a)$ for all $s$, and $\gamma(b,s)=\gamma(b)$ for all $s$.
+Then
+\[ \frac{d\abs{\gamma(s)}}{ds}\bigg\vert_{s=0}=0. \]
+
+\begin{rmk}
+  We do not know that a critical point is necessarily a minimum.
+\end{rmk}
+
+We now calculate.
+Note for a fixed $t$, $\tfrac{\p}{\p s}$ is the covariant derivative along the curve $s \mapsto \gamma(t,s)$, hence it is the same as $\nabla_{\frac{\p\gamma}{\p s}}$.
+
+Let $\gamma=\gamma(t,s)$.
+\begin{align*}
+  \frac{d\abs\gamma}{ds} &= \frac{d}{ds} \int_a^b \sqrt{\left( \frac{\p\gamma}{\p t},\frac{\p\gamma}{\p t} \right)} \, dt \\
+  &= \int_a^b \frac{1}{2\sqrt{\left( \frac{\p\gamma}{\p t},\frac{\p\gamma}{\p t} \right)}} \frac{\p}{\p s} \left( \frac{\p\gamma}{\p t},\frac{\p\gamma}{\p t} \right) \, dt \\,
+  &= \int_a^b \frac{1}{\sqrt{\left( \frac{\p\gamma}{\p t},\frac{\p\gamma}{\p t} \right)}} \left( \nabla_{\frac{\p\gamma}{\p s}} \frac{\p\gamma}{\p t},\frac{\p\gamma}{\p t} \right) \, dt
+\end{align*}
+where we have used the following identity:
+\[ \nabla_{\frac{\p\gamma}{\p s}}\frac{\p\gamma}{\p t} - \nabla_{\frac{\p\gamma}{\p t}}\frac{\p\gamma}{\p s} = \left[ \frac{\p\gamma}{\p s}, \frac{\p\gamma}{\p t} \right] = 0. \]
+Now $\tfrac{\p\gamma}{\p s}$ and $\tfrac{\p\gamma}{\p s}$ in general cannot be extended to a co-ordinate chart (for example the endpoints) so we cannot immediately apply to torsion-freeness.
+We could also define an induced connection, but it is perhaps more transparent to compute directly.
+
+\begin{enum}
+  \io
+  Let
+  \[ \frac{\p\gamma}{\p s} = \sum_{i=1}^n \frac{\p\gamma_i}{\p s}\p_i \text{ and } \frac{\p\gamma}{\p t} = \sum_{i=1}^n \frac{\p\gamma_i}{\p t}\p_i \] 
+  in a co-ordinate chart $\{u_i\}_{i=1}^n$, where we have
+  \[ \gamma(t,s) = \left( \gamma_1(t,s),\ldots,\gamma_n(t,s) \right). \]
+  Then compute the bracket in these co-ordinates.
+
+  \io
+  For a local function $F$ over $M$, we have
+  \[ \left[ \frac{\p\gamma}{\p s}, \frac{\p\gamma}{\p t} \right]F = \frac{\p^2 F(\gamma(t,s))}{\p s\p t} - \frac{\p^2F(\gamma(t,s))}{\p t\p s} = 0. \]
+\end{enum}

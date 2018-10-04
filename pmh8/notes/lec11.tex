@@ -18,7 +18,7 @@ Restriction to a codimension one set
 \begin{defn}[Sobolev spaces on $\Omega$]
   Let $\Omega$ be an open domain in $\RR^n$ and let $k\in\NN_0$.
   For $u\in\cC^k(\bar\Omega)$, define
-  \[ \norm{u}_{H^k(\Omega)}^2 = \sum_{\substack{\alpha\in\NN^n\\\abs{\alpha}\leq k}} \int_\Omega \abs{\p_x^\alpha u}^2 = \sum_{\substack{\alpha\in\NN^n\\\abs{\alpha}\leq k}} \abs{\p_x^\alpha u}_{L^2(\Omega)}^2 \]
+  \[ \norm{u}_{H^k(\Omega)}^2 = \sum_{\substack{\alpha\in\NN^n\\\abs{\alpha}\leq k}} \int_\Omega \abs{\p_x^\alpha u}^2 = \sum_{\substack{\alpha\in\NN^n\\\abs{\alpha}\leq k}} \norm{\p_x^\alpha u}_{L^2(\Omega)}^2 \]
   whenever it is finite.
   Now define
   \[ H^k(\Omega) = \ol{ \left\{ u\in\cC^k(\bar\Omega) \; \Big\vert \; \norm{u}_{H^k(\Omega)}<\infty \right\}}^{\norm\cdot_{H^k}}. \]
@@ -44,7 +44,7 @@ Restriction to a codimension one set
   \begin{itm}
     \io We have not yet defined $H^s$ for $s\in\RR\setminus\NN$.
     \io This shows that with enough regularity we can get some regularity on the boundary.
-    \io This is not exactly a restriction (it only on smooth functions).
+    \io This is not exactly a restriction (it is one only on smooth functions).
   \end{itm}
 \end{rmk}
 
@@ -71,13 +71,14 @@ Here $\RR^{n-1}$ is the hyperplane $x_n=0$ inside the full space $\RR^n$.
 
 \begin{proof}[Proof of proposition \ref{11:interior}]
   Let $u\in\cC_c^\infty(\RR^n)$ and define $ru\in\cC_c^\infty(\RR^{n-1})$ by $(ru)(x)=u(x',0)$.
+  We will ignore unimportant constant factors here.
   Then
   \[ (ru)(x) = \int_\RR \int_{\RR^{n-1}} e^{ix'\cdot\xi'} \wh u(\xi',\xi_n) \, d\xi' \ d\xi_n \]
   so
   \[ (\wh{ru})(\xi') = \int_\RR \wh u(\xi',\xi_n) \ d\xi_n \]
   then
   \begin{align}
-    \norm{ru}_{H^{s-\frac12}(\RR^{n-1})} &\defeq \int_{\RR^{n-1}} (1+\abs{\xi'}^2)^{s-\frac12} \abs{(\wh{ru})(\xi')}^2 \ d\xi' \nonumber \\
+    \norm{ru}_{H^{s-\frac12}(\RR^{n-1})}^2 &= \int_{\RR^{n-1}} (1+\abs{\xi'}^2)^{s-\frac12} \abs{(\wh{ru})(\xi')}^2 \ d\xi' \nonumber \\
     &= \int_{\RR^{n-1}} (1+\abs{\xi'}^2)^{s-\frac12} \abs{\int_\RR \wh u(\xi',\xi_n) \ d\xi_n}^2 \ d\xi'. \label{11:star}
   \end{align}
   Now by Cauchy-Schwarz we have\vspace{-0.5cm}
@@ -86,7 +87,7 @@ Here $\RR^{n-1}$ is the hyperplane $x_n=0$ inside the full space $\RR^n$.
   \begin{align*}
     \norm{ru}_{H^{s-\frac12}(\RR^{n-1})}^2 &\leq C \int (1+\abs{\xi'}^2)^{s-\frac12} \int (1+\xi_n^2)^s \abs{\wh u}^2 \, d\xi_n \, d\xi' \\
     &\leq C \int (1+\abs\xi^2)^s \abs{\wh u}^2 \, d\xi_n \, d\xi' \\
-    &= \norm{u}_{H^s(\RR^n)}^2
+    &= C\norm{u}_{H^s(\RR^n)}^2
   \end{align*}
   for all $u\in\cC_c^\infty(\RR^n)$ since
   \[ (1+\abs{\xi'}^2)^{s-\frac12}(1+\xi_n^2)^s \leq (1+\abs\xi^2)^s. \]
@@ -115,12 +116,12 @@ The plan for the proof is the same as the last proof: show that the operator is 
     (Eu)(x',x_n)=
       \begin{cases}
 	u(x) & x_n \geq 0 \\
-	\sum_{j=1}^{k+1} \beta_j u\left( x',-\frac{-x_n}j \right) & x_n < 0
+	\sum_{j=1}^{k+1} \beta_j u\left( x',-\frac{x_n}j \right) & x_n < 0
       \end{cases}
   \end{equation*}
   We claim that $\beta_j$ for $j=1,\ldots,k+1$ can be chosen independently of $u$ such that $Eu \in \cC^k(\RR^n)$.
   Then for $\abs\alpha\leq k$, we have
-  \[ \norm{\p_x^\alpha Eu}_{L^2(\RR^n)}^2 \leq \norm{\p_x^\alpha Eu}_{L^2(\RR_+^n)}^2 + \norm{\p_x^\alpha Eu}_{L^2(\RR_-^n)}^2 \leq C\norm{\p_x^\alpha u}_{L^2(\RR^n)}^2. \]
+  \[ \norm{\p_x^\alpha Eu}_{L^2(\RR^n)}^2 \leq \norm{\p_x^\alpha Eu}_{L^2(\RR_+^n)}^2 + \norm{\p_x^\alpha Eu}_{L^2(\RR_-^n)}^2 \leq C\norm{\p_x^\alpha u}_{L^2(\RR_+^n)}^2. \]
   Now we prove the claim.
   We have
   \begin{align*}

@@ -12,7 +12,7 @@ However it is surjective.
 
 \begin{proof}
   For $f\in\cC_c^\infty(\RR^{n-1})$, define $R^+$ by
-  \[ (\wh{R^+f})(\xi',\xi_n) \defeq \wh u(\xi',\xi_n) \defeq \wh f(\xi') 2\sqrt\pi \frac{e^{-\frac{-\xi_n^2}{1+\abs{\xi'}^2}}}{\sqrt{1+\abs{\xi'}^2}}. \]
+  \[ (\wh{R^+f})(\xi',\xi_n) \defeq \wh u(\xi',\xi_n) \defeq \wh f(\xi') 2\sqrt\pi \frac{e^{-\frac{\xi_n^2}{1+\abs{\xi'}^2}}}{\sqrt{1+\abs{\xi'}^2}}. \]
   So we extend by taking the Fourier transform of $f$ and the multiplying by an appropriately scaled Gaussian.
 
   \begin{exer}
@@ -30,7 +30,7 @@ However it is surjective.
   We compute:
   \begin{align*}
     u(x',0) &= \int_{\RR^n} e^{i\xi'\cdot x'} \wh u(\xi',\xi_n) \ d\xi' \ d\xi_n \\
-    &= 2\sqrt\pi \int_{\RR^{n-1}} e^{i\xi'\cdot x'} \wh f(\xi') \int_\RR \frac{e^-\frac{\xi_n^2}{1+\abs{\xi'}^2}}{\sqrt{1+\abs{\xi'}^2}} \ d\xi_n \ d\xi' \\
+    &= 2\sqrt\pi \int_{\RR^{n-1}} e^{i\xi'\cdot x'} \wh f(\xi') \int_\RR \frac{e^{-\frac{\xi_n^2}{1+\abs{\xi'}^2}}}{\sqrt{1+\abs{\xi'}^2}} \ d\xi_n \ d\xi' \\
     &= \int_{\RR^{n-1}} e^{i\xi'\cdot x'} \wh f(\xi') \ d\xi' = f(x')
   \end{align*}
   where the integrals converge absolutely by the above exercises.
@@ -38,7 +38,7 @@ However it is surjective.
   We now show boundedness.
   We have
   \begin{align*}
-    \norm{R^+f}_{H^k(\RR^n)} &= \int_{\RR^n} (1+\abs\xi^2)^k \abs{\wh u(\xi)}^2 \ d\xi \\
+    \norm{R^+f}_{H^k(\RR^n)}^2 &= \int_{\RR^n} (1+\abs\xi^2)^k \abs{\wh u(\xi)}^2 \ d\xi \\
     &= \int_{\RR^{n-1}} \int_\RR (1+\abs\xi^2)^k \frac{e^{-\frac{2\xi_n^2}{1+\abs{\xi'}^2}}\abs{\wh f(\xi')}^2}{1+\abs{\xi'}^2} \ d\xi_n \ d\xi' \\
     &= \int_\RR e^{-t^2}(1+t^2)^k \int_{\RR^{n-1}} (1+\abs{\xi'}^2)^{k-\frac12} \abs{\wh f(\xi')}^2 \ d\xi' \\
       &= C\norm{f}_{H^{k-\frac12}(\RR^{n-1})}
@@ -90,7 +90,7 @@ We can now prove theorem \ref{11:boundary}.
 %\end{thm}
 
 \begin{proof}[Proof of theorem \ref{11:boundary}]
-  By definition, for all $x\in\p\Omega$ there exists an open neighbourhood $N_x\subseteq\RR^n$ containing $x$ and a diffeomorphic co-ordinate map $\Psi_x: N \to \Psi_x(N_x)\subseteq\RR^n$ such that
+  By definition, for all $x\in\p\Omega$ there exists an open neighbourhood $N_x\subseteq\RR^n$ containing $x$ and a diffeomorphic co-ordinate map $\Psi_x: N_x \to \Psi_x(N_x)\subseteq\RR^n$ such that
   \[ \Psi(N_x\cap\p\Omega)\subseteq\RR^{n-1}=\{x_n=0\} \]
   and 
   \[ \Psi(N_x\cap\Omega)\subseteq\RR_+^n=\{x_n>0\}. \]

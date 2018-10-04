@@ -3,7 +3,7 @@
 \begin{exer}
   Let $k\geq0$ and define
   \[ \left(D_{jh}(u)\right)(x) = \frac{u(x+he_j)-u(x)}{h}. \]
-  Then for all $u\in H^{k+1}(\Omega) \cap H_0(\Omega)$.
+  Then for all $u\in H^{k+1}(\Omega) \cap H_0^1(\Omega)$.
   \[ \norm{D_{jh}u}_{H^k(\Omega)} \leq C\norm{u}_{H^{k+1}(\Omega)} \]
   with $C$ independent of $h$.
   Furthermore, we have $D_{jh}u \to \p_{x_j}u$ in $H^k$.
@@ -46,7 +46,7 @@ We will need the following inequality:
   \[ \ang{F,v} = (u_F,v)_\gamma = \int_\Omega \gamma(\nabla u_F) \cdot \nabla v = \ang{\nabla\cdot \gamma\nabla u_F,v} \]
   for all $v \in H_0^1(\Omega)$.
   In the last equality we have used integration by parts.
-  Hence $\nabla\cdot\gamma u_F=F$.
+  Hence $\nabla\cdot\gamma\nabla u_F=F$.
   Furthermore, by Riesz and the equivalence of norms we have the bound
   \[ \norm{u_F}_\gamma \leq \norm{F}_{H^{-1}}. \]
 
@@ -81,8 +81,8 @@ We will need the following inequality:
   \[ \abs{u(x',x_n)}^2 = \abs{ \int_0^{x_n} \frac{\p u}{\p x_n}(x',z) \ ds}^2 \leq \int_0^1 \abs{\frac{\p u}{\p x_n}(x',s)}^2 \ ds, \]
   so
   \begin{align*}
-    \int_\Omega \abs{u(x',x_n)}^2 &\leq \int_{\RR^{n-1}} dx' \int_0^1 dx_n \int_0^1 ds \ \abs{\frac{\p u}{\p x_n}(x's)}^2 = \int_{\RR^{n-1}} dx' \int_0^1 ds \ \abs{\frac{\p u}{\p x_n}(x's)}^2 \\
-    &\leq \int_{\RR^{n-1}} dx' \int_0^1 ds \ \abs{\nabla u(x's)}^2 = \int_\Omega \abs{\nabla u}^2 
+    \int_\Omega \abs{u(x',x_n)}^2 &\leq \int_{\RR^{n-1}} dx' \int_0^1 dx_n \int_0^1 ds \ \abs{\frac{\p u}{\p x_n}(x',s)}^2 = \int_{\RR^{n-1}} dx' \int_0^1 ds \ \abs{\frac{\p u}{\p x_n}(x',s)}^2 \\
+    &\leq \int_{\RR^{n-1}} dx' \int_0^1 ds \ \abs{\nabla u(x',s)}^2 = \int_\Omega \abs{\nabla u}^2 
   \end{align*}
   Note that if $\Omega \subseteq \{0\leq x_n \leq L\}$, then the constant depends increases with $L$.
 \end{proof}
@@ -109,7 +109,7 @@ We will need the following inequality:
 \begin{rmk}
   How do we know $\Lambda_\gamma f$ is a member of the dual space?
   Note that
-  \[ \abs{\ang{\Lambda_\gamma}} \leq \norm{\nabla u_f}_{L^2} \norm{\nabla R^+g}_{L^1} \leq \norm{g}_{H^\frac12{\p\Omega}}\norm{f}_{H^\frac12(\p\Omega)}, \]
+  \[ \abs{\ang{\Lambda_\gamma f,g}} \leq \norm{\nabla u_f}_{L^2} \norm{\nabla R^+g}_{L^2} \leq \norm{g}_{H^\frac12(\p\Omega)}\norm{f}_{H^\frac12(\p\Omega)}, \]
   hence $\Lambda_\gamma f \in (H^\frac12(\p\Omega))^*$.
   Furthermore,
   \[ \Lambda_\gamma: H^\frac12(\p\Omega) \to \left( H^\frac12(\p\Omega) \right)^* \]

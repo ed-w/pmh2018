@@ -1,0 +1,125 @@
+\section{2018-09-20 Lecture}
+
+Higher regularity
+
+We have shown that for $F \in H\inv(\Omega)$, $f \in H^\frac12(\p\Omega)$ and  $\Omega$ a smooth open domain in $\RR^n$, there exists a unique $u \in H^1(\Omega)$ such that
+\begin{equation*}
+  \begin{cases}
+    \nabla\cdot\gamma\nabla u&=F \\
+    u|_{\p\Omega}&=f
+  \end{cases}
+\end{equation*}
+and
+\[ \norm{u}_{H^1} \leq \norm{f}_{H^\frac12} + \norm{F}_{H\inv}. \]
+
+\begin{thm}\label{15:thm}
+  Let $\nabla\cdot\gamma\nabla u = F\in H^{k-1}(\Omega)$, $k\geq0$ and $u\in H_0^1(\Omega)$.
+  Then $u\in H^{k+1}(\Omega)$ and
+  \[ \norm{u}_{H^{k+1}(\Omega)} \leq C\norm{F}_{H^{k-1}(\Omega)}. \]
+\end{thm}
+
+\begin{exer}[Corollary of theorem \ref{15:thm}]
+  Let $\nabla\cdot\gamma\nabla u=F \in H^{k-1}(\Omega)$ and $u|_{\p\Omega}=f \in H^{k+\frac12}(\p\Omega)$ for some $k\geq0$.
+  Then $u\in H^{k+1}(\Omega)$ and
+  \[ \norm{u}_{H^{k+1}(\Omega)} \leq C\left( \norm{F}_{H^{k-1}(\Omega)} + \norm{f}_{H^{k+\frac12}(\p\Omega)} \right). \]
+\end{exer}
+
+\begin{proof}[Proof of theorem \ref{15:thm}]
+  We have already done the case $k=0$.
+  Now suppose that the statement holds for some $k\geq0$, that is;
+  \begin{equation}
+    \left.
+    \begin{aligned}
+      \nabla\cdot\gamma\nabla u &= F \in H^{k-1}(\Omega) \\
+      u|_{\p\Omega} &= 0
+    \end{aligned}
+    \right\}\implies u\in H^{k+1}(\Omega)
+    \label{<+label+>}
+  \end{equation}
+  Suppose that $F \in H^k \subset H^{k-1} \implies u \in H^{k+1}(\Omega)$ and equation \ref{15:star} holds:
+  \begin{equation}
+    \norm{u}_{H^{k+1}(\Omega)} \leq C\norm{\nabla\cdot\gamma\nabla u}_{H^{k-1}(\Omega)}.
+    \label{15:star}
+  \end{equation}
+  We need to show that $u \in H^{k+2}(\Omega)$ and
+  \[ \norm{u}_{H^{k+2}} \leq \norm{\nabla\cdot\gamma\nabla u}_{H^k}. \]
+  Let $\chi\in\cC_c^\infty(\RR^n)$ where $\supp\chi\subseteq U\subset\RR^n$ and $(U,\Psi)$ is a co-ordinate neighbourhood for $\p\Omega$.
+  Then
+  \[ \nabla\cdot\gamma\nabla(\chi u) = \chi\underbrace{\nabla\cdot\gamma\nabla}_{=F \in H^k} u + \underbrace{[\nabla\cdot\gamma\nabla,\chi]}_{1\text{st order operator}}\underbrace{u}_{\in H^{k+1}} \in H^k(\Omega) \]
+  (check this).
+  Set $\wt\Omega=\Psi(\supp\chi\cap U)$ and 
+  \[ \wt u(x) = (\chi u)\circ\Psi\inv(x) \in H^{k+1}(\wt\Omega), \]
+  so $\wt u|_{\p\wt\Omega}=0$.
+
+  \begin{exer}
+    We have
+    \[ \nabla\cdot\wt\gamma\nabla\wt u = \wt F \in H^k(\wt\Omega) \]
+    where
+    \[ \wt\gamma = (D\Psi)^\intercal \gamma (D\Psi) \]
+    and
+    \[ \Vert\wt F \Vert_{H^k(\wt\Omega)} \leq \norm{F}_{H^k(\Omega)}. \]
+  \end{exer}
+
+  For $j=1,\ldots,n-1$,
+  \begin{align*}
+    \norm{D_{h,j} \wt u}_{H^{k+1}(\wt\Omega)} &\leq \norm{\nabla\cdot\wt\gamma\nabla D_{h,j}\wt u}_{H^{k-1}(\wt\Omega)} && \text{by equation \ref{15:star}} \\
+    &\leq \norm{D_{h,j}(\nabla\cdot\wt\gamma\nabla\wt u)}_{H^{k-1}(\wt\Omega)} + \norm{[\nabla\cdot\wt\gamma\nabla,D_{h,j}]\wt u}_{H^{k-1}(\wt\Omega)} \\
+    &\leq \norm{\nabla\cdot\wt\gamma\nabla\wt u}_{H^k} + \norm{\wt u}_{H^{k+1}} && \text{exercise} \\
+    &\leq C\norm{\nabla\cdot\wt\gamma\nabla\wt u}_{H^k} && \text{by equation \ref{15:star}}
+  \end{align*}
+  where $C$ is independent of $h$.
+  Then taking $h\to0$, we have
+  \begin{equation}
+    \norm{\p_{x_j}\wt u}_{H^{k+1}(\wt\Omega)} \leq C\norm{\nabla\cdot\wt\gamma\nabla\wt u}_{H^k(\wt\Omega)}
+    \label{15:2star}
+  \end{equation}
+  for $j=1,\ldots,n-1$.
+
+  \begin{rmk}
+    For interior regularity we can stop here.
+  \end{rmk}
+
+  Now we need
+  \begin{align*}
+    &\norm{\p_{x_n}\wt u}_{H^{k+1}(\wt\Omega)} \leq \norm{\nabla\cdot\wt\gamma\nabla\wt u}_{H^k(\wt\Omega)} \\
+    \iff &\norm{\p_{x_n}\p_{x_j}\wt u}_{H^k(\wt\Omega)} \leq \norm{\nabla\cdot\wt\gamma\nabla\wt u}_{H^k(\wt\Omega)}
+  \end{align*}
+  for all $j=1,\ldots,n$.
+  If $j=1,\ldots,n-1$, then by equation \ref{15:2star} we have
+  \[ \norm{\p_{x_j}\p_{x_n}\wt u}_{H^k} \leq \norm{\p_{x_j}\wt u}_{H^{k+1}} \leq \norm{\nabla\cdot\wt\gamma\nabla\wt u}_{H^k}. \]
+  So we only need to check
+  \[ \norm{\p_{x_n}^2\wt u}_{H^k} \leq \norm{\nabla\cdot\wt\gamma\nabla\wt u}_{H^k}. \]
+  Now write
+  \begin{align*}
+    \nabla\cdot\wt\gamma\nabla\wt u &= \p_n \wt\gamma^{n,n} \p_n \wt u + \sum_{(l,m)\neq(n,n)} \p_l \wt\gamma^{l,m} \p_m \wt u \\
+    &= \wt\gamma^{n,n} \p_n^2 \wt u + \sum_{(l,m)\neq(n,n)} \wt\gamma^{l,m} \p_l\p_m \wt u + Xu
+  \end{align*}
+  where $X$ is some $1$st order differential operator.
+
+  \begin{exer}
+    $\wt\gamma$ is positive definite $\implies$ $\wt\gamma^{n,n}(x)>0$.
+  \end{exer}
+
+  So
+  \begin{align*}
+    \norm{\p_n^2\wt u}_{H^k} &\leq \norm{\nabla\cdot\wt\gamma\nabla\wt u}_{H^k} + \sum_{(l,m)\neq(n,n)} \norm{\p_l\p_m\wt u}_{H^k} + \norm{X\wt u}_{H^k} \\
+    &\leq C\norm{\nabla\cdot\wt\gamma\nabla\wt u}_{H^k} + \norm{X\wt u}_{H^k} \\
+    &\leq C\norm{\nabla\cdot\wt\gamma\nabla\wt u}_{H^k} + \norm{\wt u}_{H^{k+1}} \\
+    &\leq \wt C\norm{\nabla\cdot\wt\gamma\nabla\wt u}_{H^k}
+  \end{align*}
+  by the induction hypothesis (equation \ref{15:star}).
+  Then
+  \begin{align*}
+    \implies &\norm{\p_{x_j}\p_{x_k}\wt u}_{H^k} \leq C\norm{\nabla\cdot\wt\gamma\nabla\wt u}_{H^k} \\
+    \implies &\norm{\wt u}_{H^{k+2}} \leq C\norm{\nabla\cdot\wt\gamma\nabla\wt u}_{H^k}
+  \end{align*}
+  in $\Omega$.
+
+  \begin{exer}
+    Show that this implies that
+    \[ \norm{\chi u}_{H^{k+2}(\Omega)} \leq C\norm{\nabla\cdot\gamma\nabla u}_{H^k(\Omega)}. \]
+  \end{exer}
+
+  Then considering a partition of unity completes the proof.
+\end{proof}
+

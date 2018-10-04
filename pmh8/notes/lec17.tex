@@ -1,0 +1,82 @@
+\section{2018-10-04 Lecture}
+
+\begin{exam}[More examples]
+  \lv
+  \begin{enum}
+    \io
+    Define the Heaviside function:
+    \begin{align*}
+      H: \RR &\to \RR \\
+      t \mapsto
+      \begin{cases}
+	1 & \text{if }t\geq0 \\
+	0 & \text{if }t<0.
+      \end{cases}
+    \end{align*}
+    Then we can define a distribution for $\ph\in\cC_c^\infty(\RR^n)$ by
+    \[ \ph \mapsto \int_{\RR^n} H(x_1) \p_{x_1} \ph = \int_{\RR^{n-1}} dx' \int_0^\infty dx_1 \, \p_{x_1} \ph(x_1,x') = \int_{\RR^{n-1}} dx' \, \ph(0,x') = \ang{\delta(x_1),\ph} \]
+    where we write $x=(x_1,x')$ for $x_1\in\RR$ and $x'\in\RR^{n-1}$.
+
+    \io
+    Here is a geometric generalisation.
+    Define
+    \begin{equation*}
+      \delta_\eps(t)=
+      \begin{cases}
+	\frac1\eps &\text{if }\abs{t}\leq\frac\eps2 \\
+	0 &\text{otherwise}
+      \end{cases}
+    \end{equation*}
+    and let $f\in\cC(\RR^n;\RR)$.
+    Define the \textbf{characteristic variety} of $f$;
+    \[ \Sigma=\left\{ x\in\RR^n \mid f(x)=0 \right\}, \]
+    and assume that $\abs{\nabla f}\neq0$ on $\Sigma$.
+
+    \begin{exer}
+      For all $x_0\in\Sigma$, there exists a subset $U\subseteq\Sigma$ is open in $\Sigma$ such that $U\cong\RR^{n-1}$.
+      So $\Sigma$ is a codimension one manifold.
+    \end{exer}
+
+    Now define
+    \[ \ang{\delta\circ f,\ph} = \lim_{\eps\to0^+} \int_{\RR^n} \ph(x) \delta_\eps\circ f(x) \, dx. \]
+    (So $\delta_\eps\circ f$ is like a ``blurred'' delta function on the smooth variety $\Sigma$.)
+    We will compute for $\ph$ supported in a single co-ordinate chart (and then use a partition of unity).
+
+    Let $x_0(\cdot): \RR^{n-1} \to \supp\ph\cap\Sigma$ be a co-ordinate chart.
+    That is, $x_0(\theta)\in\supp\ph\cap\Sigma$ for all $\theta\in\RR^{n-1}$.
+    Define $x(t,\theta)$ by
+    \[ x(t,\theta)=x_0(\theta)+t\frac{\nabla f(x_0(\theta))}{\abs{\nabla f(x_0(\theta))}^2}. \]
+    (Since the gradient vector is normal to the curve $\Sigma$, this is like moving normally outward by a distance of $t/\abs{\nabla f}$).
+    Then by a change of variables, we have
+    \begin{equation*}
+      \ang{\delta\circ f,\ph} = \lim_{\eps\to0^+} \int_{\RR^{n-1}} \int_{-\infty}^\infty \ph\left( t\frac{\nabla f(x_0(\theta))}{\ang{\nabla f}^2} + x_0(\theta) \right) \delta_\eps\left( f\left( t\frac{\nabla f(x_0(\theta))}{\ang{\nabla f}^2} + x_0(\theta) \right) \right) \abs{\frac{\p x(t,\theta)}{\p(t,\theta)}}
+    \end{equation*}
+    By a Taylor expansion in $t$, we have
+    \begin{align*}
+      f\left( t\frac{\nabla f(x_0(\theta))}{\ang{\nabla f}^2} + x_0(\theta) \right) &= f\left( x_0(\theta) \right) + t \frac{\nabla f}{\abs{\nabla f}^2} \cdot\nabla f + t^2 r(t,\theta) \\
+      &= t+t^2r(t,\theta)
+    \end{align*}
+    where $r(t\theta)\in\cC^\infty$.
+    So
+    \begin{equation*}
+      \ang{\delta\circ f,\ph} = \lim_{\eps\to0^+} \int_{\RR^{n-1}} dt \int_{-\infty}^\infty d\theta \, \ph\left( t\frac{\nabla f(x_0(\theta))}{\ang{\nabla f}^2} + x_0(\theta) \right) \delta_\eps\left( t+t^2r(t,\theta) \right) \abs{\frac{\p x(t,\theta)}{\p(t,\theta)}}
+    \end{equation*}
+    Now make the change of variables $s=t+t^2r(t,\theta)$ (so $ds=(1+tr(t,\theta)+1/2t^2r')dt$ where $r'=\p_tr$.
+    So we have
+    \begin{align*}
+      \int_{-\infty}^\infty d\theta \cdots &= \int_{-\infty}^\infty ds \, \ph\left( t\frac{\nabla f(x_0(\theta))}{\ang{\nabla f}^2} + x_0(\theta) \right) \delta_\eps(s) \abs{\frac{\p x(t,\theta)}{\p(t,\theta)}}\bigg\vert_{t=t(s)} \left( 1+tr(t,\theta)+\frac12t^2r'(t,\theta) \right) \\
+      &= \ph\left( x_0(\theta) \right) \abs{\frac{\p x(t,\theta)}{\p(t,\theta)}}\bigg\vert_{t=0}.
+    \end{align*}
+    where we choose $\eps$ small enough so that $t(s)$ exists.
+    So
+    \begin{align*}
+      \ang{\delta\circ f,\ph} &= \int_{\RR^{n-1}} \ph(x_0(\theta)) \abs{\frac{\p x(t,\theta)}{\p(t,\theta)}}\bigg\vert_{t=0} \, d\theta_1 \, \cdots \, d\theta_{n-1} \\
+      &= \int_\Sigma \frac{\ph|_\Sigma}{\abs{\nabla f}|_\Sigma} \, dV_0|_\Sigma
+    \end{align*}
+    where $dV_0|_\Sigma=dV_0|_{\iota_\Sigma^*g}$ and $\iota_g: \Sigma \to \RR^n$ is the inclusion (with the Euclidean metric).
+    Recall that the pullback is defined in terms of the pushforward (differential) by
+    \[ (\iota_g^*g)_p(V,V) = g_p\left( (\iota_\Sigma)_*V,(\iota_\Sigma)_*V \right). \]
+    Recall that a volume for for an $n$-dimensional manifold $M$ is a smooth, alternating, non-vanishing $n$-tensor.
+    For a Riemannian manifold $(M,g)$, there exists a unique volume form (up to sign) $d\vol_g$ which is given by $\sqrt{\abs{\det g}} \, dx_1 \wedge \cdots \wedge dx_n$.
+  \end{enum}
+\end{exam}
