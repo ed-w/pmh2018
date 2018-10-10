@@ -38,7 +38,7 @@
     \end{exer}
 
     Now define
-    \[ \ang{\delta\circ f,\ph} = \lim_{\eps\to0^+} \int_{\RR^n} \ph(x) \delta_\eps\circ f(x) \, dx. \]
+    \[ \ang{\delta\circ f,\ph} = \lim_{\eps\to0^+} \int_{\RR^n} \ph(x) (\delta_\eps\circ f)(x) \, dx. \]
     (So $\delta_\eps\circ f$ is like a ``blurred'' delta function on the smooth variety $\Sigma$.)
     We will compute for $\ph$ supported in a single co-ordinate chart (and then use a partition of unity).
 
@@ -53,18 +53,18 @@
     \end{equation*}
     By a Taylor expansion in $t$, we have
     \begin{align*}
-      f\left( t\frac{\nabla f(x_0(\theta))}{\ang{\nabla f}^2} + x_0(\theta) \right) &= f\left( x_0(\theta) \right) + t \frac{\nabla f}{\abs{\nabla f}^2} \cdot\nabla f + t^2 r(t,\theta) \\
+      f\left( t\frac{\nabla f(x_0(\theta))}{\abs{\nabla f}^2} + x_0(\theta) \right) &= f\left( x_0(\theta) \right) + t \frac{\nabla f}{\abs{\nabla f}^2} \cdot\nabla f + t^2 r(t,\theta) \\
       &= t+t^2r(t,\theta)
     \end{align*}
     where $r(t\theta)\in\cC^\infty$.
     So
     \begin{equation*}
-      \ang{\delta\circ f,\ph} = \lim_{\eps\to0^+} \int_{\RR^{n-1}} dt \int_{-\infty}^\infty d\theta \, \ph\left( t\frac{\nabla f(x_0(\theta))}{\ang{\nabla f}^2} + x_0(\theta) \right) \delta_\eps\left( t+t^2r(t,\theta) \right) \abs{\frac{\p x(t,\theta)}{\p(t,\theta)}}
+      \ang{\delta\circ f,\ph} = \lim_{\eps\to0^+} \int_{\RR^{n-1}} dt \int_{-\infty}^\infty d\theta \, \ph\left( t\frac{\nabla f(x_0(\theta))}{\abs{\nabla f}^2} + x_0(\theta) \right) \delta_\eps\left( t+t^2r(t,\theta) \right) \abs{\frac{\p x(t,\theta)}{\p(t,\theta)}}
     \end{equation*}
     Now make the change of variables $s=t+t^2r(t,\theta)$ (so $ds=(1+tr(t,\theta)+1/2t^2r')dt$ where $r'=\p_tr$.
     So we have
     \begin{align*}
-      \int_{-\infty}^\infty d\theta \cdots &= \int_{-\infty}^\infty ds \, \ph\left( t\frac{\nabla f(x_0(\theta))}{\ang{\nabla f}^2} + x_0(\theta) \right) \delta_\eps(s) \abs{\frac{\p x(t,\theta)}{\p(t,\theta)}}\bigg\vert_{t=t(s)} \left( 1+tr(t,\theta)+\frac12t^2r'(t,\theta) \right) \\
+      \int_{-\infty}^\infty d\theta \cdots &= \int_{-\infty}^\infty ds \, \ph\left( t\frac{\nabla f(x_0(\theta))}{\abs{\nabla f}^2} + x_0(\theta) \right) \delta_\eps(s) \abs{\frac{\p x(t,\theta)}{\p(t,\theta)}}\bigg\vert_{t=t(s)} \left( 1+tr(t,\theta)+\frac12t^2r'(t,\theta) \right) \\
       &= \ph\left( x_0(\theta) \right) \abs{\frac{\p x(t,\theta)}{\p(t,\theta)}}\bigg\vert_{t=0}.
     \end{align*}
     where we choose $\eps$ small enough so that $t(s)$ exists.

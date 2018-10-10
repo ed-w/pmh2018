@@ -1,0 +1,93 @@
+\section{2018-10-08 Lecture}
+
+Continuing on from last time, we have
+\begin{align*}
+  \frac{d\abs\gamma}{ds} &= \int_a^b \frac{1}{\sqrt{\left( \frac{\p\gamma}{\p t},\frac{\p\gamma}{\p t} \right)}} \left( \nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p s}, \frac{\p\gamma}{\p t} \right) \, dt \\
+  &= \int_a^b \frac{1}{\sqrt{\left( \frac{\p\gamma}{\p t},\frac{\p\gamma}{\p t} \right)}} \frac{\p}{\p t} \left( \frac{\p\gamma}{\p s}, \frac{\p\gamma}{\p t} \right) \, dt - \int_a^b \frac{1}{\sqrt{\left( \frac{\p\gamma}{\p t},\frac{\p\gamma}{\p t} \right)}} \left( \nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p s} \right) \, dt
+\end{align*}
+Now consider $s=0$ and w.l.o.g.\@ choose $t$ such that $\abs{\tfrac{\p\gamma}{\p t}}|_{s=0}=1$ (arc-length parametrisation).
+Then
+\begin{align*}
+  0 &= \frac{d\abs\gamma}{ds}\bigg\vert_{s=0} = \int_a^b \frac{\p}{\p t} \left( \frac{\p\gamma}{\p s}, \frac{\p\gamma}{\p t} \right) \, dt - \int_a^b \left( \nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p s} \right) \, dt \\
+  &= \left( \frac{\p\gamma}{\p s}, \frac{\p\gamma}{\p t} \right)_{s=0} \bigg\vert^{t=b}_{t=a} - \int_a^b \left( \nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p s} \right)_{s=0} \, dt \\
+  &= - \int_a^b \left( \nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p s} \right)_{s=0} \, dt
+\end{align*}
+where the last equality holds becasue $\tfrac{\p\gamma}{\p s}=0$ at the endpoints.
+
+This holds for any variation $\gamma(t,s)$ of $\gamma(t)=\gamma(t,0)$.
+We claim that this implies
+\[ \nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p t} = 0 \]
+identically.
+Suppose that $\nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p t} \neq 0$ identically.
+Then there exists a $t_0 \in (a,b)$ such that $(\nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p t})(p)\neq0$, any by continuity is non-zero everywhere on a neighbourhood $t\in(t_1,t_2)\subset(a,b)$.
+Suppose $\gamma\left( (t_1,t_2) \right)$ is in a co-ordinate chart $(U,x_1,\ldots,x_n)$.
+Then we can write
+\[ \nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p t} = \sum_{i=1}^n f_i \frac{\p}{\p x_i} \]
+where WLOG $f_1\neq 0$.
+Now construct the following variation $\gamma(t,s)$ of $\gamma(t)$:
+\begin{equation*}
+  \gamma(t,s)=
+  \begin{cases}
+    \gamma(t) &\text{outside $U$} \\
+    \gamma(t) + \left( s(f_1,\ldots,f_n) \right)\cdot\rho(t) &\text{in $U$}
+  \end{cases}
+\end{equation*}
+where $\rho(t)$ is a cutoff function for $(t_1,t_2)\subset[a,b]$.
+Then
+\begin{align*}
+  \frac{\p\gamma}{\p s}\bigg\vert_{s=0}=
+  \begin{cases}
+    0 &\text{outside $U$} \\
+    \ds \sum_{i=1}^n f_i \frac{\p}{\p x_i} \cdot \rho(t) = \nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p t} \cdot \rho(t) &\text{in $U$}
+  \end{cases}
+\end{align*}
+and so
+\begin{align*}
+  0 &= \frac{d\abs\gamma}{dt}\bigg\vert_{s=0} = - \int_a^b \left( \nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p s} \right)_{s=0} \, dt \\
+  &= - \int_a^b \rho(t) \left( \nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p t}, \nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p t} \right)_{s=0} \, dt
+  &= - \int_a^b \rho(t) \abs{ \nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p t} }^2_{s=0} \, dt < 0
+\end{align*}
+a contradiction.
+
+So we have the \textbf{geodesic equation}
+\[ \nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p t} = 0. \]
+
+\begin{exer}
+  Show that the geodeis equation implies that $|\tfrac{d\gamma}{dt}|$ is a constant along $\gamma$.
+\end{exer}
+
+\begin{rmk}
+  Without the restriction $|\tfrac{d\gamma}{dt}|=1$, we would get the equation
+  \[ \nabla_{\frac{\p\gamma}{\p t}} \frac{\frac{\p\gamma}{\p t}}{\abs{\frac{\p\gamma}{\p t}}} = 0. \]
+\end{rmk}
+
+We have also the \textbf{$L^2$-energy functional}
+\[ E(\gamma) = \int_a^b \abs{\frac{d\gamma}{dt}}^2 \, dt. \]
+This functional depends on the parametrisation.
+Its critical points are also given by the geodesic equation:
+\[ \frac{dE}{ds} = -2\int_a^b \left( \nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p s} \right). \]
+Note that we have made no assumption on $|\tfrac{\p\gamma}{\p t}|$.
+
+The relation between $\abs\cdot$ and $E(\cdot)$
+
+By Cauchy-Schwarz we have
+\[ \left( \int_a^b \abs{\frac{d\gamma}{dt}} \, dt \right)^2 \leq \int_a^b \abs{\frac{d\gamma}{dt}}^2 \, dt \int_a^b \, dt = (b-a)E(\gamma) \]
+with equality when $|\tfrac{d\gamma}{dt}|$ is constant.
+So the minimum of $E(\gamma)$ is achieved when $\abs\gamma$ is minimsed and $|\tfrac{d\gamma}{dt}|$ is constant.
+
+Local equation for geodesics
+
+Let $\left( U,\left\{ x^i \right\}_{i=1}^n \right)$ be a co-ordinate chart in $(M,g)$ and let $\gamma=(\gamma^1,\ldots,\gamma^n)$ be the local expression of $\gamma$ in $U$.
+Let $\dot\box$ denote a derivative with respect to $t$.
+Then $\dot\gamma=\dot\gamma^i\p_i$.
+So
+\begin{align*}
+  \nabla_{\frac{\p\gamma}{\p t}} \frac{\p\gamma}{\p t} &= \nabla_{\dot\gamma^i\p_i} \dot\gamma^j\p_j \\
+  &= \dot\gamma^i (\p_i\dot\gamma^j) \p_j + \dot\gamma^i\dot\gamma^j \nabla_{\p_i}\p_j \\
+  &= \ddot\gamma^k \p_k + \dot\gamma^i\dot\gamma^j \Gamma_{ij}^k \p_k = 0.
+\end{align*}
+Hence
+\[ \ddot\gamma^k+\dot\gamma^i\dot\gamma^j\Gamma_{ij}^k =0 \]
+for $k=1,\ldots,n$.
+This is a system of 2nd order ODEs.
+ODE theory gives us existence and uniqueness of a smooth solution with initila conditions $\gamma(0)$, $\tfrac{d\gamma}{dt}(0)$.

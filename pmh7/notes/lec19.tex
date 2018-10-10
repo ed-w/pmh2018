@@ -1,0 +1,88 @@
+\section{2018-10-09 Lecture}
+
+\begin{rmk}[4.4]
+  A tangent vector field $X$ along a curve $\gamma(t)$ is \textbf{parallel} if $\nabla_{\dot\gamma(t)}X=0$.
+  If $\gamma(t)$ is a constant speed geodesic, then $\dot\gamma(t)$ is parallel along $\gamma(t)$.
+\end{rmk}
+
+\begin{exer}
+  Let $\gamma: [0,a] \to (M,g)$ be a curve.
+  Then $\nabla_{\dot\gamma(t)}X=0$ can be written down in co-ordinates and there is a unique solution with initial condition $X(0)$.
+  So there is a unique \textbf{parallel transport} of $X(0)$ along the curve $\gamma$, forming a parallel vector field along $\gamma$.
+\end{exer}
+
+Clearly this parallel transport does not depend on the choice of parametrisation of $\gamma$.
+
+\begin{rmk}
+  Note that $\nabla_{\dot\gamma(t)}X$ is a priori not defined since $X$ is only defined on $X$, not an open set ($\nabla_XY$ is not pointwise in $Y$).
+\end{rmk}
+
+Recall that in proving the first Bianchi identity and Gauss' Theorema Egregium we assumed that $(\nabla_XY)_p=0$ (a standard simplification).
+
+Parallel transportation is a related construction for this but won't work in general.
+We need the following section:
+
+4.2 Normal co-ordinate chart
+
+Let $(M,g)$ be a Riemannian manifold and pick a $p\in M$.
+Now define the \textbf{exponential map}
+\begin{align*}
+  \exp_p: T_pM &\to M \\
+  v &\mapsto \gamma(v,1)
+\end{align*}
+where $\gamma(v,t)$ is the geodesic starting at $p$ in the direction of $V$;
+\begin{align*}
+  \nabla_{\dot\gamma(t)}\dot\gamma(t)&=1 \\
+  \dot\gamma(0)&=v \\
+  \gamma(0)&=p
+\end{align*}
+Note that this is not the ``exponential'' (flow) map $\exp(tX)$ for $X\in\Gamma(M,TM)$.
+
+Properties of $\exp_p$:
+\begin{enum}
+  \io We need $M$ to be \textbf{geodesically complete} so that $\exp_p(v)$ is defined for all $v\in T_pM$.
+  To understand this, we first see that
+  \[ \gamma(v,t) = \gamma \left( av, \frac ta \right) \]
+  for a constant $a>0$.
+  Then
+  \[ \frac{d\gamma}{dt}(av,t/a) = \frac1a \frac{d\gamma}{dt}(av,t)\frac ta, \]
+  so $\gamma(av,t/a)$ is also a geodesic, and
+  \[ \frac{d\gamma}{dt}(av,t/a)\big\vert_{t=0} = \frac1a av=v, \]
+  hence it has the same initial conditions.
+  \emph{Geodesic completeness} means that every geodesic at every point $p$ with every initial velocity $v$ can be extended forever (that is we can take any $a\in\RR_+$).
+  For a \emph{compact} manifold $M$, the Riemannian manifold $(M,g)$ is alwaysgeodesically complete.
+
+  \begin{exer}
+    Compare this with $t\mapsto\exp(tX)$ for $t\in[0,\infty)$ on a compact smooth manifold $M$.
+  \end{exer}
+
+  \io $\exp_p(v)=\gamma(v,1)$ is smooth in $v$ since by general ODE theory, the solution depends smoothly on the initial conditions.
+
+  \io $d(\exp_p)_p=\id_{T_pM}$.
+  What does this mean?
+  We have $d(\exp_p)_p: T_0(T_pM) \to T_pM$ since $\exp_p(0)=p$.
+  Then identify $T_0(T_pM)$ with $T_pM$.
+  Now suppose we have a curve $\alpha(t)=tw$ in $T_0(T_pM)$ for some $w\in T_pM$.
+  Then
+  \[ d(\exp_p)_p(w) = \frac{d\exp_p(\alpha(t))}{dt}\bigg\vert_{t=0} = \frac{d\gamma(tw,1)}{dt}\bigg\vert_{t=0} = \frac{d\gamma(w,t)}{dt}\bigg\vert_{t=0} = w. \]
+  So $d(\exp_p)_p$ is invertible.
+\end{enum}
+
+Locally, we have $\exp_p: T_pM \to V \to U \subset M$ where $V$ is a co-ordinate chart (a subset of the Euclidean space $T_pM$) and $U$ is the corresponding open set on $M$.
+Then by the inverse function theorem, $\exp_p$ is locally invertible around $p$.
+So $\exp_p: \wt U \to M$ is a local chart around $p$ of $M$ where $\wt U \subset T_pM$.
+This chart is known as the \textbf{normal co-ordinate chart}.
+
+Now take an orthonormal (w.r.t\@ $g$) basis $\{\wh e_i\}_{i=1}^n$ of $T_pM$ which maps under $d(\exp_p)_q$ to the local $TM$ basis $\{\p_i\}_{i=1}^n$ of the Euclidean co-ordinate system $(x_i)_{i=1}^n$ of $T_pM$.
+So
+\[ d(\exp_p)_q(\wh e_i) = \frac{\p}{\p x^i}\bigg\vert_q. \]
+Note that $\{\p_i\}$ is orthonormal at $p$ but not, more generally, at any other points.
+
+More properties of this chart
+
+\begin{itm}
+  \io $P(\exp_p(v))=d(\exp_p)_v(v)$ is called the \textbf{position vector field}.
+  Note that $P(\exp_p(v)) \in T_{\exp_p(v)}M$.
+  Then
+  \[ P(x^i\wh e_i) = d(\exp_p)_{x^i\wh e_i}(x^j \wh e_j) = x^j d(\exp_p)_{x^i \wh e_i} (\wh e_j) = x^i\p_i. \]
+\end{itm}
