@@ -1,0 +1,120 @@
+\section{2018-10-11 Lecture}
+
+Digression on geodesics
+
+Let $f\in\cC^\infty(M)$ for $(M,g)$ a Riemannian manifold with boundary.
+Define
+\begin{align*}
+  F: TM &\to \RR \\
+  (x,v) &\mapsto \int_0^{\tau(x,v)} f\left( \gamma_{x,v}(t) \right) \, dt
+\end{align*}
+where $\tau(x,v)$ is the time $t$ where the geodesic reaches the boundary $\p M$ (the \textbf{exit time}).
+
+What could go wrong?
+If $M$ is non-convex the function $\tau$ won't be smooth.
+For example, consider a set in the plane and a line parallel to the convex inward ``bump''.
+If the geodesic gets trapped (attractor) and goes on forever (e.g.\@ around the ``neck'' of the catenoid), then we are integrating forever.
+So the wavefront set of $F$ lets us look at this stuff.
+
+Return to distributions.
+
+Operations on distributions
+
+Let $X$ be an open subset of $\RR^n$.
+For $u\in\cD'(X)$, define the derivative $\p_{x^j}u\in\cD'(X)$ by ``integration by parts'':
+\[ \ang{\p_{x^j}u,\ph} = -\ang{u,\p_{x^j}\ph} \]
+for all $\ph\in\cC_c^\infty(X)$.
+
+\begin{thm}[Exercise]
+  If $u_j\to u$ in $\cD'(X)$, then $\p_{x^k}u_j \to \p_{x^k}u$ in $\cD'(X)$ as $j\to\infty$.
+\end{thm}
+
+We can multiply $u\in\cD'(X)$ and $f\in\cC^\infty(X)$ by defining
+\[ \ang{uf,\ph} = \ang{u,f\ph} \]
+for all $\ph\in\cC_\infty(X)$.
+
+\begin{thm}[Exercise, Leibniz rule]
+  We have
+  \[ \p^\alpha(uf) = \sum_{\beta+\gamma=\alpha}\frac{\abs\alpha!}{\abs\beta!\abs\gamma!}\p^\beta f\p^\gamma u. \]
+\end{thm}
+
+Primitives.
+Let $v\in\cD'(\RR)$.
+We want to find $u\in\cD'(\RR)$ such that $u'=v$.
+Let $\ph_0\in\cC_c^\infty(\RR)$ such that $\int\ph_0=1$.
+Define
+\[ \mu: \cC_c^\infty(\RR) \to \cC_c^\infty(\RR) \]
+by
+\[ \mu\ph(x) = \int_x^\infty \left( \ph(t)-\ang{1,\ph}\ph_0)(t) \right) \, dt. \]
+Note that $\mu\ph(x)=0$ if $\abs x$ is large.
+Now define $u$ by
+\begin{equation}
+  \ang{u,\ph} = \ang{v,\mu\ph} + \ang{c,\ph}
+  \label{19:star}
+\end{equation}
+for some constant $c$.
+This is only uniquely defined after a choice of $\ph_0$.
+Then define
+\[ \ang{u',\ph} = -\ang{u,\ph'} = -\ang{v,\mu\ph'} + \ang{c,\ph'} \]
+Now
+\[ \ang{c,\ph'} = c\int_\RR\ph'(t) \, dt = 0 \]
+and
+\[ \mu\ph'(x) = \int_x^\infty \left( \ph'(t)-\ang{1,\ph'}\ph_0(t) \right) = \int_x^\infty \ph'(t) \, dt = -\ph(x). \]
+So
+\[ \ang{u',\ph}=\ang{v,\ph}. \]
+We need to check that $v$ is a distribution.
+
+\begin{thm}
+  If $v\in\cD'(\RR)$ then $u$ defined by equation \ref{19:star} is in $\cD'(\RR)$.
+  Furthermore, every primitive of $v$ is of this form.
+\end{thm}
+
+\begin{proof}
+  To show that $u\in\cD'(\RR)$, it suffices to check that if $\ph_j\to0$ in $\cC_c^\infty(\RR)$ then $\ang{u,\ph_j}\to0$.
+  Let $\ph_j\to0$ in $\cC_c^\infty(\RR)$.
+  Recall that we need to check the following two conditions:
+  \begin{itm}
+    \io $\p^k\ph_j\to0$ uniformly over $\RR$ for all $k$, and
+    \io $\supp\ph_j\subset\subset K\subset\subset \RR$ for all $j$ and for some $K$.
+  \end{itm}
+  \begin{exer}
+    Show that $\supp(\mu\ph_j)\subseteq[-a,a]\cup\supp\ph_0$.
+  \end{exer}
+  Also $\norm{\mu\ph_j}_{L^\infty}\to0$ by DCT, so
+  \[ \norm{\p^k\mu\ph_j}_{L^\infty} = \norm{\p^{k-1}\ph_j}_{L^\infty} \to 0. \]
+  Therefore by equation \ref{19:star} we have
+  \[ \ang{u,\ph_j} = \ang{v,\mu\ph_j} + \ang{c,\ph_j} \to 0 \text{ as } j\to\infty, \]
+  so $u\in\cD'(\RR)$.
+
+  Now we check ``uniqueness''.
+  Suppose $u_1$ and $u_2$ satisfy $u_1'=u_2'=v$ in $\cD'(\RR)$.
+  Set $u=u_1-u_2$.
+  Then
+  \begin{align*}
+    \ang{u,\ph} &= \ang{u,\ph-\ang{1,\ph}\ph_0} + \ang{u,\ang{1,\ph}\ph_0} \\
+    &= \ang{u, \p_x \int_{-\infty}^x \left( \ph(t)-\ang{1,\ph}\ph_0(t) \right) \, dt} + \ang{u,\ang{1,\ph}\ph_0} \\
+    &= \ang{u', \int_{-\infty}^x \left( \ph(t)-\ang{1,\ph}\ph_0(t) \right) \, dt} + \ang{1,\ph}\ang{u,\ph_0} \\
+    &= \ang{u,\ph_0}\ang{1,\ph} = \ang{c,\ph}.
+  \end{align*}
+\end{proof}
+
+Division in $\cD'(X)$.
+
+Given $v=\cD'(X)$ and $f\in\cC^\infty(X)$, we want to find $u\in\cD'(X)$ such that $uf=v$.
+This is easy if $f\inv(0)=\emptyset$.
+If $f\inv\neq\emptyset$ let us assume that $X=\RR$ and $f\inv(0)$ are isolated points of finite order.
+By a partition of unity and translation we can assume WLOG that $f(x)=x^m$ for $m\in\NN_+$.
+(If $f$ vanishes to $m$-th order at $0$ write $f=x^mg$ where $g\neq0$ everywhere.)
+
+\begin{thm}
+  \lv
+  \begin{enum}
+    \io If $v\in\cD'(\RR)$ and $x^mv=0$, then
+    \[ v = \sum_{j=0}^{m-1} c_j\p^j\delta. \]
+    \io If $v\in\cD'(\RR)$ is given the there exists a $u\in\cD'(X)$ such that $x^mu=v$.
+  \end{enum}
+\end{thm}
+
+\begin{rmk}
+  If $x^mu=x^m\wt u=v$, then $x^m(u-\wt u)=0$ so $u-\wt u=\sum_{j=0}^{m-1}c'_j\p^j\delta$.
+\end{rmk}
