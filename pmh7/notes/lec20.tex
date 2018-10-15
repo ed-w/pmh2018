@@ -1,0 +1,85 @@
+\section{2018-10-15 Lecture}
+
+Note that
+\[ P\left( \exp_p(v) \right) = d(\exp_p)_v(v) = \frac{d\exp_p(tv)}{dt}\bigg\vert_{t=1} = \frac{d\gamma(v,t)}{dt}\bigg\vert_{t=1} = \frac{d\gamma(v/\abs{v},\abs{v}t)}{dt}\bigg\vert_{t=1} = \frac{d\gamma(v/\abs{v},s)}{dt}\bigg\vert_{s=\abs{v}}\cdot\abs{v} = \abs{v} \]
+since the length of $v/\abs{v}$ is $1$ for $v,v/\abs{v}\in T_pM$.
+So $s$ is the arc-length parameter.
+Hence
+\[ \abs{P(\exp_p(v))}_{\exp_p(V)} = \abs{v}_{T_pM} \]
+where the length is computed using $g$ at the points given in the subscripts.
+This can also be seen by considering
+\[ \abs{P(x^1,\ldots,x_n)}=\abs{\sum_{i=1}^nx^i\p_i}=\sqrt{(x^1)^2+\cdots+(x^n)^2}. \]
+Note however that this is \textbf{NOT} because $\{\p_i\}$ is orthornormal!
+
+Define $r=P/\abs{P}$ in a chart around $p$ (but excluding the point $p$ itself).
+Clearly $\abs{r}=1$.
+From the above computation, we have
+\[ r\left( \exp_p(v) \right) = \frac{P(\exp_pv)}{\abs{P(\exp_pv)}} = \frac{\abs{v}}{\abs{P(\exp_pv)}} = \frac{d\gamma(v/\abs{v}),s)}{ds}\bigg\vert_{s=\abs{v}}. \]
+So in $T_pM$, $r$ is just the unit radial direction and so, after translation to $M$ through $\exp_p$, is the velocity field of all the unit speed geodesics starting from $p$.
+Hence $\nabla_rr=0$ everywhere except at $p$ (this is the geodesic equation).
+
+Now we justify the simplification $\nabla_XY=0$ at $p$.
+We will show that at $p$, we have $\nabla_{\p_i}\p_j=0$ for all $i,j=1,\ldots,n$.
+Consider a normal co-ordinate chart $(x^1,\ldots,x^n)$.
+Then $\alpha(t)=(t,0,\ldots,0)$ is a geodesic starting at $p$ in the $\p_1$-direction.
+Then $\nabla_{\p_1}\p_1=0$ for $t\neq0$.
+By continuity, we must also have $\nabla_{\p_1}\p_1=\nabla_rr=0$ at $t=0$, that is, at $p$.
+Likewise, we have $\nabla_{\p_i}\p_i=0$ at $p$ for all $i=1,\ldots,n$.
+Now consider the curve $(t,t,0,\ldots,0)$ for $t>0$.
+Then $r=(\p_1+\p_2)/\sqrt{2}$.
+So
+\[ \nabla_{\p_1+\p_2}(\p_1+\p_2)=2\nabla_rr=0 \]
+for $t>0$, hence by continuity for $t=0$ as well.
+Then computing at $p$, we have
+\[ 0 = \nabla_{\p_1+\p_2}(\p_1+\p_2) = \nabla_{\p_1}p_2 + \nabla_{\p_2}\p_1. \]
+By torsion-freeness, we have
+\[ \nabla_{\p_1}\p_2-\nabla_{\p_2}\p_1=[\p_1,\p_2]=0 \]
+since the Lie bracket is zero at $p$.
+Hence $\nabla_{\p_2}\p_1=\nabla_{\p_1}\p_2=0$ at $p$, and similarly for the other index pairs.
+So $\nabla_{\p_i}\p_j=0$ at $p$ for all $i,j=1,\ldots,n$.
+
+For a fixed vector $X\in T_pM$, we can extend $X=X^i\p_i$ locally with constant coefficients: $X(p)=X^i(p)\p_i$ where $X^i(p)=X^i$ for all $p$ in the chart.
+Then
+\[ \nabla_XY= X^iY^i\nabla_{\p_i}\p_j=0. \]
+
+4.3 Jacobi field
+
+When we study the variations of curves we get geodesics.
+When we study the variations of geodesics we get Jacobi fields.
+How does the ``distance'' vary when we perturb the geodesic at the points of interest?
+Let $\gamma(s,t)$ be a family of geodesics parametrised by $s$.
+Then
+\[ \nabla_{\frac{d\gamma}{dt}}\frac{d\gamma}{dt} = 0 \]
+by the geodesic equation, and since this is zero for all $s$, we also have
+\[ \nabla_{\frac{d\gamma}{ds}} \nabla_{\frac{d\gamma}{dt}}\frac{d\gamma}{dt} = 0. \]
+
+Let us make this more explicit.
+Using
+\[ \left[ \frac{\p\gamma}{\p s}, \frac{\p\gamma}{\p t} \right] = 0,\]
+we have
+\begin{align*}
+  0 &= \nabla_{\frac{\p\gamma}{\p s}} \nabla_{\frac{\p\gamma}{\p t}}\frac{\p \gamma}{\p t} \\
+  &= \Rm\left( \frac{\p \gamma}{\p s}, \frac{\p \gamma}{\p t} \right) \frac{\p \gamma}{\p t} + \nabla_{\frac{\p\gamma}{\p t}} \nabla_{\frac{\p\gamma}{\p s}} \frac{\p \gamma}{\p t} \\
+  &= \Rm\left( \frac{\p \gamma}{\p s}, \frac{\p \gamma}{\p t} \right) \frac{\p \gamma}{\p t} + \nabla_{\frac{\p\gamma}{\p t}} \nabla_{\frac{\p\gamma}{\p t}} \frac{\p \gamma}{\p s}.
+\end{align*}
+Now set $X=\tfrac{\p\gamma}{\p s}$ and restrict to $s=0$.
+This gives
+\[ 0 = \Rm\left( X, \frac{\p \gamma}{\p t} \right) \frac{\p \gamma}{\p t} + \nabla_{\frac{\p\gamma}{\p t}} \nabla_{\frac{\p\gamma}{\p t}} X.\]
+This is known as the \textbf{Jacobi equation}, and a solution $X$ is known as a \textbf{Jacobi field}.
+So given a variation of geodesics, we get that the Jacobi field
+\[ X = \frac{\p\gamma}{\p s}\bigg\vert|_{s=0} \]
+satisfies the Jacobi field.
+
+Now we want to construct the geodesic variation family satisfying the initial values of $X$.
+Note that geodesics are much more rigid than any curves; we cannot just perturb them arbitrarily.
+So it suffices to perturb just at a point instead of along the whole curve.
+We will write down a local expression (in co-ordinates) for the Jacobi equation and then appeal to general ODE theory.
+
+Let $\gamma:[a,b]\to M$ be a geodesic.
+Pick an orthonormal basis $\{e_i\}_{i=1}^n$ of the tangent space at $\gamma(a)$ and parallel translate along $\gamma$.
+Now set $X=X^ie_i$.
+Then substituting this in we get
+\[ \ddot{X^i} e_i + \left( \Rm\left( e_i, \frac{d\gamma}{dt} \right)\frac{d\gamma}{dt}, e_j \right)X^ie_j = 0. \]
+Then taking co-efficients of each $e_j$ gives
+\[ \ddot{X^j} + \left( \Rm\left( e_i, \frac{d\gamma}{dt} \right)\frac{d\gamma}{dt}, e_j \right)X^i = 0. \]
+This gives a system of ODEs with uniqueness and existence of solutions coming from the general theory.

@@ -35,7 +35,7 @@ for all $\ph\in\cC_\infty(X)$.
 
 \begin{thm}[Exercise, Leibniz rule]
   We have
-  \[ \p^\alpha(uf) = \sum_{\beta+\gamma=\alpha}\frac{\abs\alpha!}{\abs\beta!\abs\gamma!}\p^\beta f\p^\gamma u. \]
+  \[ \p^\alpha(uf) = \sum_{\beta+\gamma=\alpha}\frac{\abs\alpha!}{\abs\beta!\abs\gamma!} (\p^\beta f) (\p^\gamma u). \]
 \end{thm}
 
 Primitives.
@@ -45,17 +45,18 @@ Let $\ph_0\in\cC_c^\infty(\RR)$ such that $\int\ph_0=1$.
 Define
 \[ \mu: \cC_c^\infty(\RR) \to \cC_c^\infty(\RR) \]
 by
-\[ \mu\ph(x) = \int_x^\infty \left( \ph(t)-\ang{1,\ph}\ph_0)(t) \right) \, dt. \]
+\[ \mu\ph(x) = \int_x^\infty \left( \ph(t)-\ang{1,\ph}\ph_0(t) \right) \, dt. \]
 Note that $\mu\ph(x)=0$ if $\abs x$ is large.
 Now define $u$ by
 \begin{equation}
   \ang{u,\ph} = \ang{v,\mu\ph} + \ang{c,\ph}
   \label{19:star}
 \end{equation}
-for some constant $c$.
-This is only uniquely defined after a choice of $\ph_0$.
+for some arbitrary constant $c$.
+% This is only uniquely defined after a choice of $\ph_0$.
+%   I don't think this is right
 Then define
-\[ \ang{u',\ph} = -\ang{u,\ph'} = -\ang{v,\mu\ph'} + \ang{c,\ph'} \]
+\[ \ang{u',\ph} = -\ang{u,\ph'} = -\ang{v,\mu\ph'} - \ang{c,\ph'} \]
 Now
 \[ \ang{c,\ph'} = c\int_\RR\ph'(t) \, dt = 0 \]
 and
@@ -78,7 +79,7 @@ We need to check that $v$ is a distribution.
     \io $\supp\ph_j\subset\subset K\subset\subset \RR$ for all $j$ and for some $K$.
   \end{itm}
   \begin{exer}
-    Show that $\supp(\mu\ph_j)\subseteq[-a,a]\cup\supp\ph_0$.
+    Show that $\supp(\mu\ph_j)\subseteq K\cup\supp\ph_0$.
   \end{exer}
   Also $\norm{\mu\ph_j}_{L^\infty}\to0$ by DCT, so
   \[ \norm{\p^k\mu\ph_j}_{L^\infty} = \norm{\p^{k-1}\ph_j}_{L^\infty} \to 0. \]
@@ -94,7 +95,7 @@ We need to check that $v$ is a distribution.
     \ang{u,\ph} &= \ang{u,\ph-\ang{1,\ph}\ph_0} + \ang{u,\ang{1,\ph}\ph_0} \\
     &= \ang{u, \p_x \int_{-\infty}^x \left( \ph(t)-\ang{1,\ph}\ph_0(t) \right) \, dt} + \ang{u,\ang{1,\ph}\ph_0} \\
     &= \ang{u', \int_{-\infty}^x \left( \ph(t)-\ang{1,\ph}\ph_0(t) \right) \, dt} + \ang{1,\ph}\ang{u,\ph_0} \\
-    &= \ang{u,\ph_0}\ang{1,\ph} = \ang{c,\ph}.
+    &= \ang{u,\ph_0}\ang{1,\ph} = \ang{c,\ph}. \qedhere
   \end{align*}
 \end{proof}
 
