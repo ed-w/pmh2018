@@ -1,0 +1,109 @@
+\section{2018-10-18 Lecture}
+
+We want to make $u(x)$ (defined by equation \ref{20:star}) in to a distribution.
+
+\begin{defn}[H\"ormander symbols]
+  Let $a(x,\theta)\in S^m(X\times\RR^N)$ if for all $\alpha\in\NN^n$ and $\beta\in\NN^N$, we have that for all $K\cc X$ there exists a $C>0$ such that 
+  \[ \abs{\p_x^\alpha\p_\theta^\beta a(x,\theta)} \leq C\left( 1+\abs\theta^2 \right)^{\frac m2-\frac{\abs\beta}2} \]
+  for all $x\in K$.
+\end{defn}
+
+Note that large $m$ means ``worse''.
+
+\begin{exam}
+  For some Riemannian metric $g(x)$, we have $(1+\abs\theta^2_{g(x)}) \in S^m(X\times\RR^N)$.
+\end{exam}
+
+The space $S^m(X\times\RR^N)$ is equipped with a family of semi-norms indexed by $\alpha$, $\beta$ and $K$:
+\[ \sup_{\substack{x\in K \\ \theta\in\RR^N}} \frac{\abs{\p_x^\alpha\p_\theta^\beta a(x,\theta)}}{(1+\abs\theta^2)^\frac{m-\abs\beta}2}. \]
+This makes $S^m(X\times\RR^N)$ in to a Fr\'echet space.
+
+\begin{exer}
+  Let $\chi(\theta)\in\cC_c^\infty(\RR^N)$ be a cutoff function with $\chi\equiv1$ near $\theta=0$.
+  For all $a\in S^m$, define
+  \[ a_\eps=\chi(\eps\theta)a(x,\theta). \]
+  (So as $\eps\to0$, the cutoff function becomes broader.)
+  Show that $a_\eps\to a$ in $S^{m'}$ for all $m'>m$.
+\end{exer}
+
+\begin{exer}
+  Show that
+  \begin{enum}
+    \io The map
+    \begin{align*}
+      S^m &\to S^{m-\abs\beta} \\
+      a&\mapsto\p_x^\alpha\p_\theta^b a
+    \end{align*}
+    is continuous. 
+    
+    \io The map
+    \begin{align*}
+      S^m\times S^{m'} &\to S^{m+m'} \\
+      (a,b)&\mapsto ab
+    \end{align*}
+    is continuous.
+
+    \io Let $a^k\in S^0$, $b^j,C\in S^{-1}$ and define
+    \[ L = a^j(x,\theta)\p_{\theta^j} + b^j(x,\theta)\p_{x^j} + C. \]
+    Then $L$ is continuous as a function $S^m \to S^{m-1}$.
+  \end{enum}
+\end{exer}
+
+\begin{thm}\label{21:thm}
+  Let $\psi$ be a phase function.
+  For all $a\in S^m$ and $\ph(x)\in\cC_c^\infty(X)$ we have that
+  \[ I_\psi(a,\ph) \defeq \lim_{\eps\to0} I_\psi(a_\eps\ph) \defeq \lim_{\eps\to0} \int d\theta\, \int dx\,  e^{i\psi(x,\theta)} a_\eps(x,\theta) \ph(x) \]
+  exists.
+  Furthermore, $\ph\mapsto I_\psi(a\phi)$ is a distribution.
+\end{thm}
+
+\begin{lem}\label{21:lem}
+  If $\psi$ has no critical points when $\theta\neq0$, then there exists an
+  \[ L = a^j(x,\theta)\p_{\theta^j} + b^j(x,\theta)\p_{x^j} + C \]
+  with $a^k\in S^0$, $b^j,C\in S^{-1}$ such that
+  \[ {}^tLe^{i\psi}=e^{i\psi}. \]
+\end{lem}
+
+\begin{proof}[Proof of theorem \ref{21:thm}]
+  WLOG let $a(x,\theta)=0$ if $\abs\theta\leq1$.
+  (Otherwise we can write $a=\chi a+(1-\chi)a$ for some cutoff function.)
+  Then
+  \begin{align*}
+    I_\psi(a_\eps\ph) &= \int_x \int_\theta a_\eps(x,\theta) \ph(x) {}^tLe{i\psi} \\
+    &= \int_x \int_\theta L\left( a_\eps(x,\theta)\ph(x) \right) e^{i\psi}.
+  \end{align*}
+  Now
+  \[ L(a_\eps(x,\theta)\ph) = \ph a^j\p_{\theta^j}a_\eps + b^j\left( \ph\p_{x^j}a_\eps + a_\eps\p_{x^j}\ph \right) + C a_\eps\ph \]
+  where $a_\eps\to a$ in $S^m$, $\p_{\theta^j}a_\eps\to\p_{\theta^j}a$ is in $S^{m-1}$ and $b^j\p_{x^j}a_\eps\to b^j\p_{x^j}a$ is in $S^{m-1}$.
+  Hence
+  \[ L(a_\eps\ph) \to L(a\ph) \text{ in } S^{m-1}, \]
+  so
+  \[ I_\psi(a_\eps\ph) = \int_x \int_\theta \underbrace{L^k(a_\eps\ph)}_{\to L(a\ph) \text{ in } S^{m-k}}e^{i\psi} \]
+  for $k$ sufficiently large.
+  Hence
+  \[ I_\psi(a_\eps\ph) \to \int_x\int_\theta L^k(a\ph)e^{i\psi} \]
+  by DCT.
+\end{proof}
+
+\begin{proof}[Proof of lemma \ref{21:lem}]
+  \[ \abs\theta^2\abs{\nabla_\theta\psi}^2+\abs{\nabla_\chi\psi}^2 \]
+  is homogeneous of degree $2$ in $\theta$ and nonvanishing for $\theta\neq0$.
+  Let $\rho(\theta)\in\cC_c^\infty(\RR^N)$ such that $\rho(\theta)\equiv1$ near $\theta=0$.
+  Set
+  \[ M=(1-\rho)\left( \abs\theta^2\abs{\nabla_\theta\psi}^2+\abs{\nabla_\chi\psi}^2 \right)\inv\abs\theta^2\nabla_\theta\psi\cdot\nabla_\theta + (1-\rho)\left( \abs\theta^2\abs{\nabla_\theta\psi}^2+\abs{\nabla_\chi\psi}^2 \right)\inv\nabla_x\psi\cdot\nabla+_x + \rho. \]
+  Then $Me^{i\psi}=ie^{i\psi}$, so set $L=-i{}^tM$.
+\end{proof}
+
+So
+\[ I_\psi(a\ph) = \int_x \ph(x)u(x) \]
+where
+\[ u(x) = \int_\theta a(x,\theta) e^{i\psi(x,\theta)} \in \cD'(X). \]
+
+Here is a result which we will not prove:
+\begin{thm}
+  \[ WF(u) \subseteq \left\{ \left( x,\frac{\nabla\psi(x,\theta)}{\abs{\nabla\psi(x,\theta)}} \right) \ \bigg\vert\ \nabla_\theta\psi(x,\theta)=0 \right\}. \]
+\end{thm}
+
+We can alternatively write this as $\Lambda_\psi/\RR^+$ where
+\[ \Lambda_\psi = \left\{ (x,\nabla_x\psi(x,\theta)) \mid \nabla_\theta\psi(x,\theta)=0 \right\} \subseteq T^*M. \]
+(Fourier integral operators.)
