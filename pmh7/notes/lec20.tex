@@ -34,7 +34,7 @@ Then computing at $p$, we have
 \[ 0 = \nabla_{\p_1+\p_2}(\p_1+\p_2) = \nabla_{\p_1}p_2 + \nabla_{\p_2}\p_1. \]
 By torsion-freeness, we have
 \[ \nabla_{\p_1}\p_2-\nabla_{\p_2}\p_1=[\p_1,\p_2]=0 \]
-since the Lie bracket is zero at $p$.
+since the Lie bracket is zero.
 Hence $\nabla_{\p_2}\p_1=\nabla_{\p_1}\p_2=0$ at $p$, and similarly for the other index pairs.
 So $\nabla_{\p_i}\p_j=0$ at $p$ for all $i,j=1,\ldots,n$.
 
@@ -79,7 +79,7 @@ Let $\gamma:[a,b]\to M$ be a geodesic.
 Pick an orthonormal basis $\{e_i\}_{i=1}^n$ of the tangent space at $\gamma(a)$ and parallel translate along $\gamma$.
 Now set $X=X^ie_i$.
 Then substituting this in we get
-\[ \ddot{X^i} e_i + \left( \Rm\left( e_i, \frac{d\gamma}{dt} \right)\frac{d\gamma}{dt}, e_j \right)X^ie_j = 0. \]
+\[ \ddot{X}^i e_i + \left( \Rm\left( e_i, \frac{d\gamma}{dt} \right)\frac{d\gamma}{dt}, e_j \right)X^ie_j = 0. \]
 Then taking co-efficients of each $e_j$ gives
-\[ \ddot{X^j} + \left( \Rm\left( e_i, \frac{d\gamma}{dt} \right)\frac{d\gamma}{dt}, e_j \right)X^i = 0. \]
+\[ \ddot{X}^j + \left( \Rm\left( e_i, \frac{d\gamma}{dt} \right)\frac{d\gamma}{dt}, e_j \right)X^i = 0. \]
 This gives a system of ODEs with uniqueness and existence of solutions coming from the general theory.

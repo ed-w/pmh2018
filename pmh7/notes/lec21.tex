@@ -1,0 +1,87 @@
+\section{2018-10-16 Lecture}
+
+\begin{rmk}
+  When we say that a curve is a geodesic we usually mean that it is constant speed.
+\end{rmk}
+
+\begin{rmk}
+  The geodesic equation is a system of second order nonlinear ODEs.
+  The Jacobi equation is system of second order linear ODEs.
+\end{rmk}
+
+By classical ODE theory there exists a unique solution $X(t)$ (a Jacobi field) to the initial value problem (a choice of $X(0)$ and $\dot{X}(0)$). 
+
+\begin{rmk}[4.5]
+  Pick $e_1=\dot\gamma$.
+  Then the Jacobi equation gives
+  \[ \ddot{X}^1 + \Rm(e_i,e_1,e_1,e_1)X^i = 0 \]
+  so
+  \[ X^1 = X^1(0) + \dot{X}^1(0)t. \]
+  This corresponds to a rescaling of the geodesic $\gamma(t)$, that is, $\gamma(t) \rightsquigarrow \gamma(ast)$ for $a\in\RR$.
+  Then
+  \[ \frac{\p\gamma}{\p s} = at \frac{d\gamma(u)}{du}(ast) = ate_1. \]
+  So this is a special Jacobi field $X=X^1e_1$, and $X^1=at$.
+
+  \begin{exer}
+    For a geodesic variation $\gamma(s,t)$, we van change it to $\gamma(s,ast)$ for some (properly chosen) $a\in\RR$ such that $\tfrac{\p\gamma}{\p s}|_{s=0}$ has no $e_1$-component.
+  \end{exer}
+
+  So we can w.l.o.g\@ assume that the Jacobi field has no $e_1=\dot\gamma$-component.
+  Then the resulting variations really are ``variations'' and not reparametrisations of the geodesic curve.
+\end{rmk}
+
+\begin{exam}
+  Consider a normal co-ordinate chart $\{\p_i\}$ defined by $\exp_p:T_pM\to M$.
+  The geodesics are the rays through the origin, so it is clear what possible Jacobi fields $X$ with $X(p)=0$ we can have.
+  At $0\in T_pM$ and $p\in M$, the frame $\{\p_i\}$is orthonormal, but not for other $q\in M$ in general.
+  The Jacobi field can be used to study those $\p_is$.
+
+  For a geodesic curve $\gamma(t):[0,\infty)\to M$ with $\gamma(0)=p$, we can see that $t\p_2$ is a Jacobi field and so it solves the Jacobi equation.
+  We can express this in orthonormal co-ordinates:
+  \[ t\p_2 = \sum_{i=2}^n X^ie_i. \]
+  Here the co-efficients $X^i$ are defined by the Jacobi equation.
+  So the Jacobi equation allows us to link normal co-ordinates with orthonormal co-ordinates along a geodesic.
+\end{exam}
+
+4.4 More facts on geodesic
+
+We want to find some global features of geodesics.
+The geodesic equation for the length functional of a curve is a local equation.
+We have the following fact:
+\begin{prop}
+  There is always a minimising geodesic curve between any $2$ points in a metrically complete and connected Riemannian manifold.
+\end{prop}
+
+\begin{proof}[Outline of proof]
+  We can define a distance function
+  \[ \dist(p,q) = \inf_{\substack{\gamma(a)=p\\ \gamma(b)=q}}\abs\gamma. \]
+  We can show that this is a metric.
+  So we have a sequence $(\gamma_k)$ of geodesics with $\abs{\gamma_k}\to\dist(p,q)$.
+  Then we have $\gamma_k\to\gamma$ weakly for some $\gamma$ hence it satisfies the geodesic equation $\nabla_{\dot\gamma}\dot\gamma$ weakly.
+  We can then show that $\gamma$ is smooth, hence is the desired minimising curve.
+\end{proof}
+
+Let $p\in M$ for a geodesically complete and connected Riemannian manifold.
+Then the exponential map $\exp_p:T_pM\to M$ is surjective (by the above fact).
+However, $\exp_p$ is only diffeomorphic in a neigbourhood of $p$.
+
+When $\exp_p$ is a diffeomorphism, the geodesic is minimising.
+(We will not prove this fact.)
+Now the orthogonality to the radial direction is preserved by $\exp_p$ because of our discussion on Jacobi fields.
+More specifically, let $X=\sum_{i=2}^nX^ie_i$ be a Jacobi field.
+Then the geodesic gives the shortest distance in this region (see MATH3968 notes).
+So for the distance minimising problem, we only need to study where $\exp_p$ fails to be diffeomorphic.
+There are two cases:
+\begin{enum}
+  \io $d(\exp_p)_v$ is not invertible.
+  Then $d(\exp_p)_v(w)=0$ for some $v,w\in T_pM$.
+  Now consider the corresponding Jacobi field.
+  The Jacobi field becomes $0$ at $\exp_p(v)$.
+  All such vectors $w$ form a subspace of $T_v(T_pM)=T_pM$.
+  The dimension of this subspace is called the \textbf{index} of this \textbf{conjugate point}.
+
+  \io $\exp_p(v)=\exp_p(w)$ for two different vectors $v,w\in T_pM$.
+  For example, the $2$-sphere.
+\end{enum}
+
+The loss of minimality of geodesic distance can only happen in codimension 1 set (the \textbf{cut locus}).

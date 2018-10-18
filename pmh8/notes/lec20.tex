@@ -1,0 +1,113 @@
+\section{2018-10-16 Lecture}
+
+\begin{proof}
+  We begin with the following lemma.
+
+  \begin{exer}
+    Let $\ph\in\cC_c^\infty(\RR)$ with $\p^j\ph(0)=0$ for $j=0,\ldots,m-1$.
+    Then $\ph=x^m\psi$ for some $\psi\in\cC_c^\infty(\RR)$ with
+    \[ \sup\abs{\p^k\psi} \leq \frac{1}{(m+1)!} \sup\abs{\p^{m+k}\ph} \]
+    for all $k\in\NN$.
+    (Use a Taylor expansion.)
+  \end{exer}
+  
+  \begin{enum}
+    \io Choose a cutoff function $\ph_0$ with $\ph_0\equiv1$ near 0.
+    Then for all $\ph\in\cC_c^\infty(\RR)$, we have
+    \[ \ph(x) = \ph_0(x) \sum_{j=0}^{m-1} \frac{x^j\p^j\ph(0)}{j!} + \chi(x) \]
+    where $\p^i\chi(0)=0$ for $k=0,\ldots,m-1$ and $\chi(c)\in\cC_c^\infty(\RR)$.
+    Applying the lemma to $\chi$, we have $\chi=x^m\wt\chi$ for some $\wt\chi\in\cC_c^\infty(\RR)$.
+    Define a map $\mu:\ph\mapsto\wt\chi$.
+    (Note that this map depends on the choice of $\ph_0$.)
+    Then
+    \[ \ph = \ph_0(x) \sum_{j=0}^{m-1} \frac{x^j}{j!} \p^j\ph(0) + x^m\mu\ph. \]
+    Since $u\in\cD'(\RR)$ is such that $x^mu=0$, we have
+    \begin{align*}
+      \ang{u,\ph} &= \ang{u, \ph_0(x) \sum_{j=0}^{m-1} \frac{x^j}{j!} \p^j\ph(0)} + \overbrace{\ang{u, x^m\mu\ph}}^{=0 \text{ by assumption}} \\
+      &= \sum_{j=0}^{m-1} \ang{u,\ph_0(x)\frac{x^j}{j!}} \, \p^j\ph(0) \\
+      &= \ang{\sum_{j=0}^{m-1} c_j\p^j\delta_0, \ph}.
+    \end{align*}
+
+    \io Let $v\in\cD'(\RR)$ and define $\ang{u,\ph}=\ang{v,\mu\ph}$.
+    \begin{exer}
+      Check that $u\in\cD'(\RR)$, that is
+      \[ \ang{u,\ph} = \lim_{j\to\infty}\ang{u,\ph_j} \text{ for all } \ph_j\to\ph \text{ in } \cC_c^\infty(\RR). \]
+    \end{exer}
+
+    Then
+    \[ \ang{x^mu,\ph} = \ang{u,x^m\ph} = \ang{v,\mu(x^m\ph)}, \]
+    and $\mu(x^m\ph)=\ph$.
+    (Follow the proof of the previous part with $\ph\mapsto x^m\ph$.)
+    Hence $\ang{x^mu,\ph}=\ang{v,\ph}$.
+    \qedhere
+  \end{enum}
+\end{proof}
+
+Transpose (adjoint) of continuous maps.
+
+\begin{defn}
+  The map $\mu: \cC_c^\infty(Y) \to \cC_c^\infty(X)$ is a continuous linear map if;
+  \begin{enum}
+    \io for all $K\cc Y$ there exists a $K'\cc X$ such that $\supp(\mu\ph)\subseteq K'$ if $\supp\ph\subseteq K$, and
+    \io for all $K\cc X$ and $N\in\NN$, there exists a $C$ and an $M\in\NN$ such that
+    \[ \sum_{\abs\alpha\leq N} \sup\abs{\p^\alpha(\mu\ph)} \leq C \sum_{\abs\beta\leq M} \sup\abs{\p^\beta\ph} \text{ for all } \ph\in\cC_c^\infty(K). \]
+  \end{enum}
+\end{defn}
+This comes from the seminorm topology on $\cC_c^\infty(\cdot)$.
+
+\begin{exer}
+  The map $\mu: \cC_c^\infty(Y) \to \cC_c^\infty(X)$ is continuous if and only if it is sequentially continuous, that is
+  \[ \mu\ph_j\to\mu\ph \text{ in } \cC_c^\infty(X) \text{ if } \ph_j\to\ph \text{ in } \cC_c^\infty(Y). \]
+\end{exer}
+
+\begin{defn}
+  The transpose ${}^t\mu: \cD'(X) \to \cD'(Y)$ of a continuous map $\mu: \cC_c^\infty(Y) \to \cC_c^\infty(X)$ is defined by
+  \[ \ang{ {}^t\mu u,\ph} = \ang{u,\mu\ph}. \]
+\end{defn}
+
+\begin{exam}
+  We have already come across two examples of transposes; we defined differentiation and $\cC_c^\infty$-multiplication as transposes of the maps
+  \begin{align*}
+    \ph\mapsto\p_{x^j}\ph&: \cC_c^\infty(\RR^n) \to \cC_c^\infty(\RR^n), \\
+    \ph\mapsto \chi\ph&: \cC_c^\infty(\RR^n) \to \cC_c^\infty(\RR^n).
+  \end{align*}
+  
+  Here is another example.
+  Let $F:\RR^n\to\RR^n$ be a diffeomorphism and set $\mu\ph=\ph\circ F$ (a pullback).
+  (We could actually allow $f:\RR^n\to\RR^m$.)
+  Then for all $u\in\cD'(\RR^n)$, we have $\ang{u,\mu\ph}=\ang{u,\ph\circ F}$.
+  If $u\in L\loc^1$, this equals
+  \[ \int u(y) \ph\left( F(y) \right)\, dy = u\left( F\inv(x) \right)\ph(x) \abs{\frac{\p F\inv(x)}{\p x}}\, dx. \]
+\end{exam}
+
+Fourier integral distributions
+
+Let $\psi(x,\theta): X \times \RR^n \to \RR$ be such that $\psi$ is homogeneous of degree $1$ in $\theta$ (that is $\psi(x,\tau\theta)=\tau\psi(x,\theta)$ ), and if $\theta\neq0$, we have that $\psi$ is smooth and $(d\psi)_{x,\theta}(x,\theta)\neq0$.
+We call $\psi$ a ``phase function''.
+Given a smooth function $a(x,\theta)$, define a smooth distribution $u(x)$ by
+\begin{equation}
+  u(x) = \int_{\RR^N} e^{i\psi(x,\theta)}a(x,\theta)\,d\theta.
+  \label{20:star}
+\end{equation}
+If we assume that $a(x,\theta)$ is compactly supported in $\theta$ then $u(x)\in\cC^\infty$ (by differentiating under the integral sign).
+(We could relax that assumption to $\abs{a(x,\theta)}\leq(1+\abs\theta^2)^{-N/2}$.)
+
+\begin{exam}
+  Consider the equation $(\Delta+1)v=f$.
+  Then $\wh c(\xi) = \wh f/(1+\abs\xi^2)$, so
+  \[ v(x) = \int d\xi\, e^{ix\cdot\xi}\wh v(\xi) = \int d\xi\, \frac{\wh f(\xi)}{1+\abs\xi^2} = \int dy\, f(y) \int d\xi\, \frac{e^{i\xi\cdot(x-y)}}{1+\abs\xi^2} = \int dy\, G(x-y)f(y), \]
+  where
+  \[ G(z) = \int d\xi\, \frac{e^{i\xi\cdot z}}{1+\abs\xi^2}. \]
+\end{exam}
+
+\begin{exam}
+  Consider the equation $(\p_t^2+\Delta)v=0$ subject to $v(0,x)=f(x)$ and $\dot v(0,x)=0$.
+  Taking Fourier transforms in $x$ gives $(\p_t^2+\xi^2)\hat v=0$ with $\wh v(0,\xi)=\wh f(\xi)$ and $\p_t\hat v(0,x)=0$.
+  Then
+  \begin{align*}
+    v(z,t) &= \int dy\, \int d\xi, \frac12\left( e^{i\xi\cdot(z-y)+i\abs\xi t} + e^{i\xi\cdot(z-y)-i\abs\xi t} \right) \\
+    &= \int K_t^+(z-y) f(y) \, dy + \int K_t^-(z-y) f(y) \, dy
+  \end{align*}
+  where
+  \[ K_t^\pm(x) = \int e^{i\xi\cdot x\pm i\abs\xi t}. \]
+\end{exam}
