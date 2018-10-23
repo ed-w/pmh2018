@@ -1,0 +1,103 @@
+\section{2018-10-23 Lecture}
+
+\begin{exer}
+  Fix $\ph\in\cC^\infty(\RR^n)$ such that for all $a\in\cC_c^\infty(\RR^n)$, its critical points $\{ x \mid d\ph(x)=0 \} \cap \supp a = \emptyset$.
+  Show that
+  \[ \int_{\RR^n} e^\frac{i\ph(x)}{h}a(x) \leq C_kh^k \]
+  as $h\to0$ for all $k$.
+  (Here $C_k$ depends on $k$, $a$ and $\ph$ but not $h$.)
+\end{exer}
+
+\begin{proof}[Solution]
+  Observe
+  \[ e^\frac{i\ph}{h}a = -ih\frac{\nabla\ph\cdot\nabla e^\frac{i\ph}{h}}{\abs{\nabla\ph}^2}a. \]
+  We will proceed by induction.
+  The case $k=0$ is obvious.
+  Then the critical point condition allows us to integrate by parts:
+  \[ \abs{\int e^\frac{i\ph}{h}a} = h \abs{\int\frac{\nabla\ph\cdot\nabla e^\frac{i\ph}{h}}{\abs{\nabla\ph}^2}a} = h \abs{\int e^\frac{i\ph}h\nabla\cdot\left( \frac a{\abs{\nabla\ph}^2}\nabla\ph \right)}. \]
+  Now since $(\cdot)$ is also a test function satisfying the support condition, we can apply the induction hypothesis.
+\end{proof}
+
+\begin{exer}
+  Let $u\in H^l(\RR^n)$ for some $l\in\RR$, let $f\in H^k$ and suppose $\Delta u=f$ on $\RR^n$.
+  Then $u\in H^{k+2}(\RR^n)$.
+\end{exer}
+
+\begin{proof}
+  Taking Fourier transforms, we have $\abs\xi^2\wh u=\wh f$.
+  Write $u=(\wh u)^\vee$ and let $\chi\in\cC_c^\infty(\RR^n)$ be a bump function with $\chi\equiv1$ near $0$.
+  Then
+  \[ u = \left( \chi(\xi)\wh u(\xi) \right)^\vee + \left( (1-\chi(\xi))\wh u(\xi) \right)^\vee. \]
+  Now
+  \[ \left( \chi(\xi)\wh u(\xi) \right)^\vee = \int e^{ix\cdot\xi}\left( \chi(\xi)\wh u(\xi) \right) \]
+  is in all $H^k$ for $k\in\NN$ by the DCT, hence is smooth.
+  So it suffices to show that $\left( (1-\chi(\xi))\wh u(\xi) \right)^\vee\in H^{k+2}(\RR^n)$.
+  \[ (1-\chi)\wh u = \frac{(1-\chi)\wh f(\xi)}{\abs\xi^2} \in \left( 1+\abs\xi^2 \right)^{-\frac{k+2}{2}}L^2(\RR^n)\in L^2(\RR^n).\qedhere \]
+\end{proof}
+
+\begin{exer}
+  Let $\Omega\subseteq\RR^n$ be a bounded smooth (open) domain and suppose that $u\in L^2(\Omega)$ and $V\in\cC^\infty(\ol\Omega)$ satisfy
+  \[ \int_\Omega \left( (\Delta+V)\ph \right)u=0 \text{ or equivalently} (\Delta+V)u=0 \text{ in } \cD'(\RR^n) \]
+  for all $\ph\in\cC_c^\infty(\Omega)$.
+  Then for all $\Omega'\cc\Omega$ we have $u\in\cC^\infty(\ol\Omega)$.
+\end{exer}
+
+\begin{proof}
+  Fix a $k\in\NN$.
+  We want to show that for all $\Omega'\cc\Omega$, we have $u\in H^k(\Omega')$.
+  The rest follows from $C^\infty=\bigcap H^k$.
+  We proceed by induction,
+  The case $k=0$ is by definition.
+
+  Suppose that the statement holds for some $k$.
+  Let $\Omega'\cc\Omega$ and set $\chi\in\cC_c^\infty(\RR^n)$ with $\supp\chi\cc\Omega$ such that $\chi\equiv1$ in some neighbourhood of $\Omega'$.
+  Then $\chi u\in H^k(\RR^n)$ and
+  \[ \left( \Delta+V \right)(\chi u) = [\Delta,\chi]u = \left( 2\nabla\chi\cdot\nabla+\Delta\chi \right)u \]
+  in $\cD'(\RR^n)$.
+  So if $\chi'\in\cC_c^\infty(\RR^n)$ is such that $\chi'\equiv1$ on $\supp\chi$ and $\supp(\chi')\cc\Omega$, then
+  \[ \left( \Delta+V \right)(\chi u) = [\Delta,\chi]u = [\Delta,\chi]\chi'u \in H^{k-1}(\RR^n) \]
+  since $\chi'u\in H^k(\RR^n)$ so $\left( \Delta+V \right)(\chi u)= H^{k-1}(\RR^n)$ and then $\Delta(\chi u)= H^{k-1}(\RR^n)$.
+  So $\chi u\in H^{k+1}(\RR^n)$ by the previous exercise.
+  Since $\chi\equiv1$ on $\Omega'$, we have $u\in H^{k+1}(\Omega')$.
+\end{proof}
+
+\begin{exer}
+  Recall the restriction map $R: H^1(\RR_+^n) \to H^{1/2}(\RR^{n-1})$.
+  It is easy to show that $H_0^1(\RR_+^n)\subseteq\ker R$.
+  Show the reverse inclusion $\ker R\subseteq H_0^1(\RR_+^n)$.
+\end{exer}
+
+\begin{proof}
+  Let $u\in\ker(R)$.
+  We need to show that there exists a sequence $u_j$ in $\cC_c^\infty(\RR_+^n)$ such that $u_j\to u$ in $H^1(\RR_+^n)$.
+  By definition, $u\in\ker R$ means that there exists a sequence $\wt v_j$ in $\cC^\infty(\RR^n) \cap H^1(\RR^n)$ such that $\wt v_j\to u$ in $H^1(\RR_+^n)$ and $\wt v_j(x',0) \to 0$ in $H^{1/2}(\RR^{n-1})$.
+  Let $E: H^{1/2}(\RR^{n-1}) \to H^1(\RR^n)$ be the extension operator such that 
+  \[ E: H^{1/2}(\RR^{n-1}) \cap \cC^\infty(\RR^{n-1}) \to H^1(\RR^n) \cap \cC^\infty(\RR^n). \]
+  Then
+  \[ \wt v_j - E\circ R(\wt v_j) \in \cC^\infty(\RR^n) \cap H^1(\RR^n), \]
+  $E\circ R(\wt v_j) \to 0$ in $H^1(\RR^n)$, and
+  \begin{equation}
+    \wt v_j - E\circ R(\wt v_j) \mid_{\RR^{n-1}}=0.
+    \label{22:star}
+  \end{equation}
+  Now set
+  \begin{equation*}
+    v_j=
+    \begin{cases}
+      \wt v_j-E\circ R(\wt v_j) &\text{in } \RR_+^n \cup \RR^{n-1} \\
+      0 &\text{in } \RR_-^n.
+    \end{cases}
+  \end{equation*}
+  Then $v_j\in L^2$.
+  We claim that $v_j\in H^1(\RR^n)$.
+  For all $\ph\in\cC_c^\infty(\RR^n)$,
+  \[ \int_{\RR^n}v_j\p_k\ph = \int_{\RR_+^n}\ph\p_kv_j \]
+  because of equation \ref{22:star}.
+  Then
+  \[ \abs{\int\wh\ph\xi_k\wh v_j} \leq \norm\ph_{L^2}\norm{\p_kv_j}_{L^2(\RR_+^n)}, \]
+  so $|\xi_k\wh v_j|\in L^2$ for all $k$ which implies $v_j\in H^1(\RR^n)$.
+  Now $\wh v_j\to u$ in $H^1(\RR_+^n)$, so $v_j \to u$ in $H^1(\RR_+^n)$ with $Rv_j=0$.
+  Let $h>0$ and define $v_{j,h}=v_j(x',x_n-h)$.
+  By the DCT, $v_{j,h}\to v_j$ in $H^1(\RR^n)$ as $h\to0$.
+  Now approximate $v_{j,h}$ with smooth functions such that it is still zero for $x_n\leq0$.
+\end{proof}

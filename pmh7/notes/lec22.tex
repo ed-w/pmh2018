@@ -1,0 +1,108 @@
+\section{2018-10-22 Lecture}
+
+4.4 Minimising properties of geodesics
+
+Assume $M$ is geodesically complete.
+Then there exists an $E \subset T_pM$ such that $\exp_p(E)=M$.
+Let $E^\circ$ be the interior of $E$.
+Then $\exp_p$ is a diffeomrphism (and minimising) when restricted to $E^\circ$.
+The set $E\setminus E^\circ$ is known as the \textbf{cut locus}.
+The diffeomorphism property would fail in its image.
+
+4.5 Applications of curvatures
+
+Two classical results
+
+4.5.1 Bonnet-Myers Theorem.
+
+\begin{thm}[4.7]
+  Let $(M,g)$ be a connected, geodesically complete Riemannian manifold of dimension $n$.
+  Suppose that $\Ric\leq\tfrac1{r^2}g$ for some $r>0$ over $M$.
+  Then $M$ is compact and the diameter $B$ is no larger than $\sqrt{n-1}\pi r$.
+\end{thm}
+
+\begin{rmk}
+  For two symmetric matrices $A$ and $B$, we say that $A \geq B$ if $A-B$ has all eigenvalues non-negative.
+  Equivalently, we have $x^\intercal Ax\geq x^\intercal Bx$ for all $x$.
+\end{rmk}
+
+\begin{proof}
+  The compactness follows from the diameter bound.
+
+  Let $p,q \in M$ be arbitrary.
+  Now take a minimising geodesic $\gamma(t):[0,1]\to M$ between $p$ and $q$.
+  Take a parallel frame $\{e_1,\ldots,e_n\}$ along $\gamma$ with $e_n=(1/L)\dot\gamma$ where $L=\abs\gamma=\dist(p,q)$.
+  Then consider the energy functional
+  \[ E(\gamma) = \int_0^1 \abs{\dot\gamma}^2\,dt \]
+  for a variation family $\gamma(s,t)$ with $\gamma(0,t)=t$.
+  Recall the first variation of the energy functional:
+  \[ \frac{dE}{ds}\bigg\vert_{s=0} = -2\int_0^1 \left( \nabla_{\frac{\p\gamma}{\p t}}\frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p s} \right)\,dt. \]
+
+  By the Cauchy-Schwarz inequality, we have
+  \[ \left( \int_0^1 \abs{\dot\gamma(t)}^2\,dt \right)^2 \leq \int_0^1 \abs{\dot\gamma(t)}^2\,dt \int_0^1dt \]
+  with equality when $\abs{\dot\gamma(t)}$ is constant.
+  Hence the miniumum of $E$ is achieved at the minimum of $\abs\gamma$ with constant speed (parameter $1/L$).
+  Hence
+  \[ 0 \leq \frac{d^2E(\gamma)}{ds^2}\bigg\vert_{s=0}. \]
+  Now take the second variation:
+  \begin{align*}
+    \frac{d^2E(\gamma)}{ds^2}\bigg\vert_{s=0} &= -2 \int_0^1 \frac{\p}{\p s} \left( \nabla_{\frac{\p\gamma}{\p t}}\frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p s} \right)\,dt \\
+    &= -2 \int_0^1 \frac{\p}{\p s} \left( \left( \nabla_{\frac{\p\gamma}{\p s}}\nabla_{\frac{\p\gamma}{\p t}}\frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p s} \right) + \left( \nabla_{\frac{\p\gamma}{\p t}}\frac{\p\gamma}{\p t}, \nabla_{\frac{\p\gamma}{\p s}}\frac{\p\gamma}{\p s} \right) \right)\,dt.
+  \end{align*}
+  Now the second term is zero by the geodesic equation, and we can rewrite the first term as
+  \begin{align*}
+    \left( \nabla_{\frac{\p\gamma}{\p s}}\nabla_{\frac{\p\gamma}{\p t}}\frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p s} \right) &= \Rm\left( \frac{\p\gamma}{\p s}, \frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p s} \right) + \left( \nabla_{\frac{\p\gamma}{\p t}}\nabla_{\frac{\p\gamma}{\p s}}\frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p s} \right) \\
+    &= \Rm\left( \frac{\p\gamma}{\p s}, \frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p s} \right) + \left( \nabla_{\frac{\p\gamma}{\p t}}\nabla_{\frac{\p\gamma}{\p t}}\frac{\p\gamma}{\p s}, \frac{\p\gamma}{\p s} \right)
+  \end{align*}
+  where we have used
+  \[ \left[ \frac{\p\gamma}{\p s}, \frac{\p\gamma}{\p t} \right] = 0. \]
+  Then
+  \begin{equation*}
+    0 \leq -2 \int_0^1 \frac{\p}{\p s} \left( \Rm\left( \frac{\p\gamma}{\p s}, \frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p s} \right) + \frac{\p}{\p t} \left( \nabla_{\frac{\p\gamma}{\p t}}\frac{\p\gamma}{\p s}, \frac{\p\gamma}{\p s} \right) - \left( \nabla_{\frac{\p\gamma}{\p t}}\frac{\p\gamma}{\p s}, \nabla_{\frac{\p\gamma}{\p t}}\frac{\p\gamma}{\p s} \right) \right)\,dt
+  \end{equation*}
+  Now by the fundamental theorem of calculus, the middle term is just $(\cdot,\cdot)$ evaluated at the endpoints (which is $0$ since $\tfrac{\p\gamma}{\p s}=0$ for $t=0,1$).
+  By torsion-freeness and the same Lie bracket identity from above, we have
+  \begin{equation*}
+    0 \leq -2\int_0^1 \left( \Rm\left( \frac{\p\gamma}{\p s}, \frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p t}, \frac{\p\gamma}{\p s} \right) - \abs{\nabla_{\frac{\p\gamma}{\p t}}\frac{\p\gamma}{\p s}}^2 \right) \, dt
+  \end{equation*}
+
+  We have already set $\tfrac{\p\gamma}{\p t}=Le_n$.
+  Now set $\tfrac{\p\gamma}{\p s}=\sin(\pi t)e_i$ for $i=1,\ldots,n-1$.
+  Note that this is NOT a geodesic variation.
+  Then
+  \[ \nabla_{\frac{\p\gamma}{\p t}}\frac{\p\gamma}{\p s} = \nabla_{\frac{\p}{\p t}} \sin(\pi t)e_i = \pi\cos(\pi t)e_i \]
+  since the $e_i$ are parallel.
+  So
+  \begin{align*}
+    0 &\leq -2 \int_0^1 \left( \Rm\left( \sin(\pi t)e_i, Le_n, Le_n, \sin(\pi t)e_i \right) - \abs{\pi\cos(\pi t)e_i}^2 \right) \, dt \\
+    &= -2 \int_0^1 \left( L^2 \sin^2(\pi t) \Rm(e_i,e_n,e_n,e_i) - \pi^2 \cos^2(\pi t) \right) \, dt.
+  \end{align*}
+  Then summing over $i=1,\ldots,n-1$ gives the Ricci curvature.
+  Then
+  \begin{align*}
+    0 &\leq -2 \int_0^1 \left( L^2 \sin^2(\pi t) \Ric(e_n,e_n) - \pi^2 \cos^2(\pi t) \right) \, dt. \\
+    &\leq -2 \int_0^1 \left( \frac{L^2 \sin^2(\pi t)}{r^2}  - \pi^2 \cos^2(\pi t) \right) \, dt.
+  \end{align*}
+  so
+  \begin{align*}
+    0 &\geq \frac{L^2}{r^2} \int_0^1\sin^2(\pi t)\,dt - (n-1)\pi^2\int_0^1\cos^2(\pi t)\,dt \\
+    &= \frac{L^2}{r^2}-(n-1)\pi^2 \qedhere
+  \end{align*}
+\end{proof}
+
+4.5.2 Space forms
+
+Let $(M,g)$ have constant (sectional) curvature.
+(That is $\Rm(X,Y,X,Y)$ is constant for $\abs X=\abs Y=1$ and $(X,Y)=0$.)
+Then
+\[ \Rm(X,Y,Z,W) = -K\left( g(X,W)g(Y,Z)-g(Y,W)-g(X,Z) \right) \]
+for all $p\in M$, and $X,Y,Z,W\in T_pM$.
+
+What is the effect of scaling the metric $g(\cdot,\cdot) \mapsto \lambda g(\cdot,\cdot)$?
+\begin{enum}
+  \io $\nabla \mapsto \nabla$: recall the formula $2(\nabla_XY,Z)=X(Y,Z)+\cdots$.
+  \io $R(X,Y,Z) \mapsto R(X,Y,Z)$: this follows since $\nabla \mapsto \nabla$.
+  \io $\Rm(X,Y,Z,W) \mapsto \Rm(X,Y,Z,W)$: this follows from the above.
+  \io $\Ric \mapsto \Ric$ (exercise).
+  \io $R \mapsto (1/\lambda)R$ and $K \mapsto (1/\lambda)K$.
+\end{enum}

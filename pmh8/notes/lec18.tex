@@ -8,11 +8,11 @@ Then $(x_0,\xi_0)\notin\WF(u)$ if and only if there exists a $\rho\in\cC_c^\inft
 \[ \abs{\wt\rho\left( \frac\xi{\abs\xi} \right) (\rho u)^\wedge(\xi) } \leq C_k(1+\abs\xi^2)^{-k} \]
 for all $\xi\in\RR^n$ and $k\in\NN$.
 
-WLOG $\wh\rho(\xi/\abs\xi)=1$ for $\xi/\abs\xi$ near $\xi_0$ on $S^{n-1}$.
+WLOG $\wt\rho(\xi/\abs\xi)=1$ for $\xi/\abs\xi$ near $\xi_0$ on $S^{n-1}$.
 Then
 \begin{align*}
   (\chi\rho u)^\wedge(\eta) &= \int \wh\chi(\eta-\xi) (\wh{\rho u})(\xi) \, d\xi \\
-  &= \underbrace{\int \wh\chi(\eta-\xi) \left( 1-\wh\rho\left( \frac\xi{\abs\xi} \right) \right) (\wh{\rho u})(\xi)}_{I_1(\eta)} + \underbrace{\int \wh\chi(\eta-\xi) \wh\rho\left( \frac\xi{\abs\xi} \right) (\wh{\rho u})(\xi)}_{I_2(\eta)}.
+  &= \underbrace{\int \wh\chi(\eta-\xi) \left( 1-\wt\rho\left( \frac\xi{\abs\xi} \right) \right) (\wh{\rho u})(\xi)}_{I_1(\eta)} + \underbrace{\int \wh\chi(\eta-\xi) \wt\rho\left( \frac\xi{\abs\xi} \right) (\wh{\rho u})(\xi)}_{I_2(\eta)}.
 \end{align*}
 
 Now
@@ -22,7 +22,7 @@ Now
 Let $\wt\rho'(\xi)\in\cC_c^\infty(S^{n-1})$ such that $\supp\wt\rho'\subset\subset\left\{ \wt\rho\equiv1 \right\}$.
 Then
 \begin{equation*}
-  \wh\rho'\left( \frac{\eta}{\abs\eta} \right) I_2(\eta) = \int \frac{\wh\chi(\eta-\xi)}{(1+\abs\xi^2)^k} \wt\rho\left( \frac\xi{\abs\xi} \right) (1+\abs\xi^2)^k (\wh{\rho u})(\xi).
+  \wt\rho'\left( \frac{\eta}{\abs\eta} \right) I_2(\eta) = \int \frac{\wh\chi(\eta-\xi)}{(1+\abs\xi^2)^k} \wt\rho\left( \frac\xi{\abs\xi} \right) (1+\abs\xi^2)^k (\wh{\rho u})(\xi).
 \end{equation*}
 Now for all $N\in\NN$ we have
 \begin{equation*}
@@ -34,14 +34,14 @@ We also have by \emph{Peetre's inequality}
 \end{equation*}
 Putting this all together, we have
 \begin{align*}
-  \abs{ \wh\rho'\left( \frac{\eta}{\abs\eta} \right) I_2(\eta) } &\leq \int \frac{\abs{\left( (1+\Delta_{\eta-\xi})^k\chi \right)^\wedge(\eta-\xi)}}{(1+\abs\eta^2)^k} C_{N,k} (1+\abs\xi^2)^{-N} \, d\xi \\
+  \abs{ \wt\rho'\left( \frac{\eta}{\abs\eta} \right) I_2(\eta) } &\leq \int \frac{\abs{\left( (1+\Delta_{\eta-\xi})^k\chi \right)^\wedge(\eta-\xi)}}{(1+\abs\eta^2)^k} C_{N,k} (1+\abs\xi^2)^{-N} \, d\xi \\
   &\leq C(1+\abs\eta^2)^{-k}.
 \end{align*}
 Hence $I_2(\eta)$ decays to all order in direction $\xi_0$.
 
 Also
 \begin{equation*}
-  \wt\rho'\left( \frac\eta{\abs\eta} \right)I_1(\eta) = \wt\rho'\left( \frac\eta{\abs\eta} \right) \int \wh\chi(\eta-\xi)\left( 1-\wh\rho\left( \frac\xi{\abs\xi} \right) \right) (\wh{\rho u})(\xi)
+  \wt\rho'\left( \frac\eta{\abs\eta} \right)I_1(\eta) = \wt\rho'\left( \frac\eta{\abs\eta} \right) \int \wh\chi(\eta-\xi)\left( 1-\wt\rho\left( \frac\xi{\abs\xi} \right) \right) (\wh{\rho u})(\xi)
 \end{equation*}
 Now $\xi/\abs\xi$ in $\supp(1-\wt\rho)$ is away from the direction of $\eta/\abs\eta$ in $\supp\wt\rho'$, hence $1/\abs{\eta-\xi}^2\neq0$.
 Moreover, we have
@@ -50,11 +50,11 @@ therefore
 \[ \abs{\eta-\xi}^{2k} \leq \frac1{(1-c)^k}\left( \abs\eta^2+\abs\xi^2 \right)^k. \]
 Therefore
 \begin{equation*}
-  \wt\rho'\left( \frac\eta{\abs\eta} \right)I_1(\eta) = \wt\rho'\left( \frac\eta{\abs\eta} \right) \int \frac{\left(\Delta^k\chi \right)^\wedge(\eta-\xi)}{\abs{\eta-\xi}^k} \left( 1-\wh\rho\left( \frac\xi{\abs\xi} \right) \right) (\wh{\rho u})(\xi)
+  \wt\rho'\left( \frac\eta{\abs\eta} \right)I_1(\eta) = \wt\rho'\left( \frac\eta{\abs\eta} \right) \int \frac{\left(\Delta^k\chi \right)^\wedge(\eta-\xi)}{\abs{\eta-\xi}^k} \left( 1-\wt\rho\left( \frac\xi{\abs\xi} \right) \right) (\wh{\rho u})(\xi)
 \end{equation*}
 so
 \begin{equation*}
-  \abs{\wt\rho'\left( \frac\eta{\abs\eta} \right)I_1(\eta)} \leq \frac{\wt\rho'\left( \frac{\eta}{\abs\eta} \right)}{\abs\eta^{2k}} \int \left(\Delta^k\chi \right)^\wedge(\eta-\xi) \left( 1-\wh\rho\left( \frac\xi{\abs\xi} \right) \right) (\wh{\rho u})(\xi) \, d\xi
+  \abs{\wt\rho'\left( \frac\eta{\abs\eta} \right)I_1(\eta)} \leq \frac{\wt\rho'\left( \frac{\eta}{\abs\eta} \right)}{\abs\eta^{2k}} \int \left(\Delta^k\chi \right)^\wedge(\eta-\xi) \left( 1-\wt\rho\left( \frac\xi{\abs\xi} \right) \right) (\wh{\rho u})(\xi) \, d\xi
 \end{equation*}
 when $\abs\eta\to\infty$.
 

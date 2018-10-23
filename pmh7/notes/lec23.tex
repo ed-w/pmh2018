@@ -1,0 +1,101 @@
+\section{2018-10-23 Lecture}
+
+So up to scaling, we have three possible cases for constant curvature: $K=1$, $K=0$ and $K=-1$.
+We can consider the universal cover $(\wt M,\wt g)$ of $(M,g)$ (recall that $M$ is connected) with an induced constant curvature metric $\wt g=\pi^*g$ where $\pi: \wt M \to M$ is the covering map.
+
+\begin{thm}\label{23:space}
+  A Riemannian manifold $(M,g)$ that is connected and simply connected and has constant curvature $1$, $0$ or $-1$ respectively is hyperbolic space, Euclidean space or the unit round sphere respectively.
+\end{thm}
+These are known as \textbf{space forms}.
+(Note the sign convention.)
+
+We can use the Poincar\'e ball model to represent hyperbolic space.
+Let $B$ be the (Euclidean) unit ball in $\RR^n$ and consider the manifold $(B,g_H)$ where
+\[ g_H = \frac{4g_E(X,Y)}{(1-\abs x^2)^2} \]
+for all $X,Y\in T_x\RR^n$.
+
+\begin{exer}
+  Show that $g_H$ is a complete metric on the open Euclidean unit ball.
+\end{exer}
+
+\begin{proof}[Proof of Theorem \ref{23:space}]
+  Pick a $p\im M$ and a geodesic $\gamma$ starting at $p$.
+  Let
+  \[ \{e_1=\dot\gamma,e_2,\ldots,e_n \} \]
+  be an orthonormal basis of parallel vector fields.
+  Then the Jacobi equation becomes
+  \[ \frac{d^2X}{dt^2}-KX=0 \text{ where } X=(X_2,\ldots,X_n). \]
+  If $K=1$ then $\tfrac{d^2X}{dt^2}=X$ and $X(0)=0$, so $X_i \in \spn\{\sinh t\}$ for $i=2,\ldots,n$.
+  If $K=0$ then $\tfrac{d^2X}{dt^2}=0$ and $X(0)=0$, so $X_i \in \spn\{t\}$ for $i=2,\ldots,n$.
+  If $K=-1$ then $\tfrac{d^2X}{dt^2}=-X$ and $X(0)=0$, so $X_i \in \spn\{\sin t\}$ for $i=2,\ldots,n$.
+
+  For $K=1$ and $K=0$ it is clear that we have the desired maps,
+  For $K=-1$, note that $\sin(\pi)=0$ so the Jacobi field goes to zero at $t=\pi$, hence maps to a point.
+  (Non-rigorous)
+\end{proof}
+
+5. Heat equation and geometric flows
+
+Motivation: evolve any metric to a metric with desirable curvature properties.
+
+Diffusion of heat
+
+Let $V$ be a domain and let $\nu$ be its normal vector on the boundary.
+Let $u(x,t)$ be a function which measures the distribution of heat.
+Then
+\[ \frac{d}{dt} \int_V u\,dV = \int_{\p V} F\cdot\nu\,d\sigma = \int_V \div F\,dx \]
+where $F$ is the ``heat flow'' and $d\sigma$ denotes the surface area.
+So
+\[ \frac{\p u}{\p t} = \div F. \]
+A natural model to study is $F \sim \nabla u$.
+Then
+\[ \frac{\p u}{\p t} = \Delta u. \]
+This is known as the heat equation.
+
+5.1 Smoothng effect and limiting behaviour
+
+Consider the heat equation over $\RR^n$.
+\begin{equation*}
+  \left\{
+    \begin{aligned}
+      &\,\frac{\p u}{\p t}=\Delta u \\
+      &\,u(x,0)=g(x)
+    \end{aligned}
+  \right.
+\end{equation*}
+Then \textbf{fundamental solution} is
+\[ \Phi(x,t) = \frac{1}{(4\pi t)^{n/2}}e^{-\frac{\abs x^2}{4t}} \]
+for $t>0$.
+As $t\to0^+$, $\Phi(x,t) \rightharpoonup \delta(x)$ (in the weak sense).
+Then the solution to the heat equation is given by
+\[ u(x,t) = \int_{\RR^n} \Phi(x-y,t) g(y)\,dy. \]
+
+Note that $u(x,t) \to g(x)$ as $t\to0+$ (though the convergence depends on $g$).
+Note also that $u(x,t)$ is smooth for $t>0$; this is the \textbf{smoothing effect}.
+So even if the initial function $g(x)$ is quite irregular, the solution is imeediately smooth as soon as $t>0$.
+
+Here is a simple example: consider the $1$-sphere $S^1=[0,2\pi]$ modulo the endpoints.
+Then
+\begin{equation*}
+  \left\{
+    \begin{aligned}
+      &\,\frac{\p u}{\p t}=\frac{\p^2u}{\p\theta^2} \\
+      &\,u(\theta,0)=g(\theta)
+    \end{aligned}
+  \right.
+\end{equation*}
+where the solution is periodic in $\theta$ with period $2\pi$.
+Then $u\in\spn\{1,\sin(k\theta),\cos(k\theta)\}$ for $k=1,2,\ldots$.
+Assume
+\[ g(\theta) = a_0 + \sum_{k=1}^\infty \left( b_k\sin(k\theta)+a_k\cos(k\theta) \right). \]
+and
+\[ u(\theta,t) = a_0 + \sum_{k=1}^\infty e^{-k^2t} \left( b_k\sin(k\theta)+a_k\cos(k\theta) \right). \]
+As $t\to\infty$, $u(t,\theta)\to a_0$.
+The limit is simple ($\Delta a_0=0$) and related to the initial data.
+It is natural ($\tfrac{\p u}{\p t}=\Delta u$).
+
+The limit $(t\to\infty)$ of the heat equation makes the \textbf{evolution term} $\Delta u$ vanish.
+So the heat equation is a good tool in evolving a random initial datum in to something special (and potentialy useful).
+This is the point of geometric flow.
+
+5.2 Maximum principle

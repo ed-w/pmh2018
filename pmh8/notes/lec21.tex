@@ -15,7 +15,7 @@ Note that large $m$ means ``worse''.
 \end{exam}
 
 The space $S^m(X\times\RR^N)$ is equipped with a family of semi-norms indexed by $\alpha$, $\beta$ and $K$:
-\[ \sup_{\substack{x\in K \\ \theta\in\RR^N}} \frac{\abs{\p_x^\alpha\p_\theta^\beta a(x,\theta)}}{(1+\abs\theta^2)^\frac{m-\abs\beta}2}. \]
+\[ \sup_{\substack{x\in K \\ \theta\in\RR^N}} \frac{\abs{\p_x^\alpha\p_\theta^\beta a(x,\theta)}}{\left( 1+\abs\theta^2 \right)^\frac{m-\abs\beta}2}. \]
 This makes $S^m(X\times\RR^N)$ in to a Fr\'echet space.
 
 \begin{exer}
@@ -32,9 +32,7 @@ This makes $S^m(X\times\RR^N)$ in to a Fr\'echet space.
     \io The map
     \begin{align*}
       S^m &\to S^{m-\abs\beta} \\
-      a&\mapsto\p_x^\alpha\p_\theta^b a
-    \end{align*}
-    is continuous. 
+      a&\mapsto\p_x^\alpha\p_\theta^\beta a \end{align*} is continuous. 
     
     \io The map
     \begin{align*}
@@ -66,7 +64,7 @@ This makes $S^m(X\times\RR^N)$ in to a Fr\'echet space.
 
 \begin{proof}[Proof of theorem \ref{21:thm}]
   WLOG let $a(x,\theta)=0$ if $\abs\theta\leq1$.
-  (Otherwise we can write $a=\chi a+(1-\chi)a$ for some cutoff function.)
+  (Otherwise we can write $a=\chi a+(1-\chi)a$ for some bump function at $0$, then $\chi a$ is compactly supported.)
   Then
   \begin{align*}
     I_\psi(a_\eps\ph) &= \int_x \int_\theta a_\eps(x,\theta) \ph(x) {}^tLe{i\psi} \\

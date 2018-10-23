@@ -1,0 +1,36 @@
+\section{2018-10-23 Lecture}
+
+\begin{exer}
+  Fix $\ph\in\cC^\infty(\RR^n)$ such that for all $a\in\cC_c^\infty(\RR^n)$, its critical points $\{ x \mid d\ph(x)=0 \} \cap \supp a = \emptyset$.
+  Show that
+  \[ \int_{\RR^n} e^\frac{i\ph(x)}{h}a(x) \leq C_kh^k \]
+  as $h\to0$ for all $k$.
+  (Here $C_k$ depends on $k$, $a$ and $\ph$ but not $h$.)
+\end{exer}
+
+\begin{proof}[Solution]
+  Observe
+  \[ e^\frac{i\ph}{h}a = -ih\frac{\nabla\ph\cdot\nabla e^\frac{i\ph}{h}}{\abs{\nabla\ph}^2}a. \]
+  We will proceed by induction.
+  The case $k=0$ is obvious.
+  Then the critical point condition allows us to integrate by parts:
+  \[ \abs{\int e^\frac{i\ph}{h}a} = h \abs{\int\frac{\nabla\ph\cdot\nabla e^\frac{i\ph}{h}}{\abs{\nabla\ph}^2}a} = h \abs{\int e^\frac{i\ph}h\nabla\cdot\left( \frac a{\abs{\nabla\ph}^2}\nabla\ph \right)}. \]
+  Now since $(\cdot)$ is also a test function satisfying the support condition, we can apply the induction hypothesis.
+\end{proof}
+
+\begin{exer}
+  Let $u\in H^l(\RR^n)$ for some $l\in\RR$, let $f\in H^k$ and suppose $\Delta u=f$ on $\RR^n$.
+  Then $u\in H^{k+2}(\RR^n)$.
+\end{exer}
+
+\begin{proof}
+  Taking Fourier transforms, we have $\abs\xi^2\wh u=\wh f$.
+  Write $u=(\wh u)^\vee$ and let $\chi\in\cC_c^\infty(\RR^n)$ be a bump function with $\chi\equiv1$ near $0$.
+  Then
+  \[ u = \left( \chi(\xi)\wh u(\xi) \right)^\vee + \left( (1-\chi(\xi))\wh u(\xi) \right)^\vee. \]
+  Now
+  \[ \left( \chi(\xi)\wh u(\xi) \right)^\vee = \int e^{ix\cdot\xi}\left( \chi(\xi)\wh u(\xi) \right) \]
+  is in all $H^k$ for $k\in\NN$ by the DCT, hence is smooth.
+  So it suffices to show that $\left( (1-\chi(\xi))\wh u(\xi) \right)^\vee\in H^{k+2}(\RR^n)$.
+  \[ (1-\chi)\wh u = \frac{(1-\chi)\wh f(\xi)}{\abs\xi^2} \in \left( 1+\abs\xi^2 \right)^{-\frac{k+2}{2}}L^2(\RR^n)\in L^2(\RR^n).\qedhere \]
+\end{proof}
