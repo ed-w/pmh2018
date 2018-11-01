@@ -1,0 +1,68 @@
+\section{2018-11-01 Lecture}
+
+Stefanov-Yang Yang 2018
+
+Let $(M,g)$ be a Lorentzian manifold.
+For simplicity, let $g$ be the symmetric $2$-tensor
+\[ g = -dt^2 + h_{jk} \, dx^j \; dx^k \]
+where $h_{jk}$ depends on $x$ and $t$, and we set $t=x^0$.
+Then the \textbf{d'Alembertian} operator is
+\begin{align*}
+  \square_g &= \frac{1}{\sqrt{\abs{\det g}}} \p_j\left( \sqrt{\abs{\det g}} g^{jk} \p_k u \right) \\
+  &= -\frac{1}{\sqrt{\det h}} \p_j\left( \sqrt{\det h} \p_t u \right) = \frac{1}{\sqrt{\det h}} \p_j\left( \sqrt{\det h} h^{jk} \p_k u \right) \\
+\end{align*}
+This is the analog of the wave operator for Lorentzian manifolds.
+
+Define a \textbf{causal structure} on the manifold.
+Let $p\in M$ and $v\in T_pM$.
+Then $v$ is \textbf{time-like} (or \textbf{null}) if $g(v,v)<0$, \textbf{light-like} if $g(v,v)=0$ and \textbf{space-like} if $g(v,v)>0$.
+A hyperspace $S$ is called time-like if for all $p\in S$, $T_pS$ contains a light-like vector.
+Suppose $M$ is light-like.
+
+A time-like or null vector is \textbf{future pointing} if $g(v,\p t)<0$.
+
+\begin{lem}
+  Let $v'\in T_p(\p M)$ be time-like and future pointing.
+  Then there exists a unique future pointing null vector $v$ such that $v-v'\perp T_pM$ with respect to $g$, and $v$ points in to $M$.
+\end{lem}
+
+Dynamics of null-geodesics (i.e.\@ light)
+Let $(p_0,v_0')\in T_pM$ be time-like and future pointing.
+Let $v_0$ be the unique future pointing null vector in the Lemma above.
+Let $(\gamma_{p_0,v_0'})$ be the null geodesic originating from $p_0$ in direction $v_0$ (so the velocity vector is always a null vector).
+Now flow along this geodesic until it reaches a point $p_1$ on $\p M$.
+If the velocity at $p_1$ is $v_1$, then we project to the light-like subspace to give $v_1$.
+Then $\cL_g:(p_0,v_0') \mapsto (p_1,v_1')$ is known as the \textbf{lens relation}.
+
+PDE and wavefront.
+
+Let $f\in\cD'(\p M)$ and with $\supp f$ contained in a neighbourhood of $p_0$ in $\p M$ and consider $\WF(f)$ in a small neighbourhood of $(p_0,v_0')$.
+Also let $q\in\cC^\infty(M)$.
+For all such $f$, there exists a unique $u$ (up to a $\cC^\infty$ function) solving
+\begin{equation*}
+  \begin{cases}
+    \left( \square_g+q \right)u \in \cC^\infty \\
+    (u-f)|_{\p M} \in \cC^\infty,
+  \end{cases}
+\end{equation*}
+where $\WF(u)$ contains only future-pointing null vectors.
+This is known as a microlocal solution.
+
+Let $\Gamma_0$ be a small strip-shaped neighbourhood about the geodesic $\gamma_{p_0,v_0'}$.
+WLOG we can assume $\supp u\subseteq\Gamma_0$.
+Define $\Lambda_{g,q}f=(\p_\nu u)|_{\p M}$.
+
+\begin{thm}[Stefanov-Yang Yang]
+  If $\Lambda_{g_1,q_1}=\Lambda_{g_2,q_2}$, then $\cL_{g_1}=\cL_{g_2}$, and
+  \[ \int_\gamma q_1-q_2=0 \]
+  for all null future-pointing geodesics.
+\end{thm}
+
+\begin{proof}
+  SY showed that
+  \[ \left( \Lambda_{g_1,q_1}f \right)(x) = \int_{\p M} \int_{\theta\in\RR^N} e^{i\ph(x,y,\theta)} a(x,y,\theta) f(y) \, d\theta \, dy. \]
+  Recall from last lecture
+  \[ \Lambda_\ph = \left\{ (x,d_x\ph,y,d_y\ph) \mid d_\theta\ph(x,y,\theta)=0 \right\}. \]
+  SY showed that
+  \[ \Lambda_\ph = \left\{ (x,v_0',\cL(x,v_0')) \right\}. \qedhere \]
+\end{proof}

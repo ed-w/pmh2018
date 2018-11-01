@@ -1,0 +1,98 @@
+\section{2018-10-25 Lecture}
+
+\begin{exer}
+  Let $f\in L^1([0,1])$.
+  Show that
+  \[ \int_0^1 e^{ijx}f(x)\,dx\to0 \]
+  as $j\to0$.
+\end{exer}
+
+\begin{proof}
+  For all $\eps>0$ there exists an $f_\eps\in\cC_c^\infty([0,1])$ such that $\norm{f_\eps-f}_{L^1}\leq\eps$.
+  So
+  \[ \abs{\int_0^1 e^{ijx}f\,dx} \leq \abs{\int_0^1e^{ijx}f_\eps\,dx}+\eps\to\eps \]
+  as $j\to0$.
+  Now take $\eps\to0$.
+\end{proof}
+
+\begin{exer}
+  Let $\ph\in\cC_c^\infty(\RR)$ be such that $\p^j\ph(0)=0$ for $j=0,\ldots,m-1$.
+  Then $\ph=x^m\psi$ for some $\psi\in\cC_c^\infty(\RR)$.
+\end{exer}
+
+\begin{proof}
+  Write
+  \[ \ph(x)=\sum_{j=0}^{m-1}\frac{f^j}{j!}\ph^{(j)}(0)+R(x) \]
+  where $R(x)$ is $\cC^\infty$ and is $O(x^m)$.
+
+  Recall Taylor's theorem with $\cC^\infty$ remainder:
+  \begin{align*}
+    \ph(x) &= \ph(0) + \int_0^x \ph'(t)\,dt \\
+    &= \ph(0) - \int_0^x \left( \frac{d}{dt}(x-t) \right)\ph'(t)\,dt \\
+    &= \ph(0) + x\ph'(0) - \frac12 \int_0^x \left( \frac{d^2}{dt^2}(x-t) \right)\ph''(t)\,dt \\
+    &= \sum_{j=0}^m \frac{x^j}{j!} \ph^{(j)}(0) + C_m \int_0^x (x-t)^m \ph^{(m+1)}(t) \, dt. 
+  \end{align*}
+  Making the change of variables $t=xs$, we get
+  \[ \ph(x) = \int_0^1 (1-s)^{m-1}\ph^{(m)}(xs) \, ds. \]
+  Then by the DCT the right hand side is smooth after dividing by $x^m$.
+  Note that the right hand side is not a priori compactly supported, but it follows from the left hand side being compactly supported.
+\end{proof}
+
+\begin{exer}
+  Let $f\in\cC_c^\infty(\RR^2)$ and define
+  \[ \left(\p_{\ol z}\inv f\right)(z) = \int_w \frac{f(w)}{z-w}. \]
+  Show that $\p_{\ol z}\inv\p_{\ol z}f=f$.
+\end{exer}<++>
+
+\begin{proof}
+  Make a change of variables:
+  \[ \left(\p_{\ol z}\inv f\right)(z) = \int_w \frac{f(z-w)}{w}. \]
+  The singularity at zero is absolutely integral, hence we can differentiate under the integral sign.
+  Then
+  \begin{align*}
+    \p_{\ol z}\p_zf &= \int_w \frac1w \left( \p_{\ol z}f \right)(z-w) \\
+    &= -\int_w \frac1w \left( \p_{\ol w}f \right)(z-w) \\
+    &= -\lim_{\eps\to0}\int_{\abs w>\eps} \frac1w \left( \p_{\ol w}f \right)(z-w)\
+  \end{align*}
+  Now set $w=x+iy$.
+  Then we can integrate by parts on the region $x^2+y^2>\eps^2$.
+  Since $1/w$ is analytic in this region, we are left with only a boundary term.
+  Note that the normal vector points inwards.
+  \begin{align*}
+    \p_{\ol z}\p_zf &= -\lim_{\eps\to0}\int_{x^2+y^2>\eps^2} \frac1{x+iy} \left( \p_x+i\p_y \right)\left( f(z-w) \right) \\
+    &= \lim_{\eps\to0}\int_{x^2+y^2>\eps^2} \frac{x+iy}{\abs{x+iy}} \left( \p_x+i\p_y \right)\left( f(z-w) \right) \\
+    &= \lim_{\eps\to0} \frac1\eps \int_0^{2\pi} f\left( z-\eps(\cos\theta+i\sin\theta) \right) \eps \, d\theta \\
+    &= 2\pi f(z).
+  \end{align*}
+\end{proof}
+
+\begin{exer}
+  Let $u$ be a smooth function on a smooth domain $\Omega$, and let
+  \[ \nabla\cdot(\gamma\nabla u)=0 \]
+  in $\Omega$ for some matrix $\gamma$.
+  Let $\Psi:\Omega\to\wt\Omega$ be a diffeomorphism and define
+  \[ \wt u(x)=u\circ\Psi\inv(x). \]
+  Show that
+  \[ \nabla\cdot(\wt\gamma\nabla\wt u)=0 \]
+  where
+  \[ \wt\gamma=\frac{(d\Psi\gamma d\Psi^\intercal)\circ\Psi\inv(x)}{\abs{d\Psi}}. \]
+\end{exer}
+
+\begin{proof}
+  Use the weak formulation.
+  Then
+  \[ 0 = \int_\Omega \nabla\ph(y)\cdot\gamma(y)\nabla u(y)\,dy \]
+  for all $\ph\in\cC_c^\infty$.
+  Setting $y=\Phi\inv(x)$, we get
+  \[ 0 = \int_{\wt\Omega} (\nabla\ph)\circ\Psi\inv(x)\cdot\gamma\left( \Psi\inv(x) \right)(\nabla u)\circ\Psi\inv(x) \abs{\frac{d\Psi\inv}{dx}} \, dx. \]
+  We can check that
+  \[ \nabla\left( u\circ\Psi\inv \right) = (d\Psi\inv)^\intercal(\nabla u)\circ\Psi\inv \]
+  so
+  \[ (d\Psi)^\intercal\nabla\left( u\circ\Psi\inv \right) = (\nabla u)\circ\Psi\inv. \]
+  Then
+  \begin{align*}
+    0 &= \int_{\wt\Omega} (d\Psi)^\intercal (\nabla\wt\ph)\cdot\gamma\left( \Psi\inv(x) \right)(d\Psi)^\intercal(\nabla \wt u)\abs{\frac{d\Psi\inv}{dx}} \, dx \\
+    &= \int_{\wt\Omega} (\nabla\wt\ph) \cdot \frac{(d\Psi)\gamma\left( \Psi\inv(x) \right)(d\Psi)^\intercal}{\abs{\frac{d\Psi}{dx}}} (\nabla\wt u)\,dx.
+  \end{align*}
+  Hence $\nabla\cdot\wt\gamma\nabla\wt u=0$.
+\end{proof}

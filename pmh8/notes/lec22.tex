@@ -37,7 +37,7 @@
 
 \begin{exer}
   Let $\Omega\subseteq\RR^n$ be a bounded smooth (open) domain and suppose that $u\in L^2(\Omega)$ and $V\in\cC^\infty(\ol\Omega)$ satisfy
-  \[ \int_\Omega \left( (\Delta+V)\ph \right)u=0 \text{ or equivalently} (\Delta+V)u=0 \text{ in } \cD'(\RR^n) \]
+  \[ \int_\Omega \left( (\Delta+V)\ph \right)u=0 \text{ or equivalently } (\Delta+V)u=0 \text{ in } \cD'(\RR^n) \]
   for all $\ph\in\cC_c^\infty(\Omega)$.
   Then for all $\Omega'\cc\Omega$ we have $u\in\cC^\infty(\ol\Omega)$.
 \end{exer}
@@ -46,7 +46,7 @@
   Fix a $k\in\NN$.
   We want to show that for all $\Omega'\cc\Omega$, we have $u\in H^k(\Omega')$.
   The rest follows from $C^\infty=\bigcap H^k$.
-  We proceed by induction,
+  We proceed by induction.
   The case $k=0$ is by definition.
 
   Suppose that the statement holds for some $k$.
@@ -70,21 +70,22 @@
 \begin{proof}
   Let $u\in\ker(R)$.
   We need to show that there exists a sequence $u_j$ in $\cC_c^\infty(\RR_+^n)$ such that $u_j\to u$ in $H^1(\RR_+^n)$.
-  By definition, $u\in\ker R$ means that there exists a sequence $\wt v_j$ in $\cC^\infty(\RR^n) \cap H^1(\RR^n)$ such that $\wt v_j\to u$ in $H^1(\RR_+^n)$ and $\wt v_j(x',0) \to 0$ in $H^{1/2}(\RR^{n-1})$.
-  Let $E: H^{1/2}(\RR^{n-1}) \to H^1(\RR^n)$ be the extension operator such that 
+  By definition, $u\in\ker R$ means that there exists a sequence $\wt v_j$ in $\cC^\infty(\ol\RR_+^n) \cap H^1(\RR_+^n)$ such that $\wt v_j\to u$ in $H^1(\RR_+^n)$ and $\wt v_j(x',0) \to 0$ in $H^{1/2}(\RR^{n-1})$.
+  Note that $\wt v_j \in \cC^\infty(\RR^n)$ since it can be extended.
+  Let $E: H^{1/2}(\RR^{n-1}) \to H^1(\RR^n)$ be the extension operator and recall that 
   \[ E: H^{1/2}(\RR^{n-1}) \cap \cC^\infty(\RR^{n-1}) \to H^1(\RR^n) \cap \cC^\infty(\RR^n). \]
   Then
-  \[ \wt v_j - E\circ R(\wt v_j) \in \cC^\infty(\RR^n) \cap H^1(\RR^n), \]
-  $E\circ R(\wt v_j) \to 0$ in $H^1(\RR^n)$, and
+  \[ \wt v_j - ER(\wt v_j) \in \cC^\infty(\RR^n) \cap H^1(\RR^n), \]
+  $ER(\wt v_j) \to 0$ in $H^1(\RR^n)$, and
   \begin{equation}
-    \wt v_j - E\circ R(\wt v_j) \mid_{\RR^{n-1}}=0.
+    \wt v_j - ER(\wt v_j)\big\vert_{\RR^{n-1}}=0.
     \label{22:star}
   \end{equation}
   Now set
   \begin{equation*}
     v_j=
     \begin{cases}
-      \wt v_j-E\circ R(\wt v_j) &\text{in } \RR_+^n \cup \RR^{n-1} \\
+      \wt v_j-ER(\wt v_j) &\text{in } \ol\RR_+^n \\
       0 &\text{in } \RR_-^n.
     \end{cases}
   \end{equation*}
@@ -96,8 +97,8 @@
   Then
   \[ \abs{\int\wh\ph\xi_k\wh v_j} \leq \norm\ph_{L^2}\norm{\p_kv_j}_{L^2(\RR_+^n)}, \]
   so $|\xi_k\wh v_j|\in L^2$ for all $k$ which implies $v_j\in H^1(\RR^n)$.
-  Now $\wh v_j\to u$ in $H^1(\RR_+^n)$, so $v_j \to u$ in $H^1(\RR_+^n)$ with $Rv_j=0$.
+  Now $\wt v_j\to u$ in $H^1(\RR_+^n)$, so $v_j \to u$ in $H^1(\RR_+^n)$ with $Rv_j=0$.
   Let $h>0$ and define $v_{j,h}=v_j(x',x_n-h)$.
   By the DCT, $v_{j,h}\to v_j$ in $H^1(\RR^n)$ as $h\to0$.
-  Now approximate $v_{j,h}$ with smooth functions such that it is still zero for $x_n\leq0$.
+  Now approximate $v_{j,h}$ with smooth functions such that it is still zero for $x_n\leq0$, then use cutoffs to achieve compact support.
 \end{proof}

@@ -1,0 +1,70 @@
+\section{2018-10-30 Lecture}
+
+\begin{exer}
+  Let $h\in(0,1)$ and define
+  \[ D_{1,h}u = \frac{u(x_1+h,x')-u(x_1,x')}{h} \]
+  with $D_{1,h}: \cC_c^\infty(\RR^n) \to \cC_c^\infty(\RR^{n-1})$.
+  Show that this extends to a bounded linear operator $D_{1,h}: H^k(\RR^n) \to H^k(\RR^n)$.
+\end{exer}
+
+\begin{proof}
+  Define $u_h(x) = u(x_1+h,x')$.
+  Then $D_{1,h}(u) = (u_n(x)-u(x))/h$.
+  So
+  \[ \norm{F_{1,h}(u)}_{H^{k-1}}^2 = \norm{(1+\abs\xi^2)^{\frac{k-1}{2}}\left( \frac{\wh u_h-\wh u}{h} \right)}_{L^2(\RR^n)}^2, \]
+  but $\wh u(\xi) = e^{-\xi_1h}\wh u(\xi)$ which gives
+  \[ \frac{\wh u_h(\xi)-\wh u(\xi)}{h} = \abs{\frac{(e^{-\xi_1h}-1)\wh u(\xi)}{h}}. \]
+  By the mean value theorem, we have $\abs{e^{-i\xi h}-1}\leq\abs\xi_1$ (up to a constant).
+  Then
+  \[ \norm{D_{1,h}}_{H^{k-1}}^2 \leq \norm{(1+\abs\xi^2)^\frac{k-1}{2}\abs\xi_1\abs{\wh u(\xi)}}_{L^2(\RR_\xi^n)}^2 \leq \norm{(1+\abs\xi^2)^\frac{k}2}_{L^2(\RR_\xi^n)^2} \leq \norm{u}_{H^k(\RR^n)}. \qedhere \]
+\end{proof}
+
+\begin{exer}
+  Let $\ph(x,\theta): \RR^N \times \RR^N \setminus \{0\} \to \RR$ be smooth, homogeneous of degree $1$ in $\theta$, and $d_{x,\theta}\ph(x,\theta)\neq0$ (that is, $\ph$ has no critical points when considered as a function of two variables).
+  For an $a(x,\theta)\in S^k(\RR^n\times\RR^N)$, we define the distributions
+  \[ u(x) = \int e^{i\ph(x,\theta)} a(x,\theta) \, d\theta. \]
+  Show that
+  \[ \WF(u) \subseteq \left\{ \left( x,\frac{d_x\ph(x,\theta)}{\abs{d_x\ph(x,\theta)}} \right) \, \bigg\vert \, d_\theta\ph(x,\theta)=0 \right\}. \]
+\end{exer}
+
+\begin{proof}
+  We will show that
+  \[ \WF(u)^c \supseteq \left\{ \left( x,\frac{d_x\ph(x,\theta)}{\abs{d_x\ph(x,\theta)}} \right) \, \bigg\vert \, d_\theta\ph(x,\theta)=0 \right\}^c \defeq \Lambda^c. \]
+  Suppose that $(x_0,\xi_0)\in\RR^n\times S^{n-1}$ is not in $\Lambda$.
+  Note that $\Lambda$ is closed.
+  Then there exists a $\rho(x)\in\cC_c^\infty(\RR^n)$ and a $\wt\rho(\xi)\in\cC^\infty(S^{n-1})$ such that $\rho(x_0)=1$, $\wt\rho(\xi_0)=1$ and $\supp(\rho\wt\rho)\cap\Lambda=\emptyset$.
+  We need to show that
+  \[ I(\xi) \defeq \wt\rho(\xi/\abs\xi) \int_{\RR_n} e^{-ix\cdot\xi}e^{i\ph(x,\theta)}\rho(x)u(x)\,dx \]
+  decays to all order in $\xi$.
+
+  Assume for simplicity that
+  \[ \abs{a(x,\theta)} \leq C(1+\abs\theta^2)^{-\frac{N+1}2}. \]
+  Then $I=I_1+I_2$ where
+  \[ I_1(\xi) \defeq \wt\rho(\xi/\abs\xi) \int_{\RR_n} e^{-ix\cdot\xi}e^{i\ph(x,\theta)}\rho(x)u(x)(1-\chi(x,\theta))\,dx \]
+  and
+  \[ I_2(\xi) \defeq \wt\rho(\xi/\abs\xi) \int_{\RR_n} e^{-ix\cdot\xi}e^{i\ph(x,\theta)}\rho(x)u(x)\chi(x,\theta)\,dx \]
+  where $\chi(x,\theta)\equiv1$ on $C_\ph=\{(x,\theta)\mid d_\theta\ph(x,\theta)=0\}$ and such that
+  \[ \underbrace{\left\{ \left( x,\frac{d\ph(x,\theta)}{\abs{d\ph(x,\theta)}} \right) \, \bigg\vert  \, (x,\theta)\in\supp\chi \right\}}_{\defeq\wt\Lambda} \cap \supp(\rho\wt\rho)=\emptyset. \]
+  Then $\abs{d\ph(x,\theta)}\geq\eps$ on $\supp(1-\chi(x,\theta))$.
+  So
+  \begin{align*}
+    I_1(\xi) &= i\wt\rho(\xi/\abs\xi)\int_x\int_\theta e^{ix\cdot\xi} \frac{d_\theta\ph\cdot de^{i\ph(x,\theta)}}{\abs{d_\theta\ph(x,\theta)}^2} \rho(x)a(x,\theta)(1-\chi(x,\theta)) \\
+    I_1(\xi) &= i\wt\rho(\xi/\abs\xi)\int_x e^{ix\cdot\xi} \underbrace{ \int_\theta \nabla_\theta\cdot \left( \rho(x)a(x,\theta) \frac{d_\theta\ph}{\abs{d_\theta\ph}^2} \right)(1-\chi(x,\theta)) }_{\in \cC_c^\infty}
+  \end{align*}
+  so $|I_1(\xi)|\leq C_k(1+\abs\xi^2)^{-k/2}$ for all $k\in\NN$.
+
+  For $I_2$, observe that if $(x,\xi/\abs\xi)\in\supp(\rho\wt\rho)$ and $(x,\xi'/\abs{\xi'})\in\wt\Lambda$, then
+  \[ \frac{\xi}{\abs\xi} \cdot \frac{\xi'}{\abs{\xi'}} \leq (1-\delta) \]
+  for some $\delta$ independent of the choice of $\xi$ and $\xi'$.
+  Then
+  \begin{align*}
+    I_2(\xi) &= \wt\rho(\xi/\abs\xi) \int \frac{(-\xi+d_x\ph) \cdot d_x e^{-ix\cdot\xi+i\ph(x,\theta)}}{\abs{d_x\ph-\xi}^2} \rho(x) a(x,\theta) \chi(x,\theta) \, d\theta \, dx \\
+    &= \wt\rho(\xi/\abs\xi) \int e^{-ix\cdot\xi+i\ph(x,\theta)} \nabla_x\cdot \left( \frac{\rho(x) a(x,\theta) \chi(x,\theta)}{\abs{d_x\ph-\xi}^2}{(-\xi+d_x\ph)} \right) \, d\theta \, dx.
+  \end{align*}
+  Now
+  \[ \abs{d_x\ph-\xi}^2 = \abs{d_x\ph}^2+\abs\xi^2-2d_x\ph\cdot\xi \geq \delta(\abs{d_x\ph}^2+\abs\xi^2), \]
+  so we get an extra order of decay.
+  Then repeat application yields
+  \[ \abs{I_2(\xi)} \leq C_k(1+\abs\xi^2)^{-k} \]
+  for all $k$.
+\end{proof}

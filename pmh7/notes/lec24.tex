@@ -1,0 +1,94 @@
+\section{2018-10-29 Lecture}
+
+Let $\tfrac{\p t}{\p t}=\Delta_x u$ over a bounded set $U \subset \RR^n$ and $t\in[0,T)$ for $T<\infty$.
+
+Here is a simple argument.
+Consider the maximum of $u$ over $\ol U\times(0,T]$.
+If it is in $\inte U\times(0,T)$, then $\Delta u\leq 0$ at that point.
+Also for $t\neq0$ we have
+\[ \frac{\p u}{\p t} = \lim_{h\to0+} \frac{u(x,t)-u(x,t-h)}{h} \geq 0. \]
+This is almost a contradiction.
+(A contradiction would imply that a maximum of $u$ must occur in $U \times \{0\} \cup \p U \times [0,T]$.)
+How to make this a true contradiction?
+
+Consider $u=\eps t$.
+At the maximum of $u-\eps t$, if it is in $\inte U\times(0,T]$ then $\Delta(u-\eps t)=0$ and $\Delta u\leq0$.
+Also $\tfrac{\p(u-\eps t)}{\p t} = \tfrac{\p u}{\p t}-\eps$, so $\tfrac{\p u}{\p t}\geq\eps$, so $0\geq\Delta u$.
+This contradicts $\tfrac{\p t}{\p t}=\Delta_x u$.
+Hence the maximum of $u-\eps t$ over $\ol U\times[0,T]$ occurs in $U \times \{0\} \cup \p U \times [0,T]$.
+Then take $\eps\to0^+$.
+
+In summary, for the heat equation $\tfrac{\p t}{\p t}=\Delta_x u$, the maximum principle argument justifies that the maximum of the solution $u$ is controlled (from above) by its initial and boundary values.
+
+\begin{exer}
+  Come up with a similar argument and result using the minimum principle.
+\end{exer}
+
+5.3 Ricci flow and mean curvature flow
+
+Ricci flow
+
+For a Riemannian manifold $(M,g)$, consider the evolution of $g=g(t)$ by the Ricci curvature:
+\begin{equation*}
+  \begin{cases}
+    \ds \frac{\p g}{\p t} = -2\Ric(t), \\
+    g(0)=g_0.
+  \end{cases}
+\end{equation*}
+
+Explanation:
+
+The metric $g$ and hence $\Ric$ depend on $t$.
+
+Parabolicity
+
+Let $p\in M$ and take normal co-ordinates $\{x_1,\ldots,x_n\}$ and $\p_i=e_i$ at $p$ at some time $t$.
+We have the following classical theorem due to Riemann.
+
+\begin{thm}
+  With the above co-ordinates, we have the following Taylor expansion of $g$ at $p$:
+  \[ g_{ij} = \delta_{ij} + \frac13 \sum_{kl} \Rm(e_i,e_k,e_j,e_k)x_kx_l + O \left(\abs x^3 \right). \]
+\end{thm}
+
+How does this result explain parabolicity?
+
+We want $\tfrac{\p g}{\p t}=-2\Ric(g)$ to give
+\[ \frac{\p g_{ij}}{\p t} = \Delta g_{ij}. \]
+Then we need
+\[ \Delta g_{ij} = \sum_{k} \p_k\p_kg_{ij} = \frac23 \sum_k \Rm(e_i,e_k,e_j,e_k) = -\frac23\Ric(e_i,e_j). \]
+Therefore
+\[ \frac{\p g_{ij}}{\p t} = -2\Ric_{ij} = 3\Delta g_{ij}. \]
+However this is only at $p$ and at the time at which we take the normal co-ordinates with respect to $g(t)$.
+This is not the equation to consider to rigorously study this flow because it is only valid at one point in spacetime (at least by our own simple equation).
+In real life, Ricci flow is \emph{weakly parabolic} and we still have uniqueness and short-time existence of solutions at least when $M$ is compact.
+
+\begin{exer}
+  Calculate the Ricci flow starting from the round sphere.
+  Hint: assume that it stays as a round sphere (of evolving radius) and apply the uniqueness principle.
+\end{exer}
+
+Mean curvature flow
+
+For a hypersurface (a manifold of codimension $1$) $\Sigma^m$ in $\RR^{n+1}$, set $F_0:\Sigma^n\to\RR^{n+1}$ to be the immersion.
+Now consider the evolution of the immersion $F: \Sigma^n\to\RR^{n+1}$:
+\[ \frac{\p F}{\p t} = -H\nu \]
+where $\nu$ is the normal vector field and $H$ is the mean curvature for the (evolving) hypersurface.
+Note that the orientation does not affect $H\nu$ since $\nu\mapsto-\nu$ forces $H\mapsto-H$.
+
+Intuition: we can take $F_0$ as the identity map of the initial surface.
+Then under mean curvature flow, every point gets moved to a different position in $\RR^{n+1}$.
+
+Parabolicity of MCF.
+
+Let $p\in F(\Sigma)$ and let $\{x_i\}$ be normal co-ordinates at $p$ with $\p_i=e_i=\p_iFo$.
+(Recall that $\Sigma$ is a surface.)
+Then computing pointwise, we have
+\begin{align*}
+  \Delta F &= \sum_{i=1}^n e_ie_iF \\
+  &= \sum_{i=1}^n \nabla_{e_i}e_i \\
+  &= \sum_{i=1}^n \ol\nabla_{e_i}e_i && \text{the Euclidean connection}  \\
+  &= \sum_{i=1}^n \left( \nabla_{e_i}e_i,\nu \right)\nu && \text{since the $e_i$ vanish in the tangential direction} \\
+  &= -H\nu
+\end{align*}
+But both $\Delta G$ and $H\nu$ are globally defined quantities, hence this equation is true globally.
+So $\tfrac{\p F}{\p t}=\Delta F$.
